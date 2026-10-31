@@ -1,0 +1,18 @@
+{
+  "name": "Money Manager - Expense & Savings Tracker",
+  "short_name": "Money Manager",
+  "description": "Smart, private and free expense & savings tracker for Web and Mobile",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#0D0E12",
+  "theme_color": "#0D0E12",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "./icon.svg",
+      "sizes": "192x192 512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
