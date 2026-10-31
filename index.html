@@ -693,6 +693,93 @@
     </div>
   </div>
 
+  <!-- ================= MODAL: DEPOSIT & SET ACCOUNT BALANCE ================= -->
+  <div id="deposit-balance-modal" onclick="if(event.target === this) closeDepositBalanceModal()" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-md hidden items-center justify-center p-4">
+    <div class="w-full max-w-md rounded-[32px] glass-apple p-5 sm:p-7 border border-emerald-500/30 shadow-2xl animate-apple-sheet space-y-4 max-h-[92vh] overflow-y-auto no-scrollbar">
+      
+      <!-- Header -->
+      <div class="flex items-center justify-between pb-3 border-b border-white/[0.08]">
+        <div class="flex items-center gap-2.5">
+          <div id="dep-acc-icon-wrap" class="w-9 h-9 rounded-2xl flex items-center justify-center text-white border border-white/20"></div>
+          <div>
+            <h3 class="text-sm sm:text-base font-extrabold text-white" id="dep-acc-title">KPay (KBZPay)</h3>
+            <p class="text-[10px] text-emerald-400 font-bold">ငွေထည့်သွင်းခြင်း နှင့် လက်ကျန်ငွေ သတ်မှတ်ခြင်း</p>
+          </div>
+        </div>
+        <button type="button" onclick="closeDepositBalanceModal()" class="w-8 h-8 rounded-full glass-pill flex items-center justify-center text-slate-400 hover:text-white btn-press cursor-pointer">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      </div>
+
+      <!-- Current Balance Banner -->
+      <div class="rounded-2xl p-3.5 bg-white/[0.04] border border-white/10 flex items-center justify-between">
+        <span class="text-xs font-bold text-slate-400">လက်ရှိ စာရင်းရှိ လက်ကျန်ငွေ</span>
+        <span class="text-base font-black text-white" id="dep-current-balance-val">0 Ks</span>
+      </div>
+
+      <!-- Segmented Mode Tabs: 1. Deposit / 2. Set Exact Balance -->
+      <div class="grid grid-cols-2 gap-1.5 glass-pill p-1 rounded-2xl text-xs font-bold">
+        <button type="button" onclick="switchDepMode('deposit')" id="dep-tab-deposit" class="py-2 rounded-xl text-white bg-emerald-500/30 border border-emerald-500/40 transition">
+          + ငွေဖြည့်သွင်းမည် (Deposit)
+        </button>
+        <button type="button" onclick="switchDepMode('set_balance')" id="dep-tab-set" class="py-2 rounded-xl text-slate-400 hover:text-white transition">
+          ✏️ လက်ကျန်ငွေ သတ်မှတ်မည် (Set)
+        </button>
+      </div>
+
+      <!-- Mode 1: Deposit / Top-up Form -->
+      <div id="dep-form-deposit" class="space-y-3">
+        <div>
+          <label class="text-[11px] font-bold text-slate-400">ထည့်သွင်းမည့် ငွေပမာဏ (DEPOSIT AMOUNT)</label>
+          <div class="relative mt-1">
+            <span class="absolute left-3.5 top-1/2 -translate-y-1/2 text-xs font-bold text-emerald-400" id="dep-cur-sym-1">Ks</span>
+            <input type="number" id="dep-amount-input" placeholder="0" class="w-full glass-pill pl-10 pr-3.5 py-2.5 rounded-2xl text-base font-black text-white placeholder-slate-600 focus:outline-none focus:border-emerald-500/50">
+          </div>
+        </div>
+
+        <!-- Quick Increments -->
+        <div class="space-y-1">
+          <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">အမြန်ရွေးချယ်ရန် (+ Quick Amounts)</span>
+          <div class="grid grid-cols-5 gap-1">
+            <button type="button" onclick="addDepAmount(10000)" class="py-1 px-1.5 rounded-lg bg-white/[0.04] hover:bg-emerald-500/20 text-[10px] font-bold text-slate-300 hover:text-emerald-300 transition text-center">+10,000</button>
+            <button type="button" onclick="addDepAmount(50000)" class="py-1 px-1.5 rounded-lg bg-white/[0.04] hover:bg-emerald-500/20 text-[10px] font-bold text-slate-300 hover:text-emerald-300 transition text-center">+50,000</button>
+            <button type="button" onclick="addDepAmount(100000)" class="py-1 px-1.5 rounded-lg bg-white/[0.04] hover:bg-emerald-500/20 text-[10px] font-bold text-slate-300 hover:text-emerald-300 transition text-center">+100,000</button>
+            <button type="button" onclick="addDepAmount(500000)" class="py-1 px-1.5 rounded-lg bg-white/[0.04] hover:bg-emerald-500/20 text-[10px] font-bold text-slate-300 hover:text-emerald-300 transition text-center">+500,000</button>
+            <button type="button" onclick="addDepAmount(1000000)" class="py-1 px-1.5 rounded-lg bg-white/[0.04] hover:bg-emerald-500/20 text-[10px] font-bold text-slate-300 hover:text-emerald-300 transition text-center">+1,000,000</button>
+          </div>
+        </div>
+
+        <div>
+          <label class="text-[11px] font-bold text-slate-400">မှတ်ချက် (NOTE)</label>
+          <input type="text" id="dep-note-input" placeholder="e.g. ဘဏ်မှ ငွေထုတ်ထည့်ခြင်း / KPay သို့ ငွေဖြည့်ခြင်း" class="w-full glass-pill px-3.5 py-2.5 rounded-2xl text-xs text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500/50 mt-1">
+        </div>
+
+        <button type="button" onclick="submitAccountDeposit()" class="w-full py-3 rounded-2xl bg-gradient-to-r from-emerald-500 to-teal-400 text-slate-950 font-black text-xs shadow-lg shadow-emerald-500/25 transition btn-press cursor-pointer">
+          ငွေဖြည့်သွင်းမှု အတည်ပြုမည် (+ Confirm Deposit)
+        </button>
+      </div>
+
+      <!-- Mode 2: Direct Real Balance Set Form -->
+      <div id="dep-form-set" class="hidden space-y-3">
+        <div>
+          <label class="text-[11px] font-bold text-slate-400">အမှန်တကယ် လက်ကျန်ငွေပမာဏ (SET REAL BALANCE)</label>
+          <div class="relative mt-1">
+            <span class="absolute left-3.5 top-1/2 -translate-y-1/2 text-xs font-bold text-amber-400" id="dep-cur-sym-2">Ks</span>
+            <input type="number" id="dep-exact-balance-input" placeholder="0" class="w-full glass-pill pl-10 pr-3.5 py-2.5 rounded-2xl text-base font-black text-white placeholder-slate-600 focus:outline-none focus:border-amber-500/50">
+          </div>
+          <p class="text-[10px] text-slate-400 mt-1">
+            * ဤအကောင့်ထဲတွင် လက်ရှိ အမှန်တကယ် ရှိနေသော ပမာဏကို ရိုက်ထည့်လိုက်ပါက လက်ကျန်ငွေကို တိုက်ရိုက် ပြင်ဆင်သတ်မှတ်ပေးမည် ဖြစ်ပါသည်။
+          </p>
+        </div>
+
+        <button type="button" onclick="submitAccountExactBalance()" class="w-full py-3 rounded-2xl bg-gradient-to-r from-amber-400 via-yellow-400 to-amber-500 text-slate-950 font-black text-xs shadow-lg shadow-amber-500/25 transition btn-press cursor-pointer">
+          လက်ကျန်ငွေ အသစ် သတ်မှတ်မည် (Update Real Balance)
+        </button>
+      </div>
+
+    </div>
+  </div>
+
   <!-- ================= MODAL 1: ADD TRANSACTION ================= -->
   <div id="add-modal" onclick="if(event.target === this) closeAddModal()" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md hidden items-center justify-center p-4">
     <div class="w-full max-w-md rounded-[32px] glass-apple p-5 sm:p-6 border border-white/15 shadow-2xl animate-apple-sheet space-y-4 max-h-[92vh] overflow-y-auto no-scrollbar">
@@ -878,6 +965,31 @@
       </div>
 
       <div class="space-y-3">
+        <!-- Quick Preset Wallets & Banks -->
+        <div class="space-y-1">
+          <label class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">အသင့်သုံး အကောင့်များ (Quick Presets)</label>
+          <div class="grid grid-cols-3 gap-1.5">
+            <button type="button" onclick="selectAccountPreset('AYA Pay', '#E11D48', 'smartphone')" class="p-2 rounded-xl bg-white/[0.04] hover:bg-rose-500/20 border border-white/10 text-xs font-bold text-slate-200 hover:text-rose-300 transition text-center truncate cursor-pointer">
+              🔴 AYA Pay
+            </button>
+            <button type="button" onclick="selectAccountPreset('KPay (KBZPay)', '#3B82F6', 'smartphone')" class="p-2 rounded-xl bg-white/[0.04] hover:bg-blue-500/20 border border-white/10 text-xs font-bold text-slate-200 hover:text-blue-300 transition text-center truncate cursor-pointer">
+              🔵 KBZPay
+            </button>
+            <button type="button" onclick="selectAccountPreset('WavePay', '#F59E0B', 'smartphone')" class="p-2 rounded-xl bg-white/[0.04] hover:bg-amber-500/20 border border-white/10 text-xs font-bold text-slate-200 hover:text-amber-300 transition text-center truncate cursor-pointer">
+              🟡 WavePay
+            </button>
+            <button type="button" onclick="selectAccountPreset('CB Pay', '#EAB308', 'smartphone')" class="p-2 rounded-xl bg-white/[0.04] hover:bg-yellow-500/20 border border-white/10 text-xs font-bold text-slate-200 hover:text-yellow-300 transition text-center truncate cursor-pointer">
+              🟡 CB Pay
+            </button>
+            <button type="button" onclick="selectAccountPreset('uabpay', '#0284C7', 'smartphone')" class="p-2 rounded-xl bg-white/[0.04] hover:bg-sky-500/20 border border-white/10 text-xs font-bold text-slate-200 hover:text-sky-300 transition text-center truncate cursor-pointer">
+              🔷 uabpay
+            </button>
+            <button type="button" onclick="selectAccountPreset('Yoma Bank', '#8B5CF6', 'landmark')" class="p-2 rounded-xl bg-white/[0.04] hover:bg-purple-500/20 border border-white/10 text-xs font-bold text-slate-200 hover:text-purple-300 transition text-center truncate cursor-pointer">
+              🟣 Yoma Bank
+            </button>
+          </div>
+        </div>
+
         <div>
           <label class="text-[11px] font-bold text-slate-400">အကောင့်အမည် (ACCOUNT NAME)</label>
           <input type="text" id="acc-name-input" placeholder="ဥပမာ- CB Bank, WavePay, AYA..." class="w-full glass-pill px-3.5 py-2.5 rounded-2xl text-xs text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500/50 mt-1">
@@ -1550,6 +1662,7 @@
       { id: 'cash', name_my: 'လက်ထဲရှိငွေ (Cash)', name_en: 'Cash in Hand', balance: 0, icon: 'banknote', color: '#10B981' },
       { id: 'kpay', name_my: 'KPay (KBZPay)', name_en: 'KBZPay', balance: 0, icon: 'smartphone', color: '#3B82F6' },
       { id: 'wave', name_my: 'WavePay', name_en: 'WavePay', balance: 0, icon: 'smartphone', color: '#F59E0B' },
+      { id: 'ayapay', name_my: 'AYA Pay', name_en: 'AYA Pay', balance: 0, icon: 'smartphone', color: '#E11D48' },
       { id: 'bank', name_my: 'ဘဏ်အကောင့် (Bank)', name_en: 'Bank Vault', balance: 0, icon: 'landmark', color: '#8B5CF6' }
     ];
 
@@ -1750,6 +1863,157 @@
       }
     }
 
+    
+    /* ================= DEPOSIT & EXACT BALANCE ADJUSTMENT LOGIC ================= */
+    let activeDepAccountId = null;
+    let currentDepMode = 'deposit'; // 'deposit' or 'set_balance'
+
+    function openDepositBalanceModal(accId) {
+      activeDepAccountId = accId;
+      const acc = appState.accounts.find(a => a.id === accId);
+      if (!acc) return;
+
+      const sym = getCurrencySymbol();
+      const name = appState.lang === 'my' ? acc.name_my : acc.name_en;
+
+      document.getElementById('dep-acc-title').textContent = name;
+      document.getElementById('dep-current-balance-val').textContent = `${formatNumber(acc.balance)} ${sym}`;
+      document.getElementById('dep-cur-sym-1').textContent = sym;
+      document.getElementById('dep-cur-sym-2').textContent = sym;
+
+      const iconWrap = document.getElementById('dep-acc-icon-wrap');
+      iconWrap.style.backgroundColor = acc.color;
+      iconWrap.innerHTML = `<i data-lucide="${acc.icon || 'wallet'}" class="w-5 h-5"></i>`;
+
+      document.getElementById('dep-amount-input').value = '';
+      document.getElementById('dep-note-input').value = `${name} ထဲသို့ ငွေဖြည့်သွင်းခြင်း`;
+      document.getElementById('dep-exact-balance-input').value = acc.balance;
+
+      switchDepMode('deposit');
+
+      document.getElementById('deposit-balance-modal').classList.remove('hidden');
+      document.getElementById('deposit-balance-modal').classList.add('flex');
+      if (window.lucide) lucide.createIcons();
+    }
+
+    function closeDepositBalanceModal() {
+      document.getElementById('deposit-balance-modal').classList.add('hidden');
+      document.getElementById('deposit-balance-modal').classList.remove('flex');
+      activeDepAccountId = null;
+    }
+
+    function switchDepMode(mode) {
+      currentDepMode = mode;
+      const tabDep = document.getElementById('dep-tab-deposit');
+      const tabSet = document.getElementById('dep-tab-set');
+      const formDep = document.getElementById('dep-form-deposit');
+      const formSet = document.getElementById('dep-form-set');
+
+      if (mode === 'deposit') {
+        tabDep.className = 'py-2 rounded-xl text-white bg-emerald-500/30 border border-emerald-500/40 transition';
+        tabSet.className = 'py-2 rounded-xl text-slate-400 hover:text-white transition';
+        formDep.classList.remove('hidden');
+        formSet.classList.add('hidden');
+      } else {
+        tabDep.className = 'py-2 rounded-xl text-slate-400 hover:text-white transition';
+        tabSet.className = 'py-2 rounded-xl text-white bg-amber-500/30 border border-amber-500/40 transition';
+        formDep.classList.add('hidden');
+        formSet.classList.remove('hidden');
+      }
+    }
+
+    function addDepAmount(val) {
+      const input = document.getElementById('dep-amount-input');
+      const current = parseFloat(input.value) || 0;
+      input.value = current + val;
+    }
+
+    function submitAccountDeposit() {
+      if (!activeDepAccountId) return;
+      const acc = appState.accounts.find(a => a.id === activeDepAccountId);
+      if (!acc) return;
+
+      const amount = parseFloat(document.getElementById('dep-amount-input').value);
+      const note = document.getElementById('dep-note-input').value.trim() || `${acc.name_my} ထဲသို့ ငွေဖြည့်သွင်းခြင်း`;
+
+      if (!amount || amount <= 0) {
+        showToast('ကျေးဇူးပြု၍ ထည့်သွင်းမည့် ငွေပမာဏ ရိုက်ထည့်ပါ', true);
+        return;
+      }
+
+      acc.balance += amount;
+
+      // Log deposit as a clean income transaction
+      const newTx = {
+        id: 'tx_' + Date.now(),
+        type: 'income',
+        amount: amount,
+        categoryId: 'salary',
+        accountId: acc.id,
+        toAccountId: null,
+        note: note,
+        date: new Date().toISOString().split('T')[0]
+      };
+
+      appState.transactions.push(newTx);
+      persistState();
+      closeDepositBalanceModal();
+
+      renderAllViews();
+      if (appState.activeViewingAccountId) {
+        renderAccountDetailView(appState.activeViewingAccountId);
+      }
+
+      const sym = getCurrencySymbol();
+      showToast(`${acc.name_my} ထဲသို့ ${formatNumber(amount)} ${sym} ဖြည့်သွင်းပြီးပါပြီ!`);
+    }
+
+    function submitAccountExactBalance() {
+      if (!activeDepAccountId) return;
+      const acc = appState.accounts.find(a => a.id === activeDepAccountId);
+      if (!acc) return;
+
+      const newBalance = parseFloat(document.getElementById('dep-exact-balance-input').value);
+      if (isNaN(newBalance) || newBalance < 0) {
+        showToast('ကျေးဇူးပြု၍ မှန်ကန်သော လက်ကျန်ငွေပမာဏ ရိုက်ထည့်ပါ', true);
+        return;
+      }
+
+      const oldBalance = acc.balance;
+      const diff = newBalance - oldBalance;
+      acc.balance = newBalance;
+
+      // If there was a difference, log an adjustment transaction
+      if (diff !== 0) {
+        const adjustTx = {
+          id: 'tx_' + Date.now(),
+          type: diff > 0 ? 'income' : 'expense',
+          amount: Math.abs(diff),
+          categoryId: 'other',
+          accountId: acc.id,
+          toAccountId: null,
+          note: `လက်ကျန်ငွေ ချိန်ညှိပြင်ဆင်ခြင်း (${formatNumber(oldBalance)} -> ${formatNumber(newBalance)})`,
+          date: new Date().toISOString().split('T')[0]
+        };
+        appState.transactions.push(adjustTx);
+      }
+
+      persistState();
+      closeDepositBalanceModal();
+
+      renderAllViews();
+      if (appState.activeViewingAccountId) {
+        renderAccountDetailView(appState.activeViewingAccountId);
+      }
+
+      const sym = getCurrencySymbol();
+      showToast(`${acc.name_my} လက်ကျန်ငွေကို ${formatNumber(newBalance)} ${sym} အဖြစ် သတ်မှတ်ပြီးပါပြီ!`);
+    }
+
+    function selectAccountPreset(name, color, icon) {
+      document.getElementById('acc-name-input').value = name;
+    }
+
     function loadUserSession(userId) {
       const registry = getUserRegistry();
       const user = registry.find(u => u.id === userId);
@@ -1774,6 +2038,10 @@
         customAvatar: user.customAvatar || ''
       };
 
+            // Ensure AYA Pay exists in accounts if not present
+      if (!appState.accounts.find(a => a.id === 'ayapay')) {
+        appState.accounts.push({ id: 'ayapay', name_my: 'AYA Pay', name_en: 'AYA Pay', balance: 0, icon: 'smartphone', color: '#E11D48' });
+      }
       safeStorageSet(ACTIVE_SESSION_KEY, userId);
       renderAllViews();
       return true;
@@ -2966,7 +3234,13 @@
             <div class="w-7 h-7 sm:w-8 sm:h-8 rounded-xl flex items-center justify-center shrink-0 border border-white/10" style="background-color: ${acc.color}25; color: ${acc.color};">
               <i data-lucide="${acc.icon || 'wallet'}" class="w-3.5 h-3.5 sm:w-4 sm:h-4"></i>
             </div>
-            <i data-lucide="chevron-right" class="w-3.5 h-3.5 text-slate-500 group-hover:text-white transition"></i>
+            <div class="flex items-center gap-1.5">
+              <button type="button" onclick="event.stopPropagation(); openDepositBalanceModal('${acc.id}')" title="ငွေဖြည့်သွင်း / လက်ကျန်ပြင်ရန်" class="px-2 py-0.5 rounded-lg bg-emerald-500/15 hover:bg-emerald-500/30 border border-emerald-500/30 text-emerald-400 hover:text-emerald-300 text-[10px] font-black transition flex items-center gap-1 btn-press cursor-pointer">
+                <i data-lucide="plus" class="w-3 h-3"></i>
+                <span>ငွေဖြည့်/ပြင်</span>
+              </button>
+              <i data-lucide="chevron-right" class="w-3.5 h-3.5 text-slate-500 group-hover:text-white transition"></i>
+            </div>
           </div>
           <div>
             <span class="text-[11px] font-bold text-slate-300 block truncate">${name}</span>
@@ -3088,12 +3362,14 @@
             <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">လက်ရှိ လက်ကျန်ငွေ (Current Balance)</span>
             <span class="text-2xl font-black text-white">${formatNumber(acc.balance)} ${sym}</span>
           </div>
-          <div class="flex gap-2">
-            <button onclick="quickActionFromAccount('${acc.id}', 'income')" class="px-3 py-1.5 rounded-xl bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 text-xs font-bold transition hover:bg-emerald-500/30">
-              + ဝင်ငွေ
+          <div class="flex items-center gap-1.5">
+            <button onclick="openDepositBalanceModal('${acc.id}')" class="px-3 py-1.5 rounded-xl bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 text-xs font-black transition hover:bg-emerald-500/30 flex items-center gap-1 cursor-pointer">
+              <i data-lucide="plus-circle" class="w-3.5 h-3.5"></i>
+              <span>+ ငွေဖြည့်/ပြင်</span>
             </button>
-            <button onclick="quickActionFromAccount('${acc.id}', 'expense')" class="px-3 py-1.5 rounded-xl bg-rose-500/20 text-rose-400 border border-rose-500/30 text-xs font-bold transition hover:bg-rose-500/30">
-              - ထွက်ငွေ
+            <button onclick="quickActionFromAccount('${acc.id}', 'expense')" class="px-3 py-1.5 rounded-xl bg-rose-500/20 text-rose-400 border border-rose-500/30 text-xs font-bold transition hover:bg-rose-500/30 flex items-center gap-1 cursor-pointer">
+              <i data-lucide="minus-circle" class="w-3.5 h-3.5"></i>
+              <span>- ထွက်ငွေ</span>
             </button>
           </div>
         </div>
