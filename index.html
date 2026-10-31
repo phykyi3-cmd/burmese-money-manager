@@ -1247,6 +1247,23 @@
         သိမ်းဆည်းမည် (Save Profile)
       </button>
 
+      <!-- Account Switching & Logout Actions -->
+      <div class="pt-3 border-t border-white/[0.08] flex items-center justify-between gap-2">
+        <button type="button" onclick="closeProfileModal(); handleLogout();" class="px-3.5 py-2.5 rounded-2xl bg-rose-500/15 border border-rose-500/30 text-rose-300 font-bold text-xs hover:bg-rose-500/25 transition btn-press cursor-pointer flex items-center gap-1.5">
+          <i data-lucide="log-out" class="w-3.5 h-3.5"></i>
+          <span>အကောင့်မှ ထွက်မည်</span>
+        </button>
+        <button type="button" onclick="closeProfileModal(); openSwitchAccountDialog();" class="px-3.5 py-2.5 rounded-2xl glass-pill text-slate-300 font-bold text-xs hover:text-white transition btn-press cursor-pointer flex items-center gap-1.5">
+          <i data-lucide="users" class="w-3.5 h-3.5 text-indigo-400"></i>
+          <span>အကောင့်ပြောင်းမည်</span>
+        </button>
+      </div>
+
+      <!-- Reset Data Button for this User -->
+      <button type="button" onclick="confirmResetUserData()" class="w-full py-2 text-center text-[11px] font-bold text-slate-500 hover:text-rose-400 transition cursor-pointer">
+        ⚠️ စာရင်းမှတ်တမ်းအားလုံး ရှင်းလင်း၍ အသစ်ပြန်စမည် (Reset)
+      </button>
+
     </div>
   </div>
 
@@ -1375,6 +1392,128 @@
     </div>
   </div>
 
+  <!-- ================= FULLSCREEN AUTH GATEWAY: LOGIN & SIGN IN ================= -->
+  <div id="auth-gateway" class="fixed inset-0 z-50 bg-[#07080D]/95 backdrop-blur-2xl hidden items-center justify-center p-4 sm:p-6 transition-all duration-500 overflow-y-auto">
+    <div class="w-full max-w-md rounded-[36px] glass-apple p-6 sm:p-8 border border-white/15 shadow-2xl space-y-6 text-center relative overflow-hidden animate-apple-sheet my-auto">
+      
+      <!-- Ambient Gold Backlight Glow -->
+      <div class="absolute -top-24 left-1/2 -translate-x-1/2 w-48 h-48 rounded-full bg-amber-500/20 blur-3xl pointer-events-none"></div>
+
+      <!-- App Logo Emblem (24K Gold Sovereign) -->
+      <div class="flex flex-col items-center justify-center space-y-3 relative z-10">
+        <div class="relative w-20 h-20 rounded-[26px] p-1 bg-gradient-to-tr from-amber-400 via-yellow-300 to-amber-600 shadow-xl shadow-amber-500/30">
+          <img src="icon.svg" alt="Burmese Money Manager" class="w-full h-full object-contain rounded-[22px]" />
+        </div>
+        <div class="space-y-1">
+          <h2 class="text-xl sm:text-2xl font-black text-white tracking-tight">Burmese Money Manager</h2>
+          <p class="text-xs font-bold text-amber-300/90 tracking-wide">မြန်မာ့ငွေကြေးစီမံခန့်ခွဲမှု ဆွီ့</p>
+        </div>
+        <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 border border-white/15 text-[10px] font-bold text-slate-300">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+          <span>၁၀၀% အခမဲ့ • ကိုယ်ပိုင်သီးသန့် • Zero Fake Records</span>
+        </div>
+      </div>
+
+      <p class="text-xs text-slate-400 leading-relaxed max-w-xs mx-auto">
+        မိမိ၏ နေ့စဉ် အသုံးစရိတ်နှင့် ငွေစုပန်းတိုင်များကို သီးသန့်လုံခြုံစွာ စတင်မှတ်တမ်းတင်ရန် အကောင့်ဝင်ရောက်ပါ
+      </p>
+
+      <!-- Provider Sign-in Buttons -->
+      <div class="space-y-2.5 pt-1 text-left">
+        <!-- 1. Google Button -->
+        <button type="button" onclick="openProviderModal('google')" class="w-full py-3 px-4 rounded-2xl bg-white hover:bg-slate-100 text-slate-900 font-extrabold text-xs flex items-center justify-center gap-3 shadow-lg shadow-white/10 transition btn-press cursor-pointer">
+          <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24">
+            <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+            <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+            <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
+            <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
+          </svg>
+          <span>Google ဖြင့် ဝင်ရောက်မည်</span>
+        </button>
+
+        <!-- 2. Apple Button -->
+        <button type="button" onclick="openProviderModal('apple')" class="w-full py-3 px-4 rounded-2xl bg-[#000000] hover:bg-slate-950 text-white font-extrabold text-xs flex items-center justify-center gap-3 border border-white/20 shadow-lg transition btn-press cursor-pointer">
+          <svg class="w-4 h-4 fill-current shrink-0" viewBox="0 0 170 170">
+            <path d="M150.37 130.25c-2.45 5.66-5.35 10.87-8.71 15.66-4.58 6.53-8.33 11.05-11.22 13.56-4.48 4.12-9.28 6.23-14.42 6.35-3.69 0-8.14-1.05-13.32-3.18-5.19-2.12-9.97-3.17-14.34-3.17-4.58 0-9.49 1.05-14.75 3.17-5.26 2.13-9.5 3.24-12.74 3.35-4.35.13-9.16-1.9-14.42-6.08-3.7-3.04-7.66-7.85-11.87-14.42-6.52-10.22-11.51-21.72-14.98-34.5-3.47-12.78-5.2-24.87-5.2-36.27 0-16.19 4.35-29.65 13.06-40.38 8.7-10.74 19.57-16.2 32.61-16.39 5.01 0 10.45 1.25 16.32 3.75 5.87 2.5 9.77 3.86 11.69 4.08 2.39-.33 6.42-1.74 12.09-4.24 5.66-2.5 10.87-3.64 15.65-3.43 12.18.65 22.39 5.38 30.64 14.18-10.88 6.63-16.21 15.65-16 27.06.22 9.02 3.65 16.63 10.28 22.82 6.63 6.2 14.57 9.89 23.8 11.09-2.17 6.63-4.89 13.37-8.15 20.22zM119.22 31.85c0-7.39 2.66-14.35 7.99-20.87 5.33-6.52 11.96-10.54 19.89-12.06.33 1.2.49 2.23.49 3.09 0 7.39-2.77 14.51-8.32 21.36-5.54 6.85-12.28 10.82-20.22 11.9-0.1-.87-.16-1.9-.16-3.1-0.01-.1-.01-.21-.01-.32z"/>
+          </svg>
+          <span>Sign in with Apple ID</span>
+        </button>
+
+        <!-- 3. Facebook Button -->
+        <button type="button" onclick="openProviderModal('facebook')" class="w-full py-3 px-4 rounded-2xl bg-[#1877F2] hover:bg-[#166FE5] text-white font-extrabold text-xs flex items-center justify-center gap-3 shadow-lg shadow-blue-500/20 transition btn-press cursor-pointer">
+          <svg class="w-4 h-4 fill-current shrink-0" viewBox="0 0 24 24">
+            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+          </svg>
+          <span>Facebook ဖြင့် ဝင်ရောက်မည်</span>
+        </button>
+
+        <!-- 4. Direct Email Login Button -->
+        <button type="button" onclick="openProviderModal('email')" class="w-full py-3 px-4 rounded-2xl glass-pill hover:border-indigo-500/40 text-white font-extrabold text-xs flex items-center justify-center gap-2.5 transition btn-press cursor-pointer">
+          <i data-lucide="mail" class="w-4 h-4 text-indigo-400"></i>
+          <span>Email ဖြင့် အကောင့်သစ်ဖွင့် / ဝင်မည်</span>
+        </button>
+
+        <!-- 5. Guest / Quick Start Button -->
+        <button type="button" onclick="handleLoginAsGuest()" class="w-full py-2.5 px-4 rounded-2xl text-slate-400 hover:text-white font-bold text-[11px] flex items-center justify-center gap-2 transition btn-press cursor-pointer">
+          <i data-lucide="sparkles" class="w-3.5 h-3.5 text-amber-300"></i>
+          <span>အကောင့်မရှိဘဲ တိုက်ရိုက် အစမ်းသုံးမည် (Guest Start)</span>
+        </button>
+      </div>
+
+      <!-- Security Footnote -->
+      <div class="pt-3 border-t border-white/[0.06] text-[10px] text-slate-500 flex items-center justify-center gap-1.5">
+        <i data-lucide="shield-check" class="w-3.5 h-3.5 text-emerald-400"></i>
+        <span>ဒေတာအားလုံးသည် သင့်ဖုန်း/စက်တွင်း၌သာ လုံခြုံစွာ သီးသန့်သိမ်းဆည်းပါသည်</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ================= MODAL: INTERACTIVE PROVIDER SIGN IN ================= -->
+  <div id="auth-provider-modal" onclick="if(event.target === this) closeProviderModal()" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-md hidden items-center justify-center p-4">
+    <div class="w-full max-w-sm rounded-[32px] glass-apple p-6 sm:p-7 border border-white/20 shadow-2xl animate-apple-sheet space-y-4">
+      
+      <div class="flex items-center justify-between pb-2 border-b border-white/[0.08]">
+        <div class="flex items-center gap-2.5">
+          <div id="auth-modal-icon-wrap" class="w-8 h-8 rounded-xl flex items-center justify-center text-white"></div>
+          <div>
+            <h3 class="text-sm font-extrabold text-white" id="auth-modal-title">Sign In</h3>
+            <p class="text-[10px] text-slate-400" id="auth-modal-sub">Authentication</p>
+          </div>
+        </div>
+        <button type="button" onclick="closeProviderModal()" class="w-7 h-7 rounded-full glass-pill flex items-center justify-center text-slate-400 hover:text-white cursor-pointer">
+          <i data-lucide="x" class="w-3.5 h-3.5"></i>
+        </button>
+      </div>
+
+      <!-- Provider Form Content -->
+      <form id="auth-provider-form" onsubmit="event.preventDefault(); submitProviderLogin();" class="space-y-3.5 pt-1">
+        
+        <div>
+          <label class="text-[11px] font-bold text-slate-400" id="auth-lbl-name">သင့် အမည် (Your Name)</label>
+          <input type="text" id="auth-input-name" required placeholder="e.g. မောင်မောင်" class="w-full glass-pill px-3.5 py-2.5 rounded-2xl text-xs text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500/50 mt-1">
+        </div>
+
+        <div>
+          <label class="text-[11px] font-bold text-slate-400" id="auth-lbl-email">အီးမေးလ် (Email Address)</label>
+          <input type="email" id="auth-input-email" required placeholder="e.g. name@gmail.com" class="w-full glass-pill px-3.5 py-2.5 rounded-2xl text-xs text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500/50 mt-1">
+        </div>
+
+        <!-- Quick Accounts Suggestion (If existing accounts exist) -->
+        <div id="auth-existing-users-box" class="hidden space-y-1.5 pt-1">
+          <label class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">စက်တွင်း ရှိပြီးသား အကောင့်များ</label>
+          <div id="auth-existing-users-list" class="space-y-1 max-h-32 overflow-y-auto no-scrollbar"></div>
+        </div>
+
+        <button type="submit" id="auth-btn-submit" class="w-full py-3 rounded-2xl bg-gradient-to-r from-amber-400 via-rose-500 to-indigo-500 text-white font-black text-xs shadow-lg shadow-indigo-500/25 transition btn-press cursor-pointer mt-2">
+          စတင် အသုံးပြုမည် (Continue)
+        </button>
+      </form>
+
+    </div>
+  </div>
+
+
   <!-- ================= FLOATING TOAST NOTIFICATION ================= -->
   <div id="toast" class="fixed top-5 left-1/2 -translate-x-1/2 z-50 transform -translate-y-20 opacity-0 transition-all duration-300 pointer-events-none">
     <div class="glass-apple px-4 py-2.5 rounded-2xl shadow-2xl flex items-center gap-2.5 border border-white/20">
@@ -1408,23 +1547,15 @@
     ];
 
     const DEFAULT_ACCOUNTS = [
-      { id: 'cash', name_my: 'လက်ထဲရှိငွေ (Cash)', name_en: 'Cash in Hand', balance: 150000, icon: 'banknote', color: '#10B981' },
-      { id: 'kpay', name_my: 'KPay (KBZPay)', name_en: 'KBZPay', balance: 350000, icon: 'smartphone', color: '#3B82F6' },
-      { id: 'wave', name_my: 'WavePay', name_en: 'WavePay', balance: 80000, icon: 'smartphone', color: '#F59E0B' },
-      { id: 'bank', name_my: 'ဘဏ်အကောင့် (Bank)', name_en: 'Bank Vault', balance: 900000, icon: 'landmark', color: '#8B5CF6' }
+      { id: 'cash', name_my: 'လက်ထဲရှိငွေ (Cash)', name_en: 'Cash in Hand', balance: 0, icon: 'banknote', color: '#10B981' },
+      { id: 'kpay', name_my: 'KPay (KBZPay)', name_en: 'KBZPay', balance: 0, icon: 'smartphone', color: '#3B82F6' },
+      { id: 'wave', name_my: 'WavePay', name_en: 'WavePay', balance: 0, icon: 'smartphone', color: '#F59E0B' },
+      { id: 'bank', name_my: 'ဘဏ်အကောင့် (Bank)', name_en: 'Bank Vault', balance: 0, icon: 'landmark', color: '#8B5CF6' }
     ];
 
-    const SAMPLE_TRANSACTIONS = [
-      { id: 'tx_1', type: 'income', amount: 800000, categoryId: 'salary', accountId: 'bank', note: 'လစဉ်လစာ ဝင်ငွေ', date: new Date().toISOString().split('T')[0] },
-      { id: 'tx_2', type: 'expense', amount: 15000, categoryId: 'food', accountId: 'cash', note: 'နေ့လယ်စာ ကော်ဖီနှင့် မုန့်', date: new Date().toISOString().split('T')[0] },
-      { id: 'tx_3', type: 'expense', amount: 25000, categoryId: 'transport', accountId: 'kpay', note: 'ကားဓာတ်ဆီ ဖြည့်ခြင်း', date: new Date().toISOString().split('T')[0] },
-      { id: 'tx_4', type: 'expense', amount: 45000, categoryId: 'bills', accountId: 'kpay', note: 'အိမ်သုံး Fiber Wifi ဘေလ်', date: new Date().toISOString().split('T')[0] }
-    ];
-
-    const SAMPLE_GOALS = [
-      { id: 'g_1', name_my: 'အရေးပေါ် ရန်ပုံငွေ (Emergency Fund)', name_en: 'Emergency Fund', target: 1000000, saved: 450000, icon: 'shield-check', color: '#A855F7' },
-      { id: 'g_2', name_my: 'ဖုန်းအသစ် ဝယ်ရန် (New Smartphone)', name_en: 'New Smartphone', target: 800000, saved: 320000, icon: 'smartphone', color: '#EC4899' }
-    ];
+    // ZERO auto-records for new users - 100% clean slate!
+    const SAMPLE_TRANSACTIONS = [];
+    const SAMPLE_GOALS = [];
 
     /* 10 Curated Wallpaper Presets */
     const WALLPAPER_PRESETS = [
@@ -1505,23 +1636,44 @@
       { id: 'google_initial', name: 'Google Style', src: "data:image/svg+xml;utf8," + encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="50" fill="#4F46E5"/><text x="50" y="62" font-size="38" font-weight="900" font-family="sans-serif" fill="#FFFFFF" text-anchor="middle">S</text></svg>`) }
     ];
 
+    /* Multi-Account Isolation Constants & Keys */
+    const USER_REGISTRY_KEY = 'bmm_user_registry';
+    const ACTIVE_SESSION_KEY = 'bmm_active_user_id';
+
+    function getUserRegistry() {
+      try {
+        return JSON.parse(localStorage.getItem(USER_REGISTRY_KEY)) || [];
+      } catch (e) {
+        return [];
+      }
+    }
+
+    function saveUserRegistry(reg) {
+      safeStorageSet(USER_REGISTRY_KEY, JSON.stringify(reg));
+    }
+
+    function getUserDataKey(userId, key) {
+      return `bmm_u_${userId}_${key}`;
+    }
+
     /* Global Application State */
     let appState = {
       lang: localStorage.getItem('mm_lang') || 'my',
       currency: localStorage.getItem('mm_currency') || 'MMK',
-      budget: parseFloat(localStorage.getItem('mm_budget')) || 500000,
-      accounts: JSON.parse(localStorage.getItem('mm_accounts')) || DEFAULT_ACCOUNTS,
-      transactions: JSON.parse(localStorage.getItem('mm_transactions')) || SAMPLE_TRANSACTIONS,
-      goals: JSON.parse(localStorage.getItem('mm_goals')) || SAMPLE_GOALS,
+      budget: 500000,
+      accounts: JSON.parse(JSON.stringify(DEFAULT_ACCOUNTS)),
+      transactions: [], // Default clean empty
+      goals: [],
       wallpaper: localStorage.getItem('mm_wallpaper') || 'preset_obsidian',
       customWallpaper: localStorage.getItem('mm_custom_wallpaper') || '',
       rawCustomWallpaper: localStorage.getItem('mm_raw_custom_wallpaper') || '',
       wallpaperDimness: parseFloat(localStorage.getItem('mm_wallpaper_dimness')) || 0.70,
       wallpaperBlur: parseFloat(localStorage.getItem('mm_wallpaper_blur')) || 0,
-      profile: JSON.parse(localStorage.getItem('mm_profile')) || {
-        name: 'Sithu',
-        email: 'sithu.dev@gmail.com',
-        avatarPreset: 'shiba',
+      profile: {
+        id: '',
+        name: 'အသုံးပြုသူ',
+        email: '',
+        avatarPreset: 'google_initial',
         customAvatar: ''
       },
       selectedType: 'expense',
@@ -1541,18 +1693,313 @@
     }
 
     function persistState() {
+      const activeUserId = localStorage.getItem(ACTIVE_SESSION_KEY);
       safeStorageSet('mm_lang', appState.lang);
       safeStorageSet('mm_currency', appState.currency);
-      safeStorageSet('mm_budget', appState.budget.toString());
-      safeStorageSet('mm_accounts', JSON.stringify(appState.accounts));
-      safeStorageSet('mm_transactions', JSON.stringify(appState.transactions));
-      safeStorageSet('mm_goals', JSON.stringify(appState.goals));
       safeStorageSet('mm_wallpaper', appState.wallpaper);
       safeStorageSet('mm_custom_wallpaper', appState.customWallpaper || '');
-      // Do not store raw multi-megabyte camera photos in localStorage to prevent mobile quota crashes!
       safeStorageSet('mm_wallpaper_dimness', (appState.wallpaperDimness || 0.70).toString());
       safeStorageSet('mm_wallpaper_blur', (appState.wallpaperBlur || 0).toString());
-      safeStorageSet('mm_profile', JSON.stringify(appState.profile));
+
+      if (activeUserId) {
+        safeStorageSet(getUserDataKey(activeUserId, 'accounts'), JSON.stringify(appState.accounts));
+        safeStorageSet(getUserDataKey(activeUserId, 'transactions'), JSON.stringify(appState.transactions));
+        safeStorageSet(getUserDataKey(activeUserId, 'goals'), JSON.stringify(appState.goals));
+        safeStorageSet(getUserDataKey(activeUserId, 'budget'), (appState.budget || 500000).toString());
+        safeStorageSet(getUserDataKey(activeUserId, 'profile'), JSON.stringify(appState.profile));
+      } else {
+        safeStorageSet('mm_accounts', JSON.stringify(appState.accounts));
+        safeStorageSet('mm_transactions', JSON.stringify(appState.transactions));
+        safeStorageSet('mm_goals', JSON.stringify(appState.goals));
+        safeStorageSet('mm_budget', (appState.budget || 500000).toString());
+        safeStorageSet('mm_profile', JSON.stringify(appState.profile));
+      }
+    }
+
+    /* Migrate Existing Legacy Data for Sithu so records are not lost! */
+    function migrateLegacyDataIfNeeded() {
+      const registry = getUserRegistry();
+      const legacyTx = localStorage.getItem('mm_transactions');
+      const legacyProfile = localStorage.getItem('mm_profile');
+
+      if (registry.length === 0 && legacyTx) {
+        let prof = { name: 'Sithu', email: 'sithu.dev@gmail.com', avatarPreset: 'shiba', customAvatar: '' };
+        try {
+          if (legacyProfile) prof = JSON.parse(legacyProfile);
+        } catch (e) {}
+
+        const sithuUser = {
+          id: 'user_sithu',
+          name: prof.name || 'Sithu',
+          email: prof.email || 'sithu.dev@gmail.com',
+          provider: 'google',
+          avatarPreset: prof.avatarPreset || 'shiba',
+          customAvatar: prof.customAvatar || ''
+        };
+
+        registry.push(sithuUser);
+        saveUserRegistry(registry);
+
+        safeStorageSet(getUserDataKey('user_sithu', 'accounts'), localStorage.getItem('mm_accounts') || JSON.stringify(DEFAULT_ACCOUNTS));
+        safeStorageSet(getUserDataKey('user_sithu', 'transactions'), legacyTx);
+        safeStorageSet(getUserDataKey('user_sithu', 'goals'), localStorage.getItem('mm_goals') || '[]');
+        safeStorageSet(getUserDataKey('user_sithu', 'budget'), localStorage.getItem('mm_budget') || '500000');
+        safeStorageSet(getUserDataKey('user_sithu', 'profile'), JSON.stringify(prof));
+
+        safeStorageSet(ACTIVE_SESSION_KEY, 'user_sithu');
+      }
+    }
+
+    function loadUserSession(userId) {
+      const registry = getUserRegistry();
+      const user = registry.find(u => u.id === userId);
+      if (!user) return false;
+
+      const accountsRaw = localStorage.getItem(getUserDataKey(userId, 'accounts'));
+      const transactionsRaw = localStorage.getItem(getUserDataKey(userId, 'transactions'));
+      const goalsRaw = localStorage.getItem(getUserDataKey(userId, 'goals'));
+      const budgetRaw = localStorage.getItem(getUserDataKey(userId, 'budget'));
+      const profileRaw = localStorage.getItem(getUserDataKey(userId, 'profile'));
+
+      appState.accounts = accountsRaw ? JSON.parse(accountsRaw) : JSON.parse(JSON.stringify(DEFAULT_ACCOUNTS));
+      appState.transactions = transactionsRaw ? JSON.parse(transactionsRaw) : [];
+      appState.goals = goalsRaw ? JSON.parse(goalsRaw) : [];
+      appState.budget = budgetRaw ? parseFloat(budgetRaw) : 500000;
+      appState.profile = profileRaw ? JSON.parse(profileRaw) : {
+        id: user.id,
+        name: user.name,
+        email: user.email,
+        provider: user.provider,
+        avatarPreset: user.avatarPreset || 'google_initial',
+        customAvatar: user.customAvatar || ''
+      };
+
+      safeStorageSet(ACTIVE_SESSION_KEY, userId);
+      renderAllViews();
+      return true;
+    }
+
+    function renderAllViews() {
+      renderProfile();
+      renderStatsAndHero();
+      renderAccounts();
+      renderDonutChart();
+      renderRecentTransactions();
+      renderAllTransactions();
+      renderGoals();
+      renderWeekStrip();
+      if (window.lucide) lucide.createIcons();
+    }
+
+    /* Auth Gateway & Provider Handlers */
+    let currentAuthActionProvider = null;
+
+    function showAuthGateway() {
+      const el = document.getElementById('auth-gateway');
+      if (el) {
+        el.classList.remove('hidden');
+        el.classList.add('flex');
+        if (window.lucide) lucide.createIcons();
+      }
+    }
+
+    function hideAuthGateway() {
+      const el = document.getElementById('auth-gateway');
+      if (el) {
+        el.classList.add('hidden');
+        el.classList.remove('flex');
+      }
+    }
+
+    function openProviderModal(provider) {
+      currentAuthActionProvider = provider;
+      const modal = document.getElementById('auth-provider-modal');
+      const iconWrap = document.getElementById('auth-modal-icon-wrap');
+      const title = document.getElementById('auth-modal-title');
+      const sub = document.getElementById('auth-modal-sub');
+      const nameInput = document.getElementById('auth-input-name');
+      const emailInput = document.getElementById('auth-input-email');
+      const submitBtn = document.getElementById('auth-btn-submit');
+
+      nameInput.value = '';
+      emailInput.value = '';
+
+      if (provider === 'google') {
+        iconWrap.className = 'w-8 h-8 rounded-xl bg-white text-slate-900 flex items-center justify-center';
+        iconWrap.innerHTML = `<svg class="w-4 h-4" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/></svg>`;
+        title.textContent = 'Google Account Sign In';
+        sub.textContent = 'Sign in with your Gmail';
+        nameInput.placeholder = 'e.g. မောင်မောင်';
+        emailInput.placeholder = 'e.g. yourname@gmail.com';
+        submitBtn.textContent = 'Google ဖြင့် ဆက်လက်ဝင်ရောက်မည်';
+      } else if (provider === 'apple') {
+        iconWrap.className = 'w-8 h-8 rounded-xl bg-black text-white border border-white/20 flex items-center justify-center';
+        iconWrap.innerHTML = `<svg class="w-4 h-4 fill-current" viewBox="0 0 170 170"><path d="M150.37 130.25c-2.45 5.66-5.35 10.87-8.71 15.66-4.58 6.53-8.33 11.05-11.22 13.56-4.48 4.12-9.28 6.23-14.42 6.35-3.69 0-8.14-1.05-13.32-3.18-5.19-2.12-9.97-3.17-14.34-3.17-4.58 0-9.49 1.05-14.75 3.17-5.26 2.13-9.5 3.24-12.74 3.35-4.35.13-9.16-1.9-14.42-6.08-3.7-3.04-7.66-7.85-11.87-14.42-6.52-10.22-11.51-21.72-14.98-34.5-3.47-12.78-5.2-24.87-5.2-36.27 0-16.19 4.35-29.65 13.06-40.38 8.7-10.74 19.57-16.2 32.61-16.39 5.01 0 10.45 1.25 16.32 3.75 5.87 2.5 9.77 3.86 11.69 4.08 2.39-.33 6.42-1.74 12.09-4.24 5.66-2.5 10.87-3.64 15.65-3.43 12.18.65 22.39 5.38 30.64 14.18-10.88 6.63-16.21 15.65-16 27.06.22 9.02 3.65 16.63 10.28 22.82 6.63 6.2 14.57 9.89 23.8 11.09-2.17 6.63-4.89 13.37-8.15 20.22z"/></svg>`;
+        title.textContent = 'Apple ID Sign In';
+        sub.textContent = 'Apple Private & Secure';
+        nameInput.placeholder = 'e.g. Apple User';
+        emailInput.placeholder = 'e.g. user@privaterelay.appleid.com';
+        submitBtn.textContent = 'Apple ID ဖြင့် စတင်မည်';
+      } else if (provider === 'facebook') {
+        iconWrap.className = 'w-8 h-8 rounded-xl bg-[#1877F2] text-white flex items-center justify-center';
+        iconWrap.innerHTML = `<svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>`;
+        title.textContent = 'Facebook Sign In';
+        sub.textContent = 'Continue with Facebook';
+        nameInput.placeholder = 'e.g. Facebook User';
+        emailInput.placeholder = 'e.g. fb.user@gmail.com';
+        submitBtn.textContent = 'Facebook ဖြင့် ဆက်လက်ဝင်မည်';
+      } else {
+        iconWrap.className = 'w-8 h-8 rounded-xl bg-indigo-500/20 text-indigo-400 flex items-center justify-center';
+        iconWrap.innerHTML = `<i data-lucide="mail" class="w-4 h-4"></i>`;
+        title.textContent = 'Direct Email Sign In';
+        sub.textContent = 'Create personal vault';
+        nameInput.placeholder = 'e.g. မောင်မောင်';
+        emailInput.placeholder = 'e.g. user@example.com';
+        submitBtn.textContent = 'အကောင့်ဖွင့်၍ စတင်မည်';
+      }
+
+      // Existing accounts in registry
+      renderExistingUsersList();
+
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      if (window.lucide) lucide.createIcons();
+    }
+
+    function renderExistingUsersList() {
+      const box = document.getElementById('auth-existing-users-box');
+      const list = document.getElementById('auth-existing-users-list');
+      const registry = getUserRegistry();
+
+      if (registry.length === 0) {
+        box.classList.add('hidden');
+        return;
+      }
+
+      box.classList.remove('hidden');
+      list.innerHTML = registry.map(u => `
+        <div onclick="selectExistingUser('${u.id}')" class="p-2.5 rounded-xl bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 flex items-center justify-between cursor-pointer transition">
+          <div class="flex items-center gap-2">
+            <div class="w-7 h-7 rounded-full bg-indigo-600/30 flex items-center justify-center text-xs font-bold text-white uppercase">
+              ${(u.name || 'U')[0]}
+            </div>
+            <div class="text-left">
+              <span class="text-xs font-bold text-white block truncate">${u.name}</span>
+              <span class="text-[10px] text-slate-400 block truncate">${u.email || u.provider}</span>
+            </div>
+          </div>
+          <span class="text-[10px] font-bold text-amber-300">ဝင်မည် &rarr;</span>
+        </div>
+      `).join('');
+    }
+
+    function selectExistingUser(userId) {
+      loadUserSession(userId);
+      closeProviderModal();
+      hideAuthGateway();
+      showToast(`ကြိုဆိုပါသည်, ${appState.profile.name}!`);
+    }
+
+    function closeProviderModal() {
+      const modal = document.getElementById('auth-provider-modal');
+      if (modal) {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+      }
+    }
+
+    function submitProviderLogin() {
+      const name = document.getElementById('auth-input-name').value.trim();
+      const email = document.getElementById('auth-input-email').value.trim();
+
+      if (!name || !email) {
+        showToast('ကျေးဇူးပြု၍ အမည်နှင့် အီးမေးလ် ဖြည့်သွင်းပါ', true);
+        return;
+      }
+
+      const registry = getUserRegistry();
+      let user = registry.find(u => u.email && u.email.toLowerCase() === email.toLowerCase());
+
+      if (!user) {
+        // Brand New User: CLEAN ZERO-RECORDS INITIALIZATION!
+        const userId = 'user_' + Date.now();
+        user = {
+          id: userId,
+          name: name,
+          email: email,
+          provider: currentAuthActionProvider || 'email',
+          avatarPreset: 'google_initial',
+          customAvatar: ''
+        };
+        registry.push(user);
+        saveUserRegistry(registry);
+
+        // Store clean 0-balance accounts & ZERO transactions!
+        safeStorageSet(getUserDataKey(userId, 'accounts'), JSON.stringify(DEFAULT_ACCOUNTS));
+        safeStorageSet(getUserDataKey(userId, 'transactions'), JSON.stringify([])); // 100% EMPTY!
+        safeStorageSet(getUserDataKey(userId, 'goals'), JSON.stringify([]));
+        safeStorageSet(getUserDataKey(userId, 'budget'), '500000');
+        safeStorageSet(getUserDataKey(userId, 'profile'), JSON.stringify(user));
+      } else {
+        // Update name if changed
+        user.name = name;
+        saveUserRegistry(registry);
+      }
+
+      loadUserSession(user.id);
+      closeProviderModal();
+      hideAuthGateway();
+      showToast(`ကြိုဆိုပါသည်, ${user.name}!`);
+    }
+
+    function handleLoginAsGuest() {
+      const userId = 'guest_' + Date.now();
+      const guestUser = {
+        id: userId,
+        name: 'ဧည့်သည် (Guest)',
+        email: 'guest@burmese-money-manager.local',
+        provider: 'guest',
+        avatarPreset: 'memoji_pro',
+        customAvatar: ''
+      };
+
+      const registry = getUserRegistry();
+      registry.push(guestUser);
+      saveUserRegistry(registry);
+
+      // Clean empty slate for Guest!
+      safeStorageSet(getUserDataKey(userId, 'accounts'), JSON.stringify(DEFAULT_ACCOUNTS));
+      safeStorageSet(getUserDataKey(userId, 'transactions'), JSON.stringify([]));
+      safeStorageSet(getUserDataKey(userId, 'goals'), JSON.stringify([]));
+      safeStorageSet(getUserDataKey(userId, 'budget'), '500000');
+      safeStorageSet(getUserDataKey(userId, 'profile'), JSON.stringify(guestUser));
+
+      loadUserSession(userId);
+      hideAuthGateway();
+      showToast('ဧည့်သည်အဖြစ် စတင်အသုံးပြုနေပါသည်');
+    }
+
+    function handleLogout() {
+      localStorage.removeItem(ACTIVE_SESSION_KEY);
+      showAuthGateway();
+      showToast('အကောင့်မှ ထွက်ခွာပြီးပါပြီ');
+    }
+
+    function openSwitchAccountDialog() {
+      openProviderModal('google');
+    }
+
+    function confirmResetUserData() {
+      const isConfirmed = confirm('သတိပေးချက်: ဤအကောင့်ရှိ မှတ်တမ်းစာရင်းများအားလုံးကို အပြီးအပိုင် ရှင်းလင်းပြီး 0 မှ ပြန်စမည်မှာ သေချာပါသလား?');
+      if (isConfirmed) {
+        appState.transactions = [];
+        appState.accounts = JSON.parse(JSON.stringify(DEFAULT_ACCOUNTS));
+        appState.goals = [];
+        persistState();
+        renderAllViews();
+        closeProfileModal();
+        showToast('စာရင်းမှတ်တမ်းအားလုံးကို ရှင်းလင်းပြီးပါပြီ (Clean Slate)');
+      }
     }
 
     function getCurrencySymbol() {
@@ -1575,7 +2022,16 @@
     /* Initialize Application */
     function initApp() {
       applyWallpaper();
-      renderProfile();
+      migrateLegacyDataIfNeeded();
+
+      const activeUserId = localStorage.getItem(ACTIVE_SESSION_KEY);
+      if (activeUserId) {
+        loadUserSession(activeUserId);
+        hideAuthGateway();
+      } else {
+        showAuthGateway();
+      }
+
       applyTranslations();
       renderStatsAndHero();
       renderAccounts();
@@ -2856,7 +3312,24 @@
       const recent = sorted.slice(0, 5);
 
       if (recent.length === 0) {
-        container.innerHTML = `<div class="text-xs text-slate-500 py-6 text-center">စာရင်း မှတ်တမ်း မရှိသေးပါ</div>`;
+        container.innerHTML = `
+          <div class="rounded-3xl glass-card p-6 sm:p-8 text-center border border-dashed border-white/15 space-y-3.5 my-2">
+            <div class="w-12 h-12 rounded-2xl bg-indigo-500/15 text-indigo-400 mx-auto flex items-center justify-center border border-indigo-500/25 shadow-lg shadow-indigo-500/10">
+              <i data-lucide="sparkles" class="w-6 h-6 text-amber-300"></i>
+            </div>
+            <div class="space-y-1">
+              <h4 class="text-sm font-black text-white">${appState.lang === 'my' ? 'စာရင်းမှတ်တမ်း မရှိသေးပါ' : 'No Transactions Yet'}</h4>
+              <p class="text-xs text-slate-400 max-w-xs mx-auto leading-relaxed">
+                ${appState.lang === 'my' ? 'မိမိ၏ နေ့စဉ် အဝင်/အထွက် စာရင်းများကို အောက်ပါခလုတ်ဖြင့် စတင်ထည့်သွင်းနိုင်ပါသည်' : 'Start tracking your daily income, expenses and transfers easily'}
+              </p>
+            </div>
+            <button onclick="openAddModal()" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-2xl bg-gradient-to-r from-amber-400 via-rose-500 to-indigo-500 text-white font-black text-xs shadow-xl shadow-indigo-500/25 btn-press cursor-pointer">
+              <i data-lucide="plus-circle" class="w-4 h-4"></i>
+              <span>${appState.lang === 'my' ? 'ပထမဆုံး စာရင်း စတင်ထည့်သွင်းမည်' : 'Add First Transaction'}</span>
+            </button>
+          </div>
+        `;
+        if (window.lucide) lucide.createIcons();
         return;
       }
 
