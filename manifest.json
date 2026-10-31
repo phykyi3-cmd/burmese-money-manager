@@ -1,11 +1,11 @@
 {
-  "name": "Money Manager - Expense & Savings Tracker",
-  "short_name": "Money Manager",
-  "description": "Smart, private and free expense & savings tracker for Web and Mobile",
+  "name": "Burmese Money Manager - မြန်မာ့ငွေကြေးစီမံခန့်ခွဲမှု",
+  "short_name": "Burmese Money Manager",
+  "description": "Smart, private and free Burmese wealth & expense tracking suite for Web and Mobile",
   "start_url": "./index.html",
   "display": "standalone",
-  "background_color": "#0D0E12",
-  "theme_color": "#0D0E12",
+  "background_color": "#07080D",
+  "theme_color": "#07080D",
   "orientation": "portrait-primary",
   "icons": [
     {

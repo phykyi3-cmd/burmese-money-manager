@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-  <title>Money Manager - Ultra Clean Suite & Ledger</title>
-  <meta name="description" content="Next-Gen Personal Expense & Savings Intelligence Suite">
+  <title>Burmese Money Manager - Ultra Clean Suite & Ledger</title>
+  <meta name="description" content="Burmese Money Manager - Next-Gen Personal Expense & Savings Intelligence Suite">
   <meta name="theme-color" content="#07080D">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="apple-mobile-web-app-title" content="Money Manager">
+  <meta name="apple-mobile-web-app-title" content="Burmese Money Manager">
   <link rel="manifest" href="manifest.json">
   <link rel="icon" type="image/svg+xml" href="icon.svg">
   <link rel="apple-touch-icon" href="icon.svg">
@@ -196,18 +196,16 @@
     <div class="max-w-4xl mx-auto px-4 py-3 flex items-center justify-between gap-3">
       
       <!-- Brand & Donut Logo -->
-      <a href="landing.html" title="Money Manager - Click to view Landing Showcase" class="flex items-center gap-2.5 group cursor-pointer shrink-0">
-        <div class="relative w-8 h-8 sm:w-9 sm:h-9 rounded-2xl flex items-center justify-center p-0.5 bg-gradient-to-tr from-amber-400 via-rose-500 to-indigo-500 shadow-md shadow-indigo-500/20 group-hover:scale-105 transition-transform duration-300">
-          <div class="w-full h-full rounded-[14px] bg-[#090A10] flex items-center justify-center">
-            <span class="text-amber-300 text-sm font-black">$</span>
-          </div>
+      <a href="landing.html" title="Burmese Money Manager - Click to view Landing Showcase" class="flex items-center gap-2.5 group cursor-pointer shrink-0">
+        <div class="relative w-8 h-8 sm:w-9 sm:h-9 rounded-2xl flex items-center justify-center p-0.5 bg-gradient-to-tr from-amber-400 via-yellow-300 to-amber-600 shadow-lg shadow-amber-500/25 group-hover:scale-105 transition-transform duration-300 overflow-hidden">
+          <img src="icon.svg" alt="Burmese Money Manager" class="w-full h-full object-contain rounded-[14px]" />
         </div>
         <div class="leading-tight">
           <div class="flex items-center gap-1.5">
-            <span class="font-extrabold text-sm sm:text-base text-white tracking-tight">Money Manager</span>
+            <span class="font-extrabold text-sm sm:text-base text-white tracking-tight">Burmese Money Manager</span>
             <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
           </div>
-          <p class="text-[9px] sm:text-[10px] text-slate-400 font-medium tracking-wide">Smart Financial Suite</p>
+          <p class="text-[9px] sm:text-[10px] text-amber-300/80 font-bold tracking-wide">မြန်မာ့ငွေကြေးစီမံခန့်ခွဲမှု ဆွီ့</p>
         </div>
       </a>
 
@@ -3510,6 +3508,7 @@
         navigator.serviceWorker.register('./sw.js')
           .then(reg => {
             console.log('[PWA] Service Worker registered successfully! Scope:', reg.scope);
+            reg.update();
           })
           .catch(err => {
             console.warn('[PWA] Service Worker registration failed:', err);

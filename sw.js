@@ -1,4 +1,4 @@
-const CACHE_NAME = 'money-manager-v2';
+const CACHE_NAME = 'burmese-money-manager-v3';
 const STATIC_ASSETS = [
   './',
   './index.html',
@@ -10,7 +10,7 @@ const STATIC_ASSETS = [
 self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
-      console.log('[SW] Pre-caching core assets for 100% offline capability');
+      console.log('[SW] Pre-caching core assets for Burmese Money Manager (100% offline capability)');
       return cache.addAll(STATIC_ASSETS).catch(err => {
         console.warn('[SW] Pre-cache warning:', err);
       });
