@@ -230,6 +230,18 @@
       <!-- Right Utility Bar: Profile, Wallpaper, Currency, Language, Settings -->
       <div class="flex items-center gap-1.5 sm:gap-2 shrink-0">
         
+        <!-- Offline Status Indicator Badge -->
+        <div id="offline-indicator" class="hidden items-center gap-1 px-2.5 py-1 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/30 text-[10px] font-bold shadow" title="Offline Mode: All data saved locally on your device">
+          <span class="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
+          <span class="hidden sm:inline">Offline</span>
+        </div>
+
+        <!-- PWA Install App Button -->
+        <button type="button" onclick="triggerPWAInstall()" id="btn-install-pwa" class="hidden glass-pill px-2.5 py-1.5 rounded-full items-center gap-1 text-[11px] font-extrabold text-emerald-400 hover:text-white border border-emerald-500/30 btn-press cursor-pointer shadow">
+          <i data-lucide="download-cloud" class="w-3.5 h-3.5 text-emerald-400"></i>
+          <span class="hidden md:inline">Install App</span>
+        </button>
+        
         <!-- Wallpaper / Theme Button -->
         <button onclick="openWallpaperModal()" title="Wallpaper & Themes" class="glass-pill px-2 sm:px-2.5 py-1.5 rounded-full flex items-center gap-1 text-slate-300 hover:text-white transition btn-press cursor-pointer">
           <i data-lucide="palette" class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-pink-400"></i>
@@ -1325,6 +1337,43 @@
         </button>
       </div>
 
+    </div>
+  </div>
+
+  
+  <!-- ================= MODAL 11: IOS PWA INSTALLATION GUIDE ================= -->
+  <div id="pwa-ios-modal" onclick="if(event.target === this) closeIOSInstallModal()" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-md hidden items-center justify-center p-4">
+    <div class="w-full max-w-sm rounded-[32px] glass-apple p-6 border border-white/20 shadow-2xl animate-apple-sheet space-y-4">
+      <div class="flex items-center justify-between pb-2 border-b border-white/[0.08]">
+        <div class="flex items-center gap-2">
+          <div class="w-8 h-8 rounded-xl bg-indigo-500/20 text-indigo-400 flex items-center justify-center border border-indigo-500/30">
+            <i data-lucide="smartphone" class="w-4 h-4"></i>
+          </div>
+          <h3 class="text-xs font-black text-white">iPhone / iPad တွင် App သွင်းနည်း</h3>
+        </div>
+        <button type="button" onclick="closeIOSInstallModal()" class="w-7 h-7 rounded-full glass-pill flex items-center justify-center text-slate-400 hover:text-white cursor-pointer">
+          <i data-lucide="x" class="w-3.5 h-3.5"></i>
+        </button>
+      </div>
+
+      <div class="space-y-3 text-xs text-slate-300 leading-relaxed">
+        <div class="flex items-start gap-2.5 p-2.5 rounded-2xl bg-white/[0.04]">
+          <span class="w-5 h-5 rounded-full bg-indigo-600 text-white flex items-center justify-center text-[10px] font-black shrink-0">1</span>
+          <p>Safari အောက်ခြေရှိ <b>Share [ <i data-lucide="share" class="w-3 h-3 inline text-indigo-400"></i> ]</b> ခလုတ်ကို နှိပ်ပါ</p>
+        </div>
+        <div class="flex items-start gap-2.5 p-2.5 rounded-2xl bg-white/[0.04]">
+          <span class="w-5 h-5 rounded-full bg-indigo-600 text-white flex items-center justify-center text-[10px] font-black shrink-0">2</span>
+          <p>အောက်သို့ ဆွဲချပြီး <b>"Add to Home Screen (ပင်မမျက်နှာပြင်သို့ ထည့်မည်)"</b> ကို ရွေးပါ</p>
+        </div>
+        <div class="flex items-start gap-2.5 p-2.5 rounded-2xl bg-white/[0.04]">
+          <span class="w-5 h-5 rounded-full bg-indigo-600 text-white flex items-center justify-center text-[10px] font-black shrink-0">3</span>
+          <p>ညာဘက်အပေါ်ရှိ <b>Add (ထည့်သွင်းမည်)</b> ကို နှိပ်လိုက်ပါက ဖုန်းမျက်နှာပြင်ပေါ်တွင် App Icon ရရှိပြီး အင်တာနက်မလိုဘဲ Offline သုံးနိုင်ပါပြီ</p>
+        </div>
+      </div>
+
+      <button type="button" onclick="closeIOSInstallModal()" class="w-full py-2.5 rounded-2xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold transition btn-press cursor-pointer">
+        နားလည်ပါပြီ (OK)
+      </button>
     </div>
   </div>
 
@@ -3452,7 +3501,89 @@
       document.getElementById('txt-btn-hero-add').textContent = isMy ? 'စာရင်းအသစ်' : '+ New Entry';
     }
 
-    window.addEventListener('DOMContentLoaded', initApp);
+    
+    /* ================= OFFLINE PWA & SERVICE WORKER ENGINE ================= */
+    let deferredPrompt = null;
+
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js')
+          .then(reg => {
+            console.log('[PWA] Service Worker registered successfully! Scope:', reg.scope);
+          })
+          .catch(err => {
+            console.warn('[PWA] Service Worker registration failed:', err);
+          });
+      });
+    }
+
+    // Listen for beforeinstallprompt event (Android / Chrome / Edge)
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      const btn = document.getElementById('btn-install-pwa');
+      if (btn) {
+        btn.classList.remove('hidden');
+        btn.classList.add('flex');
+      }
+    });
+
+    function triggerPWAInstall() {
+      if (deferredPrompt) {
+        deferredPrompt.prompt();
+        deferredPrompt.userChoice.then((choiceResult) => {
+          if (choiceResult.outcome === 'accepted') {
+            showToast(appState.lang === 'my' ? 'App အား ဖုန်းထဲသို့ အောင်မြင်စွာ ထည့်သွင်းပြီးပါပြီ!' : 'App installed to home screen!');
+          }
+          deferredPrompt = null;
+          const btn = document.getElementById('btn-install-pwa');
+          if (btn) btn.classList.add('hidden');
+        });
+      } else {
+        const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+        if (isIOS) {
+          openIOSInstallModal();
+        } else {
+          showToast('Browser Menu (⋮ သို့မဟုတ် ⚙️) ကို နှိပ်ပြီး "Install App" သို့မဟုတ် "Add to Home screen" ကို ရွေးပါ');
+        }
+      }
+    }
+
+    function openIOSInstallModal() {
+      document.getElementById('pwa-ios-modal').classList.remove('hidden');
+      document.getElementById('pwa-ios-modal').classList.add('flex');
+      if (window.lucide) lucide.createIcons();
+    }
+
+    function closeIOSInstallModal() {
+      document.getElementById('pwa-ios-modal').classList.add('hidden');
+      document.getElementById('pwa-ios-modal').classList.remove('flex');
+    }
+
+    // Network Status Listeners (Online / Offline)
+    function setupNetworkStatusListeners() {
+      const updateStatus = () => {
+        const badge = document.getElementById('offline-indicator');
+        if (badge) {
+          if (navigator.onLine) {
+            badge.classList.add('hidden');
+            badge.classList.remove('flex');
+          } else {
+            badge.classList.remove('hidden');
+            badge.classList.add('flex');
+            showToast(appState.lang === 'my' ? '⚡ အင်တာနက်မရှိဘဲ Offline အသုံးပြုနေပါသည် (ဒေတာများ ဖုန်းတွင်း၌ လုံခြုံစွာသိမ်းဆည်းပါသည်)' : '⚡ Working 100% Offline (Data saved locally)');
+          }
+        }
+      };
+      window.addEventListener('online', updateStatus);
+      window.addEventListener('offline', updateStatus);
+      updateStatus();
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      initApp();
+      setupNetworkStatusListeners();
+    });
   </script>
 </body>
 </html>
