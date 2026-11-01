@@ -206,7 +206,7 @@
       
       <!-- Brand & Donut Logo -->
       <a href="landing.html" title="Burmese Money Manager - Click to view Landing Showcase" class="flex items-center gap-2.5 group cursor-pointer shrink-0">
-        <div class="relative w-8 h-8 sm:w-9 sm:h-9 rounded-2xl flex items-center justify-center p-0.5 bg-gradient-to-tr from-amber-400 via-yellow-300 to-amber-600 shadow-lg shadow-amber-500/25 group-hover:scale-105 transition-transform duration-300 overflow-hidden">
+        <div class="relative w-8 h-8 sm:w-9 sm:h-9 rounded-2xl flex items-center justify-center p-0.5 bg-gradient-to-tr from-cyan-400 via-blue-500 to-indigo-600 shadow-lg shadow-cyan-500/25 group-hover:scale-105 transition-transform duration-300 overflow-hidden">
           <img src="icon.svg" alt="Burmese Money Manager" class="w-full h-full object-contain rounded-[14px]" />
         </div>
         <div class="leading-tight">
@@ -214,7 +214,7 @@
             <span class="font-extrabold text-sm sm:text-base text-white tracking-tight">Burmese Money Manager</span>
             <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
           </div>
-          <p class="text-[9px] sm:text-[10px] text-amber-300/80 font-bold tracking-wide">မြန်မာ့ငွေကြေးစီမံခန့်ခွဲမှု ဆွီ့</p>
+          <p class="text-[9px] sm:text-[10px] text-cyan-300/80 font-bold tracking-wide">မြန်မာ့ငွေကြေးစီမံခန့်ခွဲမှု ဆွီ့</p>
         </div>
       </a>
 
@@ -244,8 +244,8 @@
         </div>
 
         <!-- Direct App Download / Install Button -->
-        <button type="button" onclick="directDownloadOrInstallApp()" id="btn-install-pwa" class="glass-pill px-2.5 py-1.5 rounded-full flex items-center gap-1.5 text-[11px] font-extrabold text-amber-300 hover:text-white border border-amber-500/30 btn-press cursor-pointer shadow">
-          <i data-lucide="download" class="w-3.5 h-3.5 text-amber-400"></i>
+        <button type="button" onclick="openPhoneInstallModal()" id="btn-install-pwa" class="glass-pill px-2.5 py-1.5 rounded-full flex items-center gap-1.5 text-[11px] font-extrabold text-cyan-300 hover:text-white border border-cyan-500/30 btn-press cursor-pointer shadow">
+          <i data-lucide="download" class="w-3.5 h-3.5 text-cyan-400"></i>
           <span>App ဒေါင်းလုဒ် (Download)</span>
         </button>
         
@@ -1478,18 +1478,18 @@
 
   
   <!-- ================= MOBILE FLOATING APP INSTALL BANNER ================= -->
-  <div id="mobile-install-banner" class="fixed top-2 inset-x-2 z-40 p-2.5 rounded-2xl glass-apple border border-amber-500/40 shadow-2xl flex items-center justify-between gap-2.5 sm:hidden">
+  <div id="mobile-install-banner" class="fixed top-2 inset-x-2 z-40 p-2.5 rounded-2xl glass-apple border border-cyan-500/40 shadow-2xl flex items-center justify-between gap-2.5 sm:hidden">
     <div class="flex items-center gap-2.5 min-w-0 cursor-pointer" onclick="directDownloadOrInstallApp()">
-      <div class="relative w-8 h-8 rounded-xl p-0.5 bg-gradient-to-tr from-amber-400 to-amber-600 shrink-0 shadow">
+      <div class="relative w-8 h-8 rounded-xl p-0.5 bg-gradient-to-tr from-cyan-400 via-blue-500 to-indigo-600 shrink-0 shadow">
         <img src="apple-touch-icon.png" alt="Burmese Money Manager" class="w-full h-full object-contain rounded-[10px]" />
       </div>
       <div class="min-w-0 text-left">
         <p class="text-[11px] font-black text-white truncate">Burmese Money Manager</p>
-        <p class="text-[9px] text-amber-300 font-bold truncate">ဖုန်းထဲသို့ App တိုက်ရိုက် ဒေါင်းလုဒ်ဆွဲရန်</p>
+        <p class="text-[9px] text-cyan-300 font-bold truncate">ဖုန်းထဲသို့ App တိုက်ရိုက် သွင်းယူရန်</p>
       </div>
     </div>
     <div class="flex items-center gap-1.5 shrink-0">
-      <button type="button" onclick="directDownloadOrInstallApp()" class="px-3 py-1.5 rounded-xl bg-gradient-to-r from-amber-500 to-yellow-400 text-slate-950 font-black text-[10px] shadow btn-press cursor-pointer flex items-center gap-1">
+      <button type="button" onclick="directDownloadOrInstallApp()" class="px-3 py-1.5 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-black text-[10px] shadow btn-press cursor-pointer flex items-center gap-1">
         <i data-lucide="download" class="w-3 h-3"></i>
         <span>Download</span>
       </button>
@@ -1500,18 +1500,18 @@
   </div>
 
   <!-- ================= MODAL 11: UNIVERSAL PHONE APP INSTALLATION CENTER ================= -->
-  <div id="pwa-install-modal" onclick="if(event.target === this) closePhoneInstallModal()" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-md hidden items-center justify-center p-4">
+  <div id="pwa-install-modal" onclick="if(event.target === this) closePhoneInstallModal()" class="fixed inset-0 z-[200] bg-black/90 backdrop-blur-md hidden items-center justify-center p-4">
     <div class="w-full max-w-sm rounded-[32px] glass-apple p-6 border border-white/20 shadow-2xl animate-apple-sheet space-y-4 text-center">
       
       <!-- Header -->
       <div class="flex items-center justify-between pb-3 border-b border-white/[0.08]">
         <div class="flex items-center gap-2.5 text-left">
-          <div class="w-9 h-9 rounded-2xl bg-amber-500/20 text-amber-300 flex items-center justify-center border border-amber-500/30">
+          <div class="w-9 h-9 rounded-2xl bg-cyan-500/20 text-cyan-300 flex items-center justify-center border border-cyan-500/30">
             <i data-lucide="smartphone" class="w-5 h-5"></i>
           </div>
           <div>
             <h3 class="text-xs font-black text-white">ဖုန်းထဲသို့ App သွင်းယူနည်း</h3>
-            <p class="text-[10px] text-amber-300 font-bold">Burmese Money Manager</p>
+            <p class="text-[10px] text-cyan-300 font-bold">Burmese Money Manager</p>
           </div>
         </div>
         <button type="button" onclick="closePhoneInstallModal()" class="w-7 h-7 rounded-full glass-pill flex items-center justify-center text-slate-400 hover:text-white cursor-pointer">
@@ -1521,7 +1521,7 @@
 
       <!-- App Card Info -->
       <div class="p-3.5 rounded-2xl bg-white/[0.04] border border-white/10 flex items-center gap-3 text-left">
-        <div class="w-12 h-12 rounded-[16px] p-0.5 bg-gradient-to-tr from-amber-400 to-amber-600 shrink-0 shadow-lg shadow-amber-500/20">
+        <div class="w-12 h-12 rounded-[16px] p-0.5 bg-gradient-to-tr from-cyan-400 via-blue-500 to-indigo-600 shrink-0 shadow-lg shadow-cyan-500/20">
           <img src="apple-touch-icon.png" alt="Logo" class="w-full h-full object-contain rounded-[14px]">
         </div>
         <div class="min-w-0 flex-1">
@@ -1545,22 +1545,28 @@
 
       <!-- iOS Installation Steps View -->
       <div id="install-view-ios" class="space-y-2.5 text-xs text-slate-300 text-left leading-relaxed">
+        <!-- Direct iPhone Profile Download Button -->
+        <a href="BurmeseMoneyManager.mobileconfig" download="BurmeseMoneyManager.mobileconfig" onclick="showToast('🍏 iPhone ပရိုဖိုင် ဒေါင်းလုဒ်ပြီးပါက Settings > Profile Downloaded > Install နှိပ်ပါ')" class="w-full py-3 px-4 rounded-2xl bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-400 hover:to-blue-500 text-white font-black text-xs flex items-center justify-center gap-2 shadow-lg shadow-sky-500/25 transition btn-press cursor-pointer">
+          <i data-lucide="download" class="w-4 h-4 text-white"></i>
+          <span>📲 iPhone App ပရိုဖိုင် ဒေါင်းလုဒ် (.mobileconfig)</span>
+        </a>
+
         <div class="flex items-start gap-2.5 p-3 rounded-2xl bg-white/[0.04] border border-white/5">
-          <span class="w-6 h-6 rounded-full bg-amber-500 text-slate-950 flex items-center justify-center text-xs font-black shrink-0">1</span>
+          <span class="w-6 h-6 rounded-full bg-cyan-500 text-slate-950 flex items-center justify-center text-xs font-black shrink-0">1</span>
           <div>
             <p class="font-bold text-white">Safari အောက်ခြေရှိ Share ခလုတ်ကို နှိပ်ပါ</p>
             <p class="text-[10px] text-slate-400 mt-0.5">Safari ၏ အောက်ဘက် မီနူးဘားရှိ <b>[ <i data-lucide="share" class="w-3 h-3 inline text-indigo-400"></i> Share ]</b> အိုင်ကွန်ကို နှိပ်ပါ</p>
           </div>
         </div>
         <div class="flex items-start gap-2.5 p-3 rounded-2xl bg-white/[0.04] border border-white/5">
-          <span class="w-6 h-6 rounded-full bg-amber-500 text-slate-950 flex items-center justify-center text-xs font-black shrink-0">2</span>
+          <span class="w-6 h-6 rounded-full bg-cyan-500 text-slate-950 flex items-center justify-center text-xs font-black shrink-0">2</span>
           <div>
             <p class="font-bold text-white">"Add to Home Screen" ကို ရွေးပါ</p>
             <p class="text-[10px] text-slate-400 mt-0.5">ပေါ်လာသောစာရင်းကို အောက်ဆွဲချပြီး <b>[ ⊞ Add to Home Screen (ပင်မမျက်နှာပြင်သို့ ထည့်မည်) ]</b> ကို နှိပ်ပါ</p>
           </div>
         </div>
         <div class="flex items-start gap-2.5 p-3 rounded-2xl bg-white/[0.04] border border-white/5">
-          <span class="w-6 h-6 rounded-full bg-amber-500 text-slate-950 flex items-center justify-center text-xs font-black shrink-0">3</span>
+          <span class="w-6 h-6 rounded-full bg-cyan-500 text-slate-950 flex items-center justify-center text-xs font-black shrink-0">3</span>
           <div>
             <p class="font-bold text-white">အပေါ်ညာဘက်ရှိ "Add" ကို နှိပ်ပါ</p>
             <p class="text-[10px] text-slate-400 mt-0.5">သင့် iPhone ပင်မစခရင်ပေါ်တွင် App Icon ရရှိပြီး ဒေါင်းလုဒ်ဖိုင်ထဲ လိုက်ရှာစရာမလိုဘဲ အချိန်မရွေး တိုက်ရိုက် သုံးနိုင်ပါပြီ</p>
@@ -1570,11 +1576,11 @@
 
       <!-- Android Installation Steps View -->
       <div id="install-view-android" class="hidden space-y-2.5 text-xs text-slate-300 text-left leading-relaxed">
-        <!-- 1-Click Direct Install Button for Android -->
-        <button type="button" onclick="executeNativePWAInstall()" class="w-full py-3 px-4 rounded-2xl bg-gradient-to-r from-emerald-500 to-teal-400 hover:from-emerald-400 hover:to-teal-300 text-slate-950 font-black text-xs flex items-center justify-center gap-2 shadow-lg shadow-emerald-500/20 transition btn-press cursor-pointer">
-          <i data-lucide="download-cloud" class="w-4 h-4 text-slate-950"></i>
-          <span>📲 ဖုန်းထဲသို့ တိုက်ရိုက်ဒေါင်းလုဒ်သွင်းမည်</span>
-        </button>
+        <!-- 1-Click Direct APK Download Button for Android -->
+        <a href="BurmeseMoneyManager.apk" download="BurmeseMoneyManager.apk" onclick="showToast('🤖 Android APK အား စတင်ဒေါင်းလုဒ်ဆွဲနေပါပြီ...')" class="w-full py-3 px-4 rounded-2xl bg-gradient-to-r from-emerald-500 to-teal-400 hover:from-emerald-400 hover:to-teal-300 text-slate-950 font-black text-xs flex items-center justify-center gap-2 shadow-lg shadow-emerald-500/20 transition btn-press cursor-pointer">
+          <i data-lucide="download" class="w-4 h-4 text-slate-950"></i>
+          <span>📲 Android App APK တိုက်ရိုက် ဒေါင်းလုဒ် (.apk)</span>
+        </a>
 
         <div class="flex items-start gap-2.5 p-3 rounded-2xl bg-white/[0.04] border border-white/5">
           <span class="w-6 h-6 rounded-full bg-emerald-500 text-slate-950 flex items-center justify-center text-xs font-black shrink-0">1</span>
@@ -1661,17 +1667,17 @@
   <div id="auth-gateway" class="fixed inset-0 z-50 bg-[#07080D]/95 backdrop-blur-2xl hidden items-center justify-center p-4 sm:p-6 transition-all duration-500 overflow-y-auto">
     <div class="w-full max-w-md rounded-[36px] glass-apple p-6 sm:p-8 border border-white/15 shadow-2xl space-y-6 text-center relative overflow-hidden animate-apple-sheet my-auto">
       
-      <!-- Ambient Gold Backlight Glow -->
-      <div class="absolute -top-24 left-1/2 -translate-x-1/2 w-48 h-48 rounded-full bg-amber-500/20 blur-3xl pointer-events-none"></div>
+      <!-- Ambient Cyan/Sapphire Backlight Glow -->
+      <div class="absolute -top-24 left-1/2 -translate-x-1/2 w-48 h-48 rounded-full bg-cyan-500/20 blur-3xl pointer-events-none"></div>
 
-      <!-- App Logo Emblem (24K Gold Sovereign) -->
+      <!-- App Logo Emblem (Modern Fintech Prism) -->
       <div class="flex flex-col items-center justify-center space-y-3 relative z-10">
-        <div class="relative w-20 h-20 rounded-[26px] p-1 bg-gradient-to-tr from-amber-400 via-yellow-300 to-amber-600 shadow-xl shadow-amber-500/30">
+        <div class="relative w-20 h-20 rounded-[26px] p-1 bg-gradient-to-tr from-cyan-400 via-blue-500 to-indigo-600 shadow-xl shadow-cyan-500/30">
           <img src="icon.svg" alt="Burmese Money Manager" class="w-full h-full object-contain rounded-[22px]" />
         </div>
         <div class="space-y-1">
           <h2 class="text-xl sm:text-2xl font-black text-white tracking-tight">Burmese Money Manager</h2>
-          <p class="text-xs font-bold text-amber-300/90 tracking-wide">မြန်မာ့ငွေကြေးစီမံခန့်ခွဲမှု ဆွီ့</p>
+          <p class="text-xs font-bold text-cyan-300/90 tracking-wide">မြန်မာ့ငွေကြေးစီမံခန့်ခွဲမှု ဆွီ့</p>
         </div>
         <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 border border-white/15 text-[10px] font-bold text-slate-300">
           <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
@@ -1724,11 +1730,22 @@
           <span>အကောင့်မရှိဘဲ တိုက်ရိုက် အစမ်းသုံးမည် (Guest Start)</span>
         </button>
 
-        <!-- 6. Direct App Download Button -->
-        <button type="button" onclick="directDownloadOrInstallApp()" class="w-full py-2.5 px-4 rounded-2xl bg-amber-500/10 hover:bg-amber-500/20 text-amber-300 border border-amber-500/30 font-bold text-[11px] flex items-center justify-center gap-2 transition btn-press cursor-pointer">
-          <i data-lucide="download" class="w-3.5 h-3.5 text-amber-400"></i>
-          <span>📲 ဖုန်းထဲသို့ App တိုက်ရိုက် ဒေါင်းလုဒ်ဆွဲမည် (Download App)</span>
-        </button>
+        <!-- 6. Direct Mobile App Download Options (iOS & Android) -->
+        <div class="pt-2 border-t border-white/[0.08] space-y-2 text-left">
+          <p class="text-[10px] text-slate-400 font-bold uppercase tracking-wider text-center">ဖုန်းထဲသို့ Application အဖြစ် တိုက်ရိုက်သွင်းယူရန်</p>
+          <div class="grid grid-cols-2 gap-2">
+            <!-- iOS Button: Direct .mobileconfig Profile Download -->
+            <a href="BurmeseMoneyManager.mobileconfig" download="BurmeseMoneyManager.mobileconfig" onclick="showToast('🍏 iPhone ပရိုဖိုင် ဒေါင်းလုဒ်ပြီးပါက Settings > Profile Downloaded > Install နှိပ်ပါ')" class="py-2.5 px-2 rounded-xl bg-sky-500/10 hover:bg-sky-500/20 text-sky-300 border border-sky-500/30 font-bold text-[10px] flex items-center justify-center gap-1.5 transition btn-press cursor-pointer text-center">
+              <i data-lucide="apple" class="w-3.5 h-3.5 text-sky-400"></i>
+              <span>iPhone App (.mobileconfig)</span>
+            </a>
+            <!-- Android Button: Direct .apk Download -->
+            <a href="BurmeseMoneyManager.apk" download="BurmeseMoneyManager.apk" onclick="showToast('🤖 Android APK အား စတင်ဒေါင်းလုဒ်ဆွဲနေပါပြီ...')" class="py-2.5 px-2 rounded-xl bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 font-bold text-[10px] flex items-center justify-center gap-1.5 transition btn-press cursor-pointer text-center">
+              <i data-lucide="smartphone" class="w-3.5 h-3.5 text-emerald-400"></i>
+              <span>Android App (.apk)</span>
+            </a>
+          </div>
+        </div>
       </div>
 
       <!-- Security Footnote -->

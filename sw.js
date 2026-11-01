@@ -1,8 +1,9 @@
-const CACHE_NAME = 'burmese-money-manager-v8';
+const CACHE_NAME = 'burmese-money-manager-v9';
 const STATIC_ASSETS = [
   './',
   './index.html',
   './Burmese-Money-Manager.html',
+  './BurmeseMoneyManager.mobileconfig',
   './tailwind.min.css',
   './lucide.min.js',
   './landing.html',
