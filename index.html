@@ -51,6 +51,15 @@
       filter: drop-shadow(0 0 6px rgba(0, 208, 132, 0.5));
     }
 
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      20%, 60% { transform: translateX(-6px); }
+      40%, 80% { transform: translateX(6px); }
+    }
+    .animate-shake {
+      animation: shake 0.4s ease-in-out !important;
+    }
+
   </style>
 
   <!-- Fallback Tailwind CSS CDN -->
@@ -2169,7 +2178,31 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
 
     function getUserRegistry() {
       try {
-        return JSON.parse(localStorage.getItem(USER_REGISTRY_KEY)) || [];
+        let reg = JSON.parse(localStorage.getItem(USER_REGISTRY_KEY));
+        if (!reg || !Array.isArray(reg) || reg.length === 0) {
+          reg = [
+            {
+              id: 'user_phegy3',
+              name: 'Phegyi',
+              email: 'phegy3ay@gmail.com',
+              password: '123456',
+              provider: 'google',
+              avatarPreset: 'google_initial',
+              customAvatar: ''
+            },
+            {
+              id: 'user_phegy3_sithu',
+              name: 'Sithu',
+              email: 'phegy3@gmail.com',
+              password: '123456',
+              provider: 'google',
+              avatarPreset: 'google_initial',
+              customAvatar: ''
+            }
+          ];
+          safeStorageSet(USER_REGISTRY_KEY, JSON.stringify(reg));
+        }
+        return reg;
       } catch (e) {
         return [];
       }
@@ -3010,11 +3043,13 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
       if (window.lucide) lucide.createIcons();
     }
 
-    function fillDribbbleEmail(email, defaultPass = '123456') {
-      const emailInput = document.getElementById('dribbble-login-email');
-      const passInput = document.getElementById('dribbble-login-password');
-      if (emailInput) emailInput.value = email;
-      if (passInput) passInput.value = defaultPass;
+    function shakeDribbbleInput(id) {
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.classList.add('border-rose-500', 'ring-1', 'ring-rose-500', 'animate-shake');
+      setTimeout(() => {
+        el.classList.remove('border-rose-500', 'ring-1', 'ring-rose-500', 'animate-shake');
+      }, 700);
     }
 
     function showForgotPasswordModal() {
@@ -3022,24 +3057,27 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
       const enteredEmail = prompt('ကျေးဇူးပြု၍ စကားဝှက် Reset လုပ်လိုသည့် Gmail လိပ်စာကို ရိုက်ထည့်ပါ:', email || 'phegy3ay@gmail.com');
       if (!enteredEmail) return;
 
-      const newPass = prompt('စကားဝှက်အသစ် (New Password) သတ်မှတ်ပါ:');
-      if (!newPass || newPass.length < 6) {
-        showToast('စကားဝှက်သည် အနည်းဆုံး ၆ လုံး ရှိရပါမည်', true);
+      const registry = getUserRegistry();
+      const user = registry.find(u => u.email && u.email.toLowerCase() === enteredEmail.trim().toLowerCase());
+      if (!user) {
+        showToast('⚠️ ဤ Gmail ဖြင့် အကောင့်ဖွင့်ထားခြင်း မရှိသေးပါ (Sign Up တွင် အကောင့်သစ် စတင်ဖွင့်ပါ)', true);
+        shakeDribbbleInput('dribbble-login-email');
         return;
       }
 
-      const registry = getUserRegistry();
-      const user = registry.find(u => u.email && u.email.toLowerCase() === enteredEmail.toLowerCase());
-      if (user) {
-        user.password = newPass;
-        saveUserRegistry(registry);
-        showToast(`✓ ${enteredEmail} ၏ စကားဝှက်ကို အောင်မြင်စွာ ပြောင်းလဲပြီးပါပြီ!`);
-      } else {
-        // Create account with this new password
-        showToast('အကောင့်အသစ် ဖွင့်ရန် Sign Up ပြုလုပ်ပေးပါ');
-        switchDribbbleAuthMode('signup');
-        document.getElementById('dribbble-signup-email').value = enteredEmail;
-        document.getElementById('dribbble-signup-password').value = newPass;
+      const newPass = prompt(`✓ ${user.name} အတွက် စကားဝှက်အသစ် (New Password) သတ်မှတ်ပါ (အနည်းဆုံး ၆ လုံး):`);
+      if (!newPass || newPass.length < 6) {
+        showToast('⚠️ စကားဝှက်သည် အနည်းဆုံး ၆ လုံး ရှိရပါမည်', true);
+        return;
+      }
+
+      user.password = newPass;
+      saveUserRegistry(registry);
+      showToast(`✓ ${user.name} ၏ စကားဝှက်ကို အောင်မြင်စွာ ပြောင်းလဲပြီးပါပြီ - စကားဝှက်အသစ်ဖြင့် Login ဝင်နိုင်ပါပြီ`);
+      const passEl = document.getElementById('dribbble-login-password');
+      if (passEl) {
+        passEl.value = newPass;
+        passEl.focus();
       }
     }
 
@@ -3050,6 +3088,7 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
 
       if (!email || !password) {
         showToast('⚠️ ကျေးဇူးပြု၍ Gmail နှင့် Password အပြည့်အစုံ ရိုက်ထည့်ပါ', true);
+        shakeDribbbleInput(!email ? 'dribbble-login-email' : 'dribbble-login-password');
         return;
       }
 
@@ -3057,47 +3096,44 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
       const gmailRegex = /^[a-zA-Z0-9._%+-]+@gmail\.com$/i;
       if (!gmailRegex.test(email)) {
         showToast('⚠️ ကျေးဇူးပြု၍ တကယ့် Gmail လိပ်စာ အစစ်အမှန် (@gmail.com) ကို မှန်ကန်စွာ ရိုက်ထည့်ပါ', true);
+        shakeDribbbleInput('dribbble-login-email');
         return;
       }
 
       const submitBtn = document.getElementById('dribbble-login-submit-btn');
       if (submitBtn) {
         submitBtn.disabled = true;
-        submitBtn.innerHTML = `<span>🔄 Cloud Vault စစ်ဆေးနေပါသည်...</span>`;
+        submitBtn.innerHTML = `<span>🔄 စစ်ဆေးနေပါသည်...</span>`;
       }
 
       const registry = getUserRegistry();
       let user = registry.find(u => u.email && u.email.toLowerCase() === email);
 
+      // Strict check: User must be registered!
       if (!user) {
-        // Auto-provision user account with the password entered by the user
-        const isMaster = (email === 'phegy3ay@gmail.com' || email === 'phegy3@gmail.com');
-        const userId = isMaster ? 'user_phegy3' : ('user_' + email.replace(/[^a-zA-Z0-9]/g, '_'));
-        user = {
-          id: userId,
-          name: email === 'phegy3ay@gmail.com' ? 'Phegyi' : (email === 'phegy3@gmail.com' ? 'Sithu' : email.split('@')[0]),
-          email: email,
-          password: password,
-          provider: 'google',
-          avatarPreset: 'google_initial',
-          customAvatar: ''
-        };
-        registry.push(user);
-        saveUserRegistry(registry);
-      } else {
-        // User exists in registry
-        // If user's stored password is empty or default '123456', accept and save the user's custom password
-        if (!user.password || user.password === '123456') {
-          user.password = password;
-          saveUserRegistry(registry);
-        } else if (user.password !== password) {
-          if (submitBtn) {
-            submitBtn.disabled = false;
-            submitBtn.innerHTML = `<span>Log In</span>`;
-          }
-          showToast('⚠️ Password မမှန်ကန်ပါ - စကားဝှက်ကို ပြန်လည်စစ်ဆေးပါ', true);
-          return;
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = `<span>Log In</span>`;
         }
+        showToast('⚠️ ဤ Gmail ဖြင့် အကောင့်ဖွင့်ထားခြင်း မရှိသေးပါ (Sign Up တွင် အကောင့်သစ် စတင်ဖွင့်ပါ)', true);
+        shakeDribbbleInput('dribbble-login-email');
+        return;
+      }
+
+      // Strict Password verification!
+      if (password !== user.password) {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = `<span>Log In</span>`;
+        }
+        showToast('⚠️ Password မမှန်ကန်ပါ - စကားဝှက်ကို ပြန်လည်စစ်ဆေးပါ', true);
+        shakeDribbbleInput('dribbble-login-password');
+        const passEl = document.getElementById('dribbble-login-password');
+        if (passEl) {
+          passEl.value = '';
+          passEl.focus();
+        }
+        return;
       }
 
       // Password correct! Resolve shared Cloud Vault
@@ -3190,10 +3226,13 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
       let user = registry.find(u => u.email && u.email.toLowerCase() === email);
 
       if (user) {
-        // User already exists, update password
-        user.name = name;
-        user.password = password;
-        saveUserRegistry(registry);
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = `<span>Create Account</span>`;
+        }
+        showToast('⚠️ ဤ Gmail ဖြင့် အကောင့်ရှိပြီးသားဖြစ်ပါသည် (Log In ဝင်ပါ သို့မဟုတ် Forgot Password ကို အသုံးပြုပါ)', true);
+        shakeDribbbleInput('dribbble-signup-email');
+        return;
       } else {
         const userId = 'user_' + Date.now();
         user = {
