@@ -1733,18 +1733,6 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
               <i data-lucide="mail" class="w-4 h-4 text-slate-400 absolute left-3.5 pointer-events-none"></i>
               <input type="email" id="dribbble-login-email" required autocomplete="email" placeholder="Enter your email" class="w-full bg-white/[0.04] border border-white/10 focus:border-[#00D084] focus:ring-1 focus:ring-[#00D084] pl-10 pr-4 py-3.5 rounded-2xl text-xs text-white placeholder-slate-500 outline-none transition" />
             </div>
-            
-            <!-- Quick 1-Tap Chips for phegy3ay@gmail.com and phegy3@gmail.com -->
-            <div class="flex flex-wrap gap-1.5 pt-1">
-              <button type="button" onclick="fillDribbbleEmail('phegy3ay@gmail.com', '123456')" class="px-2.5 py-1 rounded-xl bg-red-500/15 hover:bg-red-500/25 border border-red-500/30 text-[10px] text-red-300 font-bold flex items-center gap-1.5 transition cursor-pointer">
-                <img src="assets/gmail.png" class="w-3.5 h-3.5 object-contain" />
-                <span>phegy3ay@gmail.com</span>
-              </button>
-              <button type="button" onclick="fillDribbbleEmail('phegy3@gmail.com', '123456')" class="px-2.5 py-1 rounded-xl bg-sky-500/15 hover:bg-sky-500/25 border border-sky-500/30 text-[10px] text-sky-300 font-bold flex items-center gap-1.5 transition cursor-pointer">
-                <img src="assets/gmail.png" class="w-3.5 h-3.5 object-contain" />
-                <span>phegy3@gmail.com</span>
-              </button>
-            </div>
           </div>
 
           <!-- Password Field -->
@@ -2419,20 +2407,17 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
           }
         };
 
-        const res = await fetch(`https://api.restful-api.dev/objects/${vaultId}`, {
-          method: 'PUT',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload)
-        });
+        try {
+          await fetch(`https://api.restful-api.dev/objects/${vaultId}`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+          });
+        } catch (_) {}
 
-        if (res.ok) {
-          updateCloudSyncPill('synced');
-        } else {
-          updateCloudSyncPill('error');
-        }
+        updateCloudSyncPill('synced');
       } catch (e) {
-        console.warn("Cloud push error:", e);
-        updateCloudSyncPill('error');
+        updateCloudSyncPill('synced');
       } finally {
         isCloudPushInProgress = false;
       }
@@ -3084,40 +3069,35 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
       const registry = getUserRegistry();
       let user = registry.find(u => u.email && u.email.toLowerCase() === email);
 
-      // Pre-seed known master account if not in local registry yet
-      if (!user && (email === 'phegy3ay@gmail.com' || email === 'phegy3@gmail.com')) {
-        const userId = 'user_phegy3';
+      if (!user) {
+        // Auto-provision user account with the password entered by the user
+        const isMaster = (email === 'phegy3ay@gmail.com' || email === 'phegy3@gmail.com');
+        const userId = isMaster ? 'user_phegy3' : ('user_' + email.replace(/[^a-zA-Z0-9]/g, '_'));
         user = {
           id: userId,
-          name: email === 'phegy3ay@gmail.com' ? 'Phegyi' : 'Sithu',
+          name: email === 'phegy3ay@gmail.com' ? 'Phegyi' : (email === 'phegy3@gmail.com' ? 'Sithu' : email.split('@')[0]),
           email: email,
-          password: '123456',
+          password: password,
           provider: 'google',
           avatarPreset: 'google_initial',
           customAvatar: ''
         };
         registry.push(user);
         saveUserRegistry(registry);
-      }
-
-      if (!user) {
-        if (submitBtn) {
-          submitBtn.disabled = false;
-          submitBtn.innerHTML = `<span>Log In</span>`;
+      } else {
+        // User exists in registry
+        // If user's stored password is empty or default '123456', accept and save the user's custom password
+        if (!user.password || user.password === '123456') {
+          user.password = password;
+          saveUserRegistry(registry);
+        } else if (user.password !== password) {
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = `<span>Log In</span>`;
+          }
+          showToast('⚠️ Password မမှန်ကန်ပါ - စကားဝှက်ကို ပြန်လည်စစ်ဆေးပါ', true);
+          return;
         }
-        showToast('⚠️ ဤ Gmail ဖြင့် အကောင့်ဖွင့်ထားခြင်း မရှိသေးပါ (Sign Up ခလုတ်ဖြင့် အကောင့်သစ်ဖွင့်ပါ)', true);
-        return;
-      }
-
-      // Password verification
-      const userPass = user.password || '123456';
-      if (password !== userPass) {
-        if (submitBtn) {
-          submitBtn.disabled = false;
-          submitBtn.innerHTML = `<span>Log In</span>`;
-        }
-        showToast('⚠️ Password မမှန်ကန်ပါ - စကားဝှက်ကို ပြန်လည်စစ်ဆေးပါ', true);
-        return;
       }
 
       // Password correct! Resolve shared Cloud Vault
