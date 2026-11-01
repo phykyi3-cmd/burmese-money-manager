@@ -4592,8 +4592,16 @@
     }
 
     function directDownloadOrInstallApp() {
-      // 1. Android direct APK download
+      const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
       const isAndroid = /Android/i.test(navigator.userAgent);
+
+      // 1. iPhone / iPad: Apple iOS does not support .apk, must use Add to Home Screen PWA
+      if (isIOS) {
+        openPhoneInstallModal();
+        return;
+      }
+
+      // 2. Android: Direct native APK download
       if (isAndroid) {
         showToast('📲 Android Application (.apk) အား ဒေါင်းလုဒ်ဆွဲနေပါပြီ...');
         const a = document.createElement('a');
