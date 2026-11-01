@@ -1,10 +1,13 @@
-const CACHE_NAME = 'burmese-money-manager-v5';
+const CACHE_NAME = 'burmese-money-manager-v6';
 const STATIC_ASSETS = [
   './',
   './index.html',
   './landing.html',
   './manifest.json',
-  './icon.svg'
+  './icon.svg',
+  './apple-touch-icon.png',
+  './icon-192.png',
+  './icon-512.png'
 ];
 
 self.addEventListener('install', (event) => {

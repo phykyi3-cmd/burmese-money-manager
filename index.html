@@ -11,7 +11,9 @@
   <meta name="apple-mobile-web-app-title" content="Burmese Money Manager">
   <link rel="manifest" href="manifest.json">
   <link rel="icon" type="image/svg+xml" href="icon.svg">
-  <link rel="apple-touch-icon" href="icon.svg">
+  <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
 
   <!-- Google Fonts: Plus Jakarta Sans & Noto Sans Myanmar -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -235,9 +237,9 @@
         </div>
 
         <!-- PWA Install App Button -->
-        <button type="button" onclick="triggerPWAInstall()" id="btn-install-pwa" class="hidden glass-pill px-2.5 py-1.5 rounded-full items-center gap-1 text-[11px] font-extrabold text-emerald-400 hover:text-white border border-emerald-500/30 btn-press cursor-pointer shadow">
-          <i data-lucide="download-cloud" class="w-3.5 h-3.5 text-emerald-400"></i>
-          <span class="hidden md:inline">Install App</span>
+        <button type="button" onclick="openPhoneInstallModal()" id="btn-install-pwa" class="glass-pill px-2.5 py-1.5 rounded-full flex items-center gap-1.5 text-[11px] font-extrabold text-amber-300 hover:text-white border border-amber-500/30 btn-press cursor-pointer shadow">
+          <i data-lucide="download-cloud" class="w-3.5 h-3.5 text-amber-400"></i>
+          <span>App သွင်းမည်</span>
         </button>
         
         <!-- Wallpaper / Theme Button -->
@@ -1468,39 +1470,183 @@
   </div>
 
   
-  <!-- ================= MODAL 11: IOS PWA INSTALLATION GUIDE ================= -->
-  <div id="pwa-ios-modal" onclick="if(event.target === this) closeIOSInstallModal()" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-md hidden items-center justify-center p-4">
-    <div class="w-full max-w-sm rounded-[32px] glass-apple p-6 border border-white/20 shadow-2xl animate-apple-sheet space-y-4">
-      <div class="flex items-center justify-between pb-2 border-b border-white/[0.08]">
-        <div class="flex items-center gap-2">
-          <div class="w-8 h-8 rounded-xl bg-indigo-500/20 text-indigo-400 flex items-center justify-center border border-indigo-500/30">
-            <i data-lucide="smartphone" class="w-4 h-4"></i>
+  <!-- ================= MOBILE FLOATING APP INSTALL BANNER ================= -->
+  <div id="mobile-install-banner" class="fixed top-2 inset-x-2 z-40 p-2.5 rounded-2xl glass-apple border border-amber-500/40 shadow-2xl flex items-center justify-between gap-2.5 sm:hidden">
+    <div class="flex items-center gap-2.5 min-w-0 cursor-pointer" onclick="openPhoneInstallModal()">
+      <div class="relative w-8 h-8 rounded-xl p-0.5 bg-gradient-to-tr from-amber-400 to-amber-600 shrink-0 shadow">
+        <img src="apple-touch-icon.png" alt="Burmese Money Manager" class="w-full h-full object-contain rounded-[10px]" />
+      </div>
+      <div class="min-w-0 text-left">
+        <p class="text-[11px] font-black text-white truncate">Burmese Money Manager</p>
+        <p class="text-[9px] text-amber-300 font-bold truncate">ဖုန်းထဲသို့ App အဖြစ် သွင်းယူရန်</p>
+      </div>
+    </div>
+    <div class="flex items-center gap-1.5 shrink-0">
+      <button type="button" onclick="openPhoneInstallModal()" class="px-3 py-1.5 rounded-xl bg-gradient-to-r from-amber-500 to-yellow-400 text-slate-950 font-black text-[10px] shadow btn-press cursor-pointer flex items-center gap-1">
+        <i data-lucide="download" class="w-3 h-3"></i>
+        <span>သွင်းမည်</span>
+      </button>
+      <button type="button" onclick="document.getElementById('mobile-install-banner').remove()" class="w-6 h-6 rounded-lg glass-pill flex items-center justify-center text-slate-400 hover:text-white cursor-pointer">
+        <i data-lucide="x" class="w-3 h-3"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- ================= MODAL 11: UNIVERSAL PHONE APP INSTALLATION CENTER ================= -->
+  <div id="pwa-install-modal" onclick="if(event.target === this) closePhoneInstallModal()" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-md hidden items-center justify-center p-4">
+    <div class="w-full max-w-sm rounded-[32px] glass-apple p-6 border border-white/20 shadow-2xl animate-apple-sheet space-y-4 text-center">
+      
+      <!-- Header -->
+      <div class="flex items-center justify-between pb-3 border-b border-white/[0.08]">
+        <div class="flex items-center gap-2.5 text-left">
+          <div class="w-9 h-9 rounded-2xl bg-amber-500/20 text-amber-300 flex items-center justify-center border border-amber-500/30">
+            <i data-lucide="smartphone" class="w-5 h-5"></i>
           </div>
-          <h3 class="text-xs font-black text-white">iPhone / iPad တွင် App သွင်းနည်း</h3>
+          <div>
+            <h3 class="text-xs font-black text-white">ဖုန်းထဲသို့ App သွင်းယူနည်း</h3>
+            <p class="text-[10px] text-amber-300 font-bold">Burmese Money Manager</p>
+          </div>
         </div>
-        <button type="button" onclick="closeIOSInstallModal()" class="w-7 h-7 rounded-full glass-pill flex items-center justify-center text-slate-400 hover:text-white cursor-pointer">
+        <button type="button" onclick="closePhoneInstallModal()" class="w-7 h-7 rounded-full glass-pill flex items-center justify-center text-slate-400 hover:text-white cursor-pointer">
           <i data-lucide="x" class="w-3.5 h-3.5"></i>
         </button>
       </div>
 
-      <div class="space-y-3 text-xs text-slate-300 leading-relaxed">
-        <div class="flex items-start gap-2.5 p-2.5 rounded-2xl bg-white/[0.04]">
-          <span class="w-5 h-5 rounded-full bg-indigo-600 text-white flex items-center justify-center text-[10px] font-black shrink-0">1</span>
-          <p>Safari အောက်ခြေရှိ <b>Share [ <i data-lucide="share" class="w-3 h-3 inline text-indigo-400"></i> ]</b> ခလုတ်ကို နှိပ်ပါ</p>
+      <!-- App Card Info -->
+      <div class="p-3.5 rounded-2xl bg-white/[0.04] border border-white/10 flex items-center gap-3 text-left">
+        <div class="w-12 h-12 rounded-[16px] p-0.5 bg-gradient-to-tr from-amber-400 to-amber-600 shrink-0 shadow-lg shadow-amber-500/20">
+          <img src="apple-touch-icon.png" alt="Logo" class="w-full h-full object-contain rounded-[14px]">
         </div>
-        <div class="flex items-start gap-2.5 p-2.5 rounded-2xl bg-white/[0.04]">
-          <span class="w-5 h-5 rounded-full bg-indigo-600 text-white flex items-center justify-center text-[10px] font-black shrink-0">2</span>
-          <p>အောက်သို့ ဆွဲချပြီး <b>"Add to Home Screen (ပင်မမျက်နှာပြင်သို့ ထည့်မည်)"</b> ကို ရွေးပါ</p>
-        </div>
-        <div class="flex items-start gap-2.5 p-2.5 rounded-2xl bg-white/[0.04]">
-          <span class="w-5 h-5 rounded-full bg-indigo-600 text-white flex items-center justify-center text-[10px] font-black shrink-0">3</span>
-          <p>ညာဘက်အပေါ်ရှိ <b>Add (ထည့်သွင်းမည်)</b> ကို နှိပ်လိုက်ပါက ဖုန်းမျက်နှာပြင်ပေါ်တွင် App Icon ရရှိပြီး အင်တာနက်မလိုဘဲ Offline သုံးနိုင်ပါပြီ</p>
+        <div class="min-w-0 flex-1">
+          <h4 class="text-xs font-black text-white truncate">Burmese Money Manager</h4>
+          <p class="text-[10px] text-slate-400">ဗားရှင်း 2.0 • Offline Ready (အင်တာနက်မလို)</p>
+          <p class="text-[9px] text-emerald-400 font-bold mt-0.5">✓ ဖုန်းစခရင်ပေါ်တွင် App Icon အဖြစ် တိုက်ရိုက်ရှိမည်</p>
         </div>
       </div>
 
-      <button type="button" onclick="closeIOSInstallModal()" class="w-full py-2.5 rounded-2xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold transition btn-press cursor-pointer">
+      <!-- OS Switcher Tabs -->
+      <div class="grid grid-cols-2 p-1 rounded-2xl bg-white/[0.06] border border-white/10 text-xs font-bold">
+        <button type="button" id="tab-os-ios" onclick="switchInstallOSTab('ios')" class="py-2 rounded-xl transition flex items-center justify-center gap-1.5 cursor-pointer bg-amber-500/20 text-amber-300 border border-amber-500/30">
+          <i data-lucide="apple" class="w-3.5 h-3.5"></i>
+          <span>iPhone / iPad</span>
+        </button>
+        <button type="button" id="tab-os-android" onclick="switchInstallOSTab('android')" class="py-2 rounded-xl transition flex items-center justify-center gap-1.5 cursor-pointer text-slate-400 hover:text-white">
+          <i data-lucide="smartphone" class="w-3.5 h-3.5"></i>
+          <span>Android / Chrome</span>
+        </button>
+      </div>
+
+      <!-- iOS Installation Steps View -->
+      <div id="install-view-ios" class="space-y-2.5 text-xs text-slate-300 text-left leading-relaxed">
+        <div class="flex items-start gap-2.5 p-3 rounded-2xl bg-white/[0.04] border border-white/5">
+          <span class="w-6 h-6 rounded-full bg-amber-500 text-slate-950 flex items-center justify-center text-xs font-black shrink-0">1</span>
+          <div>
+            <p class="font-bold text-white">Safari အောက်ခြေရှိ Share ခလုတ်ကို နှိပ်ပါ</p>
+            <p class="text-[10px] text-slate-400 mt-0.5">Safari ၏ အောက်ဘက် မီနူးဘားရှိ <b>[ <i data-lucide="share" class="w-3 h-3 inline text-indigo-400"></i> Share ]</b> အိုင်ကွန်ကို နှိပ်ပါ</p>
+          </div>
+        </div>
+        <div class="flex items-start gap-2.5 p-3 rounded-2xl bg-white/[0.04] border border-white/5">
+          <span class="w-6 h-6 rounded-full bg-amber-500 text-slate-950 flex items-center justify-center text-xs font-black shrink-0">2</span>
+          <div>
+            <p class="font-bold text-white">"Add to Home Screen" ကို ရွေးပါ</p>
+            <p class="text-[10px] text-slate-400 mt-0.5">ပေါ်လာသောစာရင်းကို အောက်ဆွဲချပြီး <b>[ ⊞ Add to Home Screen (ပင်မမျက်နှာပြင်သို့ ထည့်မည်) ]</b> ကို နှိပ်ပါ</p>
+          </div>
+        </div>
+        <div class="flex items-start gap-2.5 p-3 rounded-2xl bg-white/[0.04] border border-white/5">
+          <span class="w-6 h-6 rounded-full bg-amber-500 text-slate-950 flex items-center justify-center text-xs font-black shrink-0">3</span>
+          <div>
+            <p class="font-bold text-white">အပေါ်ညာဘက်ရှိ "Add" ကို နှိပ်ပါ</p>
+            <p class="text-[10px] text-slate-400 mt-0.5">သင့် iPhone ပင်မစခရင်ပေါ်တွင် App Icon ရရှိပြီး ဒေါင်းလုဒ်ဖိုင်ထဲ လိုက်ရှာစရာမလိုဘဲ အချိန်မရွေး တိုက်ရိုက် သုံးနိုင်ပါပြီ</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Android Installation Steps View -->
+      <div id="install-view-android" class="hidden space-y-2.5 text-xs text-slate-300 text-left leading-relaxed">
+        <!-- 1-Click Direct Install Button for Android -->
+        <button type="button" onclick="executeNativePWAInstall()" class="w-full py-3 px-4 rounded-2xl bg-gradient-to-r from-emerald-500 to-teal-400 hover:from-emerald-400 hover:to-teal-300 text-slate-950 font-black text-xs flex items-center justify-center gap-2 shadow-lg shadow-emerald-500/20 transition btn-press cursor-pointer">
+          <i data-lucide="download-cloud" class="w-4 h-4 text-slate-950"></i>
+          <span>📲 ဖုန်းထဲသို့ တိုက်ရိုက်ဒေါင်းလုဒ်သွင်းမည်</span>
+        </button>
+
+        <div class="flex items-start gap-2.5 p-3 rounded-2xl bg-white/[0.04] border border-white/5">
+          <span class="w-6 h-6 rounded-full bg-emerald-500 text-slate-950 flex items-center justify-center text-xs font-black shrink-0">1</span>
+          <div>
+            <p class="font-bold text-white">Chrome အပေါ်ညာဘက် ၃ စက် (⋮) ကို နှိပ်ပါ</p>
+            <p class="text-[10px] text-slate-400 mt-0.5">Browser Menu ပွင့်လာပါမည်</p>
+          </div>
+        </div>
+        <div class="flex items-start gap-2.5 p-3 rounded-2xl bg-white/[0.04] border border-white/5">
+          <span class="w-6 h-6 rounded-full bg-emerald-500 text-slate-950 flex items-center justify-center text-xs font-black shrink-0">2</span>
+          <div>
+            <p class="font-bold text-white">"Install app" သို့မဟုတ် "Add to Home screen" ကို နှိပ်ပါ</p>
+            <p class="text-[10px] text-slate-400 mt-0.5">စာရင်းထဲရှိ "အက်ပ်သွင်းမည်" ကို ရွေးပါ</p>
+          </div>
+        </div>
+        <div class="flex items-start gap-2.5 p-3 rounded-2xl bg-white/[0.04] border border-white/5">
+          <span class="w-6 h-6 rounded-full bg-emerald-500 text-slate-950 flex items-center justify-center text-xs font-black shrink-0">3</span>
+          <div>
+            <p class="font-bold text-white">ဖုန်း App များထဲတွင် တိုက်ရိုက် ရောက်ရှိသွားပါမည်</p>
+            <p class="text-[10px] text-slate-400 mt-0.5">ဖုန်းစခရင်ပေါ်မှ Icon ကို နှိပ်ရုံဖြင့် Offline ပါ သုံးနိုင်ပါပြီ</p>
+          </div>
+        </div>
+      </div>
+
+      <button type="button" onclick="closePhoneInstallModal()" class="w-full py-2.5 rounded-2xl bg-white/10 hover:bg-white/15 text-white text-xs font-bold transition btn-press cursor-pointer">
         နားလည်ပါပြီ (OK)
       </button>
+    </div>
+  </div>
+
+  <!-- ================= IN-APP DOCUMENT / DATA DOWNLOAD VIEWER MODAL ================= -->
+  <div id="download-viewer-modal" onclick="if(event.target === this) closeDownloadViewerModal()" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-md hidden items-center justify-center p-3 sm:p-4">
+    <div class="w-full max-w-lg rounded-[32px] glass-apple p-5 sm:p-6 border border-white/20 shadow-2xl animate-apple-sheet space-y-4 max-h-[90vh] flex flex-col">
+      
+      <div class="flex items-center justify-between pb-3 border-b border-white/[0.08] shrink-0">
+        <div class="flex items-center gap-2.5">
+          <div class="w-9 h-9 rounded-2xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center border border-emerald-500/30">
+            <i data-lucide="file-spreadsheet" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <h3 class="text-sm font-extrabold text-white" id="dv-title">ဒေါင်းလုဒ် အချက်အလက်များ</h3>
+            <p class="text-[10px] text-slate-400" id="dv-subtitle">ဖုန်းထဲတွင် တိုက်ရိုက် ကြည့်ရှု / သိမ်းဆည်းရန်</p>
+          </div>
+        </div>
+        <button type="button" onclick="closeDownloadViewerModal()" class="w-7 h-7 rounded-full glass-pill flex items-center justify-center text-slate-400 hover:text-white cursor-pointer">
+          <i data-lucide="x" class="w-3.5 h-3.5"></i>
+        </button>
+      </div>
+
+      <!-- Action Buttons Bar -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 shrink-0">
+        <button type="button" onclick="downloadCurrentDataFile()" class="py-2 px-2.5 rounded-xl bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/30 font-bold text-[11px] flex items-center justify-center gap-1.5 transition btn-press cursor-pointer">
+          <i data-lucide="download" class="w-3.5 h-3.5"></i>
+          <span>ဖိုင်ဒေါင်းမည်</span>
+        </button>
+        <button type="button" onclick="printOrSavePDF()" class="py-2 px-2.5 rounded-xl bg-indigo-500/20 hover:bg-indigo-500/30 text-indigo-300 border border-indigo-500/30 font-bold text-[11px] flex items-center justify-center gap-1.5 transition btn-press cursor-pointer">
+          <i data-lucide="printer" class="w-3.5 h-3.5"></i>
+          <span>PDF / Print</span>
+        </button>
+        <button type="button" onclick="shareDataDirectly()" class="py-2 px-2.5 rounded-xl bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-300 border border-emerald-500/30 font-bold text-[11px] flex items-center justify-center gap-1.5 transition btn-press cursor-pointer">
+          <i data-lucide="share-2" class="w-3.5 h-3.5"></i>
+          <span>ဖုန်း Share</span>
+        </button>
+        <button type="button" onclick="copyDataText()" class="py-2 px-2.5 rounded-xl bg-white/10 hover:bg-white/15 text-white font-bold text-[11px] flex items-center justify-center gap-1.5 transition btn-press cursor-pointer">
+          <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+          <span>Copy ကူးမည်</span>
+        </button>
+      </div>
+
+      <!-- Preview Container -->
+      <div class="flex-1 overflow-y-auto space-y-2 p-3 rounded-2xl bg-black/40 border border-white/10 text-xs font-mono text-slate-200" id="dv-content">
+        <!-- Rendered table or data rows -->
+      </div>
+
+      <div class="text-[10px] text-slate-400 flex items-center justify-between pt-1 border-t border-white/[0.06] shrink-0">
+        <span>💡 ဒေါင်းလုဒ်ရှာမရပါက "ဖုန်း Share" ဖြင့် Messenger / Telegram / Notes ထဲသို့ တိုက်ရိုက် ပို့နိုင်ပါသည်</span>
+        <button type="button" onclick="closeDownloadViewerModal()" class="text-white hover:underline font-bold">ပိတ်မည်</button>
+      </div>
+
     </div>
   </div>
 
@@ -1569,6 +1715,12 @@
         <button type="button" onclick="handleLoginAsGuest()" class="w-full py-2.5 px-4 rounded-2xl text-slate-400 hover:text-white font-bold text-[11px] flex items-center justify-center gap-2 transition btn-press cursor-pointer">
           <i data-lucide="sparkles" class="w-3.5 h-3.5 text-amber-300"></i>
           <span>အကောင့်မရှိဘဲ တိုက်ရိုက် အစမ်းသုံးမည် (Guest Start)</span>
+        </button>
+
+        <!-- 6. Install to Phone Button -->
+        <button type="button" onclick="openPhoneInstallModal()" class="w-full py-2.5 px-4 rounded-2xl bg-amber-500/10 hover:bg-amber-500/20 text-amber-300 border border-amber-500/30 font-bold text-[11px] flex items-center justify-center gap-2 transition btn-press cursor-pointer">
+          <i data-lucide="smartphone" class="w-3.5 h-3.5 text-amber-400"></i>
+          <span>📲 ဖုန်းထဲတွင် App အဖြစ် အမြဲတမ်းသုံးရန် ဒေါင်းလုဒ်/သွင်းမည်</span>
         </button>
       </div>
 
@@ -4040,17 +4192,114 @@
       a.click();
     }
 
+    let currentViewerData = null;
+    let currentViewerTitle = '';
+    let currentViewerFilename = '';
+
+    function openDownloadViewer(title, subtitle, headers, rows, rawText, filename) {
+      currentViewerTitle = title;
+      currentViewerFilename = filename || 'MoneyManager_Export.csv';
+      currentViewerData = rawText;
+
+      const titleEl = document.getElementById('dv-title');
+      const subEl = document.getElementById('dv-subtitle');
+      if (titleEl) titleEl.textContent = title;
+      if (subEl) subEl.textContent = subtitle;
+
+      let html = `<div class="space-y-3">`;
+      html += `<div class="p-2.5 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-300 text-[11px] leading-relaxed">
+        <b>✓ ဖုန်းစခရင်ပေါ်တွင် တိုက်ရိုက် ကြည့်ရှုနိုင်ပါပြီ။</b> ဖုန်း Download Folder ထဲ လိုက်ရှာစရာမလိုဘဲ အောက်ပါခလုတ်များဖြင့် Print / PDF ထုတ်ခြင်း သို့မဟုတ် Messenger, Telegram, Viber, Notes ထဲသို့ တိုက်ရိုက် Share နိုင်ပါသည်။
+      </div>`;
+
+      // Render Clean Table
+      html += `<div class="overflow-x-auto rounded-xl border border-white/10"><table class="w-full text-left text-[11px] border-collapse bg-black/30">`;
+      html += `<thead class="border-b border-white/20 text-slate-400 bg-white/[0.04]"><tr>`;
+      headers.forEach(h => {
+        html += `<th class="py-2.5 px-3 font-bold">${h}</th>`;
+      });
+      html += `</tr></thead><tbody class="divide-y divide-white/[0.08]">`;
+      rows.forEach(r => {
+        html += `<tr class="hover:bg-white/[0.04]">`;
+        r.forEach((cell, idx) => {
+          const isAmt = idx === 2;
+          html += `<td class="py-2.5 px-3 ${isAmt ? 'font-black text-emerald-400' : ''}">${cell}</td>`;
+        });
+        html += `</tr>`;
+      });
+      html += `</tbody></table></div></div>`;
+
+      const contentEl = document.getElementById('dv-content');
+      if (contentEl) contentEl.innerHTML = html;
+      const modal = document.getElementById('download-viewer-modal');
+      if (modal) {
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+      }
+      if (window.lucide) lucide.createIcons();
+    }
+
+    function closeDownloadViewerModal() {
+      const modal = document.getElementById('download-viewer-modal');
+      if (modal) {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+      }
+    }
+
+    function downloadCurrentDataFile() {
+      if (!currentViewerData) return;
+      const blob = new Blob([currentViewerData], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = currentViewerFilename;
+      a.click();
+      showToast('ဖိုင်ကို Download Folder ထဲသို့ သိမ်းဆည်းလိုက်ပါပြီ');
+    }
+
+    function printOrSavePDF() {
+      window.print();
+    }
+
+    function shareDataDirectly() {
+      if (navigator.share) {
+        navigator.share({
+          title: currentViewerTitle || 'Burmese Money Manager စာရင်း',
+          text: currentViewerData
+        }).then(() => {
+          showToast('အောင်မြင်စွာ Share ပြီးပါပြီ');
+        }).catch(() => {});
+      } else {
+        copyDataText();
+      }
+    }
+
+    function copyDataText() {
+      if (!currentViewerData) return;
+      navigator.clipboard.writeText(currentViewerData).then(() => {
+        showToast('စာရင်းဒေတာများကို Clipboard သို့ Copy ကူးပြီးပါပြီ!');
+      });
+    }
+
     function exportDataCSV() {
       let csv = "ID,Type,Amount,Currency,Category,Account,Date,Note\n";
+      const headers = ["အမျိုးအစား", "ရက်စွဲ", "ပမာဏ", "အကောင့်", "မှတ်ချက်"];
+      const rows = [];
       appState.transactions.forEach(t => {
         csv += `"${t.id}","${t.type}","${t.amount}","${appState.currency}","${t.categoryId}","${t.accountId}","${t.date}","${(t.note||'').replace(/"/g, '""')}"\n`;
+        const typeStr = t.type === 'income' ? 'ဝင်ငွေ' : (t.type === 'expense' ? 'ထွက်ငွေ' : 'ငွေလွှဲ');
+        const acc = appState.accounts.find(a => a.id === t.accountId);
+        const accName = acc ? acc.name : t.accountId;
+        rows.push([typeStr, t.date, formatMoney(t.amount) + ' Ks', accName, t.note || '-']);
       });
       const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
-      a.download = "MoneyManager_Transactions_" + new Date().toISOString().split('T')[0] + ".csv";
+      const fname = "MoneyManager_Transactions_" + new Date().toISOString().split('T')[0] + ".csv";
+      a.download = fname;
       a.click();
+      openDownloadViewer("ငွေစာရင်း မှတ်တမ်းများ ထုတ်ယူမှု", `${appState.transactions.length} ခုသော စာရင်းမှတ်တမ်းများ`, headers, rows, csv, fname);
     }
 
     function importDataJSON(e) {
@@ -4205,6 +4454,8 @@
       const monthNames = isMy ? MONTH_NAMES_MY : MONTH_NAMES_EN;
       
       let csv = `Year,Month,Income,Expense,NetSavings,Currency\n`;
+      const headers = ["ခုနှစ်", "လ", "စုစုပေါင်း ဝင်ငွေ", "စုစုပေါင်း ထွက်ငွေ", "အသားတင် လက်ကျန်"];
+      const rows = [];
       for (let m = 1; m <= 12; m++) {
         const mKey = `${yr}-${m.toString().padStart(2, '0')}`;
         let inc = 0;
@@ -4215,16 +4466,19 @@
             else if (t.type === 'expense') exp += t.amount;
           }
         });
-        csv += `"${yr}","${monthNames[m-1]}","${inc}","${exp}","${inc - exp}","${appState.currency}"\n`;
+        const net = inc - exp;
+        csv += `"${yr}","${monthNames[m-1]}","${inc}","${exp}","${net}","${appState.currency}"\n`;
+        rows.push([`${yr}`, monthNames[m-1], formatMoney(inc) + ' Ks', formatMoney(exp) + ' Ks', (net >= 0 ? '+' : '') + formatMoney(net) + ' Ks']);
       }
 
       const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
-      a.download = `MoneyManager_Annual_Report_${yr}.csv`;
+      const fname = `MoneyManager_Annual_Report_${yr}.csv`;
+      a.download = fname;
       a.click();
-      showToast(`${yr} နှစ်ချုပ် စာရင်းကို CSV အဖြစ် ဒေါင်းလုဒ်လုပ်ပြီးပါပြီ`);
+      openDownloadViewer(`${yr} ခုနှစ် နှစ်ချုပ် စာရင်းမှတ်တမ်း`, `စုစုပေါင်း ဝင်ငွေ၊ ထွက်ငွေနှင့် အသားတင် လက်ကျန်ငွေ`, headers, rows, csv, fname);
     }
 
     function applyTranslations() {
@@ -4274,38 +4528,78 @@
         btn.classList.remove('hidden');
         btn.classList.add('flex');
       }
+      const banner = document.getElementById('mobile-install-banner');
+      if (banner) banner.classList.remove('hidden');
     });
 
-    function triggerPWAInstall() {
-      if (deferredPrompt) {
-        deferredPrompt.prompt();
-        deferredPrompt.userChoice.then((choiceResult) => {
-          if (choiceResult.outcome === 'accepted') {
-            showToast(appState.lang === 'my' ? 'App အား ဖုန်းထဲသို့ အောင်မြင်စွာ ထည့်သွင်းပြီးပါပြီ!' : 'App installed to home screen!');
-          }
-          deferredPrompt = null;
-          const btn = document.getElementById('btn-install-pwa');
-          if (btn) btn.classList.add('hidden');
-        });
-      } else {
-        const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-        if (isIOS) {
-          openIOSInstallModal();
-        } else {
-          showToast('Browser Menu (⋮ သို့မဟုတ် ⚙️) ကို နှိပ်ပြီး "Install App" သို့မဟုတ် "Add to Home screen" ကို ရွေးပါ');
-        }
+    function openPhoneInstallModal() {
+      const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+      switchInstallOSTab(isIOS ? 'ios' : 'android');
+      const modal = document.getElementById('pwa-install-modal');
+      if (modal) {
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+      }
+      if (window.lucide) lucide.createIcons();
+    }
+
+    function closePhoneInstallModal() {
+      const modal = document.getElementById('pwa-install-modal');
+      if (modal) {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
       }
     }
 
     function openIOSInstallModal() {
-      document.getElementById('pwa-ios-modal').classList.remove('hidden');
-      document.getElementById('pwa-ios-modal').classList.add('flex');
-      if (window.lucide) lucide.createIcons();
+      openPhoneInstallModal();
     }
 
     function closeIOSInstallModal() {
-      document.getElementById('pwa-ios-modal').classList.add('hidden');
-      document.getElementById('pwa-ios-modal').classList.remove('flex');
+      closePhoneInstallModal();
+    }
+
+    function switchInstallOSTab(os) {
+      const tabIos = document.getElementById('tab-os-ios');
+      const tabAndroid = document.getElementById('tab-os-android');
+      const viewIos = document.getElementById('install-view-ios');
+      const viewAndroid = document.getElementById('install-view-android');
+
+      if (!tabIos || !tabAndroid || !viewIos || !viewAndroid) return;
+
+      if (os === 'ios') {
+        tabIos.className = 'py-2 rounded-xl transition flex items-center justify-center gap-1.5 cursor-pointer bg-amber-500/20 text-amber-300 border border-amber-500/30';
+        tabAndroid.className = 'py-2 rounded-xl transition flex items-center justify-center gap-1.5 cursor-pointer text-slate-400 hover:text-white';
+        viewIos.classList.remove('hidden');
+        viewAndroid.classList.add('hidden');
+      } else {
+        tabAndroid.className = 'py-2 rounded-xl transition flex items-center justify-center gap-1.5 cursor-pointer bg-emerald-500/20 text-emerald-300 border border-emerald-500/30';
+        tabIos.className = 'py-2 rounded-xl transition flex items-center justify-center gap-1.5 cursor-pointer text-slate-400 hover:text-white';
+        viewAndroid.classList.remove('hidden');
+        viewIos.classList.add('hidden');
+      }
+      if (window.lucide) lucide.createIcons();
+    }
+
+    function executeNativePWAInstall() {
+      if (deferredPrompt) {
+        deferredPrompt.prompt();
+        deferredPrompt.userChoice.then((choiceResult) => {
+          if (choiceResult.outcome === 'accepted') {
+            showToast('Burmese Money Manager အား ဖုန်းထဲသို့ အောင်မြင်စွာ ထည့်သွင်းပြီးပါပြီ!');
+            closePhoneInstallModal();
+            const banner = document.getElementById('mobile-install-banner');
+            if (banner) banner.remove();
+          }
+          deferredPrompt = null;
+        });
+      } else {
+        showToast('Chrome မီနူး (အပေါ်ညာဘက် ၃ စက် ⋮) ကို နှိပ်ပြီး "Install app" သို့မဟုတ် "Add to Home screen" ကို ရွေးပါ');
+      }
+    }
+
+    function triggerPWAInstall() {
+      openPhoneInstallModal();
     }
 
     // Network Status Listeners (Online / Offline)

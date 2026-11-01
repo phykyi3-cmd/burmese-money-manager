@@ -1,6 +1,6 @@
 {
   "name": "Burmese Money Manager - မြန်မာ့ငွေကြေးစီမံခန့်ခွဲမှု",
-  "short_name": "Burmese Money Manager",
+  "short_name": "Burmese Money",
   "description": "Smart, private and free Burmese wealth & expense tracking suite for Web and Mobile",
   "start_url": "./index.html",
   "display": "standalone",
@@ -8,6 +8,18 @@
   "theme_color": "#07080D",
   "orientation": "portrait-primary",
   "icons": [
+    {
+      "src": "./icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "./icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
     {
       "src": "./icon.svg",
       "sizes": "192x192 512x512",
