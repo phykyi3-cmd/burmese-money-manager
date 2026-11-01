@@ -1,0 +1,58 @@
+name: Build Android APK
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    name: Build & Package Android APK
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Make Gradlew Executable
+        run: chmod +x android/gradlew
+
+      - name: Build Android APK (assembleDebug)
+        working-directory: ./android
+        run: |
+          ./gradlew assembleDebug --no-daemon --stacktrace
+
+      - name: Prepare APK File
+        run: |
+          mkdir -p build-output
+          cp android/app/build/outputs/apk/debug/app-debug.apk build-output/BurmeseMoneyManager.apk
+          cp android/app/build/outputs/apk/debug/app-debug.apk BurmeseMoneyManager.apk
+
+      - name: Upload APK Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: BurmeseMoneyManager-APK
+          path: build-output/BurmeseMoneyManager.apk
+
+      - name: Create or Update GitHub Release
+        uses: softprops/action-gh-release@v2
+        if: startsWith(github.ref, 'refs/tags/') || github.ref == 'refs/heads/main'
+        with:
+          tag_name: v1.0.0
+          name: Burmese Money Manager v1.0.0 (Android APK)
+          body: |
+            📲 **Burmese Money Manager Official Android APK Release**
+            - တရားဝင် Android Mobile Application (.apk)
+            - ဖုန်းထဲတွင် တိုက်ရိုက် သွင်းယူအသုံးပြုနိုင်ပါသည် (100% Offline Ready)
+          files: build-output/BurmeseMoneyManager.apk
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

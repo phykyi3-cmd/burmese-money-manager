@@ -1,0 +1,181 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <!-- Background Gradient (Obsidian Slate with Deep Royal Navy undertone) -->
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0E1017"/>
+      <stop offset="50%" stop-color="#0A0B10"/>
+      <stop offset="100%" stop-color="#050608"/>
+    </linearGradient>
+
+    <!-- 24K Imperial Gold Outer Rim Gradient -->
+    <linearGradient id="goldRim" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFF3C4"/>
+      <stop offset="25%" stop-color="#FCD34D"/>
+      <stop offset="50%" stop-color="#D97706"/>
+      <stop offset="75%" stop-color="#F59E0B"/>
+      <stop offset="100%" stop-color="#92400E"/>
+    </linearGradient>
+
+    <!-- 24K Polished Specular Coin Face Gradient -->
+    <radialGradient id="coinFace" cx="38%" cy="32%" r="65%">
+      <stop offset="0%" stop-color="#FFFDF0"/>
+      <stop offset="20%" stop-color="#FEF08A"/>
+      <stop offset="45%" stop-color="#F59E0B"/>
+      <stop offset="75%" stop-color="#D97706"/>
+      <stop offset="100%" stop-color="#78350F"/>
+    </radialGradient>
+
+    <!-- Inner Core Vault Ring Gradient -->
+    <linearGradient id="innerVaultGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1E2333"/>
+      <stop offset="50%" stop-color="#0F1320"/>
+      <stop offset="100%" stop-color="#07090F"/>
+    </linearGradient>
+
+    <!-- Burma Ruby Accent Gradient -->
+    <linearGradient id="rubyGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FDA4AF"/>
+      <stop offset="40%" stop-color="#F43F5E"/>
+      <stop offset="100%" stop-color="#9F1239"/>
+    </linearGradient>
+
+    <!-- Pure Platinum Shimmer Gradient -->
+    <linearGradient id="platinumShine" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.9"/>
+      <stop offset="50%" stop-color="#FFFFFF" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0"/>
+    </linearGradient>
+
+    <!-- Drop Shadows -->
+    <filter id="softGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="24" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+
+    <filter id="shadow3D" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="16" stdDeviation="16" flood-color="#000000" flood-opacity="0.55"/>
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000000" flood-opacity="0.35"/>
+    </filter>
+
+    <filter id="innerDepth" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="3" stdDeviation="3" flood-color="#000000" flood-opacity="0.6"/>
+    </filter>
+  </defs>
+
+  <!-- ================= APP ICON SQUIRCLE FRAME (Apple HIG Standard) ================= -->
+  <rect width="512" height="512" rx="116" fill="url(#bgGradient)"/>
+  
+  <!-- Subtle Frosted Outer Bevel Border -->
+  <rect x="2" y="2" width="508" height="508" rx="114" fill="none" stroke="url(#platinumShine)" stroke-width="2" opacity="0.4"/>
+  <rect x="4" y="4" width="504" height="504" rx="112" fill="none" stroke="#FFFFFF" stroke-width="1" opacity="0.08"/>
+
+  <!-- Golden Ambient Atmosphere Behind Coin -->
+  <circle cx="256" cy="256" r="160" fill="#F59E0B" opacity="0.12" filter="url(#softGlow)"/>
+
+  <!-- ================= LUXURY BURMESE WEALTH VAULT COIN ================= -->
+  <g filter="url(#shadow3D)">
+    <!-- Outer 24K Gold Coin Base -->
+    <circle cx="256" cy="256" r="182" fill="url(#goldRim)"/>
+    <circle cx="256" cy="256" r="180" fill="none" stroke="#FFFFFF" stroke-width="1.5" opacity="0.6"/>
+
+    <!-- Minted Reeded / Guilloché Security Edge (54 Fine Facets) -->
+    <g transform="translate(256, 256)" stroke="#78350F" stroke-width="2.5" opacity="0.45" stroke-linecap="round">
+      <circle cx="0" cy="0" r="172" fill="none" stroke="url(#goldRim)" stroke-width="4"/>
+      <!-- Decorative Mint Dots -->
+      <circle cx="0" cy="0" r="166" fill="none" stroke="#FEF08A" stroke-width="3" stroke-dasharray="3 8.5" opacity="0.85"/>
+    </g>
+
+    <!-- Deep Vault Inner Bevel -->
+    <circle cx="256" cy="256" r="156" fill="url(#innerVaultGrad)" stroke="url(#goldRim)" stroke-width="3.5"/>
+    <circle cx="256" cy="256" r="154" fill="none" stroke="#000000" stroke-width="2" opacity="0.6"/>
+
+    <!-- Concentric High-Precision Security Rings -->
+    <circle cx="256" cy="256" r="142" fill="none" stroke="#F59E0B" stroke-width="1" opacity="0.3" stroke-dasharray="4 6"/>
+    <circle cx="256" cy="256" r="136" fill="none" stroke="#FEF08A" stroke-width="1.5" opacity="0.2"/>
+
+    <!-- Polished Central Golden Core -->
+    <circle cx="256" cy="256" r="126" fill="url(#coinFace)" filter="url(#innerDepth)"/>
+    <circle cx="256" cy="256" r="126" fill="none" stroke="#FFFFFF" stroke-width="2" opacity="0.4"/>
+
+    <!-- Glass Specular Highlight Arc -->
+    <path d="M 150 190 A 126 126 0 0 1 362 190 A 120 100 0 0 0 150 190 Z" fill="url(#platinumShine)" opacity="0.35"/>
+
+    <!-- ================= BESPOKE BURMESE "K" MONOGRAM & WEALTH EMBLEM ================= -->
+    <g id="burmese-emblem" filter="url(#shadow3D)">
+      
+      <!-- Burma Ruby Sovereign Jewel at Crown -->
+      <g transform="translate(256, 172)">
+        <polygon points="0,-16 14,0 0,16 -14,0" fill="url(#rubyGrad)" stroke="#FFE4E6" stroke-width="1.5"/>
+        <circle cx="0" cy="0" r="3" fill="#FFFFFF" opacity="0.9"/>
+      </g>
+
+      <!-- Twin Upward Wealth Wings / Ascending Prosperity Flourishes -->
+      <path d="M 198 290 C 190 270 192 235 210 215 C 218 206 226 200 236 195" 
+            fill="none" stroke="#78350F" stroke-width="5" stroke-linecap="round" opacity="0.5"/>
+      <path d="M 198 288 C 190 268 192 233 210 213 C 218 204 226 198 236 193" 
+            fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" opacity="0.8"/>
+
+      <path d="M 314 290 C 322 270 320 235 302 215 C 294 206 286 200 276 195" 
+            fill="none" stroke="#78350F" stroke-width="5" stroke-linecap="round" opacity="0.5"/>
+      <path d="M 314 288 C 322 268 320 233 302 213 C 294 204 286 198 276 193" 
+            fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" opacity="0.8"/>
+
+      <!-- Master Monogram: The Iconic Burmese Kyat / "K" Sovereign Emblem -->
+      <!-- Vertical Sovereign Pillar with Serifs -->
+      <rect x="214" y="212" width="16" height="88" rx="4" fill="#5A2505"/>
+      <rect x="216" y="210" width="14" height="88" rx="3" fill="url(#goldRim)"/>
+      <rect x="218" y="212" width="4" height="84" rx="2" fill="#FFFFFF" opacity="0.6"/>
+
+      <!-- Pillar Head and Foot Caps (Classical Serif Architecture) -->
+      <path d="M 204 212 L 238 212 L 232 219 L 210 219 Z" fill="#5A2505"/>
+      <path d="M 206 210 L 236 210 L 231 216 L 211 216 Z" fill="url(#goldRim)"/>
+      <path d="M 204 298 L 238 298 L 232 291 L 210 291 Z" fill="#5A2505"/>
+      <path d="M 206 300 L 236 300 L 231 294 L 211 294 Z" fill="url(#goldRim)"/>
+
+      <!-- Diagonal Kyat Ascender (Vault Growth Arrow) -->
+      <path d="M 226 256 L 276 212 L 296 212 L 246 256 Z" fill="#5A2505"/>
+      <path d="M 228 254 L 275 210 L 294 210 L 247 254 Z" fill="url(#goldRim)"/>
+      <path d="M 276 210 L 296 210 L 292 218 L 272 218 Z" fill="#FFFDF0"/>
+
+      <!-- Diagonal Kyat Descender (Solid Financial Foundation) -->
+      <path d="M 238 248 L 282 298 L 302 298 L 254 244 Z" fill="#5A2505"/>
+      <path d="M 240 248 L 281 300 L 300 300 L 255 246 Z" fill="url(#goldRim)"/>
+      <path d="M 280 300 L 302 300 L 297 292 L 275 292 Z" fill="#FFE58F"/>
+
+      <!-- Central Interlocking Kyat Ring / Myanmar Coin Aperture -->
+      <circle cx="256" cy="254" r="18" fill="none" stroke="#5A2505" stroke-width="8"/>
+      <circle cx="256" cy="254" r="18" fill="none" stroke="url(#goldRim)" stroke-width="5"/>
+      <circle cx="256" cy="254" r="18" fill="none" stroke="#FFFFFF" stroke-width="1.5" opacity="0.8"/>
+      <circle cx="256" cy="254" r="9" fill="#0A0B10" stroke="#FEF08A" stroke-width="1"/>
+      <circle cx="256" cy="254" r="4" fill="url(#rubyGrad)"/>
+
+      <!-- Double Horizontal Currency Bars (Currency Prestige Sign) -->
+      <line x1="200" y1="246" x2="272" y2="246" stroke="#5A2505" stroke-width="6" stroke-linecap="round"/>
+      <line x1="200" y1="244" x2="272" y2="244" stroke="url(#goldRim)" stroke-width="3.5" stroke-linecap="round"/>
+      <line x1="202" y1="243" x2="270" y2="243" stroke="#FFFFFF" stroke-width="1.2" stroke-linecap="round" opacity="0.7"/>
+
+      <line x1="200" y1="262" x2="272" y2="262" stroke="#5A2505" stroke-width="6" stroke-linecap="round"/>
+      <line x1="200" y1="260" x2="272" y2="260" stroke="url(#goldRim)" stroke-width="3.5" stroke-linecap="round"/>
+      <line x1="202" y1="259" x2="270" y2="259" stroke="#FFFFFF" stroke-width="1.2" stroke-linecap="round" opacity="0.7"/>
+    </g>
+
+    <!-- Star Cluster of Financial Security (3 Stars at base) -->
+    <g transform="translate(256, 342)" fill="#FEF08A" opacity="0.9">
+      <!-- Center Star -->
+      <polygon points="0,-7 2,-2 7,-2 3,1 5,6 0,3 -5,6 -3,1 -7,-2 -2,-2"/>
+      <!-- Left Star -->
+      <polygon points="-24,-5 -22,-1 -18,-1 -21,1 -20,5 -24,3 -28,5 -27,1 -30,-1 -26,-1" opacity="0.7"/>
+      <!-- Right Star -->
+      <polygon points="24,-5 26,-1 30,-1 27,1 28,5 24,3 20,5 21,1 18,-1 22,-1" opacity="0.7"/>
+    </g>
+
+    <!-- Arc Typography: BURMESE MONEY MANAGER -->
+    <path id="textArc" d="M 160 366 A 140 140 0 0 0 352 366" fill="none"/>
+    <text font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" 
+          font-size="9" font-weight="800" fill="#FEF08A" letter-spacing="3.5" opacity="0.85">
+      <textPath href="#textArc" startOffset="50%" text-anchor="middle">
+        BURMESE MONEY MANAGER
+      </textPath>
+    </text>
+  </g>
+</svg>

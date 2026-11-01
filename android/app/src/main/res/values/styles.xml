@@ -1,0 +1,7 @@
+<resources>
+    <style name="Theme.BurmeseMoneyManager" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="android:statusBarColor">#07080D</item>
+        <item name="android:navigationBarColor">#07080D</item>
+        <item name="android:windowBackground">#07080D</item>
+    </style>
+</resources>

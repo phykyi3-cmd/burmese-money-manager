@@ -4592,6 +4592,19 @@
     }
 
     function directDownloadOrInstallApp() {
+      // 1. Android direct APK download
+      const isAndroid = /Android/i.test(navigator.userAgent);
+      if (isAndroid) {
+        showToast('📲 Android Application (.apk) အား ဒေါင်းလုဒ်ဆွဲနေပါပြီ...');
+        const a = document.createElement('a');
+        a.href = 'BurmeseMoneyManager.apk';
+        a.download = 'BurmeseMoneyManager.apk';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        return;
+      }
+
       if (deferredPrompt) {
         deferredPrompt.prompt();
         deferredPrompt.userChoice.then((choiceResult) => {
@@ -4605,14 +4618,14 @@
         return;
       }
 
-      // Direct instant download of the standalone offline app file
+      // Direct instant download of the Android APK package
       const a = document.createElement('a');
-      a.href = 'Burmese-Money-Manager.html';
-      a.download = 'Burmese-Money-Manager.html';
+      a.href = 'BurmeseMoneyManager.apk';
+      a.download = 'BurmeseMoneyManager.apk';
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);
-      showToast('✓ App ဖိုင်ကို တိုက်ရိုက် ဒေါင်းလုဒ်ဆွဲလိုက်ပါပြီ!');
+      showToast('✓ Burmese Money Manager (.apk) အား စတင်ဒေါင်းလုဒ်ဆွဲနေပါပြီ!');
     }
 
     function executeNativePWAInstall() {
