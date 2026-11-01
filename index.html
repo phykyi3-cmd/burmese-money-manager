@@ -20,7 +20,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=Noto+Sans+Myanmar:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-  <!-- Tailwind CSS CDN -->
+  <!-- Local compiled high-speed Tailwind CSS -->
+  <link rel="stylesheet" href="tailwind.min.css">
+
+  <!-- Fallback Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -28,7 +31,7 @@
       theme: {
         extend: {
           fontFamily: {
-            sans: ['"Plus Jakarta Sans"', '"Noto Sans Myanmar"', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+            sans: ['"Plus Jakarta Sans"', '"Noto Sans Myanmar"', 'Padauk', 'Pyidaungsu', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
           },
           colors: {
             app: {
@@ -45,13 +48,17 @@
     };
   </script>
 
-  <!-- Lucide Icons CDN -->
+  <!-- High-speed Lucide Icons -->
+  <script src="lucide.min.js"></script>
   <script src="https://unpkg.com/lucide@latest"></script>
 
   <style>
     * {
       -webkit-tap-highlight-color: transparent;
       box-sizing: border-box;
+    }
+    .hidden {
+      display: none !important;
     }
     body {
       background-color: #07080D;
