@@ -236,10 +236,10 @@
           <span class="hidden sm:inline">Offline</span>
         </div>
 
-        <!-- PWA Install App Button -->
-        <button type="button" onclick="openPhoneInstallModal()" id="btn-install-pwa" class="glass-pill px-2.5 py-1.5 rounded-full flex items-center gap-1.5 text-[11px] font-extrabold text-amber-300 hover:text-white border border-amber-500/30 btn-press cursor-pointer shadow">
-          <i data-lucide="download-cloud" class="w-3.5 h-3.5 text-amber-400"></i>
-          <span>App သွင်းမည်</span>
+        <!-- Direct App Download / Install Button -->
+        <button type="button" onclick="directDownloadOrInstallApp()" id="btn-install-pwa" class="glass-pill px-2.5 py-1.5 rounded-full flex items-center gap-1.5 text-[11px] font-extrabold text-amber-300 hover:text-white border border-amber-500/30 btn-press cursor-pointer shadow">
+          <i data-lucide="download" class="w-3.5 h-3.5 text-amber-400"></i>
+          <span>App ဒေါင်းလုဒ် (Download)</span>
         </button>
         
         <!-- Wallpaper / Theme Button -->
@@ -1459,7 +1459,7 @@
       <div class="flex items-center justify-between gap-3 pt-2 border-t border-white/[0.08]">
         <button type="button" onclick="exportAnnualCSV()" class="px-4 py-2.5 rounded-2xl glass-pill text-xs font-bold text-amber-300 hover:text-white border border-amber-500/30 flex items-center gap-1.5 cursor-pointer">
           <i data-lucide="download" class="w-3.5 h-3.5"></i>
-          <span>Excel / CSV ထုတ်ယူမည်</span>
+          <span>Excel / CSV ဒေါင်းလုဒ်ဆွဲမည်</span>
         </button>
         <button type="button" onclick="closeAnnualReportModal()" class="px-5 py-2.5 rounded-2xl bg-white/10 hover:bg-white/15 text-xs font-bold text-white cursor-pointer">
           ပိတ်မည် (Close)
@@ -1472,19 +1472,19 @@
   
   <!-- ================= MOBILE FLOATING APP INSTALL BANNER ================= -->
   <div id="mobile-install-banner" class="fixed top-2 inset-x-2 z-40 p-2.5 rounded-2xl glass-apple border border-amber-500/40 shadow-2xl flex items-center justify-between gap-2.5 sm:hidden">
-    <div class="flex items-center gap-2.5 min-w-0 cursor-pointer" onclick="openPhoneInstallModal()">
+    <div class="flex items-center gap-2.5 min-w-0 cursor-pointer" onclick="directDownloadOrInstallApp()">
       <div class="relative w-8 h-8 rounded-xl p-0.5 bg-gradient-to-tr from-amber-400 to-amber-600 shrink-0 shadow">
         <img src="apple-touch-icon.png" alt="Burmese Money Manager" class="w-full h-full object-contain rounded-[10px]" />
       </div>
       <div class="min-w-0 text-left">
         <p class="text-[11px] font-black text-white truncate">Burmese Money Manager</p>
-        <p class="text-[9px] text-amber-300 font-bold truncate">ဖုန်းထဲသို့ App အဖြစ် သွင်းယူရန်</p>
+        <p class="text-[9px] text-amber-300 font-bold truncate">ဖုန်းထဲသို့ App တိုက်ရိုက် ဒေါင်းလုဒ်ဆွဲရန်</p>
       </div>
     </div>
     <div class="flex items-center gap-1.5 shrink-0">
-      <button type="button" onclick="openPhoneInstallModal()" class="px-3 py-1.5 rounded-xl bg-gradient-to-r from-amber-500 to-yellow-400 text-slate-950 font-black text-[10px] shadow btn-press cursor-pointer flex items-center gap-1">
+      <button type="button" onclick="directDownloadOrInstallApp()" class="px-3 py-1.5 rounded-xl bg-gradient-to-r from-amber-500 to-yellow-400 text-slate-950 font-black text-[10px] shadow btn-press cursor-pointer flex items-center gap-1">
         <i data-lucide="download" class="w-3 h-3"></i>
-        <span>သွင်းမည်</span>
+        <span>Download</span>
       </button>
       <button type="button" onclick="document.getElementById('mobile-install-banner').remove()" class="w-6 h-6 rounded-lg glass-pill flex items-center justify-center text-slate-400 hover:text-white cursor-pointer">
         <i data-lucide="x" class="w-3 h-3"></i>
@@ -1717,10 +1717,10 @@
           <span>အကောင့်မရှိဘဲ တိုက်ရိုက် အစမ်းသုံးမည် (Guest Start)</span>
         </button>
 
-        <!-- 6. Install to Phone Button -->
-        <button type="button" onclick="openPhoneInstallModal()" class="w-full py-2.5 px-4 rounded-2xl bg-amber-500/10 hover:bg-amber-500/20 text-amber-300 border border-amber-500/30 font-bold text-[11px] flex items-center justify-center gap-2 transition btn-press cursor-pointer">
-          <i data-lucide="smartphone" class="w-3.5 h-3.5 text-amber-400"></i>
-          <span>📲 ဖုန်းထဲတွင် App အဖြစ် အမြဲတမ်းသုံးရန် ဒေါင်းလုဒ်/သွင်းမည်</span>
+        <!-- 6. Direct App Download Button -->
+        <button type="button" onclick="directDownloadOrInstallApp()" class="w-full py-2.5 px-4 rounded-2xl bg-amber-500/10 hover:bg-amber-500/20 text-amber-300 border border-amber-500/30 font-bold text-[11px] flex items-center justify-center gap-2 transition btn-press cursor-pointer">
+          <i data-lucide="download" class="w-3.5 h-3.5 text-amber-400"></i>
+          <span>📲 ဖုန်းထဲသို့ App တိုက်ရိုက် ဒေါင်းလုဒ်ဆွဲမည် (Download App)</span>
         </button>
       </div>
 
@@ -4189,7 +4189,10 @@
       const a = document.createElement('a');
       a.href = dataStr;
       a.download = "MoneyManager_Backup_" + new Date().toISOString().split('T')[0] + ".json";
+      document.body.appendChild(a);
       a.click();
+      document.body.removeChild(a);
+      showToast('✓ JSON Backup ဖိုင်ကို တိုက်ရိုက် ဒေါင်းလုဒ်ဆွဲပြီးပါပြီ!');
     }
 
     let currentViewerData = null;
@@ -4283,14 +4286,8 @@
 
     function exportDataCSV() {
       let csv = "ID,Type,Amount,Currency,Category,Account,Date,Note\n";
-      const headers = ["အမျိုးအစား", "ရက်စွဲ", "ပမာဏ", "အကောင့်", "မှတ်ချက်"];
-      const rows = [];
       appState.transactions.forEach(t => {
         csv += `"${t.id}","${t.type}","${t.amount}","${appState.currency}","${t.categoryId}","${t.accountId}","${t.date}","${(t.note||'').replace(/"/g, '""')}"\n`;
-        const typeStr = t.type === 'income' ? 'ဝင်ငွေ' : (t.type === 'expense' ? 'ထွက်ငွေ' : 'ငွေလွှဲ');
-        const acc = appState.accounts.find(a => a.id === t.accountId);
-        const accName = acc ? acc.name : t.accountId;
-        rows.push([typeStr, t.date, formatMoney(t.amount) + ' Ks', accName, t.note || '-']);
       });
       const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
       const url = URL.createObjectURL(blob);
@@ -4298,8 +4295,11 @@
       a.href = url;
       const fname = "MoneyManager_Transactions_" + new Date().toISOString().split('T')[0] + ".csv";
       a.download = fname;
+      document.body.appendChild(a);
       a.click();
-      openDownloadViewer("ငွေစာရင်း မှတ်တမ်းများ ထုတ်ယူမှု", `${appState.transactions.length} ခုသော စာရင်းမှတ်တမ်းများ`, headers, rows, csv, fname);
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      showToast('✓ CSV စာရင်းဖိုင်ကို တိုက်ရိုက် ဒေါင်းလုဒ်ဆွဲပြီးပါပြီ!');
     }
 
     function importDataJSON(e) {
@@ -4477,8 +4477,11 @@
       a.href = url;
       const fname = `MoneyManager_Annual_Report_${yr}.csv`;
       a.download = fname;
+      document.body.appendChild(a);
       a.click();
-      openDownloadViewer(`${yr} ခုနှစ် နှစ်ချုပ် စာရင်းမှတ်တမ်း`, `စုစုပေါင်း ဝင်ငွေ၊ ထွက်ငွေနှင့် အသားတင် လက်ကျန်ငွေ`, headers, rows, csv, fname);
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      showToast(`✓ ${yr} ခုနှစ် နှစ်ချုပ် စာရင်းဖိုင်ကို တိုက်ရိုက် ဒေါင်းလုဒ်ဆွဲပြီးပါပြီ!`);
     }
 
     function applyTranslations() {
@@ -4581,25 +4584,36 @@
       if (window.lucide) lucide.createIcons();
     }
 
-    function executeNativePWAInstall() {
+    function directDownloadOrInstallApp() {
       if (deferredPrompt) {
         deferredPrompt.prompt();
         deferredPrompt.userChoice.then((choiceResult) => {
           if (choiceResult.outcome === 'accepted') {
-            showToast('Burmese Money Manager အား ဖုန်းထဲသို့ အောင်မြင်စွာ ထည့်သွင်းပြီးပါပြီ!');
-            closePhoneInstallModal();
+            showToast('✓ App ကို ဖုန်းထဲသို့ အောင်မြင်စွာ ထည့်သွင်းလိုက်ပါပြီ!');
             const banner = document.getElementById('mobile-install-banner');
             if (banner) banner.remove();
           }
           deferredPrompt = null;
         });
-      } else {
-        showToast('Chrome မီနူး (အပေါ်ညာဘက် ၃ စက် ⋮) ကို နှိပ်ပြီး "Install app" သို့မဟုတ် "Add to Home screen" ကို ရွေးပါ');
+        return;
       }
+
+      // Direct instant download of the standalone offline app file
+      const a = document.createElement('a');
+      a.href = 'Burmese-Money-Manager.html';
+      a.download = 'Burmese-Money-Manager.html';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      showToast('✓ App ဖိုင်ကို တိုက်ရိုက် ဒေါင်းလုဒ်ဆွဲလိုက်ပါပြီ!');
+    }
+
+    function executeNativePWAInstall() {
+      directDownloadOrInstallApp();
     }
 
     function triggerPWAInstall() {
-      openPhoneInstallModal();
+      directDownloadOrInstallApp();
     }
 
     // Network Status Listeners (Online / Offline)
