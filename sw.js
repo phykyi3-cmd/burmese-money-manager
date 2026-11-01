@@ -1,4 +1,4 @@
-const CACHE_NAME = 'burmese-money-manager-v9';
+const CACHE_NAME = 'burmese-money-manager-v10';
 const STATIC_ASSETS = [
   './',
   './index.html',
@@ -11,7 +11,13 @@ const STATIC_ASSETS = [
   './icon.svg',
   './apple-touch-icon.png',
   './icon-192.png',
-  './icon-512.png'
+  './icon-512.png',
+  './assets/gmail.png',
+  './assets/banks/kpay.png',
+  './assets/banks/wave.png',
+  './assets/banks/ayapay.png',
+  './assets/banks/cbbank.png',
+  './assets/banks/yoma.png'
 ];
 
 self.addEventListener('install', (event) => {
