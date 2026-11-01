@@ -280,6 +280,23 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
   <!-- ================= MAIN CONTENT CONTAINER ================= -->
   <main class="max-w-md w-full mx-auto px-4 py-4 space-y-5 overflow-x-hidden pb-32">
 
+    <!-- In-App Browser (WhatsApp / Messenger / FB) Safari Launcher Banner -->
+    <div id="inapp-safari-banner" class="hidden w-full p-3.5 rounded-[22px] bg-gradient-to-r from-blue-600 via-sky-600 to-indigo-600 text-white shadow-xl shadow-blue-500/25 border border-white/20 items-center justify-between gap-3 animate-apple-sheet">
+      <div class="flex items-center gap-2.5 min-w-0">
+        <div class="w-9 h-9 rounded-xl bg-white/20 flex items-center justify-center shrink-0">
+          <i data-lucide="compass" class="w-5 h-5 text-white"></i>
+        </div>
+        <div class="min-w-0">
+          <p class="text-xs font-black truncate">Safari တွင် တိုက်ရိုက်ဖွင့်ပါ</p>
+          <p class="text-[10px] text-blue-100 truncate">iPhone ပေါ်တွင် App အဖြစ် တင်သုံးရန်</p>
+        </div>
+      </div>
+      <a href="x-safari-https://burmese-money-manager.surge.sh" onclick="handleIOSDownloadClick(event)" class="shrink-0 px-3.5 py-2 rounded-xl bg-white text-blue-700 font-black text-xs shadow-md hover:bg-slate-100 transition btn-press cursor-pointer flex items-center gap-1.5">
+        <span>Safari ဖွင့်မည်</span>
+        <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+      </a>
+    </div>
+
     <!-- ================= VIEW 1: HOME (CASH FLOW HERO, MINI CHART, GROUPED TXS) ================= -->
     <div id="view-home" class="space-y-4">
       
@@ -539,10 +556,13 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
       <!-- Settings Menu Group 2: App & Export -->
       <div class="rounded-[28px] spendee-card divide-y divide-white/[0.05] overflow-hidden text-xs text-white">
         <!-- Install App -->
-        <button onclick="openPhoneInstallModal()" class="w-full p-4 flex items-center justify-between hover:bg-white/[0.03] transition cursor-pointer text-left">
+        <button onclick="handleInstallAppClick()" class="w-full p-4 flex items-center justify-between hover:bg-white/[0.03] transition cursor-pointer text-left">
           <div class="flex items-center gap-3">
             <i data-lucide="smartphone" class="w-4 h-4 text-[#00D084]"></i>
-            <span>Install App (ဖုန်းစခရင်ပေါ် သွင်းယူရန်)</span>
+            <div>
+              <span class="font-bold">Install App (ဖုန်းစခရင်ပေါ် သွင်းယူရန်)</span>
+              <p class="text-[10px] text-slate-400 mt-0.5">iOS Safari ချက်ချင်းဖွင့် & Android APK</p>
+            </div>
           </div>
           <span class="text-[10px] text-[#00D084] font-bold px-2 py-0.5 rounded-full bg-[#00D084]/15">iOS & Android</span>
         </button>
@@ -1474,29 +1494,28 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
       </div>
 
       <!-- iOS Installation Steps View -->
-      <div id="install-view-ios" class="space-y-2.5 text-xs text-slate-300 text-left leading-relaxed">
+      <div id="install-view-ios" class="space-y-3 text-xs text-slate-300 text-left leading-relaxed">
+        
+        <!-- 1-Click Direct Safari Jump Button (Highlight) -->
+        <a href="x-safari-https://burmese-money-manager.surge.sh" onclick="handleIOSDownloadClick(event)" class="w-full py-3.5 px-4 rounded-2xl bg-gradient-to-r from-sky-500 via-blue-600 to-indigo-600 hover:from-sky-400 hover:to-indigo-500 text-white font-black text-xs flex items-center justify-center gap-2.5 shadow-xl shadow-blue-500/30 transition btn-press cursor-pointer text-center">
+          <div class="w-7 h-7 rounded-full bg-white/20 flex items-center justify-center shrink-0">
+            <i data-lucide="compass" class="w-4 h-4 text-white animate-spin" style="animation-duration: 9s;"></i>
+          </div>
+          <span class="tracking-wide text-xs">🧭 Safari ထဲသို့ တိုက်ရိုက်သွားမည် (Open in Safari)</span>
+        </a>
+
         <!-- iOS Notice Box -->
-        <div class="p-3.5 rounded-2xl bg-sky-500/10 border border-sky-500/20 space-y-1">
+        <div id="ios-status-notice" class="p-3.5 rounded-2xl bg-sky-500/10 border border-sky-500/20 space-y-1">
           <div class="flex items-center gap-2 text-sky-300 font-bold text-xs">
             <i data-lucide="info" class="w-4 h-4 shrink-0 text-sky-400"></i>
-            <span>iPhone ပေါ်တွင် App အဖြစ် အမြဲတမ်း သွင်းယူနည်း</span>
+            <span id="ios-status-title">iPhone ပေါ်တွင် App အဖြစ် အမြဲတမ်း သွင်းယူနည်း</span>
           </div>
-          <p class="text-[11px] text-slate-300 leading-relaxed">
-            Apple ၏ လုံခြုံရေးစည်းမျဉ်းအရ iPhone တွင် .apk ကဲ့သို့ ဖိုင်ဒေါင်းလုဒ်ဆွဲ၍ Install လုပ်ခွင့်မပြုပါ။ <b>Safari ဘရောက်ဇာ</b> မှတစ်ဆင့် အောက်ပါ ၃ ဆင့်ဖြင့် သင့် iPhone စခရင်ပေါ်တွင် App အစစ်အတိုင်း တိုက်ရိုက် တင်သုံးနိုင်ပါသည် -
+          <p id="ios-status-desc" class="text-[11px] text-slate-300 leading-relaxed">
+            အထက်ပါ <b>[ Safari ထဲသို့ တိုက်ရိုက်သွားမည် ]</b> ခလုတ်ကို နှိပ်ပြီးနောက် Safari တွင် အောက်ပါ ၃ ဆင့်အတိုင်း ဆောင်ရွက်ပါက သင့် iPhone စခရင်ပေါ်တွင် App အစစ်အတိုင်း တင်သွင်းနိုင်ပါသည် -
           </p>
         </div>
 
-        <!-- WhatsApp In-App Warning & Copy Link -->
-        <div id="ios-whatsapp-tip" class="hidden p-3 rounded-2xl bg-amber-500/15 border border-amber-500/30 space-y-2">
-          <p class="text-[11px] text-amber-200 font-bold leading-tight">
-            ⚠️ WhatsApp (သို့) Messenger အတွင်းမှ ဖွင့်ထားပါက Apple စည်းမျဉ်းအရ "Add to Home Screen" မပေါ်ပါ။ Safari ဖြင့် ဖွင့်ရပါမည်။
-          </p>
-          <button type="button" onclick="copyAppUrlForSafari()" class="w-full py-2 px-3 rounded-xl bg-white text-slate-900 font-black text-xs flex items-center justify-center gap-1.5 shadow transition btn-press cursor-pointer">
-            <i data-lucide="copy" class="w-3.5 h-3.5"></i>
-            <span>Safari တွင် ဖွင့်ရန် Link ကူးယူမည်</span>
-          </button>
-        </div>
-
+        <!-- 3 Simple Steps -->
         <div class="flex items-start gap-2.5 p-3 rounded-2xl bg-white/[0.04] border border-white/5">
           <span class="w-6 h-6 rounded-full bg-cyan-500 text-slate-950 flex items-center justify-center text-xs font-black shrink-0">1</span>
           <div>
@@ -1519,11 +1538,13 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
           </div>
         </div>
 
-        <!-- 1-Click Copy Link Button for Safari -->
-        <button type="button" onclick="copyAppUrlForSafari()" class="w-full py-2.5 px-3 rounded-xl bg-white/10 hover:bg-white/15 text-white font-bold text-xs flex items-center justify-center gap-1.5 transition btn-press cursor-pointer">
-          <i data-lucide="external-link" class="w-3.5 h-3.5 text-cyan-400"></i>
-          <span>Safari တွင် Paste လုပ်ရန် Link ကူးယူမည်</span>
-        </button>
+        <!-- Action Buttons: Copy Link & Guide -->
+        <div class="grid grid-cols-1 gap-2 pt-1">
+          <button type="button" onclick="copyAppUrlForSafari()" class="w-full py-2.5 px-3 rounded-xl bg-white/10 hover:bg-white/15 text-white font-bold text-xs flex items-center justify-center gap-1.5 transition btn-press cursor-pointer">
+            <i data-lucide="copy" class="w-3.5 h-3.5 text-cyan-400"></i>
+            <span>Safari တွင် Paste လုပ်ရန် Link ကူးယူမည်</span>
+          </button>
+        </div>
       </div>
 
       <!-- Android Installation Steps View -->
@@ -1686,11 +1707,11 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
         <div class="pt-2 border-t border-white/[0.08] space-y-2 text-left">
           <p class="text-[10px] text-slate-400 font-bold uppercase tracking-wider text-center">ဖုန်းထဲသို့ Application အဖြစ် တိုက်ရိုက်သွင်းယူရန်</p>
           <div class="grid grid-cols-2 gap-2">
-            <!-- iOS Button -->
-            <button type="button" onclick="openPhoneInstallModal('ios')" class="py-2.5 px-2 rounded-xl bg-sky-500/10 hover:bg-sky-500/20 text-sky-300 border border-sky-500/30 font-bold text-[10px] flex items-center justify-center gap-1.5 transition btn-press cursor-pointer text-center">
-              <i data-lucide="apple" class="w-3.5 h-3.5 text-sky-400"></i>
-              <span>iPhone App သွင်းနည်း</span>
-            </button>
+            <!-- iOS Button: Direct Safari Jump -->
+            <a href="x-safari-https://burmese-money-manager.surge.sh" onclick="handleIOSDownloadClick(event)" class="py-2.5 px-2 rounded-xl bg-sky-500/10 hover:bg-sky-500/20 text-sky-300 border border-sky-500/30 font-bold text-[10px] flex items-center justify-center gap-1.5 transition btn-press cursor-pointer text-center">
+              <i data-lucide="compass" class="w-3.5 h-3.5 text-sky-400"></i>
+              <span>Safari ဖြင့် ဖွင့်မည်</span>
+            </a>
             <!-- Android Button: Direct .apk Download -->
             <a href="BurmeseMoneyManager.apk" download="BurmeseMoneyManager.apk" onclick="showToast('🤖 Android APK အား စတင်ဒေါင်းလုဒ်ဆွဲနေပါပြီ...')" class="py-2.5 px-2 rounded-xl bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 font-bold text-[10px] flex items-center justify-center gap-1.5 transition btn-press cursor-pointer text-center">
               <i data-lucide="smartphone" class="w-3.5 h-3.5 text-emerald-400"></i>
@@ -4712,23 +4733,82 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
     });
 
     
-    function checkInAppBrowser() {
+    function getDeviceBrowserInfo() {
       const ua = navigator.userAgent || navigator.vendor || window.opera || '';
       const isIOS = /iPad|iPhone|iPod/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-      const isInApp = /FBAN|FBAV|Instagram|WhatsApp|Line|Messenger|MicroMessenger/i.test(ua);
-      
+      const isAndroid = /Android/i.test(ua);
+      const isInApp = /FBAN|FBAV|Instagram|WhatsApp|Line|Messenger|MicroMessenger|Telegram|TikTok|Viber|Snapchat|Bytedance/i.test(ua);
+      const isChromeIOS = /CriOS/i.test(ua);
+      const isFirefoxIOS = /FxiOS/i.test(ua);
+      const isEdgeIOS = /EdgiOS/i.test(ua);
+      const isNonSafariIOS = isIOS && (isInApp || isChromeIOS || isFirefoxIOS || isEdgeIOS);
+      const isRealSafari = isIOS && !isNonSafariIOS && /Safari/i.test(ua);
+      const isStandalone = window.navigator.standalone === true || window.matchMedia('(display-mode: standalone)').matches;
+
+      return {
+        isIOS,
+        isAndroid,
+        isInApp,
+        isChromeIOS,
+        isNonSafariIOS,
+        isRealSafari,
+        isStandalone
+      };
+    }
+
+    function checkInAppBrowser() {
+      const info = getDeviceBrowserInfo();
       const inAppBanner = document.getElementById('inapp-safari-banner');
-      const whatsAppTip = document.getElementById('ios-whatsapp-tip');
       
-      if (isIOS && isInApp) {
+      // If user is on iOS and trapped in WhatsApp/Messenger/FB or non-Safari:
+      if (info.isIOS && !info.isRealSafari && !info.isStandalone) {
         if (inAppBanner) {
           inAppBanner.classList.remove('hidden');
           inAppBanner.classList.add('flex');
         }
-        if (whatsAppTip) {
-          whatsAppTip.classList.remove('hidden');
-        }
       }
+    }
+
+    function handleIOSDownloadClick(e) {
+      const info = getDeviceBrowserInfo();
+      const targetUrl = 'https://burmese-money-manager.surge.sh';
+      const safariUrl = 'x-safari-' + targetUrl;
+
+      // Automatically copy target link to clipboard
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(targetUrl).catch(() => {});
+      }
+
+      // If user is ALREADY inside Safari on iOS:
+      if (info.isRealSafari) {
+        if (e && e.preventDefault) e.preventDefault();
+        openPhoneInstallModal('ios');
+        showToast('✓ Safari ထဲတွင် ရောက်ရှိနေပါပြီ! အောက်ခြေ Share မှတစ်ဆင့် Add to Home Screen ပြုလုပ်ပါ');
+        return;
+      }
+
+      // If in WhatsApp / Messenger / Chrome on iOS:
+      // Jump straight to native Safari!
+      showToast('🧭 Safari သို့ တိုက်ရိုက်ကူးပြောင်းနေပါပြီ...');
+      try {
+        window.location.href = safariUrl;
+      } catch(err) {
+        console.warn('Safari redirect:', err);
+      }
+
+      // Also open install guide modal as fallback
+      setTimeout(() => {
+        openPhoneInstallModal('ios');
+      }, 500);
+    }
+
+    function handleInstallAppClick() {
+      const info = getDeviceBrowserInfo();
+      if (info.isIOS) {
+        handleIOSDownloadClick();
+        return;
+      }
+      openPhoneInstallModal();
     }
 
     function copyAppUrlForSafari() {
@@ -4746,7 +4826,8 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
     }
 
     function openPhoneInstallModal(preferredOS) {
-      const isIOS = preferredOS ? (preferredOS === 'ios') : (/iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream);
+      const info = getDeviceBrowserInfo();
+      const isIOS = preferredOS ? (preferredOS === 'ios') : info.isIOS;
       switchInstallOSTab(isIOS ? 'ios' : 'android');
       const modal = document.getElementById('pwa-install-modal');
       if (modal) {
@@ -4765,7 +4846,7 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
     }
 
     function openIOSInstallModal() {
-      openPhoneInstallModal();
+      handleIOSDownloadClick();
     }
 
     function closeIOSInstallModal() {
@@ -4785,6 +4866,17 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
         tabAndroid.className = 'py-2 rounded-xl transition flex items-center justify-center gap-1.5 cursor-pointer text-slate-400 hover:text-white';
         viewIos.classList.remove('hidden');
         viewAndroid.classList.add('hidden');
+
+        const info = getDeviceBrowserInfo();
+        const noticeEl = document.getElementById('ios-status-desc');
+        const titleEl = document.getElementById('ios-status-title');
+        if (info.isRealSafari) {
+          if (titleEl) titleEl.textContent = '✓ သင်သည် Safari တွင် ရောက်ရှိနေပါပြီ';
+          if (noticeEl) noticeEl.textContent = 'သင့် iPhone ပေါ်တွင် App အဖြစ် သွင်းယူရန် အောက်ပါ ၃ ဆင့်အတိုင်း Share -> Add to Home Screen ပြုလုပ်ပါ -';
+        } else {
+          if (titleEl) titleEl.textContent = 'iPhone ပေါ်တွင် App အဖြစ် သွင်းယူနည်း';
+          if (noticeEl) noticeEl.textContent = 'အထက်ပါ [ Safari ထဲသို့ တိုက်ရိုက်သွားမည် ] ခလုတ်ကို နှိပ်ပြီး Safari တွင် အောက်ပါ ၃ ဆင့်အတိုင်း ဆောင်ရွက်ပါ -';
+        }
       } else {
         tabAndroid.className = 'py-2 rounded-xl transition flex items-center justify-center gap-1.5 cursor-pointer bg-emerald-500/20 text-emerald-300 border border-emerald-500/30';
         tabIos.className = 'py-2 rounded-xl transition flex items-center justify-center gap-1.5 cursor-pointer text-slate-400 hover:text-white';
@@ -4795,12 +4887,11 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
     }
 
     function directDownloadOrInstallApp() {
-      const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-      const isAndroid = /Android/i.test(navigator.userAgent);
+      const info = getDeviceBrowserInfo();
 
-      // 1. iPhone / iPad: Apple iOS does not support .apk, must use Add to Home Screen PWA
-      if (isIOS) {
-        openPhoneInstallModal();
+      // 1. iPhone / iPad: Apple iOS does not support .apk, must use Add to Home Screen PWA or Safari jump
+      if (info.isIOS) {
+        handleIOSDownloadClick();
         return;
       }
 
