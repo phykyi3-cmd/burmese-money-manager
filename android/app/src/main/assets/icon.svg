@@ -1,146 +1,33 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
   <defs>
-    <!-- Background Gradient (Deep Luxury Titanium / Midnight Obsidian) -->
-    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#0F172A"/>
-      <stop offset="50%" stop-color="#090D16"/>
-      <stop offset="100%" stop-color="#04060A"/>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0E131B"/>
+      <stop offset="100%" stop-color="#06080C"/>
     </linearGradient>
-
-    <!-- Outer Precision Frosted Bevel -->
-    <linearGradient id="bevelGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#38BDF8" stop-opacity="0.6"/>
-      <stop offset="30%" stop-color="#818CF8" stop-opacity="0.3"/>
-      <stop offset="70%" stop-color="#3B82F6" stop-opacity="0.1"/>
-      <stop offset="100%" stop-color="#0284C7" stop-opacity="0.5"/>
+    <linearGradient id="dollarGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#E2E8F0"/>
     </linearGradient>
-
-    <!-- Primary Electric Sapphire to Cyan Gradient -->
-    <linearGradient id="primaryPrism" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#38BDF8"/>
-      <stop offset="40%" stop-color="#2563EB"/>
-      <stop offset="100%" stop-color="#1D4ED8"/>
-    </linearGradient>
-
-    <!-- Secondary Emerald Mint to Teal Gradient (Wealth / Prosperity) -->
-    <linearGradient id="emeraldPrism" x1="0%" y1="100%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#059669"/>
-      <stop offset="50%" stop-color="#10B981"/>
-      <stop offset="100%" stop-color="#34D399"/>
-    </linearGradient>
-
-    <!-- High-Tech Core Specular Glow -->
-    <linearGradient id="coreGlow" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.95"/>
-      <stop offset="50%" stop-color="#E0F2FE" stop-opacity="0.6"/>
-      <stop offset="100%" stop-color="#BAE6FD" stop-opacity="0.2"/>
-    </linearGradient>
-
-    <!-- Ambient Radial Glow Behind Monogram -->
-    <radialGradient id="ambientGlow" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="#0284C7" stop-opacity="0.35"/>
-      <stop offset="60%" stop-color="#1D4ED8" stop-opacity="0.12"/>
+    <radialGradient id="softGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#00D084" stop-opacity="0.10"/>
       <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
     </radialGradient>
-
-    <!-- Drop Shadows -->
-    <filter id="vaultShadow" x="-30%" y="-30%" width="160%" height="160%">
-      <feDropShadow dx="0" dy="16" stdDeviation="20" flood-color="#0284C7" flood-opacity="0.3"/>
-      <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#000000" flood-opacity="0.6"/>
-    </filter>
-
-    <filter id="innerBevel" x="-10%" y="-10%" width="120%" height="120%">
-      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#FFFFFF" flood-opacity="0.3"/>
-    </filter>
   </defs>
 
-  <!-- ================= APPLE SQUIRCLE FRAME (512x512) ================= -->
-  <rect width="512" height="512" rx="116" fill="url(#bgGrad)"/>
-  
-  <!-- Outer Metallic Border -->
-  <rect x="3" y="3" width="506" height="506" rx="113" fill="none" stroke="url(#bevelGrad)" stroke-width="2.5" opacity="0.7"/>
-  <rect x="6" y="6" width="500" height="500" rx="110" fill="none" stroke="#FFFFFF" stroke-width="1" opacity="0.06"/>
+  <!-- Apple Squircle Frame -->
+  <rect width="512" height="512" rx="116" fill="url(#bg)"/>
+  <rect x="2" y="2" width="508" height="508" rx="114" fill="none" stroke="#FFFFFF" stroke-opacity="0.10" stroke-width="2"/>
 
-  <!-- Ambient Glow -->
-  <circle cx="256" cy="256" r="200" fill="url(#ambientGlow)"/>
+  <!-- Inner Soft Ring & Atmosphere -->
+  <circle cx="256" cy="256" r="176" fill="none" stroke="#FFFFFF" stroke-opacity="0.04" stroke-width="1.5"/>
+  <circle cx="256" cy="256" r="150" fill="url(#softGlow)"/>
 
-  <!-- ================= PRECISION GEOMETRIC FINTECH EMBLEM ================= -->
-  <g filter="url(#vaultShadow)">
-    
-    <!-- Vault Outer Shield Ring (Modern Rounded Hexagon Architecture) -->
-    <path d="M 256 96 
-             L 384 170 
-             L 384 342 
-             L 256 416 
-             L 128 342 
-             L 128 170 Z" 
-          fill="#0A0F1D" 
-          stroke="url(#bevelGrad)" 
-          stroke-width="4" 
-          stroke-linejoin="round"/>
-
-    <path d="M 256 108 
-             L 372 176 
-             L 372 336 
-             L 256 404 
-             L 140 336 
-             L 140 176 Z" 
-          fill="none" 
-          stroke="#1E293B" 
-          stroke-width="1.5" 
-          stroke-dasharray="6 6" 
-          opacity="0.6"/>
-
-    <!-- THE ICONIC DYNAMIC 'M / K' WEALTH PRISM -->
-    <!-- Left Ascending Vault Column (Electric Sapphire) -->
-    <path d="M 166 330 L 166 182 L 206 182 L 206 330 Z" 
-          fill="url(#primaryPrism)" 
-          rx="6"/>
-    <!-- Specular highlight on left column -->
-    <path d="M 168 184 L 174 184 L 174 328 L 168 328 Z" 
-          fill="url(#coreGlow)" 
-          opacity="0.6"/>
-
-    <!-- Right Ascending Vault Column (Emerald Mint Prosperity) -->
-    <path d="M 306 330 L 306 182 L 346 182 L 346 330 Z" 
-          fill="url(#emeraldPrism)" 
-          rx="6"/>
-    <!-- Specular highlight on right column -->
-    <path d="M 338 184 L 344 184 L 344 328 L 338 328 Z" 
-          fill="url(#coreGlow)" 
-          opacity="0.6"/>
-
-    <!-- Central Precision Chevron Arrow (Dynamic Wealth Growth & Kyat Diagonal) -->
-    <!-- Left Diagonal to Center -->
-    <path d="M 198 214 L 256 278 L 276 278 L 218 214 Z" 
-          fill="url(#primaryPrism)"/>
-    <path d="M 200 216 L 256 278 L 260 274 L 206 214 Z" 
-          fill="url(#coreGlow)" 
-          opacity="0.7"/>
-
-    <!-- Right Diagonal to Center (Intersecting Apex) -->
-    <path d="M 314 214 L 256 278 L 236 278 L 294 214 Z" 
-          fill="url(#emeraldPrism)"/>
-    <path d="M 312 216 L 256 278 L 252 274 L 306 214 Z" 
-          fill="url(#coreGlow)" 
-          opacity="0.7"/>
-
-    <!-- Ascending Diamond Star at Top Apex (Peak Financial Security) -->
-    <g transform="translate(256, 156)">
-      <polygon points="0,-18 14,0 0,18 -14,0" fill="#38BDF8"/>
-      <polygon points="0,-12 9,0 0,12 -9,0" fill="#FFFFFF"/>
-      <circle cx="0" cy="0" r="3" fill="#38BDF8"/>
-    </g>
-
-    <!-- Central Dual Currency Bars (Modern Minimalist Balance Lines) -->
-    <rect x="182" y="248" width="148" height="8" rx="4" fill="#0F172A" stroke="#38BDF8" stroke-width="1.5" opacity="0.9"/>
-    <rect x="184" y="250" width="144" height="4" rx="2" fill="url(#coreGlow)" opacity="0.7"/>
-
-    <rect x="194" y="268" width="124" height="7" rx="3.5" fill="#0F172A" stroke="#34D399" stroke-width="1.5" opacity="0.9"/>
-    <rect x="196" y="270" width="120" height="3" rx="1.5" fill="url(#emeraldPrism)" opacity="0.8"/>
-
-    <!-- Bottom Stable Anchor Bar -->
-    <rect x="152" y="346" width="208" height="8" rx="4" fill="url(#primaryPrism)" opacity="0.5"/>
-    <rect x="176" y="358" width="160" height="4" rx="2" fill="#38BDF8" opacity="0.3"/>
-  </g>
+  <!-- Crisp Minimalist Dollar Sign -->
+  <text x="256" y="254" 
+        dominant-baseline="central"
+        text-anchor="middle"
+        font-family="-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Inter', 'Segoe UI', Roboto, sans-serif" 
+        font-size="280" 
+        font-weight="700" 
+        fill="url(#dollarGrad)">$</text>
 </svg>

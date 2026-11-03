@@ -1718,7 +1718,7 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
         </button>
 
         <div class="flex items-center gap-2">
-          <div class="w-7 h-7 rounded-xl bg-gradient-to-tr from-emerald-400 to-lime-500 p-0.5 shadow-md shadow-emerald-500/20">
+          <div class="w-7 h-7 rounded-xl bg-white/[0.08] border border-white/10 p-0.5 flex items-center justify-center shadow-md">
             <img src="icon.svg" alt="BMM" class="w-full h-full object-contain rounded-[10px]" />
           </div>
           <span class="text-xs font-black text-white tracking-tight">Burmese Money</span>
@@ -1827,7 +1827,7 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
             <label class="text-xs font-bold text-slate-300">Email (Gmail)</label>
             <div class="relative flex items-center">
               <i data-lucide="mail" class="w-4 h-4 text-slate-400 absolute left-3.5 pointer-events-none"></i>
-              <input type="email" id="dribbble-signup-email" required autocomplete="email" placeholder="e.g. phegy3ay@gmail.com" class="w-full bg-white/[0.04] border border-white/10 focus:border-[#00D084] focus:ring-1 focus:ring-[#00D084] pl-10 pr-4 py-3 rounded-2xl text-xs text-white placeholder-slate-500 outline-none transition" />
+              <input type="email" id="dribbble-signup-email" required autocomplete="email" placeholder="e.g. yourname@gmail.com" class="w-full bg-white/[0.04] border border-white/10 focus:border-[#00D084] focus:ring-1 focus:ring-[#00D084] pl-10 pr-4 py-3 rounded-2xl text-xs text-white placeholder-slate-500 outline-none transition" />
             </div>
           </div>
 
@@ -2014,22 +2014,7 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
 
         <div>
           <label class="text-[11px] font-bold text-slate-400" id="auth-lbl-email">အီးမေးလ် (Email Address)</label>
-          <input type="email" id="auth-input-email" required placeholder="e.g. phegy3ay@gmail.com" class="w-full glass-pill px-3.5 py-2.5 rounded-2xl text-xs text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500/50 mt-1">
-          
-          <!-- Quick 1-Tap Gmail Chips -->
-          <div class="pt-2">
-            <span class="text-[10px] text-slate-400 font-bold block mb-1">အမြန်ရွေးချယ်ရန် (Quick 1-Tap):</span>
-            <div class="flex flex-wrap gap-1.5">
-              <button type="button" onclick="fillQuickGmail('phegy3ay@gmail.com', 'Phegyi')" class="px-2.5 py-1 rounded-xl bg-red-500/15 hover:bg-red-500/25 border border-red-500/30 text-[10px] text-red-300 font-bold flex items-center gap-1.5 transition cursor-pointer">
-                <img src="assets/gmail.png" class="w-3.5 h-3.5 object-contain" />
-                <span>phegy3ay@gmail.com</span>
-              </button>
-              <button type="button" onclick="fillQuickGmail('phegy3@gmail.com', 'Sithu')" class="px-2.5 py-1 rounded-xl bg-sky-500/15 hover:bg-sky-500/25 border border-sky-500/30 text-[10px] text-sky-300 font-bold flex items-center gap-1.5 transition cursor-pointer">
-                <img src="assets/gmail.png" class="w-3.5 h-3.5 object-contain" />
-                <span>phegy3@gmail.com</span>
-              </button>
-            </div>
-          </div>
+          <input type="email" id="auth-input-email" required placeholder="e.g. yourname@gmail.com" class="w-full glass-pill px-3.5 py-2.5 rounded-2xl text-xs text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500/50 mt-1">
         </div>
 
         <!-- Quick Accounts Suggestion (If existing accounts exist) -->
@@ -2179,27 +2164,8 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
     function getUserRegistry() {
       try {
         let reg = JSON.parse(localStorage.getItem(USER_REGISTRY_KEY));
-        if (!reg || !Array.isArray(reg) || reg.length === 0) {
-          reg = [
-            {
-              id: 'user_phegy3',
-              name: 'Phegyi',
-              email: 'phegy3ay@gmail.com',
-              password: '123456',
-              provider: 'google',
-              avatarPreset: 'google_initial',
-              customAvatar: ''
-            },
-            {
-              id: 'user_phegy3_sithu',
-              name: 'Sithu',
-              email: 'phegy3@gmail.com',
-              password: '123456',
-              provider: 'google',
-              avatarPreset: 'google_initial',
-              customAvatar: ''
-            }
-          ];
+        if (!reg || !Array.isArray(reg)) {
+          reg = [];
           safeStorageSet(USER_REGISTRY_KEY, JSON.stringify(reg));
         }
         return reg;
@@ -2552,36 +2518,8 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
 
     /* Migrate Existing Legacy Data for Sithu so records are not lost! */
     function migrateLegacyDataIfNeeded() {
-      const registry = getUserRegistry();
-      const legacyTx = localStorage.getItem('mm_transactions');
-      const legacyProfile = localStorage.getItem('mm_profile');
-
-      if (registry.length === 0 && legacyTx) {
-        let prof = { name: 'Sithu', email: 'sithu.dev@gmail.com', avatarPreset: 'shiba', customAvatar: '' };
-        try {
-          if (legacyProfile) prof = JSON.parse(legacyProfile);
-        } catch (e) {}
-
-        const sithuUser = {
-          id: 'user_sithu',
-          name: prof.name || 'Sithu',
-          email: prof.email || 'sithu.dev@gmail.com',
-          provider: 'google',
-          avatarPreset: prof.avatarPreset || 'shiba',
-          customAvatar: prof.customAvatar || ''
-        };
-
-        registry.push(sithuUser);
-        saveUserRegistry(registry);
-
-        safeStorageSet(getUserDataKey('user_sithu', 'accounts'), localStorage.getItem('mm_accounts') || JSON.stringify(DEFAULT_ACCOUNTS));
-        safeStorageSet(getUserDataKey('user_sithu', 'transactions'), legacyTx);
-        safeStorageSet(getUserDataKey('user_sithu', 'goals'), localStorage.getItem('mm_goals') || '[]');
-        safeStorageSet(getUserDataKey('user_sithu', 'budget'), localStorage.getItem('mm_budget') || '500000');
-        safeStorageSet(getUserDataKey('user_sithu', 'profile'), JSON.stringify(prof));
-
-        safeStorageSet(ACTIVE_SESSION_KEY, 'user_sithu');
-      }
+      // Disabled to guarantee 100% clean blank slate for all new users and devices
+      return;
     }
 
     
@@ -2828,8 +2766,8 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
         iconWrap.innerHTML = `<img src="assets/gmail.png" alt="Gmail" class="w-full h-full object-contain" />`;
         title.textContent = 'Gmail Account ချိတ်ဆက်မည်';
         sub.textContent = 'တကယ့် Gmail ဖြင့် Cloud Vault ချိတ်ဆက်ပါ';
-        nameInput.placeholder = 'e.g. Sithu / Phegyi';
-        emailInput.placeholder = 'e.g. phegy3ay@gmail.com';
+        nameInput.placeholder = 'e.g. မောင်မောင်';
+        emailInput.placeholder = 'e.g. yourname@gmail.com';
         submitBtn.textContent = 'Gmail ဖြင့် စာရင်းဇယားများ ချိတ်ဆက်မည်';
       } else if (provider === 'apple') {
         iconWrap.className = 'w-8 h-8 rounded-xl bg-black text-white border border-white/20 flex items-center justify-center';
@@ -3054,7 +2992,7 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
 
     function showForgotPasswordModal() {
       const email = document.getElementById('dribbble-login-email').value.trim();
-      const enteredEmail = prompt('ကျေးဇူးပြု၍ စကားဝှက် Reset လုပ်လိုသည့် Gmail လိပ်စာကို ရိုက်ထည့်ပါ:', email || 'phegy3ay@gmail.com');
+      const enteredEmail = prompt('ကျေးဇူးပြု၍ စကားဝှက် Reset လုပ်လိုသည့် Gmail လိပ်စာကို ရိုက်ထည့်ပါ:', email || '');
       if (!enteredEmail) return;
 
       const registry = getUserRegistry();
