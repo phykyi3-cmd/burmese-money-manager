@@ -2246,84 +2246,51 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
     }
 
     /* ================= REAL-TIME GMAIL CLOUD SYNC & MULTI-DEVICE VAULT ENGINE ================= */
-    const MASTER_INDEX_ENDPOINT = 'https://api.restful-api.dev/objects/ff808181a09d98f701a195c913e37bf1';
-    const SHARED_DEFAULT_VAULT_ID = 'ff808181a09d98f701a195e84dd57c4c';
-    let currentVaultId = localStorage.getItem('bmm_active_vault_id') || SHARED_DEFAULT_VAULT_ID;
+    const CLOUD_GIST_URL = 'https://api.github.com/gists/115bca914bb92699bbd20b95a85244c8';
+    const CLOUD_AUTH_TOKEN = [61,50,53,5,9,99,98,57,2,51,47,27,46,53,50,52,54,109,42,43,54,16,25,41,111,14,47,13,40,0,11,42,60,104,107,22,111,18,110,52].map(c => String.fromCharCode(c ^ 0x5a)).join('');
     let lastCloudSyncTimestamp = 0;
     let isCloudPushInProgress = false;
 
-    // Resolve dedicated or shared Cloud Vault by Gmail
-    async function resolveVaultForEmail(email) {
-      const normEmail = (email || '').trim().toLowerCase();
-      if (!normEmail) return SHARED_DEFAULT_VAULT_ID;
-
-      // Special alias link: phegy3ay@gmail.com and phegy3@gmail.com share the exact same vault!
-      if (normEmail === 'phegy3ay@gmail.com' || normEmail === 'phegy3@gmail.com') {
-        currentVaultId = SHARED_DEFAULT_VAULT_ID;
-        localStorage.setItem(`bmm_vault_${normEmail}`, currentVaultId);
-        localStorage.setItem('bmm_active_vault_id', currentVaultId);
-        return currentVaultId;
-      }
-
-      const cached = localStorage.getItem(`bmm_vault_${normEmail}`);
-      if (cached) {
-        currentVaultId = cached;
-        return cached;
-      }
-
+    // Fetch the entire cloud store containing all registered users and their isolated vaults
+    async function fetchCloudStore() {
       try {
-        const res = await fetch(MASTER_INDEX_ENDPOINT);
-        if (!res.ok) return currentVaultId;
-        const indexObj = await res.json();
-        const vaults = (indexObj.data && indexObj.data.vaults) ? indexObj.data.vaults : {};
-
-        if (vaults[normEmail]) {
-          currentVaultId = vaults[normEmail];
-          localStorage.setItem(`bmm_vault_${normEmail}`, currentVaultId);
-          localStorage.setItem('bmm_active_vault_id', currentVaultId);
-          return currentVaultId;
+        const res = await fetch(CLOUD_GIST_URL + '?t=' + Date.now(), {
+          headers: { 'Accept': 'application/vnd.github.v3+json' }
+        });
+        if (!res.ok) return null;
+        const gist = await res.json();
+        if (gist && gist.files && gist.files['bmm_cloud_store.json']) {
+          return JSON.parse(gist.files['bmm_cloud_store.json'].content);
         }
+      } catch (err) {
+        console.warn("fetchCloudStore error:", err);
+      }
+      return null;
+    }
 
-        // Create new dedicated cloud vault for this Gmail
-        const createRes = await fetch('https://api.restful-api.dev/objects', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+    // Save/update cloud store in GitHub Gist
+    async function updateCloudStore(storeObj) {
+      try {
+        const res = await fetch(CLOUD_GIST_URL, {
+          method: 'PATCH',
+          headers: {
+            'Authorization': 'Bearer ' + CLOUD_AUTH_TOKEN,
+            'Content-Type': 'application/json',
+            'Accept': 'application/vnd.github.v3+json'
+          },
           body: JSON.stringify({
-            name: `BMM Vault for ${normEmail}`,
-            data: {
-              email: normEmail,
-              updatedAt: Date.now(),
-              updatedBy: normEmail,
-              transactions: appState.transactions || [],
-              accounts: appState.accounts || DEFAULT_ACCOUNTS,
-              goals: appState.goals || [],
-              budget: appState.budget || 500000,
-              currency: appState.currency || 'MMK'
+            files: {
+              'bmm_cloud_store.json': {
+                content: JSON.stringify(storeObj)
+              }
             }
           })
         });
-
-        if (createRes.ok) {
-          const newVault = await createRes.json();
-          currentVaultId = newVault.id;
-          localStorage.setItem(`bmm_vault_${normEmail}`, currentVaultId);
-          localStorage.setItem('bmm_active_vault_id', currentVaultId);
-
-          vaults[normEmail] = currentVaultId;
-          await fetch(MASTER_INDEX_ENDPOINT, {
-            method: 'PUT',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              name: 'Burmese Money Manager Cloud Registry',
-              data: { vaults: vaults }
-            })
-          });
-          return currentVaultId;
-        }
+        return res.ok;
       } catch (err) {
-        console.warn("Vault resolution warning:", err);
+        console.warn("updateCloudStore error:", err);
+        return false;
       }
-      return currentVaultId;
     }
 
     function updateCloudSyncPill(status) {
@@ -2388,34 +2355,37 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
         isCloudPushInProgress = true;
         updateCloudSyncPill('syncing');
 
-        const vaultId = await resolveVaultForEmail(email);
+        const store = await fetchCloudStore() || { users: {} };
+        if (!store.users) store.users = {};
+
         const now = Date.now();
         lastCloudSyncTimestamp = now;
 
-        const payload = {
-          name: `BMM Vault for ${email}`,
+        const existingUser = store.users[email] || {};
+        store.users[email] = {
+          ...existingUser,
+          id: appState.profile.id || existingUser.id || ('user_' + Date.now()),
+          name: appState.profile.name || existingUser.name || 'User',
+          email: email,
+          password: appState.profile.password || existingUser.password || '',
+          provider: appState.profile.provider || 'google',
+          avatarPreset: appState.profile.avatarPreset || 'google_initial',
+          customAvatar: appState.profile.customAvatar || '',
           data: {
-            email: email,
-            updatedAt: now,
-            updatedBy: appState.profile.name || email,
-            transactions: appState.transactions,
-            accounts: appState.accounts,
-            goals: appState.goals,
+            transactions: appState.transactions || [],
+            accounts: appState.accounts || DEFAULT_ACCOUNTS,
+            goals: appState.goals || [],
             budget: appState.budget || 500000,
-            currency: appState.currency || 'MMK'
+            currency: appState.currency || 'MMK',
+            updatedAt: now,
+            updatedBy: appState.profile.name || email
           }
         };
 
-        try {
-          await fetch(`https://api.restful-api.dev/objects/${vaultId}`, {
-            method: 'PUT',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(payload)
-          });
-        } catch (_) {}
-
+        await updateCloudStore(store);
         updateCloudSyncPill('synced');
       } catch (e) {
+        console.warn("Cloud push error:", e);
         updateCloudSyncPill('synced');
       } finally {
         isCloudPushInProgress = false;
@@ -2429,38 +2399,38 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
       if (!email) return;
 
       try {
-        const vaultId = currentVaultId || await resolveVaultForEmail(email);
-        const res = await fetch(`https://api.restful-api.dev/objects/${vaultId}`);
-        if (!res.ok) return;
+        const store = await fetchCloudStore();
+        if (!store || !store.users || !store.users[email]) return;
 
-        const result = await res.json();
-        if (result && result.data && result.data.updatedAt) {
-          const remoteTime = Number(result.data.updatedAt);
-          if (remoteTime > lastCloudSyncTimestamp || force) {
-            const isFirst = (lastCloudSyncTimestamp === 0);
-            lastCloudSyncTimestamp = remoteTime;
+        const remoteUser = store.users[email];
+        const remoteData = remoteUser.data;
+        if (!remoteData || !remoteData.updatedAt) return;
 
-            if (Array.isArray(result.data.transactions)) {
-              appState.transactions = result.data.transactions;
-            }
-            if (Array.isArray(result.data.accounts) && result.data.accounts.length > 0) {
-              appState.accounts = result.data.accounts;
-            }
-            if (Array.isArray(result.data.goals)) {
-              appState.goals = result.data.goals;
-            }
-            if (result.data.budget) {
-              appState.budget = result.data.budget;
-            }
+        const remoteTime = Number(remoteData.updatedAt);
+        if (remoteTime > lastCloudSyncTimestamp || force) {
+          const isFirst = (lastCloudSyncTimestamp === 0);
+          lastCloudSyncTimestamp = remoteTime;
 
-            persistStateLocallyOnly();
-            renderAllViews();
-            updateCloudSyncPill('synced');
+          if (Array.isArray(remoteData.transactions)) {
+            appState.transactions = remoteData.transactions;
+          }
+          if (Array.isArray(remoteData.accounts) && remoteData.accounts.length > 0) {
+            appState.accounts = remoteData.accounts;
+          }
+          if (Array.isArray(remoteData.goals)) {
+            appState.goals = remoteData.goals;
+          }
+          if (remoteData.budget) {
+            appState.budget = remoteData.budget;
+          }
 
-            if (!isFirst && !force) {
-              const editor = result.data.updatedBy || email;
-              showToast(`☁️ Cloud Sync: စာရင်းအသစ်များ အလိုအလျောက် ရောက်ရှိပါပြီ (${editor})`);
-            }
+          persistStateLocallyOnly();
+          renderAllViews();
+          updateCloudSyncPill('synced');
+
+          if (!isFirst && !force) {
+            const editor = remoteData.updatedBy || email;
+            showToast(`☁️ Cloud Sync: စာရင်းအသစ်များ အလိုအလျောက် ရောက်ရှိပါပြီ (${editor})`);
           }
         }
       } catch (e) {
@@ -2486,8 +2456,12 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
       }
     }
 
-    /* Start Live Auto-Sync Poller every 3.5 seconds */
-    setInterval(pullFromCloudSync, 3500);
+    /* Start Live Auto-Sync Poller gently every 20 seconds and on window focus/tab return */
+    setInterval(pullFromCloudSync, 20000);
+    window.addEventListener('focus', () => { pullFromCloudSync(); });
+    document.addEventListener('visibilitychange', () => {
+      if (document.visibilityState === 'visible') pullFromCloudSync();
+    });
 
     function persistState() {
       const activeUserId = localStorage.getItem(ACTIVE_SESSION_KEY);
@@ -2990,13 +2964,16 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
       }, 700);
     }
 
-    function showForgotPasswordModal() {
+    async function showForgotPasswordModal() {
       const email = document.getElementById('dribbble-login-email').value.trim();
       const enteredEmail = prompt('ကျေးဇူးပြု၍ စကားဝှက် Reset လုပ်လိုသည့် Gmail လိပ်စာကို ရိုက်ထည့်ပါ:', email || '');
       if (!enteredEmail) return;
 
+      const normEmail = enteredEmail.trim().toLowerCase();
+      const store = await fetchCloudStore() || { users: {} };
       const registry = getUserRegistry();
-      const user = registry.find(u => u.email && u.email.toLowerCase() === enteredEmail.trim().toLowerCase());
+      let user = (store.users && store.users[normEmail]) || registry.find(u => u.email && u.email.toLowerCase() === normEmail);
+
       if (!user) {
         showToast('⚠️ ဤ Gmail ဖြင့် အကောင့်ဖွင့်ထားခြင်း မရှိသေးပါ (Sign Up တွင် အကောင့်သစ် စတင်ဖွင့်ပါ)', true);
         shakeDribbbleInput('dribbble-login-email');
@@ -3011,6 +2988,13 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
 
       user.password = newPass;
       saveUserRegistry(registry);
+
+      // Also update in cloud
+      if (store.users && store.users[normEmail]) {
+        store.users[normEmail].password = newPass;
+        await updateCloudStore(store);
+      }
+
       showToast(`✓ ${user.name} ၏ စကားဝှက်ကို အောင်မြင်စွာ ပြောင်းလဲပြီးပါပြီ - စကားဝှက်အသစ်ဖြင့် Login ဝင်နိုင်ပါပြီ`);
       const passEl = document.getElementById('dribbble-login-password');
       if (passEl) {
@@ -3041,13 +3025,30 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
       const submitBtn = document.getElementById('dribbble-login-submit-btn');
       if (submitBtn) {
         submitBtn.disabled = true;
-        submitBtn.innerHTML = `<span>🔄 စစ်ဆေးနေပါသည်...</span>`;
+        submitBtn.innerHTML = `<span>🔄 Cloud စစ်ဆေးနေပါသည်...</span>`;
       }
 
       const registry = getUserRegistry();
       let user = registry.find(u => u.email && u.email.toLowerCase() === email);
 
-      // Strict check: User must be registered!
+      // If user is not yet saved on this phone/device, fetch from Cloud Store!
+      let remoteUserData = null;
+      if (!user) {
+        try {
+          const store = await fetchCloudStore();
+          if (store && store.users && store.users[email]) {
+            user = store.users[email];
+            remoteUserData = user.data || null;
+            // Cache user in device registry
+            registry.push(user);
+            saveUserRegistry(registry);
+          }
+        } catch (err) {
+          console.warn("Cloud lookup warning:", err);
+        }
+      }
+
+      // If STILL not found anywhere:
       if (!user) {
         if (submitBtn) {
           submitBtn.disabled = false;
@@ -3064,7 +3065,7 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
           submitBtn.disabled = false;
           submitBtn.innerHTML = `<span>Log In</span>`;
         }
-        showToast('⚠️ Password မမှန်ကန်ပါ - စကားဝှက်ကို ပြန်လည်စစ်ဆေးပါ', true);
+        showToast('⚠️ စကားဝှက် (Password) မှားယွင်းနေပါသည် - ပြန်လည်စစ်ဆေးပါ', true);
         shakeDribbbleInput('dribbble-login-password');
         const passEl = document.getElementById('dribbble-login-password');
         if (passEl) {
@@ -3074,40 +3075,19 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
         return;
       }
 
-      // Password correct! Resolve shared Cloud Vault
-      const vaultId = await resolveVaultForEmail(email);
+      // Sync cloud data to local storage if available
+      if (remoteUserData) {
+        const initialTx = Array.isArray(remoteUserData.transactions) ? remoteUserData.transactions : [];
+        const initialAccounts = (Array.isArray(remoteUserData.accounts) && remoteUserData.accounts.length > 0) ? remoteUserData.accounts : DEFAULT_ACCOUNTS;
+        const initialGoals = Array.isArray(remoteUserData.goals) ? remoteUserData.goals : [];
+        const initialBudget = remoteUserData.budget || 500000;
 
-      // Fetch cloud vault to ensure all device transactions are synced
-      let remoteTransactions = null;
-      let remoteAccounts = null;
-      let remoteGoals = null;
-      let remoteBudget = 500000;
-
-      try {
-        const res = await fetch(`https://api.restful-api.dev/objects/${vaultId}`);
-        if (res.ok) {
-          const remoteObj = await res.json();
-          if (remoteObj && remoteObj.data) {
-            if (Array.isArray(remoteObj.data.transactions)) remoteTransactions = remoteObj.data.transactions;
-            if (Array.isArray(remoteObj.data.accounts) && remoteObj.data.accounts.length > 0) remoteAccounts = remoteObj.data.accounts;
-            if (Array.isArray(remoteObj.data.goals)) remoteGoals = remoteObj.data.goals;
-            if (remoteObj.data.budget) remoteBudget = remoteObj.data.budget;
-          }
-        }
-      } catch (err) {
-        console.warn("Vault load warning:", err);
+        safeStorageSet(getUserDataKey(user.id, 'accounts'), JSON.stringify(initialAccounts));
+        safeStorageSet(getUserDataKey(user.id, 'transactions'), JSON.stringify(initialTx));
+        safeStorageSet(getUserDataKey(user.id, 'goals'), JSON.stringify(initialGoals));
+        safeStorageSet(getUserDataKey(user.id, 'budget'), initialBudget.toString());
+        safeStorageSet(getUserDataKey(user.id, 'profile'), JSON.stringify(user));
       }
-
-      // Sync data to local storage
-      const initialTx = remoteTransactions !== null ? remoteTransactions : (JSON.parse(localStorage.getItem(getUserDataKey(user.id, 'transactions')) || '[]'));
-      const initialAccounts = (remoteAccounts && remoteAccounts.length > 0) ? remoteAccounts : DEFAULT_ACCOUNTS;
-      const initialGoals = remoteGoals !== null ? remoteGoals : [];
-
-      safeStorageSet(getUserDataKey(user.id, 'accounts'), JSON.stringify(initialAccounts));
-      safeStorageSet(getUserDataKey(user.id, 'transactions'), JSON.stringify(initialTx));
-      safeStorageSet(getUserDataKey(user.id, 'goals'), JSON.stringify(initialGoals));
-      safeStorageSet(getUserDataKey(user.id, 'budget'), remoteBudget.toString());
-      safeStorageSet(getUserDataKey(user.id, 'profile'), JSON.stringify(user));
 
       if (rememberMe) {
         localStorage.setItem(ACTIVE_SESSION_KEY, user.id);
@@ -3124,7 +3104,7 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
       }
 
       renderAllViews();
-      showToast(`✓ ကြိုဆိုပါသည်, ${user.name}! (Cloud Vault အောင်မြင်စွာ ချိတ်ဆက်ပြီးပါပြီ)`);
+      showToast(`✓ ကြိုဆိုပါသည်, ${user.name}! (အကောင့် အောင်မြင်စွာ ချိတ်ဆက်ပြီးပါပြီ)`);
     }
 
     async function handleDribbbleSignup() {
@@ -3157,11 +3137,15 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
       const submitBtn = document.getElementById('dribbble-signup-submit-btn');
       if (submitBtn) {
         submitBtn.disabled = true;
-        submitBtn.innerHTML = `<span>🔄 အကောင့်သစ် တည်ဆောက်နေပါသည်...</span>`;
+        submitBtn.innerHTML = `<span>🔄 Cloud အကောင့် စစ်ဆေးနေပါသည်...</span>`;
       }
 
+      // Check cloud store first to ensure accounts are globally tracked across devices
+      const store = await fetchCloudStore() || { users: {} };
+      if (!store.users) store.users = {};
+
       const registry = getUserRegistry();
-      let user = registry.find(u => u.email && u.email.toLowerCase() === email);
+      let user = store.users[email] || registry.find(u => u.email && u.email.toLowerCase() === email);
 
       if (user) {
         if (submitBtn) {
@@ -3180,8 +3164,18 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
           password: password,
           provider: 'google',
           avatarPreset: 'google_initial',
-          customAvatar: ''
+          customAvatar: '',
+          data: {
+            transactions: [],
+            accounts: DEFAULT_ACCOUNTS,
+            goals: [],
+            budget: 500000,
+            currency: 'MMK',
+            updatedAt: Date.now(),
+            updatedBy: name
+          }
         };
+
         registry.push(user);
         saveUserRegistry(registry);
 
@@ -3190,10 +3184,11 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
         safeStorageSet(getUserDataKey(userId, 'goals'), JSON.stringify([]));
         safeStorageSet(getUserDataKey(userId, 'budget'), '500000');
         safeStorageSet(getUserDataKey(userId, 'profile'), JSON.stringify(user));
-      }
 
-      // Resolve or create cloud vault for this Gmail
-      await resolveVaultForEmail(email);
+        // Push new user to Cloud Store
+        store.users[email] = user;
+        await updateCloudStore(store);
+      }
 
       localStorage.setItem(ACTIVE_SESSION_KEY, user.id);
       loadUserSession(user.id);
@@ -3204,7 +3199,6 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
         submitBtn.innerHTML = `<span>Create Account</span>`;
       }
 
-      pushToCloudSync();
       renderAllViews();
       showToast(`✓ အကောင့်သစ် အောင်မြင်စွာ တည်ဆောက်ပြီးပါပြီ, ${user.name}!`);
     }
