@@ -2691,15 +2691,10 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
       { id: 'yoma', name_my: 'Yoma Bank', name_en: 'Yoma Bank', balance: 0, icon: 'landmark', color: '#D92D20', brand: 'yoma' }
     ];
 
-    // Curated Default Wishlist Goals (ဘာဝယ်ဖို့ ငွေစုမလဲ Presets)
-    const DEFAULT_WISHLIST_GOALS = [
-      { id: 'g_iphone', name: 'iPhone 16 Pro Max ဝယ်ရန်', name_my: 'iPhone 16 Pro Max ဝယ်ရန်', name_en: 'iPhone 16 Pro Max', target: 4500000, saved: 1800000, icon: 'smartphone', color: '#6366F1' },
-      { id: 'g_bike', name: 'ဆိုင်ကယ်သစ် ဝယ်ရန် (Honda Click)', name_my: 'ဆိုင်ကယ်သစ် ဝယ်ရန် (Honda Click)', name_en: 'New Motorcycle (Honda Click)', target: 3500000, saved: 2200000, icon: 'bike', color: '#F59E0B' },
-      { id: 'g_travel', name: 'ဘန်ကောက် ခရီးသွား ရန်ပုံငွေ', name_my: 'ဘန်ကောက် ခရီးသွား ရန်ပုံငွေ', name_en: 'Bangkok Vacation Trip', target: 1200000, saved: 750000, icon: 'plane', color: '#10B981' }
-    ];
-
+    // Curated Default Wishlist Goals (Clean Empty Slate for All Accounts)
+    const DEFAULT_WISHLIST_GOALS = [];
     const SAMPLE_TRANSACTIONS = [];
-    const SAMPLE_GOALS = DEFAULT_WISHLIST_GOALS;
+    const SAMPLE_GOALS = [];
 
     /* 10 Curated Wallpaper Presets */
     const WALLPAPER_PRESETS = [
@@ -3287,7 +3282,15 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
 
       appState.accounts = accountsRaw ? JSON.parse(accountsRaw) : JSON.parse(JSON.stringify(DEFAULT_ACCOUNTS));
       appState.transactions = transactionsRaw ? JSON.parse(transactionsRaw) : [];
-      appState.goals = (goalsRaw && JSON.parse(goalsRaw).length > 0) ? JSON.parse(goalsRaw) : JSON.parse(JSON.stringify(DEFAULT_WISHLIST_GOALS));
+      try {
+        appState.goals = goalsRaw ? JSON.parse(goalsRaw) : [];
+      } catch (e) {
+        appState.goals = [];
+      }
+      // Purge any legacy sample/dummy goals (g_iphone, g_bike, g_travel) so user accounts are always clean
+      if (Array.isArray(appState.goals)) {
+        appState.goals = appState.goals.filter(g => g && g.id !== 'g_iphone' && g.id !== 'g_bike' && g.id !== 'g_travel');
+      }
       appState.budget = budgetRaw ? parseFloat(budgetRaw) : 500000;
       appState.profile = profileRaw ? JSON.parse(profileRaw) : {
         id: user.id,
@@ -5840,10 +5843,18 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
         homeContainer.innerHTML = '';
         if (appState.goals.length === 0) {
           homeContainer.innerHTML = `
-            <div class="p-4 rounded-2xl bg-white/[0.03] border border-white/[0.06] text-center space-y-2">
-              <p class="text-xs text-white/50">ဘာဝယ်ဖို့ ငွေစုထားချင်ပါသလဲ?</p>
-              <button onclick="openAddGoalModal()" class="px-3 py-1.5 rounded-full bg-[#A3E635]/20 text-[#A3E635] text-xs font-bold hover:bg-[#A3E635]/30 transition">
-                + ပန်းတိုင်အသစ် သတ်မှတ်မည်
+            <div class="p-4 sm:p-5 rounded-2xl bg-white/[0.03] border border-white/[0.08] flex items-center justify-between gap-3 text-left shadow-sm">
+              <div class="flex items-center gap-3 min-w-0">
+                <div class="w-10 h-10 rounded-2xl bg-amber-500/15 text-amber-400 flex items-center justify-center shrink-0 border border-amber-500/20">
+                  <i data-lucide="target" class="w-5 h-5"></i>
+                </div>
+                <div class="min-w-0">
+                  <h4 class="text-xs font-bold text-white leading-tight">ငွေစုပန်းတိုင် မရှိသေးပါ</h4>
+                  <p class="text-[10px] text-white/50 truncate mt-0.5">ဘာဝယ်ဖို့ ငွေစုထားချင်ပါသလဲ?</p>
+                </div>
+              </div>
+              <button onclick="openAddGoalModal()" class="px-3.5 py-1.5 rounded-full bg-[#A3E635] hover:bg-[#84CC16] text-slate-950 text-xs font-black transition cursor-pointer active:scale-95 shadow-sm whitespace-nowrap shrink-0">
+                + ပန်းတိုင်အသစ်
               </button>
             </div>
           `;
