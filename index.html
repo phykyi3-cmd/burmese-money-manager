@@ -44,11 +44,167 @@
     .liquid-tab-active {
       background: rgba(255, 255, 255, 0.12) !important;
       border: 1px solid rgba(255, 255, 255, 0.22) !important;
-      box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.25), 0 4px 14px rgba(48, 209, 88, 0.3) !important;
-      color: #30D158 !important;
+      box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.25), 0 4px 14px rgba(163, 230, 53, 0.3) !important;
+      color: #A3E635 !important;
     }
     .liquid-tab-active i {
-      filter: drop-shadow(0 0 6px rgba(48, 209, 88, 0.4));
+      filter: drop-shadow(0 0 6px rgba(163, 230, 53, 0.4));
+    }
+
+    /* FOLD 3D Velvet Chartreuse & Obsidian Design System (Softer, Refined Luxury) */
+    .fold-hero-card {
+      background: linear-gradient(135deg, #D4F238 0%, #AEE617 48%, #88D805 100%) !important;
+      border-radius: 28px !important;
+      border: 1px solid rgba(255, 255, 255, 0.45) !important;
+      box-shadow: 0 16px 36px -8px rgba(160, 220, 20, 0.32),
+                  inset 0 1.5px 2px rgba(255, 255, 255, 0.75),
+                  inset 0 -2px 3px rgba(0, 0, 0, 0.15) !important;
+      color: #000000 !important;
+    }
+
+    .fold-pill-btn {
+      background: #141416 !important;
+      color: #FFFFFF !important;
+      border: 1px solid rgba(255, 255, 255, 0.12) !important;
+      border-radius: 18px !important;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.45),
+                  inset 0 1px 1.5px rgba(255, 255, 255, 0.18) !important;
+      transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+    }
+    .fold-pill-btn:hover {
+      background: #1C1D22 !important;
+      border-color: rgba(255, 255, 255, 0.22) !important;
+      transform: translateY(-1px);
+    }
+    .fold-pill-btn:active {
+      transform: scale(0.93) translateY(1px) !important;
+    }
+
+    .fold-card-dark {
+      background: #141416 !important;
+      border: 1px solid rgba(255, 255, 255, 0.08) !important;
+      border-radius: 26px !important;
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.6),
+                  inset 0 1px 1px rgba(255, 255, 255, 0.08) !important;
+    }
+
+    /* Floating 3D Account Card with Tactile Spring Press Animation */
+    .floating-account-card {
+      background: linear-gradient(180deg, #1C1D24 0%, #14151C 60%, #0E0F14 100%) !important;
+      border: 1px solid rgba(255, 255, 255, 0.09) !important;
+      border-radius: 26px !important;
+      box-shadow: 0 10px 26px -6px rgba(0, 0, 0, 0.7),
+                  0 4px 10px rgba(0, 0, 0, 0.5),
+                  inset 0 1px 1px rgba(255, 255, 255, 0.1) !important;
+      transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1) !important;
+      position: relative;
+    }
+    .floating-account-card:hover {
+      background: linear-gradient(180deg, #22242D 0%, #171822 60%, #111218 100%) !important;
+      border-color: rgba(163, 230, 53, 0.35) !important;
+      transform: translateY(-4px) !important;
+      box-shadow: 0 20px 36px -8px rgba(0, 0, 0, 0.85),
+                  0 0 22px rgba(163, 230, 53, 0.16),
+                  inset 0 1px 1px rgba(255, 255, 255, 0.16) !important;
+    }
+    .floating-account-card:active {
+      transform: scale(0.965) translateY(2px) !important;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.8),
+                  0 0 12px rgba(163, 230, 53, 0.3),
+                  inset 0 2px 4px rgba(0, 0, 0, 0.6) !important;
+      border-color: rgba(163, 230, 53, 0.55) !important;
+    }
+
+    .fold-boost-card {
+      background: #151619 !important;
+      border: 1px solid rgba(255, 255, 255, 0.07) !important;
+      border-radius: 20px !important;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35) !important;
+      transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    }
+    .fold-boost-card:hover {
+      background: #1A1C20 !important;
+      border-color: rgba(255, 255, 255, 0.16) !important;
+      transform: translateY(-1.5px);
+    }
+    .fold-boost-card:active {
+      transform: scale(0.98);
+    }
+
+    /* 360° Circular Gauge Spin Animation Engine (Clean, Sharp Vector, No Blurry Artifacts) */
+    @keyframes dynamicGaugeSpin {
+      0% {
+        transform: rotate(-90deg) scale(0.96);
+      }
+      40% {
+        transform: rotate(120deg) scale(1.06);
+      }
+      75% {
+        transform: rotate(255deg) scale(1.02);
+      }
+      100% {
+        transform: rotate(270deg) scale(1);
+      }
+    }
+
+    .gauge-spin-active {
+      animation: dynamicGaugeSpin 1.1s cubic-bezier(0.34, 1.4, 0.64, 1) forwards !important;
+    }
+
+    /* Floating 3D Coin Burst Animation */
+    @keyframes coinPopBurst {
+      0% {
+        opacity: 0;
+        transform: translate(-50%, 0) scale(0.4) rotate(-15deg);
+      }
+      30% {
+        opacity: 1;
+        transform: translate(-50%, -36px) scale(1.3) rotate(10deg);
+      }
+      70% {
+        opacity: 0.9;
+        transform: translate(-50%, -64px) scale(1.1) rotate(0deg);
+      }
+      100% {
+        opacity: 0;
+        transform: translate(-50%, -90px) scale(0.8) rotate(15deg);
+      }
+    }
+    .coin-burst-particle {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      pointer-events: none;
+      z-index: 50;
+      animation: coinPopBurst 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    /* Gentle 3D Levitation Float for Money Bag */
+    @keyframes levitate3D {
+      0%, 100% {
+        transform: translateY(0px) rotate(0deg);
+      }
+      50% {
+        transform: translateY(-6px) rotate(2deg);
+      }
+    }
+    .animate-levitate-3d {
+      animation: levitate3D 4s ease-in-out infinite;
+    }
+
+    /* FOLD Floating Center Lime Pod (Toned Down, Refined Lime) */
+    .fold-lime-pod {
+      background: #A3E635 !important;
+      color: #000000 !important;
+      box-shadow: 0 8px 22px rgba(163, 230, 53, 0.4), inset 0 2px 2px rgba(255, 255, 255, 0.8) !important;
+      transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+    }
+    .fold-lime-pod:hover {
+      transform: translateY(-2px) scale(1.06) !important;
+      box-shadow: 0 12px 28px rgba(163, 230, 53, 0.55) !important;
+    }
+    .fold-lime-pod:active {
+      transform: translateY(0) scale(0.92) !important;
     }
 
     @keyframes shake {
@@ -58,6 +214,133 @@
     }
     .animate-shake {
       animation: shake 0.4s ease-in-out !important;
+    }
+
+
+    /* ========================================================
+       RESPONSIVE MULTI-DEVICE SUITE: PHONE, TABLET & IPAD VIEW
+       ======================================================== */
+    /* Ambient Luxury Studio Atmosphere on wider screens */
+    body {
+      background: radial-gradient(circle at 50% -10%, #151821 0%, #0B0D13 40%, #050608 100%) fixed !important;
+      background-color: #050608 !important;
+    }
+
+    /* Adaptive Responsive Container */
+    .responsive-container {
+      width: 100%;
+      max-width: 448px; /* Phone view default */
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: 1rem;
+      padding-right: 1rem;
+      transition: max-width 0.25s cubic-bezier(0.16, 1, 0.3, 1), padding 0.25s ease;
+    }
+
+    /* Column spacer on phone */
+    .tablet-home-grid, .tablet-budgets-grid, .tablet-settings-grid, .tablet-overview-grid {
+      display: block;
+      width: 100%;
+    }
+    .tablet-col {
+      display: block;
+      width: 100%;
+    }
+    .tablet-col + .tablet-col {
+      margin-top: 1rem;
+    }
+
+    /* Tablet & iPad Viewport (>= 768px: iPad mini, iPad 10.2", iPad Air, Android Tablets) */
+    @media (min-width: 768px) {
+      .responsive-container {
+        max-width: 820px !important;
+        padding-left: 1.5rem !important;
+        padding-right: 1.5rem !important;
+      }
+
+      /* Home View: 2-Column Responsive Dashboard */
+      .tablet-home-grid {
+        display: grid !important;
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 1.25rem !important;
+        align-items: start !important;
+      }
+      .tablet-home-grid .tablet-col + .tablet-col {
+        margin-top: 0 !important;
+      }
+
+      /* Accounts View: 2-Column Grid of Floating 3D Cards */
+      .tablet-accounts-grid {
+        display: grid !important;
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 1rem !important;
+      }
+      .tablet-accounts-grid > * {
+        margin-top: 0 !important;
+      }
+
+      /* Budgets View: 2-Column Responsive Grid */
+      .tablet-budgets-grid {
+        display: grid !important;
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 1.25rem !important;
+        align-items: start !important;
+      }
+      .tablet-budgets-grid .tablet-col + .tablet-col {
+        margin-top: 0 !important;
+      }
+
+      /* Settings View: 2-Column Responsive Grid */
+      .tablet-settings-grid {
+        display: grid !important;
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 1.25rem !important;
+        align-items: start !important;
+      }
+      .tablet-settings-grid .tablet-col + .tablet-col {
+        margin-top: 0 !important;
+      }
+
+      /* Overview View: 2-Column Responsive Grid */
+      .tablet-overview-grid {
+        display: grid !important;
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 1.25rem !important;
+        align-items: start !important;
+      }
+      .tablet-overview-grid .tablet-col + .tablet-col {
+        margin-top: 0 !important;
+      }
+
+      /* Responsive Floating Bottom Navigation Dock */
+      .tablet-bottom-dock {
+        max-width: 480px !important;
+        padding: 0.5rem 1.25rem !important;
+        bottom: 1.25rem !important;
+      }
+      .tablet-bottom-dock .liquid-tab-btn {
+        padding: 8px 12px !important;
+      }
+    }
+
+    /* iPad Pro & Large Desktop Viewport (>= 1024px) */
+    @media (min-width: 1024px) {
+      .responsive-container {
+        max-width: 960px !important;
+      }
+      .tablet-bottom-dock {
+        max-width: 520px !important;
+      }
+    }
+
+    /* Modal Backdrop Polishing: Frosted Glass Overlay with Ambient Dimming */
+    .apple-modal-overlay,
+    .bg-black\/90,
+    .bg-black\/85,
+    .bg-black\/80 {
+      background-color: rgba(4, 5, 8, 0.58) !important;
+      backdrop-filter: blur(28px) saturate(190%) !important;
+      -webkit-backdrop-filter: blur(28px) saturate(190%) !important;
     }
 
   </style>
@@ -324,7 +607,7 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
 
   <!-- ================= APPLE HIG FROSTED HEADER ================= -->
   <header class="sticky top-0 z-40 apple-glass-header w-full max-w-full overflow-hidden">
-    <div class="max-w-md w-full mx-auto px-4 py-3 flex items-center justify-between gap-3 overflow-hidden">
+    <div class="responsive-container w-full mx-auto py-3 flex items-center justify-between gap-3 overflow-hidden">
 
       <!-- Left: Notification Bell in Apple Inset Circle -->
       <button onclick="showToast('🔔 အသိပေးချက် အသစ်မရှိသေးပါ')" title="Notifications" class="w-9 h-9 rounded-full bg-white/[0.08] hover:bg-white/[0.14] active:scale-95 text-white/90 flex items-center justify-center transition shrink-0 cursor-pointer border border-white/10 shadow-sm">
@@ -356,7 +639,7 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
   </header>
 
   <!-- ================= MAIN CONTENT CONTAINER ================= -->
-  <main class="max-w-md w-full mx-auto px-4 py-4 space-y-5 overflow-x-hidden pb-32">
+  <main class="responsive-container w-full mx-auto py-4 space-y-5 overflow-x-hidden pb-32">
 
     <!-- In-App Browser (WhatsApp / Messenger / FB) Safari Launcher Banner -->
     <div id="inapp-safari-banner" class="hidden w-full p-3.5 rounded-[22px] bg-gradient-to-r from-blue-600 via-sky-600 to-indigo-600 text-white shadow-xl shadow-blue-500/25 border border-white/20 items-center justify-between gap-2.5 animate-apple-sheet">
@@ -380,121 +663,282 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
       </div>
     </div>
 
-    <!-- ================= VIEW 1: HOME (CASH FLOW HERO, MINI CHART, GROUPED TXS) ================= -->
+    <!-- ================= VIEW 1: HOME (FOLD 3D HERO, 3D MONEY BAG BOOST, ROTATING GAUGE WHEEL, DOORDASH/LYFT ACTIVITY) ================= -->
     <div id="view-home" class="space-y-4">
       
-      <!-- Apple Card / Apple Wallet Titanium Balance Hero -->
-      <div class="p-5 sm:p-6 apple-card-hero space-y-4 relative overflow-hidden">
+      <!-- Tablet 2-Column Responsive Dashboard -->
+      <div class="tablet-home-grid">
+        <!-- Left Column: Hero Balance Card, Flow Circle Spin Gauge, Budget Guard -->
+        <div class="tablet-col space-y-4">
+          <!-- FOLD 3D Electric Lime Hero Card -->
+      <div class="p-5 sm:p-6 fold-hero-card space-y-4 relative overflow-hidden">
         
-        <!-- Apple Card Top Header -->
-        <div class="flex items-center justify-between">
-          <div class="flex items-center gap-2">
-            <div class="w-7 h-7 rounded-[9px] bg-white/10 border border-white/20 flex items-center justify-center text-white font-black text-xs shadow-inner">
-              $
+        <!-- Specular Highlight Sheen -->
+        <div class="absolute -top-12 -right-12 w-44 h-44 bg-white/30 rounded-full blur-2xl pointer-events-none"></div>
+
+        <!-- Top Header: Logo & Card Details Pill -->
+        <div class="flex items-center justify-between relative z-10">
+          <div class="flex items-center gap-2.5">
+            <div class="w-8 h-8 rounded-full bg-black text-[#A3E635] flex items-center justify-center font-black text-xs shadow-md">
+              <i data-lucide="wallet" class="w-4 h-4 text-[#A3E635] stroke-[2.5]"></i>
             </div>
-            <span class="text-[11px] font-semibold tracking-wider text-white/60 uppercase">Apple Wallet Ledger</span>
+            <div>
+              <span class="text-xs font-black tracking-wider text-black uppercase block leading-tight">MONEY MANAGER</span>
+              <span class="text-[10px] font-bold text-black/60" id="home-month-display">ငွေကြေးစီမံခန့်ခွဲမှု • နိုဝင်ဘာ ၂၀၂၆</span>
+            </div>
           </div>
-          <span class="text-[11px] font-semibold text-white/60" id="home-month-display">နိုဝင်ဘာ ၂၀၂၆</span>
+          <button onclick="switchView('accounts')" class="px-3 py-1.5 rounded-full bg-black/15 hover:bg-black/25 active:scale-95 text-black font-extrabold text-[11px] transition cursor-pointer flex items-center gap-1 shadow-sm whitespace-nowrap">
+            <span id="hero-accounts-btn-lbl">အကောင့်များ</span>
+            <i data-lucide="chevron-right" class="w-3.5 h-3.5 stroke-[2.5]"></i>
+          </button>
         </div>
 
         <!-- Main Balance Display -->
-        <div class="space-y-1">
-          <p class="text-[11px] text-white/50 font-medium tracking-wide uppercase" id="home-cashflow-sub">Net Cash Flow</p>
-          <h1 class="text-3xl sm:text-4xl font-bold text-white tracking-tight" id="home-cashflow-val">0 Ks</h1>
+        <div class="space-y-0.5 relative z-10 pt-1">
+          <p class="text-[11px] text-black/75 font-extrabold tracking-wider uppercase" id="home-cashflow-sub">စုစုပေါင်း လက်ကျန်ငွေ • TOTAL BALANCE</p>
+          <h1 class="text-3xl sm:text-4xl font-black text-black tracking-tight drop-shadow-sm" id="home-cashflow-val">0 Ks</h1>
         </div>
 
-        <!-- Inflow & Outflow Apple Pill Capsules -->
-        <div class="grid grid-cols-2 gap-2.5 pt-1">
-          <div class="p-2.5 rounded-2xl bg-white/[0.06] border border-white/[0.08] flex items-center justify-between">
-            <div class="flex items-center gap-2">
-              <div class="w-6 h-6 rounded-full bg-[#30D158]/20 flex items-center justify-center text-[#30D158]">
-                <i data-lucide="arrow-down-left" class="w-3.5 h-3.5 stroke-[2.5]"></i>
+        <!-- Inflow & Outflow High-Contrast Badges -->
+        <div class="grid grid-cols-2 gap-2.5 pt-0.5 relative z-10">
+          <div class="p-2.5 rounded-2xl bg-black/10 backdrop-blur-sm border border-black/10 flex flex-col justify-between">
+            <div class="flex items-center justify-between">
+              <span class="text-[10px] text-black/75 font-black uppercase tracking-wide">ဝင်ငွေ • INFLOW</span>
+              <div class="w-5 h-5 rounded-full bg-black text-[#A3E635] flex items-center justify-center">
+                <i data-lucide="arrow-down-left" class="w-3 h-3 stroke-[3]"></i>
               </div>
-              <span class="text-[11px] text-white/60 font-medium">ဝင်ငွေ</span>
             </div>
-            <span class="text-xs font-bold text-[#30D158]" id="home-inflow-val">+0 Ks</span>
+            <span class="text-xs sm:text-sm font-black text-black whitespace-nowrap tracking-tight pt-1" id="home-inflow-val">+0 Ks</span>
           </div>
 
-          <div class="p-2.5 rounded-2xl bg-white/[0.06] border border-white/[0.08] flex items-center justify-between">
-            <div class="flex items-center gap-2">
-              <div class="w-6 h-6 rounded-full bg-[#FF453A]/20 flex items-center justify-center text-[#FF453A]">
-                <i data-lucide="arrow-up-right" class="w-3.5 h-3.5 stroke-[2.5]"></i>
+          <div class="p-2.5 rounded-2xl bg-black/10 backdrop-blur-sm border border-black/10 flex flex-col justify-between">
+            <div class="flex items-center justify-between">
+              <span class="text-[10px] text-black/75 font-black uppercase tracking-wide">အသုံး • OUTFLOW</span>
+              <div class="w-5 h-5 rounded-full bg-black text-[#FF453A] flex items-center justify-center">
+                <i data-lucide="arrow-up-right" class="w-3 h-3 stroke-[3]"></i>
               </div>
-              <span class="text-[11px] text-white/60 font-medium">အသုံး</span>
             </div>
-            <span class="text-xs font-bold text-[#FF453A]" id="home-outflow-val">-0 Ks</span>
+            <span class="text-xs sm:text-sm font-black text-black whitespace-nowrap tracking-tight pt-1" id="home-outflow-val">-0 Ks</span>
           </div>
         </div>
 
-        <!-- Progress Flow Bar -->
-        <div class="space-y-1 pt-1">
-          <div class="w-full bg-white/[0.08] h-1.5 rounded-full overflow-hidden flex">
-            <div id="home-inflow-bar" class="h-full rounded-full bg-[#30D158] transition-all duration-500" style="width: 50%"></div>
-            <div id="home-outflow-bar" class="h-full rounded-full bg-[#FF453A] transition-all duration-500 ml-auto" style="width: 50%"></div>
+        <!-- 3 Tactile Embossed Obsidian Quick Action Pills (Income, Transfer, Expense) -->
+        <div class="grid grid-cols-3 gap-2 pt-2 relative z-10">
+          <button onclick="triggerGaugeSpinAnimation(); openAddModal('income');" class="py-2.5 px-2 fold-pill-btn flex items-center justify-center gap-1.5 cursor-pointer font-extrabold text-xs whitespace-nowrap">
+            <i data-lucide="plus-circle" class="w-3.5 h-3.5 text-[#A3E635] shrink-0"></i>
+            <span id="hero-btn-income">ဝင်ငွေ</span>
+          </button>
+          <button onclick="triggerGaugeSpinAnimation(); openAddModal('transfer');" class="py-2.5 px-2 fold-pill-btn flex items-center justify-center gap-1.5 cursor-pointer font-extrabold text-xs whitespace-nowrap">
+            <i data-lucide="arrow-left-right" class="w-3.5 h-3.5 text-[#0A84FF] shrink-0"></i>
+            <span id="hero-btn-transfer">ငွေလွှဲ</span>
+          </button>
+          <button onclick="triggerGaugeSpinAnimation(); openAddModal('expense');" class="py-2.5 px-2 fold-pill-btn flex items-center justify-center gap-1.5 cursor-pointer font-extrabold text-xs whitespace-nowrap">
+            <i data-lucide="minus-circle" class="w-3.5 h-3.5 text-[#FF453A] shrink-0"></i>
+            <span id="hero-btn-expense">အသုံး</span>
+          </button>
+        </div>
+
+      </div>
+
+          <!-- ================= 3D DYNAMIC CASH FLOW GAUGE (CLEAN SEAMLESS VECTOR, NO BLURRY ARTIFACTS, NO CUT MARKS) ================= -->
+      <div class="p-4 sm:p-5 fold-card-dark relative overflow-hidden space-y-3 cursor-pointer group" onclick="triggerGaugeSpinAnimation(true)" title="စက်ဝိုင်းကို နှိပ်၍ လှည့်ပတ်နိုင်သည်">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <div class="w-2 h-2 rounded-full bg-[#A3E635] animate-ping"></div>
+            <span class="text-xs font-black tracking-wider text-white uppercase select-none">Flow Circle • ငွေစီးဆင်းမှု စက်ဝိုင်း</span>
+          </div>
+          <span class="text-[10px] font-bold text-[#A3E635] bg-[#A3E635]/15 border border-[#A3E635]/25 px-2.5 py-0.5 rounded-full flex items-center gap-1 select-none">
+            <i data-lucide="rotate-cw" class="w-3 h-3"></i>
+            <span>360° Spin Wheel</span>
+          </span>
+        </div>
+
+        <div class="flex flex-col sm:flex-row items-center justify-around gap-4 py-1">
+          <!-- 3D Spin Wheel SVG Container -->
+          <div class="relative w-36 h-36 flex items-center justify-center select-none">
+            <!-- Spinning SVG Donut Gauge: Single seamless vector ring, zero overlapping red dots or cuts -->
+            <svg id="home-gauge-svg" class="w-full h-full -rotate-90 transform transition-transform" viewBox="0 0 100 100">
+              <defs>
+                <linearGradient id="flowRingGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#A3E635" />
+                  <stop offset="100%" stop-color="#10B981" />
+                </linearGradient>
+              </defs>
+              <!-- Dark Gauge Track Background -->
+              <circle cx="50" cy="50" r="38" fill="transparent" stroke="rgba(255,255,255,0.08)" stroke-width="8"></circle>
+              
+              <!-- Clean Single Progress Ring: Seamless, zero-overlap, soothing emerald chartreuse -->
+              <circle id="home-gauge-ring" cx="50" cy="50" r="38" fill="transparent" stroke="url(#flowRingGrad)" stroke-width="8" stroke-dasharray="238.76" stroke-dashoffset="0" stroke-linecap="round" style="transition: stroke-dashoffset 0.8s ease;"></circle>
+            </svg>
+
+            <!-- Center Data Display with Coin Burst Anchor (Protected against text selection boxes) -->
+            <div id="home-gauge-center" class="absolute inset-0 flex flex-col items-center justify-center pointer-events-none text-center select-none" style="user-select: none;">
+              <span class="text-[8px] font-extrabold text-white/50 uppercase tracking-widest select-none">SAVED RATE</span>
+              <span id="home-gauge-pct" class="text-xl font-black text-white tracking-tight select-none">100%</span>
+              <span id="home-gauge-lbl" class="text-[9px] font-bold text-[#A3E635] select-none">စုဆောင်းမှုနှုန်း</span>
+              
+              <!-- Coin Burst Anchor -->
+              <div id="gauge-coin-anchor" class="absolute inset-0 flex items-center justify-center pointer-events-none"></div>
+            </div>
+          </div>
+
+          <!-- Quick Stats Beside Wheel -->
+          <div class="space-y-2 w-full max-w-[200px]">
+            <div class="p-2.5 rounded-2xl bg-white/[0.04] border border-white/[0.06] flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <div class="w-2.5 h-2.5 rounded-full bg-[#A3E635]"></div>
+                <span class="text-[11px] font-semibold text-white/70">ဝင်ငွေစုစုပေါင်း</span>
+              </div>
+              <span id="wheel-inflow-stat" class="text-xs font-black text-[#A3E635]">+0 Ks</span>
+            </div>
+
+            <div class="p-2.5 rounded-2xl bg-white/[0.04] border border-white/[0.06] flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <div class="w-2.5 h-2.5 rounded-full bg-[#FF453A]"></div>
+                <span class="text-[11px] font-semibold text-white/70">အသုံးစုစုပေါင်း</span>
+              </div>
+              <span id="wheel-outflow-stat" class="text-xs font-black text-[#FF453A]">-0 Ks</span>
+            </div>
+
+            <p class="text-[10px] text-white/40 text-center italic select-none">စက်ဝိုင်းကိုနှိပ်၍ လှည့်ပတ်စမ်းသပ်ပါ ↺</p>
           </div>
         </div>
+      </div>
 
-        <!-- Apple Card Quick Action Bar: Income, Expense, Transfer -->
-        <div class="grid grid-cols-3 gap-2 pt-2 border-t border-white/[0.08]">
-          <button onclick="openAddModal('income')" class="py-2.5 px-2 rounded-2xl bg-white/10 hover:bg-white/15 text-white font-semibold text-xs border border-white/10 flex items-center justify-center gap-1.5 active:scale-95 transition cursor-pointer">
-            <i data-lucide="plus-circle" class="w-3.5 h-3.5 text-[#30D158]"></i>
-            <span>ဝင်ငွေ</span>
-          </button>
-          <button onclick="openAddModal('expense')" class="py-2.5 px-2 rounded-2xl bg-white/10 hover:bg-white/15 text-white font-semibold text-xs border border-white/10 flex items-center justify-center gap-1.5 active:scale-95 transition cursor-pointer">
-            <i data-lucide="minus-circle" class="w-3.5 h-3.5 text-[#FF453A]"></i>
-            <span>အသုံး</span>
-          </button>
-          <button onclick="openAddModal('transfer')" class="py-2.5 px-2 rounded-2xl bg-white/10 hover:bg-white/15 text-white font-semibold text-xs border border-white/10 flex items-center justify-center gap-1.5 active:scale-95 transition cursor-pointer">
-            <i data-lucide="arrow-left-right" class="w-3.5 h-3.5 text-[#0A84FF]"></i>
-            <span>လွှဲမည်</span>
+          <!-- ================= FEATURE 1: MONTHLY BUDGET GUARD (လစဉ် သုံးစွဲမှု ဘတ်ဂျက် ကန့်သတ်ချက်) ================= -->
+      <div class="p-4 sm:p-5 fold-card-dark space-y-3 shadow-xl">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-2.5">
+            <div class="w-8 h-8 rounded-xl bg-amber-500/15 text-amber-400 flex items-center justify-center">
+              <i data-lucide="shield-alert" class="w-4 h-4"></i>
+            </div>
+            <div>
+              <h3 class="text-xs font-black text-white uppercase tracking-wider">လစဉ် ဘတ်ဂျက် ကန့်သတ်ချက်</h3>
+              <p class="text-[10px] text-white/50">Monthly Budget Guard</p>
+            </div>
+          </div>
+          <button onclick="openSetBudgetModal()" class="px-3.5 py-1.5 rounded-full bg-white/10 hover:bg-white/15 text-xs font-bold text-white transition cursor-pointer active:scale-95 border border-white/10">
+            ပြင်ဆင်မည်
           </button>
         </div>
 
+        <div class="space-y-1.5 pt-1">
+          <div class="flex justify-between text-xs font-bold">
+            <span class="text-white/60">သုံးစွဲပြီးငွေ / သတ်မှတ်ဘတ်ဂျက်</span>
+            <span class="text-white font-black"><span id="home-budget-used">0</span> / <span id="home-budget-target">500,000</span> <span class="text-xs font-normal text-white/60" id="home-budget-sym">Ks</span></span>
+          </div>
+          <div class="w-full bg-white/[0.08] h-2.5 rounded-full overflow-hidden p-0.5">
+            <div id="home-budget-bar" class="h-full rounded-full transition-all duration-700 bg-gradient-to-r from-emerald-400 to-[#A3E635]" style="width: 10%"></div>
+          </div>
+          <div class="flex justify-between text-[11px] text-white/60 font-semibold pt-0.5">
+            <span id="home-budget-pct">သုံးစွဲမှု: 0%</span>
+            <span id="home-budget-remaining" class="text-emerald-400 font-bold">ကျန်ရှိငွေ: 500,000 Ks</span>
+          </div>
+        </div>
+      </div>
+        </div>
+
+        <!-- Right Column: Smart Wealth Boost, Wishlist Savings Goals, Daily Transactions -->
+        <div class="tablet-col space-y-4">
+          <!-- ================= 3D SMART WEALTH BANNER (WITH 3D MONEY BAG) ================= -->
+      <div class="p-5 fold-card-dark relative overflow-hidden shadow-2xl flex items-center justify-between gap-3">
+        <!-- Radial Lime Atmosphere Glow -->
+        <div class="absolute -right-6 -bottom-6 w-36 h-36 bg-[#A3E635]/10 rounded-full blur-2xl pointer-events-none"></div>
+
+        <div class="space-y-1.5 max-w-[210px] z-10">
+          <div class="flex items-center gap-1.5">
+            <span class="text-amber-400 text-xs">⚡</span>
+            <h3 class="text-sm font-extrabold text-white tracking-wide">Money Boost • ငွေကြေးစီမံမှု</h3>
+          </div>
+          <p class="text-xs text-white/60 leading-relaxed font-medium">
+            လစဉ် ဘတ်ဂျက်ထိန်းသိမ်းပြီး အလိုရှိရာ ပန်းတိုင်များဆီသို့ စနစ်တကျ ငွေစုဆောင်းပါ။
+          </p>
+          <button onclick="switchView('budgets')" class="mt-2.5 px-3.5 py-1.5 rounded-full bg-white/10 hover:bg-white/15 active:scale-95 text-[11px] font-bold text-white/90 border border-white/10 transition cursor-pointer flex items-center gap-1">
+            <span>ပန်းတိုင်များ ကြည့်မည်</span>
+            <i data-lucide="chevron-right" class="w-3 h-3"></i>
+          </button>
+        </div>
+
+        <div class="relative shrink-0 z-10">
+          <img src="assets/3d_money_bag.jpg" alt="3D Wealth" class="w-24 h-24 sm:w-28 sm:h-28 object-contain rounded-2xl drop-shadow-[0_12px_24px_rgba(0,0,0,0.85)] filter animate-levitate-3d cursor-pointer hover:scale-105 transition-transform" onclick="triggerGaugeSpinAnimation(true)">
+        </div>
+      </div>
+
+          <!-- ================= FEATURE 2: WISHLIST SAVINGS GOALS (ဘာဝယ်ဖို့ ငွေစုမလဲ) ================= -->
+      <div class="space-y-3 pt-1">
+        <div class="flex items-center justify-between px-1">
+          <div class="flex items-center gap-1.5">
+            <span class="text-amber-400">🎯</span>
+            <h3 class="text-xs font-black text-white uppercase tracking-wider">ဘာဝယ်ဖို့ ငွေစုမလဲ (Savings Goals)</h3>
+          </div>
+          <button onclick="openAddGoalModal()" class="text-xs font-bold text-[#A3E635] hover:underline flex items-center gap-1 cursor-pointer">
+            <i data-lucide="plus" class="w-3.5 h-3.5"></i>
+            <span>ပန်းတိုင်အသစ်</span>
+          </button>
+        </div>
+
+        <!-- Rendered Home Wishlist Goals -->
+        <div class="space-y-2.5" id="home-wishlist-goals">
+          <!-- Rendered dynamically via renderGoals() -->
+        </div>
+      </div>
+
+          <!-- Section Header: Daily Transactions & Activity -->
+      <div class="flex items-center justify-between px-1 pt-1">
+        <h3 class="text-xs font-extrabold text-white/80 uppercase tracking-wider">နေ့စဉ် စာရင်းမှတ်တမ်းများ (Daily Activity)</h3>
+        <button onclick="switchView('overview')" class="text-xs font-bold text-[#A3E635] hover:underline flex items-center gap-0.5 cursor-pointer">
+          <span>အားလုံးကြည့်မည်</span>
+          <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+        </button>
       </div>
 
       <!-- Grouped Daily Transactions List -->
       <div class="space-y-4" id="home-transactions-list">
-        <!-- Rendered dynamically grouped by date -->
+        <!-- Rendered dynamically grouped by date into DoorDash / Lyft style cards -->
       </div>
-
-    </div>
+        </div>
+      </div>
+        </div>
 
     <!-- ================= VIEW 2: ACCOUNTS (WALLETS & BANK ACCOUNTS) ================= -->
-    <div id="view-accounts" class="hidden space-y-4">
+    <div id="view-accounts" class="hidden space-y-4 pb-32">
       
-      <!-- Total Net Worth Card (Apple Card Style) -->
-      <div class="p-5 sm:p-6 apple-card-hero space-y-2">
-        <p class="text-xs text-white/50 font-semibold uppercase tracking-wider">စုစုပေါင်း လက်ကျန်ငွေ (Net Worth)</p>
-        <h2 class="text-3xl sm:text-4xl font-bold text-white tracking-tight" id="accounts-total-val">0 Ks</h2>
-        <p class="text-[11px] text-white/60">ဘဏ်နှင့် ပိုက်ဆံအိတ်များအားလုံး ပေါင်းလဒ်</p>
+      <!-- Total Net Worth Card (3D Floating Vault Card) -->
+      <div class="p-5 sm:p-6 fold-card-dark relative overflow-hidden space-y-2 border border-white/10 shadow-2xl rounded-[28px]">
+        <div class="absolute -top-10 -right-10 w-36 h-36 bg-[#A3E635]/15 rounded-full blur-2xl pointer-events-none"></div>
+        <p class="text-xs text-white/50 font-extrabold uppercase tracking-wider">စုစုပေါင်း လက်ကျန်ငွေ • TOTAL NET WORTH</p>
+        <h2 class="text-3xl sm:text-4xl font-black text-white tracking-tight" id="accounts-total-val">0 Ks</h2>
+        <p class="text-[11px] text-white/60 font-medium">ဘဏ်နှင့် ပိုက်ဆံအိတ်များအားလုံး၏ စုစုပေါင်း ပိုင်ဆိုင်ငွေ</p>
       </div>
 
       <!-- Accounts Section Header -->
       <div class="flex items-center justify-between px-1">
-        <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider">ငွေစာရင်း အကောင့်များ</h3>
-        <button onclick="openAddAccountModal()" class="text-xs text-[#30D158] font-bold flex items-center gap-1 hover:underline cursor-pointer">
+        <h3 class="text-xs font-black text-white/80 uppercase tracking-wider">ငွေစာရင်း အကောင့်များ (Accounts & Wallets)</h3>
+        <button onclick="openAddAccountModal()" class="text-xs text-[#A3E635] font-black flex items-center gap-1 hover:underline cursor-pointer">
           <i data-lucide="plus" class="w-3.5 h-3.5"></i>
-          <span>Add Account</span>
+          <span>အကောင့်အသစ်</span>
         </button>
       </div>
 
       <!-- Accounts List Container -->
-      <div class="space-y-2.5" id="accounts-list">
-        <!-- Rendered accounts cards -->
+      <div class="space-y-3 tablet-accounts-grid" id="accounts-list">
+        <!-- Rendered floating 3D accounts cards -->
       </div>
 
     </div>
 
     <!-- ================= VIEW 3: OVERVIEW (ANALYTICS, DONUT, CASH FLOW TRENDS) ================= -->
     <div id="view-overview" class="hidden space-y-4">
-      
       <!-- Overview Heading -->
       <div class="flex items-center justify-between px-1">
         <h2 class="text-xl font-black text-white">Overview</h2>
         <span class="text-xs text-slate-400 font-bold px-3 py-1 rounded-full bg-white/[0.06]" id="overview-period-lbl">This month</span>
       </div>
 
-      <!-- Expenses Donut Card -->
+      <!-- Tablet 2-Column Responsive Analytics -->
+      <div class="tablet-overview-grid">
+        <div class="tablet-col space-y-4">
+          <!-- Expenses Donut Card -->
       <div class="p-5 rounded-[28px] spendee-card space-y-4">
         <div class="flex items-center justify-between">
           <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">အသုံးစရိတ် ခွဲခြမ်းစိတ်ဖြာချက်</span>
@@ -521,8 +965,9 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
           </div>
         </div>
       </div>
-
-      <!-- 12-Month Cashflow Breakdown Card -->
+        </div>
+        <div class="tablet-col space-y-4">
+          <!-- 12-Month Cashflow Breakdown Card -->
       <div class="p-5 rounded-[28px] spendee-card space-y-4">
         <div class="flex items-center justify-between">
           <div>
@@ -554,13 +999,16 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
           </div>
         </div>
       </div>
-
-    </div>
+        </div>
+      </div>
+        </div>
 
     <!-- ================= VIEW 4: BUDGETS & SAVINGS GOALS ================= -->
     <div id="view-budgets" class="hidden space-y-4">
-      
-      <!-- Monthly Budget Guard Card -->
+      <!-- Tablet 2-Column Responsive Budgets & Goals -->
+      <div class="tablet-budgets-grid">
+        <div class="tablet-col space-y-4">
+          <!-- Monthly Budget Guard Card -->
       <div class="p-5 rounded-[28px] spendee-card space-y-4">
         <div class="flex items-center justify-between">
           <div class="flex items-center gap-2.5">
@@ -591,13 +1039,14 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
           </div>
         </div>
       </div>
-
-      <!-- Savings Goals Section Header -->
+        </div>
+        <div class="tablet-col space-y-4">
+          <!-- Savings Goals Section Header -->
       <div class="flex items-center justify-between px-1">
         <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider">ငွေစုပန်းတိုင်များ (Savings Goals)</h3>
-        <button onclick="openAddGoalModal()" class="text-xs text-[#30D158] font-bold flex items-center gap-1 hover:underline cursor-pointer">
+        <button onclick="openAddGoalModal()" class="text-xs text-[#A3E635] font-bold flex items-center gap-1 hover:underline cursor-pointer">
           <i data-lucide="plus" class="w-3.5 h-3.5"></i>
-          <span>+ ပန်းတိုင်အသစ်</span>
+          <span>ပန်းတိုင်အသစ်</span>
         </button>
       </div>
 
@@ -605,132 +1054,218 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
       <div class="space-y-3" id="goals-container">
         <!-- Rendered goals -->
       </div>
-
-    </div>
+        </div>
+      </div>
+        </div>
 
     <!-- ================= VIEW 5: MORE (PROFILE, SETTINGS, EXPORT, INSTALL) ================= -->
-    <div id="view-more" class="hidden space-y-4">
-      
-      <!-- User Profile Header Card (Apple Style) -->
-      <div class="p-4 rounded-[22px] apple-inset-group flex items-center justify-between gap-3 shadow-sm">
-        <div class="flex items-center gap-3 min-w-0">
-          <div class="w-12 h-12 rounded-[14px] overflow-hidden border border-white/20 bg-indigo-600/30 shrink-0">
-            <img id="more-user-avatar" src="" alt="Profile" class="w-full h-full object-cover">
+    <div id="view-more" class="hidden space-y-5 pb-32">
+      <!-- User Profile Header Card (Floating 3D Velvet Glass Card) -->
+      <div class="floating-account-card p-4 sm:p-5 flex items-center justify-between gap-3.5 shadow-xl select-none">
+        <!-- Specular Lighting Sheen -->
+        <div class="absolute -top-12 left-1/4 w-44 h-20 bg-gradient-to-b from-white/[0.08] to-transparent rounded-full blur-xl pointer-events-none group-hover:from-white/[0.16] transition-all duration-500"></div>
+
+        <div class="flex items-center gap-3.5 min-w-0 flex-1 z-10">
+          <div class="relative w-14 h-14 min-w-[56px] min-h-[56px] rounded-2xl overflow-hidden border border-white/20 bg-black/60 shrink-0 shadow-lg p-0.5 flex items-center justify-center">
+            <img id="more-user-avatar" src="" alt="Profile" class="w-full h-full object-cover rounded-[14px]">
+            <div class="absolute bottom-0.5 right-0.5 w-3.5 h-3.5 rounded-full bg-[#A3E635] border-2 border-black" title="Verified Session"></div>
           </div>
-          <div class="min-w-0">
-            <h3 class="text-sm font-semibold text-white truncate" id="more-user-name">Sithu</h3>
-            <p class="text-xs text-white/50 truncate" id="more-user-email">sithu@local.app</p>
+          <div class="min-w-0 flex-1">
+            <h3 class="text-base font-black text-white truncate leading-tight" id="more-user-name">Sithu</h3>
+            <p class="text-xs text-white/50 truncate mt-0.5" id="more-user-email">sithu@local.app</p>
+            <span class="inline-flex items-center gap-1 text-[9px] font-extrabold text-[#A3E635] bg-[#A3E635]/10 px-2 py-0.5 rounded-md border border-[#A3E635]/20 mt-1">
+              <span class="w-1.5 h-1.5 rounded-full bg-[#A3E635] animate-pulse"></span>
+              <span>Encrypted Vault</span>
+            </span>
           </div>
         </div>
-        <button onclick="openProfileModal()" class="px-3.5 py-1.5 rounded-full bg-white/10 hover:bg-white/15 text-xs font-semibold text-white transition shrink-0 cursor-pointer active:scale-95">
+        <button onclick="openProfileModal()" class="px-3.5 py-1.5 rounded-full bg-white/[0.08] hover:bg-[#A3E635] text-white hover:text-black border border-white/15 hover:border-[#A3E635] text-xs font-black transition-all active:scale-95 shrink-0 cursor-pointer shadow-sm z-10">
           Edit
         </button>
       </div>
 
-      <!-- Settings Menu Group 1: Preferences (Apple Inset Group) -->
-      <div class="apple-inset-group divide-y divide-white/[0.06] shadow-sm text-xs text-white">
-        <!-- Currency -->
-        <div class="p-4 flex items-center justify-between">
-          <div class="flex items-center gap-3">
-            <i data-lucide="coins" class="w-4 h-4 text-amber-400"></i>
-            <span>Main Currency (ငွေကြေးစနစ်)</span>
-          </div>
-          <select id="more-currency-select" onchange="changeCurrency(this.value)" class="bg-[#2C2C2E] text-white font-semibold text-xs rounded-xl px-2.5 py-1 border border-white/10 focus:outline-none cursor-pointer">
-            <option value="MMK" class="bg-black">MMK (Ks)</option>
-            <option value="MYR" class="bg-black">MYR (RM)</option>
-            <option value="USD" class="bg-black">USD ($)</option>
-            <option value="THB" class="bg-black">THB (฿)</option>
-          </select>
-        </div>
-
-        <!-- Language -->
-        <button onclick="toggleLanguage()" class="w-full p-4 flex items-center justify-between hover:bg-white/[0.03] transition cursor-pointer text-left">
-          <div class="flex items-center gap-3">
-            <i data-lucide="globe" class="w-4 h-4 text-cyan-400"></i>
-            <span>Language (ဘာသာစကား)</span>
-          </div>
-          <span class="text-white/50 font-semibold flex items-center gap-1">
-            <span id="more-lang-flag">🇲🇲</span>
-            <i data-lucide="chevron-right" class="w-4 h-4 text-white/30"></i>
-          </span>
-        </button>
-
-        <!-- Wallpapers & Theme -->
-        <button onclick="openWallpaperModal()" class="w-full p-4 flex items-center justify-between hover:bg-white/[0.03] transition cursor-pointer text-left">
-          <div class="flex items-center gap-3">
-            <i data-lucide="palette" class="w-4 h-4 text-pink-400"></i>
-            <span>Appearance & Themes (နောက်ခံ)</span>
-          </div>
-          <i data-lucide="chevron-right" class="w-4 h-4 text-white/30"></i>
-        </button>
-      </div>
-
-      <!-- Settings Menu Group 2: App & Export -->
-      <div class="apple-inset-group divide-y divide-white/[0.06] shadow-sm text-xs text-white">
-        <!-- Install App -->
-        <button onclick="handleInstallAppClick()" class="w-full p-4 flex items-center justify-between hover:bg-white/[0.03] transition cursor-pointer text-left">
-          <div class="flex items-center gap-3">
-            <i data-lucide="smartphone" class="w-4 h-4 text-[#30D158]"></i>
-            <div>
-              <span class="font-semibold">Install App (ဖုန်းစခရင်ပေါ် သွင်းယူရန်)</span>
-              <p class="text-[10px] text-white/50 mt-0.5">iOS Safari ချက်ချင်းဖွင့် & Android APK</p>
+      <!-- Tablet 2-Column Responsive Settings -->
+      <div class="tablet-settings-grid">
+        <div class="tablet-col space-y-4">
+          <!-- Settings Section 1: General Preferences -->
+      <div class="space-y-2">
+        <h4 class="text-[11px] font-black text-white/40 uppercase tracking-widest px-1">General (အထွေထွေ ဆက်တင်များ)</h4>
+        
+        <div class="rounded-[24px] bg-gradient-to-b from-[#1A1B22] via-[#13141A] to-[#0D0E13] border border-white/[0.08] shadow-[0_8px_24px_rgba(0,0,0,0.5)] divide-y divide-white/[0.06] overflow-hidden">
+          
+          <!-- Currency Setting -->
+          <div class="p-3.5 sm:p-4 flex items-center justify-between gap-3 hover:bg-white/[0.03] transition-all">
+            <div class="flex items-center gap-3 min-w-0">
+              <div class="w-9 h-9 rounded-xl bg-amber-500/15 text-amber-400 border border-amber-500/20 flex items-center justify-center shrink-0 shadow-sm">
+                <i data-lucide="coins" class="w-4 h-4 stroke-[2.5]"></i>
+              </div>
+              <div class="min-w-0">
+                <span class="font-extrabold text-sm text-white block leading-snug">Main Currency</span>
+                <p class="text-[10px] text-white/50 font-medium truncate">အဓိက အသုံးပြုမည့် ငွေကြေးစနစ်</p>
+              </div>
             </div>
+            <select id="more-currency-select" onchange="changeCurrency(this.value)" class="bg-black/60 text-white font-black text-xs rounded-xl px-3 py-1.5 border border-white/15 focus:outline-none focus:border-[#A3E635] cursor-pointer shadow-sm">
+              <option value="MMK" class="bg-black">MMK (Ks)</option>
+              <option value="MYR" class="bg-black">MYR (RM)</option>
+              <option value="USD" class="bg-black">USD ($)</option>
+              <option value="THB" class="bg-black">THB (฿)</option>
+            </select>
           </div>
-          <span class="text-[10px] text-[#30D158] font-semibold px-2.5 py-0.5 rounded-full bg-[#30D158]/15 border border-[#30D158]/20">iOS & Android</span>
-        </button>
 
-        <!-- Export CSV -->
-        <button onclick="downloadCSVReport()" class="w-full p-4 flex items-center justify-between hover:bg-white/[0.03] transition cursor-pointer text-left">
-          <div class="flex items-center gap-3">
-            <i data-lucide="file-spreadsheet" class="w-4 h-4 text-blue-400"></i>
-            <span>Export CSV Report (ဒေတာ ဒေါင်းလုဒ်)</span>
-          </div>
-          <i data-lucide="download" class="w-4 h-4 text-white/30"></i>
-        </button>
+          <!-- Language Setting -->
+          <button onclick="toggleLanguage()" class="w-full p-3.5 sm:p-4 flex items-center justify-between gap-3 hover:bg-white/[0.04] active:bg-white/[0.08] transition-all cursor-pointer text-left group">
+            <div class="flex items-center gap-3 min-w-0">
+              <div class="w-9 h-9 rounded-xl bg-cyan-500/15 text-cyan-400 border border-cyan-500/20 flex items-center justify-center shrink-0 shadow-sm">
+                <i data-lucide="globe" class="w-4 h-4 stroke-[2.5]"></i>
+              </div>
+              <div class="min-w-0">
+                <span class="font-extrabold text-sm text-white block leading-snug group-hover:text-[#A3E635] transition-colors">Language</span>
+                <p class="text-[10px] text-white/50 font-medium truncate">ဘာသာစကား (မြန်မာ / English)</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-2 shrink-0">
+              <span id="more-lang-flag" class="text-sm">🇲🇲</span>
+              <span class="text-xs font-bold text-white/60 group-hover:text-white transition-colors" id="more-lang-name">မြန်မာ</span>
+              <i data-lucide="chevron-right" class="w-4 h-4 text-white/30 group-hover:text-white/80 group-hover:translate-x-0.5 transition-all"></i>
+            </div>
+          </button>
 
-        <!-- PDF / Print -->
-        <button onclick="printOrSavePDF()" class="w-full p-4 flex items-center justify-between hover:bg-white/[0.03] transition cursor-pointer text-left">
-          <div class="flex items-center gap-3">
-            <i data-lucide="printer" class="w-4 h-4 text-indigo-400"></i>
-            <span>PDF Print / Share (စာရင်းထုတ်ယူရန်)</span>
-          </div>
-          <i data-lucide="chevron-right" class="w-4 h-4 text-white/30"></i>
-        </button>
+          <!-- Appearance & Wallpaper Theme -->
+          <button onclick="openWallpaperModal()" class="w-full p-3.5 sm:p-4 flex items-center justify-between gap-3 hover:bg-white/[0.04] active:bg-white/[0.08] transition-all cursor-pointer text-left group">
+            <div class="flex items-center gap-3 min-w-0">
+              <div class="w-9 h-9 rounded-xl bg-pink-500/15 text-pink-400 border border-pink-500/20 flex items-center justify-center shrink-0 shadow-sm">
+                <i data-lucide="palette" class="w-4 h-4 stroke-[2.5]"></i>
+              </div>
+              <div class="min-w-0">
+                <span class="font-extrabold text-sm text-white block leading-snug group-hover:text-[#A3E635] transition-colors">Appearance & Themes</span>
+                <p class="text-[10px] text-white/50 font-medium truncate">Wallpaper နောက်ခံပုံနှင့် အလင်းအမှောင်</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-1.5 shrink-0">
+              <span class="text-xs font-bold text-white/50 group-hover:text-white/80 transition-colors">Obsidian Dark</span>
+              <i data-lucide="chevron-right" class="w-4 h-4 text-white/30 group-hover:text-white/80 group-hover:translate-x-0.5 transition-all"></i>
+            </div>
+          </button>
+
+          <!-- Linked Money Accounts Shortcut (from Reference UI!) -->
+          <button onclick="switchView('accounts')" class="w-full p-3.5 sm:p-4 flex items-center justify-between gap-3 hover:bg-white/[0.04] active:bg-white/[0.08] transition-all cursor-pointer text-left group">
+            <div class="flex items-center gap-3 min-w-0">
+              <div class="w-9 h-9 rounded-xl bg-blue-500/15 text-blue-400 border border-blue-500/20 flex items-center justify-center shrink-0 shadow-sm">
+                <i data-lucide="credit-card" class="w-4 h-4 stroke-[2.5]"></i>
+              </div>
+              <div class="min-w-0">
+                <span class="font-extrabold text-sm text-white block leading-snug group-hover:text-[#A3E635] transition-colors">Linked Money Accounts</span>
+                <p class="text-[10px] text-white/50 font-medium truncate">ချိတ်ဆက်ထားသော ဘဏ်နှင့် ပိုက်ဆံအိတ်များ</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-1.5 shrink-0">
+              <span class="text-xs font-bold text-white/50 group-hover:text-white/80 transition-colors">၆ ခု</span>
+              <i data-lucide="chevron-right" class="w-4 h-4 text-white/30 group-hover:text-white/80 group-hover:translate-x-0.5 transition-all"></i>
+            </div>
+          </button>
+
+        </div>
+      </div>
+        </div>
+        <div class="tablet-col space-y-4">
+          <!-- Settings Section 2: App, Backup & Export -->
+      <div class="space-y-2">
+        <h4 class="text-[11px] font-black text-white/40 uppercase tracking-widest px-1">App & Data (အက်ပ်နှင့် ဒေတာထုတ်ယူမှု)</h4>
+        
+        <div class="rounded-[24px] bg-gradient-to-b from-[#1A1B22] via-[#13141A] to-[#0D0E13] border border-white/[0.08] shadow-[0_8px_24px_rgba(0,0,0,0.5)] divide-y divide-white/[0.06] overflow-hidden">
+          
+          <!-- Install App (PWA & APK) -->
+          <button onclick="handleInstallAppClick()" class="w-full p-3.5 sm:p-4 flex items-center justify-between gap-3 hover:bg-white/[0.04] active:bg-white/[0.08] transition-all cursor-pointer text-left group">
+            <div class="flex items-center gap-3 min-w-0">
+              <div class="w-9 h-9 rounded-xl bg-[#A3E635]/15 text-[#A3E635] border border-[#A3E635]/20 flex items-center justify-center shrink-0 shadow-sm">
+                <i data-lucide="smartphone" class="w-4 h-4 stroke-[2.5]"></i>
+              </div>
+              <div class="min-w-0">
+                <span class="font-extrabold text-sm text-white block leading-snug group-hover:text-[#A3E635] transition-colors">Install App</span>
+                <p class="text-[10px] text-white/50 font-medium truncate">ဖုန်း Home Screen ပေါ် အက်ပ်သွင်းယူရန် (APK & iOS)</p>
+              </div>
+            </div>
+            <span class="text-[10px] text-[#A3E635] font-black px-2.5 py-0.5 rounded-full bg-[#A3E635]/15 border border-[#A3E635]/25 shrink-0">iOS & Android</span>
+          </button>
+
+          <!-- Export CSV Report -->
+          <button onclick="downloadCSVReport()" class="w-full p-3.5 sm:p-4 flex items-center justify-between gap-3 hover:bg-white/[0.04] active:bg-white/[0.08] transition-all cursor-pointer text-left group">
+            <div class="flex items-center gap-3 min-w-0">
+              <div class="w-9 h-9 rounded-xl bg-indigo-500/15 text-indigo-400 border border-indigo-500/20 flex items-center justify-center shrink-0 shadow-sm">
+                <i data-lucide="file-spreadsheet" class="w-4 h-4 stroke-[2.5]"></i>
+              </div>
+              <div class="min-w-0">
+                <span class="font-extrabold text-sm text-white block leading-snug group-hover:text-[#A3E635] transition-colors">Export CSV Report</span>
+                <p class="text-[10px] text-white/50 font-medium truncate">Excel / Numbers ဖိုင်ဖြင့် ဒေါင်းလုဒ်ဆွဲရန်</p>
+              </div>
+            </div>
+            <i data-lucide="download" class="w-4 h-4 text-white/30 group-hover:text-white/80 group-hover:translate-y-0.5 transition-all"></i>
+          </button>
+
+          <!-- PDF Print / Share -->
+          <button onclick="printOrSavePDF()" class="w-full p-3.5 sm:p-4 flex items-center justify-between gap-3 hover:bg-white/[0.04] active:bg-white/[0.08] transition-all cursor-pointer text-left group">
+            <div class="flex items-center gap-3 min-w-0">
+              <div class="w-9 h-9 rounded-xl bg-teal-500/15 text-teal-400 border border-teal-500/20 flex items-center justify-center shrink-0 shadow-sm">
+                <i data-lucide="printer" class="w-4 h-4 stroke-[2.5]"></i>
+              </div>
+              <div class="min-w-0">
+                <span class="font-extrabold text-sm text-white block leading-snug group-hover:text-[#A3E635] transition-colors">PDF Print / Statement</span>
+                <p class="text-[10px] text-white/50 font-medium truncate">စာရင်းချုပ် PDF ထုတ်ယူခြင်းနှင့် မျှဝေခြင်း</p>
+              </div>
+            </div>
+            <i data-lucide="chevron-right" class="w-4 h-4 text-white/30 group-hover:text-white/80 group-hover:translate-x-0.5 transition-all"></i>
+          </button>
+
+        </div>
       </div>
 
-      <!-- Settings Menu Group 3: Account Actions -->
-      <div class="apple-inset-group divide-y divide-white/[0.06] shadow-sm text-xs text-white">
-        <button onclick="handleLogout()" class="w-full p-4 flex items-center justify-between hover:bg-white/[0.03] transition cursor-pointer text-left text-white/80">
-          <div class="flex items-center gap-3">
-            <i data-lucide="log-out" class="w-4 h-4"></i>
-            <span>Logout (အကောင့်မှ ထွက်ခွာမည်)</span>
-          </div>
-          <i data-lucide="chevron-right" class="w-4 h-4 text-white/30"></i>
-        </button>
+          <!-- Settings Section 3: Account & Security -->
+      <div class="space-y-2">
+        <h4 class="text-[11px] font-black text-white/40 uppercase tracking-widest px-1">Account & Security (အကောင့်နှင့် လုံခြုံရေး)</h4>
+        
+        <div class="rounded-[24px] bg-gradient-to-b from-[#1A1B22] via-[#13141A] to-[#0D0E13] border border-white/[0.08] shadow-[0_8px_24px_rgba(0,0,0,0.5)] divide-y divide-white/[0.06] overflow-hidden">
+          
+          <!-- Logout -->
+          <button onclick="handleLogout()" class="w-full p-3.5 sm:p-4 flex items-center justify-between gap-3 hover:bg-white/[0.04] active:bg-white/[0.08] transition-all cursor-pointer text-left group">
+            <div class="flex items-center gap-3 min-w-0">
+              <div class="w-9 h-9 rounded-xl bg-slate-500/15 text-slate-400 border border-slate-500/20 flex items-center justify-center shrink-0 shadow-sm">
+                <i data-lucide="log-out" class="w-4 h-4 stroke-[2.5]"></i>
+              </div>
+              <div class="min-w-0">
+                <span class="font-extrabold text-sm text-white block leading-snug group-hover:text-[#FF453A] transition-colors">Logout</span>
+                <p class="text-[10px] text-white/50 font-medium truncate">အကောင့်မှ လုံခြုံစွာ ထွက်ခွာမည်</p>
+              </div>
+            </div>
+            <i data-lucide="chevron-right" class="w-4 h-4 text-white/30 group-hover:text-white/80 group-hover:translate-x-0.5 transition-all"></i>
+          </button>
 
-        <button onclick="confirmResetUserData()" class="w-full p-4 flex items-center justify-between hover:bg-rose-500/10 transition cursor-pointer text-left text-[#FF453A]">
-          <div class="flex items-center gap-3">
-            <i data-lucide="trash-2" class="w-4 h-4 text-[#FF453A]"></i>
-            <span>Delete All Records (မှတ်တမ်းများ ရှင်းလင်းမည်)</span>
-          </div>
-          <i data-lucide="chevron-right" class="w-4 h-4 text-[#FF453A]/60"></i>
-        </button>
+          <!-- Reset / Delete Records -->
+          <button onclick="confirmResetUserData()" class="w-full p-3.5 sm:p-4 flex items-center justify-between gap-3 hover:bg-rose-500/10 active:bg-rose-500/20 transition-all cursor-pointer text-left group">
+            <div class="flex items-center gap-3 min-w-0">
+              <div class="w-9 h-9 rounded-xl bg-rose-500/15 text-rose-400 border border-rose-500/20 flex items-center justify-center shrink-0 shadow-sm">
+                <i data-lucide="trash-2" class="w-4 h-4 stroke-[2.5]"></i>
+              </div>
+              <div class="min-w-0">
+                <span class="font-extrabold text-sm text-rose-400 block leading-snug group-hover:text-rose-300 transition-colors">Delete All Records</span>
+                <p class="text-[10px] text-rose-400/60 font-medium truncate">စာရင်းမှတ်တမ်းအားလုံးကို ရှင်းလင်းပြီး 0 မှ ပြန်စမည်</p>
+              </div>
+            </div>
+            <i data-lucide="chevron-right" class="w-4 h-4 text-rose-400/40 group-hover:text-rose-400 group-hover:translate-x-0.5 transition-all"></i>
+          </button>
+
+        </div>
+      </div>
+        </div>
       </div>
 
-      <p class="text-center text-[10px] text-slate-500 pt-2">Burmese Money Manager • Version 2.2 Pro</p>
-
-    </div>
+      <p class="text-center text-[10px] text-white/30 pt-1 font-medium">Burmese Money Manager • Version 2.2 Pro</p>
+        </div>
 
   </main>
 
-  <!-- ================= SPENDEE FLOATING ACTION BUTTON (+) ================= -->
-  <button onclick="openAddModal()" title="Add Transaction" class="fixed bottom-24 right-5 z-40 w-14 h-14 rounded-full bg-[#30D158] text-slate-950 flex items-center justify-center shadow-2xl shadow-[#30D158]/40 hover:scale-105 active:scale-90 transition cursor-pointer">
-    <i data-lucide="plus" class="w-7 h-7 stroke-[3]"></i>
-  </button>
-
-  <!-- ================= APPLE HIG LIQUID GLASS 5-TAB BOTTOM DOCK ================= -->
-  <nav class="fixed bottom-4 inset-x-4 max-w-sm mx-auto z-40 liquid-glass-dock rounded-full p-1.5 flex items-center justify-between shadow-2xl">
-    <button onclick="switchView('home')" id="bnav-home" class="liquid-tab-btn liquid-tab-active flex flex-col items-center gap-0.5 text-[#30D158] btn-press cursor-pointer flex-1">
+  <!-- ================= FOLD 3D FLOATING DOCK WITH ELEVATED LIME POD ================= -->
+  <nav id="bottom-dock" class="fixed bottom-4 inset-x-4 max-w-sm mx-auto z-40 bg-[#121316]/90 backdrop-blur-2xl border border-white/10 rounded-full px-2 py-1.5 flex items-center justify-between shadow-[0_20px_48px_rgba(0,0,0,0.85)] tablet-bottom-dock">
+    <button onclick="switchView('home')" id="bnav-home" class="liquid-tab-btn liquid-tab-active flex flex-col items-center gap-0.5 text-[#C8FF00] btn-press cursor-pointer flex-1">
       <i data-lucide="home" class="w-5 h-5"></i>
       <span class="text-[9px] font-bold">Home</span>
     </button>
@@ -740,14 +1275,16 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
       <span class="text-[9px] font-bold">Accounts</span>
     </button>
 
-    <button onclick="switchView('overview')" id="bnav-overview" class="liquid-tab-btn flex flex-col items-center gap-0.5 text-slate-400 hover:text-white btn-press cursor-pointer flex-1">
-      <i data-lucide="pie-chart" class="w-5 h-5"></i>
-      <span class="text-[9px] font-bold">Overview</span>
-    </button>
+    <!-- Elevated Electric Lime Center Action Pod -->
+    <div class="relative -top-4 flex items-center justify-center flex-1">
+      <button onclick="triggerGaugeSpinAnimation(); openAddModal('expense');" title="Quick Add" class="fold-lime-pod w-[50px] h-[50px] rounded-full flex items-center justify-center font-black shadow-xl cursor-pointer">
+        <i data-lucide="plus" class="w-6 h-6 stroke-[3]"></i>
+      </button>
+    </div>
 
     <button onclick="switchView('budgets')" id="bnav-budgets" class="liquid-tab-btn flex flex-col items-center gap-0.5 text-slate-400 hover:text-white btn-press cursor-pointer flex-1">
-      <i data-lucide="bar-chart-3" class="w-5 h-5"></i>
-      <span class="text-[9px] font-bold">Budgets</span>
+      <i data-lucide="target" class="w-5 h-5"></i>
+      <span class="text-[9px] font-bold">ငွေစု/ဘတ်ဂျက်</span>
     </button>
 
     <button onclick="switchView('more')" id="bnav-more" class="liquid-tab-btn flex flex-col items-center gap-0.5 text-slate-400 hover:text-white btn-press cursor-pointer flex-1">
@@ -955,33 +1492,57 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
 
   <!-- ================= MODAL 2: ADD NEW SAVINGS GOAL ================= -->
   <div id="add-goal-modal" onclick="if(event.target === this) closeAddGoalModal()" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md hidden items-center justify-center p-4">
-    <div class="w-full max-w-md rounded-[32px] gold-card p-6 border border-amber-400/30 shadow-2xl animate-apple-sheet space-y-4">
-      <div class="flex items-center justify-between pb-2 border-b border-amber-500/20">
-        <h3 class="text-sm font-extrabold text-amber-300 flex items-center gap-2">
-          <i data-lucide="trophy" class="w-4 h-4 text-amber-400"></i>
-          <span>ပန်းတိုင်အသစ် သတ်မှတ်ရန်</span>
+    <div class="w-full max-w-md rounded-[32px] fold-card-dark p-6 border border-white/15 shadow-2xl animate-apple-sheet space-y-4">
+      <div class="flex items-center justify-between pb-2 border-b border-white/[0.08]">
+        <h3 class="text-sm font-extrabold text-white flex items-center gap-2">
+          <i data-lucide="target" class="w-4 h-4 text-[#A3E635]"></i>
+          <span>ဘာဝယ်ဖို့ ငွေစုမလဲ • ပန်းတိုင်အသစ်</span>
         </h3>
         <button onclick="closeAddGoalModal()" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-slate-400 hover:text-white btn-press cursor-pointer">
           <i data-lucide="x" class="w-4 h-4"></i>
         </button>
       </div>
 
-      <div class="space-y-3">
-        <div>
-          <label class="text-[11px] font-bold text-amber-200/80">ပန်းတိုင်အမည် (GOAL NAME)</label>
-          <input type="text" id="goal-name-input" placeholder="ဥပမာ- ရွှေဝယ်ရန် သို့မဟုတ် ခရီးသွားရန်..." class="w-full glass-pill px-3.5 py-2.5 rounded-2xl text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-400/50 mt-1">
-        </div>
-        <div>
-          <label class="text-[11px] font-bold text-amber-200/80">ရည်မှန်းချက် ပမာဏ (TARGET AMOUNT)</label>
-          <input type="number" id="goal-target-input" placeholder="0" class="w-full glass-pill px-3.5 py-2.5 rounded-2xl text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-400/50 mt-1">
-        </div>
-        <div>
-          <label class="text-[11px] font-bold text-amber-200/80">စတင်စုဆောင်းငွေ (INITIAL SAVED - OPTIONAL)</label>
-          <input type="number" id="goal-initial-input" placeholder="0" class="w-full glass-pill px-3.5 py-2.5 rounded-2xl text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-400/50 mt-1">
+      <!-- Quick 1-Tap Wishlist Presets -->
+      <div class="space-y-1.5">
+        <label class="text-[11px] font-bold text-white/60">အမြန်ရွေးချယ်ရန် (WISHLIST PRESETS)</label>
+        <div class="grid grid-cols-4 gap-1.5">
+          <button type="button" onclick="selectGoalPreset('iPhone 16 Pro Max ဝယ်ရန်', 4500000, 'smartphone')" class="p-2 rounded-xl bg-white/5 hover:bg-white/10 text-[10px] font-bold text-white flex flex-col items-center gap-1 active:scale-95 transition border border-white/5">
+            <span class="text-base">📱</span>
+            <span class="truncate w-full text-center">iPhone</span>
+          </button>
+          <button type="button" onclick="selectGoalPreset('ဆိုင်ကယ်သစ် ဝယ်ရန်', 3500000, 'bike')" class="p-2 rounded-xl bg-white/5 hover:bg-white/10 text-[10px] font-bold text-white flex flex-col items-center gap-1 active:scale-95 transition border border-white/5">
+            <span class="text-base">🏍️</span>
+            <span class="truncate w-full text-center">ဆိုင်ကယ်</span>
+          </button>
+          <button type="button" onclick="selectGoalPreset('MacBook / Laptop ဝယ်ရန်', 4000000, 'laptop')" class="p-2 rounded-xl bg-white/5 hover:bg-white/10 text-[10px] font-bold text-white flex flex-col items-center gap-1 active:scale-95 transition border border-white/5">
+            <span class="text-base">💻</span>
+            <span class="truncate w-full text-center">Laptop</span>
+          </button>
+          <button type="button" onclick="selectGoalPreset('ခရီးသွား ရန်ပုံငွေ', 1500000, 'plane')" class="p-2 rounded-xl bg-white/5 hover:bg-white/10 text-[10px] font-bold text-white flex flex-col items-center gap-1 active:scale-95 transition border border-white/5">
+            <span class="text-base">✈️</span>
+            <span class="truncate w-full text-center">ခရီးသွား</span>
+          </button>
         </div>
       </div>
 
-      <button type="button" onclick="saveNewGoal()" class="w-full gold-btn py-3 rounded-2xl text-xs cursor-pointer">
+      <div class="space-y-3">
+        <input type="hidden" id="goal-icon-input" value="trophy">
+        <div>
+          <label class="text-[11px] font-bold text-white/70">ပန်းတိုင်အမည် (GOAL NAME)</label>
+          <input type="text" id="goal-name-input" placeholder="ဥပမာ- ရွှေဝယ်ရန် သို့မဟုတ် ဆိုင်ကယ်ဝယ်ရန်..." class="w-full bg-[#1C1C1E] border border-white/10 px-3.5 py-2.5 rounded-2xl text-xs text-white placeholder-slate-500 focus:outline-none focus:border-[#A3E635] mt-1">
+        </div>
+        <div>
+          <label class="text-[11px] font-bold text-white/70">ရည်မှန်းချက် ပမာဏ (TARGET AMOUNT)</label>
+          <input type="number" id="goal-target-input" placeholder="0" class="w-full bg-[#1C1C1E] border border-white/10 px-3.5 py-2.5 rounded-2xl text-xs text-white placeholder-slate-500 focus:outline-none focus:border-[#A3E635] mt-1">
+        </div>
+        <div>
+          <label class="text-[11px] font-bold text-white/70">စတင်စုဆောင်းငွေ (INITIAL SAVED - OPTIONAL)</label>
+          <input type="number" id="goal-initial-input" placeholder="0" class="w-full bg-[#1C1C1E] border border-white/10 px-3.5 py-2.5 rounded-2xl text-xs text-white placeholder-slate-500 focus:outline-none focus:border-[#A3E635] mt-1">
+        </div>
+      </div>
+
+      <button type="button" onclick="saveNewGoal()" class="w-full py-3.5 rounded-2xl bg-[#A3E635] text-slate-950 font-black text-xs hover:bg-[#84CC16] active:scale-95 transition cursor-pointer shadow-lg shadow-[#A3E635]/20">
         ပန်းတိုင် သိမ်းဆည်းမည်
       </button>
     </div>
@@ -989,11 +1550,11 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
 
   <!-- ================= MODAL 3: DEPOSIT MONEY TO GOAL ================= -->
   <div id="deposit-goal-modal" onclick="if(event.target === this) closeDepositGoalModal()" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md hidden items-center justify-center p-4">
-    <div class="w-full max-w-md rounded-[32px] gold-card p-6 border border-amber-400/30 shadow-2xl animate-apple-sheet space-y-4">
-      <div class="flex items-center justify-between pb-2 border-b border-amber-500/20">
-        <h3 class="text-sm font-extrabold text-amber-300 flex items-center gap-2">
-          <i data-lucide="piggy-bank" class="w-4 h-4 text-amber-400"></i>
-          <span id="deposit-modal-title">ပန်းတိုင်သို့ ငွေထည့်ရန်</span>
+    <div class="w-full max-w-md rounded-[32px] fold-card-dark p-6 border border-white/15 shadow-2xl animate-apple-sheet space-y-4">
+      <div class="flex items-center justify-between pb-2 border-b border-white/[0.08]">
+        <h3 class="text-sm font-extrabold text-white flex items-center gap-2">
+          <i data-lucide="piggy-bank" class="w-4 h-4 text-[#A3E635]"></i>
+          <span id="deposit-modal-title">ပန်းတိုင်သို့ စုငွေထည့်ရန်</span>
         </h3>
         <button onclick="closeDepositGoalModal()" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-slate-400 hover:text-white btn-press cursor-pointer">
           <i data-lucide="x" class="w-4 h-4"></i>
@@ -1002,17 +1563,24 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
 
       <div class="space-y-3">
         <div>
-          <label class="text-[11px] font-bold text-amber-200/80">ထည့်သွင်းမည့် ငွေပမာဏ (DEPOSIT AMOUNT)</label>
-          <input type="number" id="deposit-amount-input" placeholder="0" class="w-full glass-pill px-3.5 py-2.5 rounded-2xl text-sm font-bold text-white placeholder-slate-500 focus:outline-none focus:border-amber-400/50 mt-1">
+          <label class="text-[11px] font-bold text-white/70">ငွေနုတ်ယူမည့် အကောင့် (FROM ACCOUNT)</label>
+          <select id="deposit-goal-account-select" class="w-full bg-[#1C1C1E] border border-white/10 px-3.5 py-2.5 rounded-2xl text-xs text-white focus:outline-none focus:border-[#A3E635] mt-1">
+            <!-- Populated with accounts -->
+          </select>
+        </div>
+
+        <div>
+          <label class="text-[11px] font-bold text-white/70">ထည့်သွင်းမည့် ငွေပမာဏ (DEPOSIT AMOUNT)</label>
+          <input type="number" id="deposit-amount-input" placeholder="0" class="w-full bg-[#1C1C1E] border border-white/10 px-3.5 py-2.5 rounded-2xl text-sm font-bold text-white placeholder-slate-500 focus:outline-none focus:border-[#A3E635] mt-1">
         </div>
         <div class="flex gap-2">
-          <button type="button" onclick="quickSetDeposit(10000)" class="flex-1 py-1.5 rounded-xl bg-white/10 text-xs font-bold text-amber-200 hover:bg-white/20 transition">+10,000</button>
-          <button type="button" onclick="quickSetDeposit(50000)" class="flex-1 py-1.5 rounded-xl bg-white/10 text-xs font-bold text-amber-200 hover:bg-white/20 transition">+50,000</button>
-          <button type="button" onclick="quickSetDeposit(100000)" class="flex-1 py-1.5 rounded-xl bg-white/10 text-xs font-bold text-amber-200 hover:bg-white/20 transition">+100,000</button>
+          <button type="button" onclick="quickSetDeposit(50000)" class="flex-1 py-1.5 rounded-xl bg-white/10 text-xs font-bold text-white hover:bg-white/20 transition">+50,000</button>
+          <button type="button" onclick="quickSetDeposit(100000)" class="flex-1 py-1.5 rounded-xl bg-white/10 text-xs font-bold text-white hover:bg-white/20 transition">+100,000</button>
+          <button type="button" onclick="quickSetDeposit(500000)" class="flex-1 py-1.5 rounded-xl bg-white/10 text-xs font-bold text-white hover:bg-white/20 transition">+500,000</button>
         </div>
       </div>
 
-      <button type="button" onclick="confirmDepositGoal()" class="w-full gold-btn py-3 rounded-2xl text-xs cursor-pointer">
+      <button type="button" onclick="confirmDepositGoal()" class="w-full py-3.5 rounded-2xl bg-[#A3E635] text-slate-950 font-black text-xs hover:bg-[#84CC16] active:scale-95 transition cursor-pointer shadow-lg shadow-[#A3E635]/20">
         ငွေထည့်သွင်းမှု အတည်ပြုမည်
       </button>
     </div>
@@ -1566,7 +2134,7 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
 
   <!-- ================= MODAL 11: UNIVERSAL PHONE APP INSTALLATION CENTER ================= -->
   <div id="pwa-install-modal" onclick="if(event.target === this) closePhoneInstallModal()" class="fixed inset-0 z-[200] bg-black/90 backdrop-blur-md hidden items-center justify-center p-4">
-    <div class="w-full max-w-sm rounded-[32px] glass-apple p-6 border border-white/20 shadow-2xl animate-apple-sheet space-y-4 text-center">
+    <div class="w-full max-w-md rounded-[32px] glass-apple p-6 border border-white/20 shadow-2xl animate-apple-sheet space-y-4 text-center">
       
       <!-- Header -->
       <div class="flex items-center justify-between pb-3 border-b border-white/[0.08]">
@@ -2123,9 +2691,15 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
       { id: 'yoma', name_my: 'Yoma Bank', name_en: 'Yoma Bank', balance: 0, icon: 'landmark', color: '#D92D20', brand: 'yoma' }
     ];
 
-    // ZERO auto-records for new users - 100% clean slate!
+    // Curated Default Wishlist Goals (ဘာဝယ်ဖို့ ငွေစုမလဲ Presets)
+    const DEFAULT_WISHLIST_GOALS = [
+      { id: 'g_iphone', name: 'iPhone 16 Pro Max ဝယ်ရန်', name_my: 'iPhone 16 Pro Max ဝယ်ရန်', name_en: 'iPhone 16 Pro Max', target: 4500000, saved: 1800000, icon: 'smartphone', color: '#6366F1' },
+      { id: 'g_bike', name: 'ဆိုင်ကယ်သစ် ဝယ်ရန် (Honda Click)', name_my: 'ဆိုင်ကယ်သစ် ဝယ်ရန် (Honda Click)', name_en: 'New Motorcycle (Honda Click)', target: 3500000, saved: 2200000, icon: 'bike', color: '#F59E0B' },
+      { id: 'g_travel', name: 'ဘန်ကောက် ခရီးသွား ရန်ပုံငွေ', name_my: 'ဘန်ကောက် ခရီးသွား ရန်ပုံငွေ', name_en: 'Bangkok Vacation Trip', target: 1200000, saved: 750000, icon: 'plane', color: '#10B981' }
+    ];
+
     const SAMPLE_TRANSACTIONS = [];
-    const SAMPLE_GOALS = [];
+    const SAMPLE_GOALS = DEFAULT_WISHLIST_GOALS;
 
     /* 10 Curated Wallpaper Presets */
     const WALLPAPER_PRESETS = [
@@ -2643,6 +3217,7 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
       closeDepositBalanceModal();
 
       renderAllViews();
+      if (window.triggerGaugeSpinAnimation) triggerGaugeSpinAnimation();
       if (appState.activeViewingAccountId) {
         renderAccountDetailView(appState.activeViewingAccountId);
       }
@@ -2686,6 +3261,7 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
       closeDepositBalanceModal();
 
       renderAllViews();
+      if (window.triggerGaugeSpinAnimation) triggerGaugeSpinAnimation();
       if (appState.activeViewingAccountId) {
         renderAccountDetailView(appState.activeViewingAccountId);
       }
@@ -2711,7 +3287,7 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
 
       appState.accounts = accountsRaw ? JSON.parse(accountsRaw) : JSON.parse(JSON.stringify(DEFAULT_ACCOUNTS));
       appState.transactions = transactionsRaw ? JSON.parse(transactionsRaw) : [];
-      appState.goals = goalsRaw ? JSON.parse(goalsRaw) : [];
+      appState.goals = (goalsRaw && JSON.parse(goalsRaw).length > 0) ? JSON.parse(goalsRaw) : JSON.parse(JSON.stringify(DEFAULT_WISHLIST_GOALS));
       appState.budget = budgetRaw ? parseFloat(budgetRaw) : 500000;
       appState.profile = profileRaw ? JSON.parse(profileRaw) : {
         id: user.id,
@@ -4116,8 +4692,10 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
       renderStatsAndHero();
       renderAccounts();
       renderDonutChart();
+      renderHomeTransactions();
       renderRecentTransactions();
       renderAllTransactions();
+      triggerGaugeSpinAnimation();
       renderGoals();
       if (appState.activeViewingAccountId) renderAccountDetailView(appState.activeViewingAccountId);
       showToast(`Currency: ${val}`);
@@ -4139,7 +4717,7 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
         const bnav = document.getElementById(`bnav-${v}`);
         if (bnav) {
           if (v === viewName) {
-            bnav.className = 'liquid-tab-btn liquid-tab-active flex flex-col items-center gap-0.5 text-[#30D158] btn-press cursor-pointer flex-1';
+            bnav.className = 'liquid-tab-btn liquid-tab-active flex flex-col items-center gap-0.5 text-[#A3E635] btn-press cursor-pointer flex-1';
           } else {
             bnav.className = 'liquid-tab-btn flex flex-col items-center gap-0.5 text-slate-400 hover:text-white btn-press cursor-pointer flex-1';
           }
@@ -4158,6 +4736,7 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
       if (viewName === 'home') {
         renderHomeTransactions();
         renderStatsAndHero();
+        renderGoals();
       } else if (viewName === 'accounts') {
         renderAccounts();
       } else if (viewName === 'overview') {
@@ -4179,16 +4758,61 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
       const moreEmail = document.getElementById('more-user-email');
       const moreCur = document.getElementById('more-currency-select');
       const moreFlag = document.getElementById('more-lang-flag');
+      const moreLangName = document.getElementById('more-lang-name');
 
       if (moreAvatar) moreAvatar.src = getUserAvatarSrc();
       if (moreName) moreName.textContent = appState.profile.name || 'Sithu';
       if (moreEmail) moreEmail.textContent = appState.profile.email || 'guest@device.local';
       if (moreCur) moreCur.value = appState.currency || 'MMK';
       if (moreFlag) moreFlag.textContent = appState.lang === 'my' ? '🇲🇲' : '🇬🇧';
+      if (moreLangName) moreLangName.textContent = appState.lang === 'my' ? 'မြန်မာ' : 'English';
+      if (window.lucide) lucide.createIcons();
     }
 
     function handleGlobalSearch(query) {
       renderHomeTransactions();
+    }
+
+    function triggerGaugeSpinAnimation(userClick = false) {
+      const svg = document.getElementById('home-gauge-svg');
+      const anchor = document.getElementById('gauge-coin-anchor');
+      if (!svg) return;
+
+      svg.classList.remove('gauge-spin-active');
+      void svg.offsetWidth; // Force reflow
+      svg.classList.add('gauge-spin-active');
+
+      // Spawn floating 3D gold coin burst
+      if (anchor) {
+        const coin = document.createElement('div');
+        coin.className = 'coin-burst-particle text-3xl font-black select-none pointer-events-none drop-shadow-[0_4px_12px_rgba(255,215,0,0.85)]';
+        coin.textContent = '🪙';
+        anchor.appendChild(coin);
+        setTimeout(() => coin.remove(), 1200);
+      }
+
+      // Pure Client-side Audio Tactile Feedback (Zero lag, no external audio files required)
+      try {
+        const AudioCtx = window.AudioContext || window.webkitAudioContext;
+        if (AudioCtx) {
+          const ctx = new AudioCtx();
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(587.33, ctx.currentTime);
+          osc.frequency.exponentialRampToValueAtTime(880, ctx.currentTime + 0.12);
+          gain.gain.setValueAtTime(0.12, ctx.currentTime);
+          gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.22);
+          osc.connect(gain);
+          gain.connect(ctx.destination);
+          osc.start();
+          osc.stop(ctx.currentTime + 0.22);
+        }
+      } catch (e) {}
+
+      setTimeout(() => {
+        svg.classList.remove('gauge-spin-active');
+      }, 1200);
     }
 
     function renderHomeTransactions() {
@@ -4206,8 +4830,8 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
 
       if (txs.length === 0) {
         container.innerHTML = `
-          <div class="p-8 rounded-[24px] apple-inset-group text-center space-y-4 my-2">
-            <div class="w-14 h-14 rounded-2xl bg-white/[0.08] text-[#30D158] mx-auto flex items-center justify-center border border-white/10 shadow-inner">
+          <div class="p-8 rounded-[28px] fold-card-dark text-center space-y-4 my-2">
+            <div class="w-14 h-14 rounded-2xl bg-white/[0.08] text-[#C8FF00] mx-auto flex items-center justify-center border border-white/10 shadow-inner">
               <i data-lucide="receipt" class="w-7 h-7 stroke-[2.2]"></i>
             </div>
             <div class="space-y-1">
@@ -4216,7 +4840,7 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
                 ${appState.lang === 'my' ? 'နေ့စဉ် အဝင်/အထွက် စာရင်းများကို အပေါ်ရှိ အမြန်ခလုတ်များဖြင့် စတင်ထည့်သွင်းနိုင်ပါသည်' : 'Start tracking your daily cash flow with the quick action buttons'}
               </p>
             </div>
-            <button onclick="openAddModal('expense')" class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#30D158] text-black font-bold text-xs shadow-lg shadow-[#30D158]/25 btn-press cursor-pointer">
+            <button onclick="triggerGaugeSpinAnimation(); openAddModal('expense')" class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#C8FF00] text-black font-bold text-xs shadow-lg shadow-[#C8FF00]/30 btn-press cursor-pointer">
               <i data-lucide="plus" class="w-4 h-4 stroke-[3]"></i>
               <span>${appState.lang === 'my' ? 'စာရင်း စတင်ထည့်သွင်းမည်' : 'Add First Transaction'}</span>
             </button>
@@ -4258,14 +4882,17 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
         else if (dateStr === yesterdayStr) displayDate = appState.lang === 'my' ? 'မနေ့က (Yesterday)' : 'Yesterday';
 
         outputHTML += `
-          <div class="space-y-2">
-            <div class="flex items-center justify-between text-xs text-white/60 font-semibold px-1.5 pt-2">
-              <span>${displayDate}</span>
-              <span class="${dayNet < 0 ? 'text-[#FF453A]' : (dayNet > 0 ? 'text-[#30D158]' : 'text-white/60')} font-bold">
+          <div class="space-y-2.5">
+            <div class="flex items-center justify-between text-xs text-white/60 font-semibold px-1 pt-1">
+              <span class="flex items-center gap-1.5">
+                <span class="w-1.5 h-1.5 rounded-full bg-[#C8FF00]"></span>
+                <span>${displayDate}</span>
+              </span>
+              <span class="${dayNet < 0 ? 'text-[#FF453A]' : (dayNet > 0 ? 'text-[#C8FF00]' : 'text-white/60')} font-black">
                 ${dayNet < 0 ? '-' : (dayNet > 0 ? '+' : '')}${formatNumber(Math.abs(dayNet))} ${sym}
               </span>
             </div>
-            <div class="apple-inset-group divide-y divide-white/[0.06] shadow-sm">
+            <div class="space-y-2">
         `;
 
         dayTxs.forEach(t => {
@@ -4282,7 +4909,7 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
             const c = INCOME_CATEGORIES.find(cat => cat.id === t.categoryId);
             catName = c ? (appState.lang === 'my' ? c.name_my : c.name_en) : (t.categoryId || 'Income');
             iconName = c ? c.icon : 'briefcase';
-            color = c ? c.color : '#30D158';
+            color = c ? c.color : '#C8FF00';
           } else if (t.type === 'transfer') {
             catName = appState.lang === 'my' ? 'အကောင့်လွှဲငွေ' : 'Transfer';
             iconName = 'arrow-left-right';
@@ -4296,29 +4923,37 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
           const isInc = t.type === 'income';
 
           outputHTML += `
-            <div class="p-3.5 sm:p-4 hover:bg-white/[0.03] flex items-center justify-between gap-3 transition">
+            <div class="p-3.5 sm:p-4 rounded-2xl fold-boost-card flex items-center justify-between gap-3 group transition cursor-pointer" onclick="triggerGaugeSpinAnimation(); openAddModal('${t.type}');">
               <div class="flex items-center gap-3.5 min-w-0">
-                <div class="w-10 h-10 rounded-[12px] flex items-center justify-center shrink-0 border border-white/10 shadow-sm" style="background-color: ${color}22; color: ${color};">
+                <div class="w-11 h-11 rounded-2xl flex items-center justify-center shrink-0 border border-white/10 shadow-md relative" style="background-color: ${color}22; color: ${color};">
                   <i data-lucide="${iconName}" class="w-5 h-5 stroke-[2.2]"></i>
                 </div>
-                <div class="truncate">
-                  <p class="font-semibold text-white text-sm truncate">${catName}</p>
-                  <p class="text-xs text-white/50 truncate mt-0.5">${t.note || accName}</p>
-                </div>
-              </div>
-              <div class="text-right shrink-0 flex items-center gap-2.5">
-                <div>
-                  <p class="font-bold text-sm ${isExp ? 'text-[#FF453A]' : (isInc ? 'text-[#30D158]' : 'text-[#0A84FF]')}">
-                    ${isExp ? '-' : (isInc ? '+' : '')}${formatNumber(t.amount)} ${sym}
-                  </p>
-                  <div class="flex items-center gap-1.5 justify-end mt-0.5">
-                    <div class="w-3.5 h-3.5 rounded-[4px] overflow-hidden shrink-0 border border-white/15 shadow-sm">
-                      <img src="${getAccountLogoSrc(t.accountId, accName)}" class="w-full h-full object-cover" />
-                    </div>
-                    <span class="text-[10px] text-white/50 font-medium truncate max-w-[100px]">${accName}</span>
+                <div class="min-w-0 truncate">
+                  <div class="flex items-center gap-2">
+                    <h4 class="font-bold text-white text-sm truncate">${catName}</h4>
+                    <span class="text-[9px] font-extrabold px-2 py-0.5 rounded-full ${isExp ? 'bg-rose-500/15 text-rose-300 border border-rose-500/20' : (isInc ? 'bg-[#C8FF00]/15 text-[#C8FF00] border border-[#C8FF00]/25' : 'bg-blue-500/15 text-blue-300 border border-blue-500/20')}">
+                      ${isExp ? '10% Back' : (isInc ? 'Bonus' : 'Transfer')}
+                    </span>
+                  </div>
+                  <div class="flex items-center gap-2 text-xs text-white/50 truncate mt-0.5">
+                    <span class="truncate">${t.note || accName}</span>
+                    <span>•</span>
+                    <span class="shrink-0 text-white/40">${t.date || 'Today'}</span>
                   </div>
                 </div>
-                <button onclick="deleteTransaction('${t.id}')" title="Delete" class="w-7 h-7 rounded-full hover:bg-rose-500/20 text-white/30 hover:text-rose-400 flex items-center justify-center transition cursor-pointer">
+              </div>
+
+              <div class="text-right shrink-0 flex items-center gap-3">
+                <div>
+                  <div class="flex items-center gap-1.5 justify-end">
+                    <span class="w-1.5 h-1.5 rounded-full bg-[#30D158] inline-block animate-pulse"></span>
+                    <span class="text-[10px] font-bold text-white/60 uppercase">Online</span>
+                  </div>
+                  <p class="font-black text-sm tracking-tight ${isExp ? 'text-[#FF453A]' : (isInc ? 'text-[#C8FF00]' : 'text-[#0A84FF]')} mt-0.5">
+                    ${isExp ? '-' : (isInc ? '+' : '')}${formatNumber(t.amount)} ${sym}
+                  </p>
+                </div>
+                <button onclick="event.stopPropagation(); promptDeleteTransaction('${t.id}')" title="Delete" class="w-7 h-7 rounded-full hover:bg-rose-500/20 text-white/30 hover:text-rose-400 flex items-center justify-center transition cursor-pointer">
                   <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
                 </button>
               </div>
@@ -4502,14 +5137,96 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
 
       // Spendee Cashflow Hero Update
       const cashflow = income - expense;
-      setTxt('home-cashflow-val', (cashflow < 0 ? '-' : '') + formatNumber(Math.abs(cashflow)) + ' ' + sym);
+      setTxt('home-cashflow-val', formatNumber(netBalance) + ' ' + sym);
       setTxt('home-inflow-val', '+' + formatNumber(income) + ' ' + sym);
       setTxt('home-outflow-val', '-' + formatNumber(expense) + ' ' + sym);
       setTxt('overview-expense-total', formatNumber(expense) + ' ' + sym);
 
-      const totalFlow = income + expense;
-      const inPct = totalFlow > 0 ? Math.round((income / totalFlow) * 100) : 50;
-      const outPct = totalFlow > 0 ? (100 - inPct) : 50;
+      // Update Home Flow Circle SVG & 3D Wheel Stats (Single Clean Seamless Vector Ring)
+      const homeGaugeRing = document.getElementById('home-gauge-ring');
+      const homeGaugePct = document.getElementById('home-gauge-pct');
+      const homeGaugeLbl = document.getElementById('home-gauge-lbl');
+      const wheelInStat = document.getElementById('wheel-inflow-stat');
+      const wheelOutStat = document.getElementById('wheel-outflow-stat');
+
+      if (wheelInStat) wheelInStat.textContent = '+' + formatNumber(income) + ' ' + sym;
+      if (wheelOutStat) wheelOutStat.textContent = '-' + formatNumber(expense) + ' ' + sym;
+
+      const circumference = 238.76; // 2 * Math.PI * 38
+      let saveRate = 100;
+      if (income > 0) {
+        saveRate = Math.max(0, Math.min(100, Math.round(((income - expense) / income) * 100)));
+      } else if (expense > 0) {
+        saveRate = 0;
+      }
+
+      if (homeGaugeRing) {
+        if (saveRate <= 0) {
+          homeGaugeRing.style.opacity = '0';
+        } else {
+          homeGaugeRing.style.opacity = '1';
+          const offset = circumference * (1 - (saveRate / 100));
+          homeGaugeRing.style.strokeDashoffset = offset;
+        }
+        if (saveRate < 30) {
+          homeGaugeRing.setAttribute('stroke', '#F43F5E');
+        } else if (saveRate < 70) {
+          homeGaugeRing.setAttribute('stroke', '#FBBF24');
+        } else {
+          homeGaugeRing.setAttribute('stroke', 'url(#flowRingGrad)');
+        }
+      }
+      if (homeGaugePct) homeGaugePct.textContent = saveRate + '%';
+      if (homeGaugeLbl) {
+        homeGaugeLbl.textContent = saveRate >= 70 ? 'စုဆောင်းမှု ကောင်း' : (saveRate >= 40 ? 'ထိန်းသိမ်းဆဲ' : 'အသုံးများနေ');
+      }
+
+      // Update Monthly Budget Guard (Home & Dedicated View)
+      const budgetTarget = appState.budget || 500000;
+      const budgetPct = Math.min(100, Math.round((expense / budgetTarget) * 100));
+      const budgetRemaining = Math.max(0, budgetTarget - expense);
+
+      setTxt('home-budget-target', formatNumber(budgetTarget));
+      setTxt('home-budget-used', formatNumber(expense));
+      setTxt('home-budget-sym', sym);
+      setTxt('home-budget-pct', `သုံးစွဲမှု: ${budgetPct}%`);
+
+      const homeBudgetRem = document.getElementById('home-budget-remaining');
+      if (homeBudgetRem) {
+        if (expense > budgetTarget) {
+          homeBudgetRem.className = 'text-rose-400 font-bold';
+          homeBudgetRem.textContent = `ဘတ်ဂျက် ကျော်လွန်: -${formatNumber(expense - budgetTarget)} ${sym}`;
+        } else {
+          homeBudgetRem.className = 'text-emerald-400 font-bold';
+          homeBudgetRem.textContent = `ကျန်ရှိငွေ: ${formatNumber(budgetRemaining)} ${sym}`;
+        }
+      }
+
+      const homeBudgetBar = document.getElementById('home-budget-bar');
+      if (homeBudgetBar) {
+        homeBudgetBar.style.width = budgetPct + '%';
+        if (budgetPct >= 100) {
+          homeBudgetBar.className = 'h-full rounded-full bg-rose-500 transition-all duration-700';
+        } else if (budgetPct >= 80) {
+          homeBudgetBar.className = 'h-full rounded-full bg-amber-400 transition-all duration-700';
+        } else {
+          homeBudgetBar.className = 'h-full rounded-full bg-gradient-to-r from-emerald-400 to-[#A3E635] transition-all duration-700';
+        }
+      }
+
+      // Also update View-Budgets values
+      setTxt('budget-target-val', formatNumber(budgetTarget));
+      setTxt('budget-used-val', formatNumber(expense));
+      setTxt('budget-spent-pct', `သုံးစွဲမှု: ${budgetPct}%`);
+      const bRem = document.getElementById('budget-remaining-txt');
+      if (bRem) {
+        bRem.textContent = expense > budgetTarget ? `ဘတ်ဂျက် ကျော်လွန်: -${formatNumber(expense - budgetTarget)} ${sym}` : `ကျန်ရှိငွေ: ${formatNumber(budgetRemaining)} ${sym}`;
+      }
+      const bBar = document.getElementById('budget-progress-bar');
+      if (bBar) bBar.style.width = budgetPct + '%';
+
+      const inPct = (income + expense) > 0 ? Math.round((income / (income + expense)) * 100) : 50;
+      const outPct = (income + expense) > 0 ? (100 - inPct) : 50;
       const inBar = document.getElementById('home-inflow-bar');
       const outBar = document.getElementById('home-outflow-bar');
       if (inBar) inBar.style.width = inPct + '%';
@@ -4522,8 +5239,12 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
       const mIdx = curDate.getMonth();
       const mYear = curDate.getFullYear();
       const monthLabel = (appState.lang === 'my' ? monthNamesMy[mIdx] : monthNamesEn[mIdx]) + ' ' + mYear;
-      setTxt('home-month-display', monthLabel);
-      setTxt('home-cashflow-sub', 'Cash Flow • ' + monthLabel);
+      setTxt('home-month-display', appState.lang === 'my' ? `ငွေကြေးစီမံခန့်ခွဲမှု • ${monthLabel}` : `Financial Vault • ${monthLabel}`);
+      setTxt('home-cashflow-sub', appState.lang === 'my' ? 'စုစုပေါင်း လက်ကျန်ငွေ • Total Balance' : 'Total Balance • ' + monthLabel);
+      setTxt('hero-accounts-btn-lbl', appState.lang === 'my' ? 'အကောင့်များ' : 'Accounts');
+      setTxt('hero-btn-income', appState.lang === 'my' ? 'ဝင်ငွေ' : 'Income');
+      setTxt('hero-btn-transfer', appState.lang === 'my' ? 'ငွေလွှဲ' : 'Transfer');
+      setTxt('hero-btn-expense', appState.lang === 'my' ? 'အသုံး' : 'Expense');
       setTxt('overview-period-lbl', monthLabel);
     }
 
@@ -4541,30 +5262,68 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
       const sym = getCurrencySymbol();
 
       appState.accounts.forEach(acc => {
-        const name = appState.lang === 'my' ? acc.name_my : acc.name_en;
+        let name = appState.lang === 'my' ? acc.name_my : acc.name_en;
+        if (acc.id === 'cash' && appState.lang === 'my') name = 'လက်ထဲရှိငွေ';
 
         if (list) {
           const card = document.createElement('div');
-          card.className = "p-4 rounded-[22px] apple-inset-group hover:border-white/20 flex items-center justify-between gap-3 cursor-pointer transition shadow-sm";
-          card.onclick = () => openAccountDetail(acc.id);
+          
+          // Determine brand glow & color aura
+          const accKey = ((acc.id || '') + ' ' + (name || '')).toLowerCase();
+          let brandGlow = 'rgba(163, 230, 53, 0.35)';
+          let brandAura = '#A3E635';
+          if (accKey.includes('kpay') || accKey.includes('kbz')) {
+            brandGlow = 'rgba(11, 94, 215, 0.45)';
+            brandAura = '#0B5ED7';
+          } else if (accKey.includes('wave')) {
+            brandGlow = 'rgba(255, 204, 0, 0.45)';
+            brandAura = '#FFCC00';
+          } else if (accKey.includes('aya')) {
+            brandGlow = 'rgba(225, 29, 72, 0.45)';
+            brandAura = '#E11D48';
+          } else if (accKey.includes('cb')) {
+            brandGlow = 'rgba(10, 37, 64, 0.55)';
+            brandAura = '#0A84FF';
+          } else if (accKey.includes('yoma')) {
+            brandGlow = 'rgba(217, 45, 32, 0.45)';
+            brandAura = '#D92D20';
+          } else if (accKey.includes('cash')) {
+            brandGlow = 'rgba(16, 185, 129, 0.45)';
+            brandAura = '#10B981';
+          }
+
+          card.className = "floating-account-card p-4 sm:p-5 flex items-center justify-between gap-3.5 cursor-pointer group select-none";
+          card.onclick = () => {
+            playTactileTapSound();
+            openAccountDetail(acc.id);
+          };
 
           card.innerHTML = `
-            <div class="flex items-center gap-3.5 min-w-0">
-              <div class="w-12 h-12 rounded-[14px] overflow-hidden shrink-0 shadow-md border border-white/10 bg-black/40 p-0.5 flex items-center justify-center">
+            <!-- Specular Top Lighting Sheen -->
+            <div class="absolute -top-12 left-1/4 w-44 h-20 bg-gradient-to-b from-white/[0.08] to-transparent rounded-full blur-xl pointer-events-none group-hover:from-white/[0.16] transition-all duration-500"></div>
+
+            <div class="flex items-center gap-3.5 min-w-0 flex-1 z-10">
+              <!-- Floating Brand Logo Badge with Glowing Ambient Shadow -->
+              <div class="relative w-12 h-12 rounded-2xl overflow-hidden shrink-0 border border-white/15 bg-black/60 p-1 flex items-center justify-center transition-all duration-300 group-hover:scale-110 group-active:scale-95" style="box-shadow: 0 8px 20px -2px ${brandGlow};">
+                <div class="absolute inset-0 rounded-2xl pointer-events-none opacity-20" style="background: ${brandAura};"></div>
                 ${getAccountBrandedIconSVG(acc.id, name)}
               </div>
-              <div class="truncate">
-                <h4 class="font-semibold text-white text-sm truncate">${name}</h4>
-                <p class="text-xs text-white/50 truncate mt-0.5">${acc.type === 'wallet' ? 'Mobile Wallet' : 'Bank Ledger'}</p>
+              <div class="min-w-0 flex-1">
+                <h4 class="font-black text-white text-sm sm:text-base tracking-tight truncate group-hover:text-[#A3E635] transition-colors">${name}</h4>
+                <p class="text-[10px] text-white/50 font-semibold tracking-wide truncate mt-0.5">${acc.type === 'wallet' ? 'Mobile Wallet' : 'Bank Ledger'}</p>
               </div>
             </div>
-            <div class="text-right shrink-0 flex items-center gap-2">
-              <div>
-                <p class="font-bold text-sm text-white">${formatNumber(acc.balance || 0)} ${sym}</p>
-                <span class="text-[10px] text-[#30D158] font-semibold block mt-0.5">Active</span>
+
+            <div class="text-right shrink-0 flex items-center gap-2 z-10">
+              <div class="text-right">
+                <p class="font-black text-xs sm:text-sm text-white tracking-tight whitespace-nowrap">${formatNumber(acc.balance || 0)} <span class="text-[10px] font-bold text-white/60">${sym}</span></p>
+                <span class="inline-flex items-center gap-1 text-[9px] text-[#A3E635] font-extrabold mt-0.5 justify-end">
+                  <span class="w-1.5 h-1.5 rounded-full bg-[#A3E635] animate-pulse" style="box-shadow: 0 0 6px #A3E635;"></span> Active
+                </span>
               </div>
-              <button type="button" onclick="event.stopPropagation(); openDepositBalanceModal('${acc.id}')" class="px-3 py-1.5 rounded-full bg-white/10 hover:bg-white/15 text-xs text-white font-semibold ml-1 cursor-pointer active:scale-95 transition">
-                + ငွေဖြည့်
+              <button type="button" onclick="event.stopPropagation(); triggerGaugeSpinAnimation(); openDepositBalanceModal('${acc.id}')" class="px-2.5 py-1.5 rounded-full bg-white/[0.08] hover:bg-[#A3E635] text-white hover:text-black border border-white/15 hover:border-[#A3E635] text-[11px] font-black transition-all duration-200 active:scale-90 shadow-sm cursor-pointer whitespace-nowrap flex items-center gap-1">
+                <i data-lucide="plus" class="w-3 h-3 stroke-[3]"></i>
+                <span>ငွေဖြည့်</span>
               </button>
             </div>
           `;
@@ -4640,6 +5399,26 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
       });
 
       return history.reverse();
+    }
+
+    function playTactileTapSound() {
+      try {
+        const AudioCtx = window.AudioContext || window.webkitAudioContext;
+        if (AudioCtx) {
+          const ctx = new AudioCtx();
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(440, ctx.currentTime);
+          osc.frequency.exponentialRampToValueAtTime(220, ctx.currentTime + 0.08);
+          gain.gain.setValueAtTime(0.08, ctx.currentTime);
+          gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.08);
+          osc.connect(gain);
+          gain.connect(ctx.destination);
+          osc.start();
+          osc.stop(ctx.currentTime + 0.08);
+        }
+      } catch (e) {}
     }
 
     function openAccountDetail(accId) {
@@ -4991,66 +5770,126 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
       if (window.lucide) lucide.createIcons();
     }
 
-    /* Savings Goals (24K Gold Vault) */
+    /* Savings Goals (24K Gold Vault & Wishlist Cards) */
     function renderGoals() {
       const container = document.getElementById('goals-container');
-      if (!container) return;
-      container.innerHTML = '';
-
+      const homeContainer = document.getElementById('home-wishlist-goals');
       const sym = getCurrencySymbol();
       let totalSaved = 0;
       let totalTarget = 0;
 
-      if (!appState.goals || appState.goals.length === 0) {
-        container.innerHTML = `
-          <div class="p-8 rounded-[28px] spendee-card text-center space-y-3">
-            <div class="w-12 h-12 rounded-2xl bg-amber-500/10 text-amber-400 mx-auto flex items-center justify-center">
-              <i data-lucide="trophy" class="w-6 h-6"></i>
+      if (!appState.goals) appState.goals = [];
+
+      // 1. Render in Budgets View (Full List)
+      if (container) {
+        container.innerHTML = '';
+        if (appState.goals.length === 0) {
+          container.innerHTML = `
+            <div class="p-8 rounded-[28px] fold-card-dark text-center space-y-3 border border-white/10">
+              <div class="w-12 h-12 rounded-2xl bg-amber-500/10 text-amber-400 mx-auto flex items-center justify-center">
+                <i data-lucide="target" class="w-6 h-6"></i>
+              </div>
+              <p class="text-sm font-bold text-white">စုဆောင်းမှု ပန်းတိုင် မရှိသေးပါ</p>
+              <button onclick="openAddGoalModal()" class="px-4 py-2 rounded-full bg-[#A3E635] text-slate-950 font-black text-xs cursor-pointer hover:bg-[#84CC16] transition">
+                + ပန်းတိုင်အသစ် သတ်မှတ်မည်
+              </button>
             </div>
-            <p class="text-sm font-bold text-white">စုဆောင်းမှု ပန်းတိုင် မရှိသေးပါ</p>
-            <button onclick="openAddGoalModal()" class="px-4 py-2 rounded-full bg-[#30D158] text-slate-950 font-bold text-xs cursor-pointer">
-              + ပန်းတိုင်အသစ် သတ်မှတ်မည်
-            </button>
-          </div>
-        `;
-        if (window.lucide) lucide.createIcons();
-        return;
+          `;
+        } else {
+          appState.goals.forEach(g => {
+            const saved = Number(g.saved) || 0;
+            const target = Number(g.target) || 1;
+            totalSaved += saved;
+            totalTarget += target;
+            const pct = Math.min(100, Math.round((saved / target) * 100));
+            const gName = appState.lang === 'my' ? (g.name_my || g.name || g.name_en) : (g.name_en || g.name || g.name_my);
+            const iconName = g.icon || 'target';
+
+            const card = document.createElement('div');
+            card.className = "p-5 rounded-[24px] fold-card-dark border border-white/10 space-y-3 shadow-sm";
+            card.innerHTML = `
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-2xl bg-[#A3E635]/15 text-[#A3E635] flex items-center justify-center">
+                    <i data-lucide="${iconName}" class="w-5 h-5"></i>
+                  </div>
+                  <div>
+                    <h4 class="font-bold text-white text-sm">${gName}</h4>
+                    <p class="text-xs text-white/60">${formatNumber(saved)} / ${formatNumber(target)} ${sym} (${pct}%)</p>
+                  </div>
+                </div>
+                <button onclick="openDepositModal('${g.id}')" class="px-3.5 py-1.5 rounded-full bg-[#A3E635] hover:bg-[#84CC16] text-xs text-slate-950 font-black cursor-pointer active:scale-95 transition shadow-sm whitespace-nowrap shrink-0">
+                  + စုငွေထည့်
+                </button>
+              </div>
+              <div class="w-full bg-white/[0.08] h-2.5 rounded-full overflow-hidden">
+                <div class="h-full rounded-full bg-gradient-to-r from-[#A3E635] to-[#10B981] transition-all duration-500" style="width: ${pct}%"></div>
+              </div>
+            `;
+            container.appendChild(card);
+          });
+        }
+
+        const setTxt = (id, txt) => { const el = document.getElementById(id); if (el) el.textContent = txt; };
+        setTxt('goals-total-saved', formatNumber(totalSaved));
+        setTxt('goals-total-target', formatNumber(totalTarget));
       }
 
-      appState.goals.forEach(g => {
-        const saved = Number(g.saved) || 0;
-        const target = Number(g.target) || 1;
-        totalSaved += saved;
-        totalTarget += target;
-        const pct = Math.min(100, Math.round((saved / target) * 100));
-
-        const card = document.createElement('div');
-        card.className = "p-5 rounded-[24px] spendee-card space-y-3";
-        card.innerHTML = `
-          <div class="flex items-center justify-between">
-            <div class="flex items-center gap-3">
-              <div class="w-10 h-10 rounded-2xl bg-amber-500/15 text-amber-400 flex items-center justify-center">
-                <i data-lucide="${g.icon || 'trophy'}" class="w-5 h-5"></i>
-              </div>
-              <div>
-                <h4 class="font-bold text-white text-sm">${g.name}</h4>
-                <p class="text-xs text-slate-400">${formatNumber(saved)} / ${formatNumber(target)} ${sym}</p>
-              </div>
+      // 2. Render in Home View (Wishlist Savings Goals)
+      if (homeContainer) {
+        homeContainer.innerHTML = '';
+        if (appState.goals.length === 0) {
+          homeContainer.innerHTML = `
+            <div class="p-4 rounded-2xl bg-white/[0.03] border border-white/[0.06] text-center space-y-2">
+              <p class="text-xs text-white/50">ဘာဝယ်ဖို့ ငွေစုထားချင်ပါသလဲ?</p>
+              <button onclick="openAddGoalModal()" class="px-3 py-1.5 rounded-full bg-[#A3E635]/20 text-[#A3E635] text-xs font-bold hover:bg-[#A3E635]/30 transition">
+                + ပန်းတိုင်အသစ် သတ်မှတ်မည်
+              </button>
             </div>
-            <button onclick="openDepositModal('${g.id}')" class="px-3 py-1.5 rounded-full bg-white/10 hover:bg-white/15 text-xs text-white font-bold cursor-pointer">
-              + စုငွေထည့်
-            </button>
-          </div>
-          <div class="w-full bg-white/[0.08] h-2.5 rounded-full overflow-hidden">
-            <div class="h-full rounded-full bg-[#30D158] transition-all duration-500" style="width: ${pct}%"></div>
-          </div>
-        `;
-        container.appendChild(card);
-      });
+          `;
+        } else {
+          appState.goals.forEach(g => {
+            const saved = Number(g.saved) || 0;
+            const target = Number(g.target) || 1;
+            const pct = Math.min(100, Math.round((saved / target) * 100));
+            const needed = Math.max(0, target - saved);
+            const gName = appState.lang === 'my' ? (g.name_my || g.name || g.name_en) : (g.name_en || g.name || g.name_my);
+            const iconName = g.icon || 'target';
 
-      const setTxt = (id, txt) => { const el = document.getElementById(id); if (el) el.textContent = txt; };
-      setTxt('goals-total-saved', formatNumber(totalSaved));
-      setTxt('goals-total-target', formatNumber(totalTarget));
+            const card = document.createElement('div');
+            card.className = "p-3.5 rounded-2xl bg-white/[0.04] border border-white/[0.08] hover:border-[#A3E635]/30 transition-all space-y-2.5";
+            card.innerHTML = `
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2.5">
+                  <div class="w-8 h-8 rounded-xl bg-amber-500/15 text-amber-400 flex items-center justify-center shrink-0">
+                    <i data-lucide="${iconName}" class="w-4 h-4"></i>
+                  </div>
+                  <div>
+                    <h4 class="text-xs font-black text-white leading-tight">${gName}</h4>
+                    <p class="text-[10px] text-white/50 font-medium">ပန်းတိုင်: ${formatNumber(target)} ${sym}</p>
+                  </div>
+                </div>
+                <div class="flex items-center gap-2">
+                  <span class="text-[11px] font-black text-[#A3E635] bg-[#A3E635]/10 px-2 py-0.5 rounded-md border border-[#A3E635]/20">${pct}%</span>
+                  <button onclick="openDepositModal('${g.id}')" class="px-3 py-1.5 rounded-full bg-[#A3E635] hover:bg-[#84CC16] text-slate-950 font-black text-xs active:scale-95 transition cursor-pointer shadow-sm whitespace-nowrap shrink-0">
+                    + စုငွေထည့်
+                  </button>
+                </div>
+              </div>
+              
+              <div class="w-full bg-white/[0.08] h-2 rounded-full overflow-hidden">
+                <div class="h-full rounded-full bg-gradient-to-r from-[#A3E635] to-[#10B981] transition-all duration-500" style="width: ${pct}%"></div>
+              </div>
+
+              <div class="flex items-center justify-between text-[10px] text-white/60 pt-0.5">
+                <span>စုပြီး: <strong class="text-white">${formatNumber(saved)} ${sym}</strong></span>
+                <span>လိုအပ်သေး: <strong class="text-amber-400">${formatNumber(needed)} ${sym}</strong></span>
+              </div>
+            `;
+            homeContainer.appendChild(card);
+          });
+        }
+      }
 
       if (window.lucide) lucide.createIcons();
     }
@@ -5175,8 +6014,10 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
       renderStatsAndHero();
       renderAccounts();
       renderDonutChart();
+      renderHomeTransactions();
       renderRecentTransactions();
       renderAllTransactions();
+      triggerGaugeSpinAnimation();
 
       if (appState.activeViewingAccountId) {
         openAccountDetail(appState.activeViewingAccountId);
@@ -5187,8 +6028,17 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
 
     /* Old delete replaced by 2-tier promptDeleteTransaction */
 
-    /* Goals Modals */
+    /* Goals Modals & Preset Handlers */
     function openAddGoalModal() {
+      const nameIn = document.getElementById('goal-name-input');
+      const targetIn = document.getElementById('goal-target-input');
+      const initialIn = document.getElementById('goal-initial-input');
+      const iconIn = document.getElementById('goal-icon-input');
+      if (nameIn) nameIn.value = '';
+      if (targetIn) targetIn.value = '';
+      if (initialIn) initialIn.value = '';
+      if (iconIn) iconIn.value = 'target';
+
       document.getElementById('add-goal-modal').classList.remove('hidden');
       document.getElementById('add-goal-modal').classList.add('flex');
     }
@@ -5197,10 +6047,20 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
       document.getElementById('add-goal-modal').classList.remove('flex');
     }
 
+    function selectGoalPreset(name, target, icon) {
+      const nameInput = document.getElementById('goal-name-input');
+      const targetInput = document.getElementById('goal-target-input');
+      const iconInput = document.getElementById('goal-icon-input');
+      if (nameInput) nameInput.value = name;
+      if (targetInput) targetInput.value = target;
+      if (iconInput) iconInput.value = icon || 'target';
+    }
+
     function saveNewGoal() {
       const name = document.getElementById('goal-name-input').value.trim();
       const target = parseFloat(document.getElementById('goal-target-input').value);
       const initial = parseFloat(document.getElementById('goal-initial-input').value) || 0;
+      const icon = (document.getElementById('goal-icon-input') && document.getElementById('goal-icon-input').value) || 'target';
 
       if (!name || !target || target <= 0) {
         showToast('အချက်အလက် ပြည့်စုံစွာ ဖြည့်သွင်းပါ', true);
@@ -5209,35 +6069,55 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
 
       appState.goals.push({
         id: 'g_' + Date.now(),
+        name: name,
         name_my: name,
         name_en: name,
         target: target,
         saved: initial,
-        icon: 'trophy'
+        icon: icon
       });
 
       persistState();
       closeAddGoalModal();
       renderGoals();
-      showToast('ပန်းတိုင်အသစ် သတ်မှတ်ပြီးပါပြီ');
+      triggerGaugeSpinAnimation();
+      showToast('ပန်းတိုင်အသစ် သတ်မှတ်ပြီးပါပြီ 🎯');
     }
 
     let activeDepositGoalId = null;
     function openDepositModal(goalId) {
       activeDepositGoalId = goalId;
+      const goal = appState.goals.find(g => g.id === goalId);
+      const titleEl = document.getElementById('deposit-modal-title');
+      if (titleEl && goal) {
+        const gName = appState.lang === 'my' ? (goal.name_my || goal.name || goal.name_en) : (goal.name_en || goal.name || goal.name_my);
+        titleEl.textContent = `${gName} သို့ စုငွေထည့်ရန်`;
+      }
+      
+      const accSelect = document.getElementById('deposit-goal-account-select');
+      if (accSelect) {
+        accSelect.innerHTML = appState.accounts.map(acc => {
+          const accName = appState.lang === 'my' ? (acc.name_my || acc.name_en) : (acc.name_en || acc.name_my);
+          return `<option value="${acc.id}">${accName} (${formatNumber(acc.balance || 0)} Ks)</option>`;
+        }).join('');
+      }
+
       document.getElementById('deposit-amount-input').value = '';
       document.getElementById('deposit-goal-modal').classList.remove('hidden');
       document.getElementById('deposit-goal-modal').classList.add('flex');
     }
+
     function closeDepositGoalModal() {
       document.getElementById('deposit-goal-modal').classList.add('hidden');
       document.getElementById('deposit-goal-modal').classList.remove('flex');
       activeDepositGoalId = null;
     }
+
     function quickSetDeposit(amt) {
       const input = document.getElementById('deposit-amount-input');
       input.value = (parseFloat(input.value) || 0) + amt;
     }
+
     function confirmDepositGoal() {
       const amt = parseFloat(document.getElementById('deposit-amount-input').value);
       if (!amt || amt <= 0) {
@@ -5245,13 +6125,36 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
         return;
       }
       const goal = appState.goals.find(g => g.id === activeDepositGoalId);
-      if (goal) {
-        goal.saved = (goal.saved || 0) + amt;
-        persistState();
-        renderGoals();
-        closeDepositGoalModal();
-        showToast('ပန်းတိုင်သို့ ငွေထည့်သွင်းပြီးပါပြီ!');
+      if (!goal) return;
+
+      const accSelect = document.getElementById('deposit-goal-account-select');
+      const selAccId = accSelect ? accSelect.value : (appState.accounts[0] ? appState.accounts[0].id : null);
+      const account = appState.accounts.find(a => a.id === selAccId);
+
+      if (account) {
+        account.balance = Math.max(0, (account.balance || 0) - amt);
       }
+
+      goal.saved = (goal.saved || 0) + amt;
+      const gName = appState.lang === 'my' ? (goal.name_my || goal.name || goal.name_en) : (goal.name_en || goal.name || goal.name_my);
+
+      // Log transaction in history
+      appState.transactions.unshift({
+        id: 'tx_' + Date.now(),
+        type: 'expense',
+        amount: amt,
+        category: 'savings',
+        accountId: selAccId || 'cash',
+        date: new Date().toISOString().split('T')[0],
+        note: `[ငွေစု] ${gName}`,
+        createdAt: new Date().toISOString()
+      });
+
+      persistState();
+      renderAllViews();
+      closeDepositGoalModal();
+      triggerGaugeSpinAnimation();
+      showToast(`${gName} သို့ +${formatNumber(amt)} Ks စုဆောင်းပြီးပါပြီ! 🪙`);
     }
 
     /* Budget Modal */
@@ -5667,7 +6570,7 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
     }
 
     
-    /* ================= OFFLINE PWA & SERVICE WORKER ENGINE ================= */
+    /* ================= OFFLINE PWA & AUTO-UPDATE ENGINE ================= */
     let deferredPrompt = null;
 
     if ('serviceWorker' in navigator) {
@@ -5675,11 +6578,51 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
         navigator.serviceWorker.register('./sw.js')
           .then(reg => {
             console.log('[PWA] Service Worker registered successfully! Scope:', reg.scope);
+            // Immediately check for updates
             reg.update();
+
+            // Check for updates periodically every 60s
+            setInterval(() => {
+              reg.update();
+            }, 60000);
+
+            // Handle new worker found
+            reg.addEventListener('updatefound', () => {
+              const newWorker = reg.installing;
+              if (newWorker) {
+                newWorker.addEventListener('statechange', () => {
+                  if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                    console.log('[PWA] New version ready! Activating...');
+                    if (window.showToast) {
+                      showToast('🚀 ဗားရှင်းအသစ်သို့ အလိုအလျောက် အပ်ဒိတ်ပြုလုပ်ပြီးပါပြီ!');
+                    }
+                  }
+                });
+              }
+            });
           })
           .catch(err => {
             console.warn('[PWA] Service Worker registration failed:', err);
           });
+      });
+
+      // Auto-reload when new controller takes over to instantly show updated UI on user phone
+      let isRefreshing = false;
+      navigator.serviceWorker.addEventListener('controllerchange', () => {
+        if (!isRefreshing) {
+          isRefreshing = true;
+          console.log('[PWA] Controller changed: refreshing to load latest version...');
+          window.location.reload();
+        }
+      });
+
+      // Check for update when app is foregrounded / focused on mobile
+      document.addEventListener('visibilitychange', () => {
+        if (document.visibilityState === 'visible' && navigator.serviceWorker.getRegistration) {
+          navigator.serviceWorker.getRegistration().then(reg => {
+            if (reg) reg.update();
+          });
+        }
       });
     }
 
