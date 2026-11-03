@@ -27,28 +27,28 @@
 
     /* Apple HIG Liquid Glass Navigation Dock & Active Morphing Pill */
     .liquid-glass-dock {
-      background: rgba(18, 22, 34, 0.75) !important;
-      backdrop-filter: blur(28px) saturate(180%) !important;
-      -webkit-backdrop-filter: blur(28px) saturate(180%) !important;
-      border: 1px solid rgba(255, 255, 255, 0.16) !important;
-      box-shadow: 0 20px 48px rgba(0, 0, 0, 0.75),
-                  inset 0 1px 1.5px rgba(255, 255, 255, 0.35),
+      background: rgba(28, 28, 30, 0.82) !important;
+      backdrop-filter: blur(32px) saturate(190%) !important;
+      -webkit-backdrop-filter: blur(32px) saturate(190%) !important;
+      border: 1px solid rgba(255, 255, 255, 0.14) !important;
+      box-shadow: 0 20px 48px rgba(0, 0, 0, 0.8),
+                  inset 0 1px 1.5px rgba(255, 255, 255, 0.25),
                   inset 0 -1px 1px rgba(0, 0, 0, 0.4) !important;
     }
     .liquid-tab-btn {
       position: relative;
-      transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
       padding: 6px 8px;
       border-radius: 20px;
     }
     .liquid-tab-active {
       background: rgba(255, 255, 255, 0.12) !important;
-      border: 1px solid rgba(255, 255, 255, 0.24) !important;
-      box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.3), 0 4px 14px rgba(0, 208, 132, 0.25) !important;
-      color: #00D084 !important;
+      border: 1px solid rgba(255, 255, 255, 0.22) !important;
+      box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.25), 0 4px 14px rgba(48, 209, 88, 0.3) !important;
+      color: #30D158 !important;
     }
     .liquid-tab-active i {
-      filter: drop-shadow(0 0 6px rgba(0, 208, 132, 0.5));
+      filter: drop-shadow(0 0 6px rgba(48, 209, 88, 0.4));
     }
 
     @keyframes shake {
@@ -121,33 +121,55 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
       display: none !important;
     }
     html, 
-    /* Spendee / Monpay Native Dark Theme */
+    /* Apple iOS Human Interface Guidelines (HIG) OLED Dark Theme */
     body {
-      background-color: #0B0C10;
-      color: #F8FAFC;
-      font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+      background-color: #000000;
+      color: #FFFFFF;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "SF Pro", "Helvetica Neue", "Noto Sans Myanmar", sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      font-feature-settings: "cv02", "cv03", "cv04", "cv11", "tnum";
       min-height: 100vh;
     }
-    .spendee-card {
-      background-color: #141620;
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      border-radius: 26px;
+    .spendee-card, .apple-card {
+      background-color: #1C1C1E;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 22px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
     }
-    .spendee-card-active {
-      background-color: #1A1D2A;
-      border-color: rgba(0, 208, 132, 0.35);
+    .spendee-card-active, .apple-card-active {
+      background-color: #2C2C2E;
+      border-color: rgba(48, 209, 88, 0.35);
+    }
+    .apple-card-hero {
+      background: linear-gradient(145deg, #242426 0%, #1A1A1C 50%, #111113 100%) !important;
+      border: 1px solid rgba(255, 255, 255, 0.14) !important;
+      box-shadow: 0 16px 36px -6px rgba(0, 0, 0, 0.85), inset 0 1px 1.5px rgba(255, 255, 255, 0.22) !important;
+      border-radius: 26px !important;
+    }
+    .apple-inset-group {
+      background-color: #1C1C1E !important;
+      border: 1px solid rgba(255, 255, 255, 0.08) !important;
+      border-radius: 22px !important;
+      overflow: hidden !important;
+    }
+    .apple-glass-header {
+      background: rgba(0, 0, 0, 0.8) !important;
+      backdrop-filter: blur(28px) saturate(180%) !important;
+      -webkit-backdrop-filter: blur(28px) saturate(180%) !important;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
     }
     .text-spendee-green {
-      color: #00D084 !important;
+      color: #30D158 !important;
     }
     .text-spendee-red {
-      color: #FF5B5B !important;
+      color: #FF453A !important;
     }
     .bg-spendee-green {
-      background-color: #00D084 !important;
+      background-color: #30D158 !important;
     }
     .bg-spendee-red {
-      background-color: #FF5B5B !important;
+      background-color: #FF453A !important;
     }
 
     body {
@@ -158,12 +180,8 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
       overscroll-behavior-x: none;
       touch-action: pan-y pinch-zoom;
       -webkit-overflow-scrolling: touch;
-    }
-    body {
-      background-color: #07080D;
-      color: #F8FAFC;
-      font-feature-settings: "cv02", "cv03", "cv04", "cv11";
-      min-height: 100vh;
+      padding-top: env(safe-area-inset-top, 0px);
+      padding-bottom: env(safe-area-inset-bottom, 24px);
     }
     
     /* Hide chrome / safari / edge / firefox number input spinner arrows */
@@ -180,39 +198,38 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
 
     /* Apple Liquid Glass Material & Surfaces */
     .glass-apple {
-      background: rgba(18, 20, 32, 0.72);
-      backdrop-filter: blur(28px) saturate(190%);
-      -webkit-backdrop-filter: blur(28px) saturate(190%);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      box-shadow: 0 12px 32px -8px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+      background: rgba(28, 28, 30, 0.94);
+      backdrop-filter: blur(32px) saturate(190%);
+      -webkit-backdrop-filter: blur(32px) saturate(190%);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: 0 16px 48px rgba(0, 0, 0, 0.8), inset 0 1px 1px rgba(255, 255, 255, 0.2);
     }
     .glass-apple-card {
-      background: rgba(20, 23, 36, 0.65);
-      backdrop-filter: blur(20px) saturate(160%);
-      -webkit-backdrop-filter: blur(20px) saturate(160%);
-      border: 1px solid rgba(255, 255, 255, 0.07);
-      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      background: #1C1C1E;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 20px;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
     }
     .glass-apple-card:hover {
-      background: rgba(25, 29, 46, 0.78);
+      background: #2C2C2E;
       border-color: rgba(255, 255, 255, 0.16);
-      transform: translateY(-2px);
+      transform: translateY(-1px);
     }
     .glass-nav {
-      background: rgba(10, 11, 18, 0.82);
+      background: rgba(0, 0, 0, 0.82);
       backdrop-filter: blur(32px) saturate(200%);
       -webkit-backdrop-filter: blur(32px) saturate(200%);
       border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     }
     .glass-pill {
-      background: rgba(255, 255, 255, 0.06);
+      background: rgba(255, 255, 255, 0.08);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
-      border: 1px solid rgba(255, 255, 255, 0.09);
+      border: 1px solid rgba(255, 255, 255, 0.1);
       transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
     }
     .glass-pill:hover {
-      background: rgba(255, 255, 255, 0.12);
+      background: rgba(255, 255, 255, 0.14);
       border-color: rgba(255, 255, 255, 0.18);
     }
     .glass-pill-active {
@@ -305,20 +322,20 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
   <div id="app-wallpaper-layer" class="fixed inset-0 pointer-events-none transition-all duration-700 -z-20 bg-cover bg-center"></div>
   <div id="app-scrim-layer" class="fixed inset-0 pointer-events-none transition-opacity duration-500 -z-10 bg-[#07080D]/75 backdrop-blur-[0.5px]"></div>
 
-  <!-- ================= SPENDEE MOBILE HEADER ================= -->
-  <header class="sticky top-0 z-40 bg-[#0B0C10]/90 backdrop-blur-xl border-b border-white/[0.05] w-full max-w-full overflow-hidden">
+  <!-- ================= APPLE HIG FROSTED HEADER ================= -->
+  <header class="sticky top-0 z-40 apple-glass-header w-full max-w-full overflow-hidden">
     <div class="max-w-md w-full mx-auto px-4 py-3 flex items-center justify-between gap-3 overflow-hidden">
 
-      <!-- Left: Notification Bell -->
-      <button onclick="showToast('🔔 အသိပေးချက် အသစ်မရှိသေးပါ')" title="Notifications" class="w-9 h-9 rounded-full bg-white/[0.07] hover:bg-white/12 text-slate-300 hover:text-white flex items-center justify-center transition shrink-0 cursor-pointer btn-press">
+      <!-- Left: Notification Bell in Apple Inset Circle -->
+      <button onclick="showToast('🔔 အသိပေးချက် အသစ်မရှိသေးပါ')" title="Notifications" class="w-9 h-9 rounded-full bg-white/[0.08] hover:bg-white/[0.14] active:scale-95 text-white/90 flex items-center justify-center transition shrink-0 cursor-pointer border border-white/10 shadow-sm">
         <i data-lucide="bell" class="w-4 h-4"></i>
       </button>
 
-      <!-- Center: Clean Brand / Active View Title & Cloud Pill -->
+      <!-- Center: Apple Large Title & Live Status Pill -->
       <div class="flex-1 text-center min-w-0 px-1 flex flex-col items-center justify-center">
-        <h2 id="header-view-title" class="text-xs sm:text-sm font-black text-white tracking-tight truncate">Burmese Money Manager</h2>
-        <div id="cloud-sync-status-pill" class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-[9px] text-emerald-400 font-bold mt-0.5">
-          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+        <h2 id="header-view-title" class="text-xs sm:text-sm font-bold text-white tracking-tight truncate">Burmese Money</h2>
+        <div id="cloud-sync-status-pill" class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#30D158]/15 border border-[#30D158]/30 text-[9px] text-[#30D158] font-semibold mt-0.5 shadow-sm">
+          <span class="w-1.5 h-1.5 rounded-full bg-[#30D158] animate-pulse"></span>
           <span>Online Live Sync</span>
         </div>
       </div>
@@ -326,11 +343,11 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
       <!-- Right: Action Buttons Group (Search & Settings) -->
       <div class="flex items-center gap-2 shrink-0">
         <!-- Search Trigger Icon Button -->
-        <button onclick="openSearchModal()" title="Search စာရင်းရှာဖွေရန်" class="w-9 h-9 rounded-full bg-white/[0.07] hover:bg-[#00D084]/20 text-slate-300 hover:text-[#00D084] flex items-center justify-center transition cursor-pointer btn-press">
+        <button onclick="openSearchModal()" title="Search စာရင်းရှာဖွေရန်" class="w-9 h-9 rounded-full bg-white/[0.08] hover:bg-white/[0.14] active:scale-95 text-white/90 flex items-center justify-center transition cursor-pointer border border-white/10 shadow-sm">
           <i data-lucide="search" class="w-4 h-4"></i>
         </button>
         <!-- Filter / Settings Button -->
-        <button onclick="openSettingsModal()" title="Filters & Settings" class="w-9 h-9 rounded-full bg-white/[0.07] hover:bg-white/12 text-slate-300 hover:text-white flex items-center justify-center transition cursor-pointer btn-press">
+        <button onclick="openSettingsModal()" title="Filters & Settings" class="w-9 h-9 rounded-full bg-white/[0.08] hover:bg-white/[0.14] active:scale-95 text-white/90 flex items-center justify-center transition cursor-pointer border border-white/10 shadow-sm">
           <i data-lucide="sliders-horizontal" class="w-4 h-4"></i>
         </button>
       </div>
@@ -366,44 +383,73 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
     <!-- ================= VIEW 1: HOME (CASH FLOW HERO, MINI CHART, GROUPED TXS) ================= -->
     <div id="view-home" class="space-y-4">
       
-      <!-- Big Cash Flow Balance Card -->
-      <div class="p-5 rounded-[28px] spendee-card space-y-4">
-        <div class="flex items-start justify-between gap-3">
-          <div class="space-y-0.5">
-            <h1 class="text-2xl sm:text-3xl font-black text-white tracking-tight" id="home-cashflow-val">0 Ks</h1>
-            <p class="text-xs text-slate-400 font-medium" id="home-cashflow-sub">Cash Flow • နိုဝင်ဘာ ၂၀၂၆</p>
+      <!-- Apple Card / Apple Wallet Titanium Balance Hero -->
+      <div class="p-5 sm:p-6 apple-card-hero space-y-4 relative overflow-hidden">
+        
+        <!-- Apple Card Top Header -->
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <div class="w-7 h-7 rounded-[9px] bg-white/10 border border-white/20 flex items-center justify-center text-white font-black text-xs shadow-inner">
+              $
+            </div>
+            <span class="text-[11px] font-semibold tracking-wider text-white/60 uppercase">Apple Wallet Ledger</span>
           </div>
-          <div class="flex flex-col gap-1.5 items-end shrink-0">
-            <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#00D084]/15 text-[#00D084] font-bold text-[11px]">
-              <i data-lucide="plus-circle" class="w-3 h-3"></i>
-              <span id="home-inflow-val">+0 Ks</span>
-            </span>
-            <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#FF5B5B]/15 text-[#FF5B5B] font-bold text-[11px]">
-              <i data-lucide="minus-circle" class="w-3 h-3"></i>
-              <span id="home-outflow-val">-0 Ks</span>
-            </span>
+          <span class="text-[11px] font-semibold text-white/60" id="home-month-display">နိုဝင်ဘာ ၂၀၂၆</span>
+        </div>
+
+        <!-- Main Balance Display -->
+        <div class="space-y-1">
+          <p class="text-[11px] text-white/50 font-medium tracking-wide uppercase" id="home-cashflow-sub">Net Cash Flow</p>
+          <h1 class="text-3xl sm:text-4xl font-bold text-white tracking-tight" id="home-cashflow-val">0 Ks</h1>
+        </div>
+
+        <!-- Inflow & Outflow Apple Pill Capsules -->
+        <div class="grid grid-cols-2 gap-2.5 pt-1">
+          <div class="p-2.5 rounded-2xl bg-white/[0.06] border border-white/[0.08] flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <div class="w-6 h-6 rounded-full bg-[#30D158]/20 flex items-center justify-center text-[#30D158]">
+                <i data-lucide="arrow-down-left" class="w-3.5 h-3.5 stroke-[2.5]"></i>
+              </div>
+              <span class="text-[11px] text-white/60 font-medium">ဝင်ငွေ</span>
+            </div>
+            <span class="text-xs font-bold text-[#30D158]" id="home-inflow-val">+0 Ks</span>
+          </div>
+
+          <div class="p-2.5 rounded-2xl bg-white/[0.06] border border-white/[0.08] flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <div class="w-6 h-6 rounded-full bg-[#FF453A]/20 flex items-center justify-center text-[#FF453A]">
+                <i data-lucide="arrow-up-right" class="w-3.5 h-3.5 stroke-[2.5]"></i>
+              </div>
+              <span class="text-[11px] text-white/60 font-medium">အသုံး</span>
+            </div>
+            <span class="text-xs font-bold text-[#FF453A]" id="home-outflow-val">-0 Ks</span>
           </div>
         </div>
 
-        <!-- Mini Cashflow Bar Visual Indicator -->
-        <div class="pt-2 space-y-1.5 border-t border-white/[0.06]">
-          <div class="flex justify-between text-[10px] text-slate-400 font-bold">
-            <span>Inflow vs Outflow</span>
-            <span id="home-flow-pct">100% Available</span>
-          </div>
-          <div class="w-full bg-white/[0.08] h-2.5 rounded-full overflow-hidden flex p-0.5">
-            <div id="home-inflow-bar" class="h-full rounded-full bg-[#00D084] transition-all duration-500" style="width: 50%"></div>
-            <div id="home-outflow-bar" class="h-full rounded-full bg-[#FF5B5B] transition-all duration-500 ml-auto" style="width: 50%"></div>
+        <!-- Progress Flow Bar -->
+        <div class="space-y-1 pt-1">
+          <div class="w-full bg-white/[0.08] h-1.5 rounded-full overflow-hidden flex">
+            <div id="home-inflow-bar" class="h-full rounded-full bg-[#30D158] transition-all duration-500" style="width: 50%"></div>
+            <div id="home-outflow-bar" class="h-full rounded-full bg-[#FF453A] transition-all duration-500 ml-auto" style="width: 50%"></div>
           </div>
         </div>
-      </div>
 
-      <!-- Month Selector Pill -->
-      <div class="flex items-center justify-center">
-        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/[0.07] border border-white/10 text-xs font-bold text-white shadow">
-          <i data-lucide="calendar" class="w-3.5 h-3.5 text-[#00D084]"></i>
-          <span id="home-month-display">နိုဝင်ဘာ ၂၀၂၆</span>
+        <!-- Apple Card Quick Action Bar: Income, Expense, Transfer -->
+        <div class="grid grid-cols-3 gap-2 pt-2 border-t border-white/[0.08]">
+          <button onclick="openAddModal('income')" class="py-2.5 px-2 rounded-2xl bg-white/10 hover:bg-white/15 text-white font-semibold text-xs border border-white/10 flex items-center justify-center gap-1.5 active:scale-95 transition cursor-pointer">
+            <i data-lucide="plus-circle" class="w-3.5 h-3.5 text-[#30D158]"></i>
+            <span>ဝင်ငွေ</span>
+          </button>
+          <button onclick="openAddModal('expense')" class="py-2.5 px-2 rounded-2xl bg-white/10 hover:bg-white/15 text-white font-semibold text-xs border border-white/10 flex items-center justify-center gap-1.5 active:scale-95 transition cursor-pointer">
+            <i data-lucide="minus-circle" class="w-3.5 h-3.5 text-[#FF453A]"></i>
+            <span>အသုံး</span>
+          </button>
+          <button onclick="openAddModal('transfer')" class="py-2.5 px-2 rounded-2xl bg-white/10 hover:bg-white/15 text-white font-semibold text-xs border border-white/10 flex items-center justify-center gap-1.5 active:scale-95 transition cursor-pointer">
+            <i data-lucide="arrow-left-right" class="w-3.5 h-3.5 text-[#0A84FF]"></i>
+            <span>လွှဲမည်</span>
+          </button>
         </div>
+
       </div>
 
       <!-- Grouped Daily Transactions List -->
@@ -416,17 +462,17 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
     <!-- ================= VIEW 2: ACCOUNTS (WALLETS & BANK ACCOUNTS) ================= -->
     <div id="view-accounts" class="hidden space-y-4">
       
-      <!-- Total Net Worth Card -->
-      <div class="p-5 rounded-[28px] spendee-card space-y-2">
-        <p class="text-xs text-slate-400 font-bold uppercase tracking-wider">စုစုပေါင်း လက်ကျန်ငွေ (Net Worth)</p>
-        <h2 class="text-2xl sm:text-3xl font-black text-white" id="accounts-total-val">0 Ks</h2>
-        <p class="text-[11px] text-slate-400">ဘဏ်နှင့် ပိုက်ဆံအိတ်များအားလုံး ပေါင်းလဒ်</p>
+      <!-- Total Net Worth Card (Apple Card Style) -->
+      <div class="p-5 sm:p-6 apple-card-hero space-y-2">
+        <p class="text-xs text-white/50 font-semibold uppercase tracking-wider">စုစုပေါင်း လက်ကျန်ငွေ (Net Worth)</p>
+        <h2 class="text-3xl sm:text-4xl font-bold text-white tracking-tight" id="accounts-total-val">0 Ks</h2>
+        <p class="text-[11px] text-white/60">ဘဏ်နှင့် ပိုက်ဆံအိတ်များအားလုံး ပေါင်းလဒ်</p>
       </div>
 
       <!-- Accounts Section Header -->
       <div class="flex items-center justify-between px-1">
         <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider">ငွေစာရင်း အကောင့်များ</h3>
-        <button onclick="openAddAccountModal()" class="text-xs text-[#00D084] font-bold flex items-center gap-1 hover:underline cursor-pointer">
+        <button onclick="openAddAccountModal()" class="text-xs text-[#30D158] font-bold flex items-center gap-1 hover:underline cursor-pointer">
           <i data-lucide="plus" class="w-3.5 h-3.5"></i>
           <span>Add Account</span>
         </button>
@@ -452,7 +498,7 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
       <div class="p-5 rounded-[28px] spendee-card space-y-4">
         <div class="flex items-center justify-between">
           <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">အသုံးစရိတ် ခွဲခြမ်းစိတ်ဖြာချက်</span>
-          <span class="text-sm font-black text-[#FF5B5B]" id="overview-expense-total">0 Ks</span>
+          <span class="text-sm font-black text-[#FF453A]" id="overview-expense-total">0 Ks</span>
         </div>
 
         <div class="flex flex-col sm:flex-row items-center justify-center gap-6 py-2">
@@ -484,8 +530,8 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
             <p class="text-[10px] text-slate-400">Monthly Cashflow Trend</p>
           </div>
           <div class="flex items-center gap-3 text-[10px] font-bold">
-            <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-[#00D084]"></span> ဝင်ငွေ</span>
-            <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-[#FF5B5B]"></span> ထွက်ငွေ</span>
+            <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-[#30D158]"></span> ဝင်ငွေ</span>
+            <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-[#FF453A]"></span> ထွက်ငွေ</span>
           </div>
         </div>
 
@@ -496,7 +542,7 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
         <div class="grid grid-cols-3 gap-2 pt-1 text-center">
           <div class="p-2.5 rounded-2xl bg-white/[0.03]">
             <span class="text-[10px] text-slate-400 block font-semibold">လစဉ် ပျမ်းမျှ</span>
-            <span class="text-xs font-black text-[#FF5B5B]" id="ann-avg-expense">0 Ks</span>
+            <span class="text-xs font-black text-[#FF453A]" id="ann-avg-expense">0 Ks</span>
           </div>
           <div class="p-2.5 rounded-2xl bg-white/[0.03]">
             <span class="text-[10px] text-slate-400 block font-semibold">အသုံးအများဆုံး</span>
@@ -504,7 +550,7 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
           </div>
           <div class="p-2.5 rounded-2xl bg-white/[0.03]">
             <span class="text-[10px] text-slate-400 block font-semibold">စုဆောင်းမှုနှုန်း</span>
-            <span class="text-xs font-black text-[#00D084]" id="ann-savings-rate">0%</span>
+            <span class="text-xs font-black text-[#30D158]" id="ann-savings-rate">0%</span>
           </div>
         </div>
       </div>
@@ -549,7 +595,7 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
       <!-- Savings Goals Section Header -->
       <div class="flex items-center justify-between px-1">
         <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider">ငွေစုပန်းတိုင်များ (Savings Goals)</h3>
-        <button onclick="openAddGoalModal()" class="text-xs text-[#00D084] font-bold flex items-center gap-1 hover:underline cursor-pointer">
+        <button onclick="openAddGoalModal()" class="text-xs text-[#30D158] font-bold flex items-center gap-1 hover:underline cursor-pointer">
           <i data-lucide="plus" class="w-3.5 h-3.5"></i>
           <span>+ ပန်းတိုင်အသစ်</span>
         </button>
@@ -565,35 +611,35 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
     <!-- ================= VIEW 5: MORE (PROFILE, SETTINGS, EXPORT, INSTALL) ================= -->
     <div id="view-more" class="hidden space-y-4">
       
-      <!-- User Profile Header Card -->
-      <div class="p-4 rounded-[28px] spendee-card flex items-center justify-between gap-3">
+      <!-- User Profile Header Card (Apple Style) -->
+      <div class="p-4 rounded-[22px] apple-inset-group flex items-center justify-between gap-3 shadow-sm">
         <div class="flex items-center gap-3 min-w-0">
-          <div class="w-12 h-12 rounded-2xl overflow-hidden border border-white/20 bg-indigo-600/30 shrink-0">
+          <div class="w-12 h-12 rounded-[14px] overflow-hidden border border-white/20 bg-indigo-600/30 shrink-0">
             <img id="more-user-avatar" src="" alt="Profile" class="w-full h-full object-cover">
           </div>
           <div class="min-w-0">
-            <h3 class="text-sm font-black text-white truncate" id="more-user-name">Sithu</h3>
-            <p class="text-xs text-slate-400 truncate" id="more-user-email">sithu@local.app</p>
+            <h3 class="text-sm font-semibold text-white truncate" id="more-user-name">Sithu</h3>
+            <p class="text-xs text-white/50 truncate" id="more-user-email">sithu@local.app</p>
           </div>
         </div>
-        <button onclick="openProfileModal()" class="px-3 py-1.5 rounded-full bg-white/10 hover:bg-white/15 text-xs font-bold text-white transition shrink-0 cursor-pointer">
+        <button onclick="openProfileModal()" class="px-3.5 py-1.5 rounded-full bg-white/10 hover:bg-white/15 text-xs font-semibold text-white transition shrink-0 cursor-pointer active:scale-95">
           Edit
         </button>
       </div>
 
-      <!-- Settings Menu Group 1: Preferences -->
-      <div class="rounded-[28px] spendee-card divide-y divide-white/[0.05] overflow-hidden text-xs text-white">
+      <!-- Settings Menu Group 1: Preferences (Apple Inset Group) -->
+      <div class="apple-inset-group divide-y divide-white/[0.06] shadow-sm text-xs text-white">
         <!-- Currency -->
         <div class="p-4 flex items-center justify-between">
           <div class="flex items-center gap-3">
             <i data-lucide="coins" class="w-4 h-4 text-amber-400"></i>
             <span>Main Currency (ငွေကြေးစနစ်)</span>
           </div>
-          <select id="more-currency-select" onchange="changeCurrency(this.value)" class="bg-white/10 text-white font-bold text-xs rounded-xl px-2.5 py-1 focus:outline-none cursor-pointer">
-            <option value="MMK" class="bg-slate-900">MMK (Ks)</option>
-            <option value="MYR" class="bg-slate-900">MYR (RM)</option>
-            <option value="USD" class="bg-slate-900">USD ($)</option>
-            <option value="THB" class="bg-slate-900">THB (฿)</option>
+          <select id="more-currency-select" onchange="changeCurrency(this.value)" class="bg-[#2C2C2E] text-white font-semibold text-xs rounded-xl px-2.5 py-1 border border-white/10 focus:outline-none cursor-pointer">
+            <option value="MMK" class="bg-black">MMK (Ks)</option>
+            <option value="MYR" class="bg-black">MYR (RM)</option>
+            <option value="USD" class="bg-black">USD ($)</option>
+            <option value="THB" class="bg-black">THB (฿)</option>
           </select>
         </div>
 
@@ -603,9 +649,9 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
             <i data-lucide="globe" class="w-4 h-4 text-cyan-400"></i>
             <span>Language (ဘာသာစကား)</span>
           </div>
-          <span class="text-slate-400 font-bold flex items-center gap-1">
+          <span class="text-white/50 font-semibold flex items-center gap-1">
             <span id="more-lang-flag">🇲🇲</span>
-            <i data-lucide="chevron-right" class="w-4 h-4"></i>
+            <i data-lucide="chevron-right" class="w-4 h-4 text-white/30"></i>
           </span>
         </button>
 
@@ -615,22 +661,22 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
             <i data-lucide="palette" class="w-4 h-4 text-pink-400"></i>
             <span>Appearance & Themes (နောက်ခံ)</span>
           </div>
-          <i data-lucide="chevron-right" class="w-4 h-4 text-slate-400"></i>
+          <i data-lucide="chevron-right" class="w-4 h-4 text-white/30"></i>
         </button>
       </div>
 
       <!-- Settings Menu Group 2: App & Export -->
-      <div class="rounded-[28px] spendee-card divide-y divide-white/[0.05] overflow-hidden text-xs text-white">
+      <div class="apple-inset-group divide-y divide-white/[0.06] shadow-sm text-xs text-white">
         <!-- Install App -->
         <button onclick="handleInstallAppClick()" class="w-full p-4 flex items-center justify-between hover:bg-white/[0.03] transition cursor-pointer text-left">
           <div class="flex items-center gap-3">
-            <i data-lucide="smartphone" class="w-4 h-4 text-[#00D084]"></i>
+            <i data-lucide="smartphone" class="w-4 h-4 text-[#30D158]"></i>
             <div>
-              <span class="font-bold">Install App (ဖုန်းစခရင်ပေါ် သွင်းယူရန်)</span>
-              <p class="text-[10px] text-slate-400 mt-0.5">iOS Safari ချက်ချင်းဖွင့် & Android APK</p>
+              <span class="font-semibold">Install App (ဖုန်းစခရင်ပေါ် သွင်းယူရန်)</span>
+              <p class="text-[10px] text-white/50 mt-0.5">iOS Safari ချက်ချင်းဖွင့် & Android APK</p>
             </div>
           </div>
-          <span class="text-[10px] text-[#00D084] font-bold px-2 py-0.5 rounded-full bg-[#00D084]/15">iOS & Android</span>
+          <span class="text-[10px] text-[#30D158] font-semibold px-2.5 py-0.5 rounded-full bg-[#30D158]/15 border border-[#30D158]/20">iOS & Android</span>
         </button>
 
         <!-- Export CSV -->
@@ -639,7 +685,7 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
             <i data-lucide="file-spreadsheet" class="w-4 h-4 text-blue-400"></i>
             <span>Export CSV Report (ဒေတာ ဒေါင်းလုဒ်)</span>
           </div>
-          <i data-lucide="download" class="w-4 h-4 text-slate-400"></i>
+          <i data-lucide="download" class="w-4 h-4 text-white/30"></i>
         </button>
 
         <!-- PDF / Print -->
@@ -648,26 +694,26 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
             <i data-lucide="printer" class="w-4 h-4 text-indigo-400"></i>
             <span>PDF Print / Share (စာရင်းထုတ်ယူရန်)</span>
           </div>
-          <i data-lucide="chevron-right" class="w-4 h-4 text-slate-400"></i>
+          <i data-lucide="chevron-right" class="w-4 h-4 text-white/30"></i>
         </button>
       </div>
 
       <!-- Settings Menu Group 3: Account Actions -->
-      <div class="rounded-[28px] spendee-card divide-y divide-white/[0.05] overflow-hidden text-xs text-white">
-        <button onclick="handleLogout()" class="w-full p-4 flex items-center justify-between hover:bg-white/[0.03] transition cursor-pointer text-left text-slate-300">
+      <div class="apple-inset-group divide-y divide-white/[0.06] shadow-sm text-xs text-white">
+        <button onclick="handleLogout()" class="w-full p-4 flex items-center justify-between hover:bg-white/[0.03] transition cursor-pointer text-left text-white/80">
           <div class="flex items-center gap-3">
             <i data-lucide="log-out" class="w-4 h-4"></i>
             <span>Logout (အကောင့်မှ ထွက်ခွာမည်)</span>
           </div>
-          <i data-lucide="chevron-right" class="w-4 h-4 text-slate-400"></i>
+          <i data-lucide="chevron-right" class="w-4 h-4 text-white/30"></i>
         </button>
 
-        <button onclick="confirmResetUserData()" class="w-full p-4 flex items-center justify-between hover:bg-rose-500/10 transition cursor-pointer text-left text-[#FF5B5B]">
+        <button onclick="confirmResetUserData()" class="w-full p-4 flex items-center justify-between hover:bg-rose-500/10 transition cursor-pointer text-left text-[#FF453A]">
           <div class="flex items-center gap-3">
-            <i data-lucide="trash-2" class="w-4 h-4 text-[#FF5B5B]"></i>
+            <i data-lucide="trash-2" class="w-4 h-4 text-[#FF453A]"></i>
             <span>Delete All Records (မှတ်တမ်းများ ရှင်းလင်းမည်)</span>
           </div>
-          <i data-lucide="chevron-right" class="w-4 h-4 text-rose-400"></i>
+          <i data-lucide="chevron-right" class="w-4 h-4 text-[#FF453A]/60"></i>
         </button>
       </div>
 
@@ -678,13 +724,13 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
   </main>
 
   <!-- ================= SPENDEE FLOATING ACTION BUTTON (+) ================= -->
-  <button onclick="openAddModal()" title="Add Transaction" class="fixed bottom-24 right-5 z-40 w-14 h-14 rounded-full bg-[#00D084] text-slate-950 flex items-center justify-center shadow-2xl shadow-[#00D084]/40 hover:scale-105 active:scale-90 transition cursor-pointer">
+  <button onclick="openAddModal()" title="Add Transaction" class="fixed bottom-24 right-5 z-40 w-14 h-14 rounded-full bg-[#30D158] text-slate-950 flex items-center justify-center shadow-2xl shadow-[#30D158]/40 hover:scale-105 active:scale-90 transition cursor-pointer">
     <i data-lucide="plus" class="w-7 h-7 stroke-[3]"></i>
   </button>
 
   <!-- ================= APPLE HIG LIQUID GLASS 5-TAB BOTTOM DOCK ================= -->
   <nav class="fixed bottom-4 inset-x-4 max-w-sm mx-auto z-40 liquid-glass-dock rounded-full p-1.5 flex items-center justify-between shadow-2xl">
-    <button onclick="switchView('home')" id="bnav-home" class="liquid-tab-btn liquid-tab-active flex flex-col items-center gap-0.5 text-[#00D084] btn-press cursor-pointer flex-1">
+    <button onclick="switchView('home')" id="bnav-home" class="liquid-tab-btn liquid-tab-active flex flex-col items-center gap-0.5 text-[#30D158] btn-press cursor-pointer flex-1">
       <i data-lucide="home" class="w-5 h-5"></i>
       <span class="text-[9px] font-bold">Home</span>
     </button>
@@ -824,80 +870,83 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
     </div>
   </div>
 
-  <!-- ================= MODAL 1: ADD TRANSACTION ================= -->
-  <div id="add-modal" onclick="if(event.target === this) closeAddModal()" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md hidden items-center justify-center p-4">
-    <div class="w-full max-w-md rounded-[32px] glass-apple p-5 sm:p-6 border border-white/15 shadow-2xl animate-apple-sheet space-y-4 max-h-[92vh] overflow-y-auto no-scrollbar">
+  <!-- ================= MODAL 1: ADD TRANSACTION (APPLE HIG SHEET) ================= -->
+  <div id="add-modal" onclick="if(event.target === this) closeAddModal()" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden items-end sm:items-center justify-center p-0 sm:p-4">
+    <div class="w-full max-w-md rounded-t-[32px] sm:rounded-[32px] glass-apple p-5 sm:p-6 border-t sm:border border-white/15 shadow-2xl animate-apple-sheet space-y-4 max-h-[92vh] overflow-y-auto no-scrollbar">
       
+      <!-- Apple Sheet Drag Grabber -->
+      <div class="w-10 h-1 bg-white/25 rounded-full mx-auto -mt-1 mb-1"></div>
+
       <div class="flex items-center justify-between pb-2 border-b border-white/[0.08]">
-        <h3 class="text-sm font-extrabold text-white flex items-center gap-2">
-          <i data-lucide="plus-circle" class="w-4 h-4 text-indigo-400"></i>
+        <h3 class="text-sm font-bold text-white flex items-center gap-2">
+          <i data-lucide="plus-circle" class="w-4 h-4 text-[#30D158]"></i>
           <span id="txt-modal-add-title">စာရင်းအသစ် ထည့်သွင်းရန်</span>
         </h3>
-        <button onclick="closeAddModal()" class="w-8 h-8 rounded-full glass-pill flex items-center justify-center text-slate-400 hover:text-white btn-press cursor-pointer">
+        <button onclick="closeAddModal()" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-white/60 hover:text-white btn-press cursor-pointer">
           <i data-lucide="x" class="w-4 h-4"></i>
         </button>
       </div>
 
-      <!-- Segmented Type Picker -->
-      <div class="grid grid-cols-3 gap-1.5 glass-pill p-1 rounded-2xl">
-        <button type="button" onclick="setTxType('expense')" id="type-btn-expense" class="py-2 rounded-xl text-xs font-bold text-white bg-rose-500/40 border border-rose-500/40 transition">
+      <!-- Apple Segmented Type Picker -->
+      <div class="grid grid-cols-3 gap-1 bg-[#2C2C2E] p-1 rounded-2xl border border-white/5">
+        <button type="button" onclick="setTxType('expense')" id="type-btn-expense" class="py-2 rounded-xl text-xs font-bold text-white bg-[#FF453A] shadow-md transition">
           <span id="txt-type-expense">ထွက်ငွေ</span>
         </button>
-        <button type="button" onclick="setTxType('income')" id="type-btn-income" class="py-2 rounded-xl text-xs font-bold text-slate-400 hover:text-white transition">
+        <button type="button" onclick="setTxType('income')" id="type-btn-income" class="py-2 rounded-xl text-xs font-semibold text-white/50 hover:text-white transition">
           <span id="txt-type-income">ဝင်ငွေ</span>
         </button>
-        <button type="button" onclick="setTxType('transfer')" id="type-btn-transfer" class="py-2 rounded-xl text-xs font-bold text-slate-400 hover:text-white transition">
+        <button type="button" onclick="setTxType('transfer')" id="type-btn-transfer" class="py-2 rounded-xl text-xs font-semibold text-white/50 hover:text-white transition">
           <span id="txt-type-transfer">လွှဲငွေ</span>
         </button>
       </div>
 
       <!-- Amount Input -->
       <div class="space-y-1">
-        <label class="text-[11px] font-bold text-slate-400" id="lbl-amount">ပမာဏ (AMOUNT)</label>
+        <label class="text-[11px] font-semibold text-white/50 uppercase tracking-wider" id="lbl-amount">ပမာဏ (AMOUNT)</label>
         <div class="relative">
-          <span class="absolute left-3.5 top-1/2 -translate-y-1/2 text-sm font-black text-indigo-400" id="form-cur-sym">Ks</span>
-          <input type="number" id="tx-amount-input" step="any" placeholder="0" class="w-full glass-pill pl-10 pr-4 py-3 rounded-2xl text-base sm:text-lg font-black text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500/50">
+          <span class="absolute left-3.5 top-1/2 -translate-y-1/2 text-sm font-bold text-[#30D158]" id="form-cur-sym">Ks</span>
+          <input type="number" id="tx-amount-input" step="any" placeholder="0" class="w-full bg-[#2C2C2E] border border-white/[0.08] focus:border-[#30D158] focus:ring-1 focus:ring-[#30D158] pl-10 pr-4 py-3 rounded-2xl text-lg font-bold text-white placeholder-white/30 outline-none transition">
         </div>
       </div>
 
       <!-- Category Picker -->
       <div class="space-y-1.5" id="form-category-group">
-        <label class="text-[11px] font-bold text-slate-400" id="lbl-category">အမျိုးအစား (CATEGORY)</label>
+        <label class="text-[11px] font-semibold text-white/50 uppercase tracking-wider" id="lbl-category">အမျိုးအစား (CATEGORY)</label>
         <div class="grid grid-cols-4 gap-2" id="category-selector-grid"></div>
       </div>
 
       <!-- Source Account -->
       <div class="space-y-1">
-        <label class="text-[11px] font-bold text-slate-400" id="lbl-account">အကောင့် (ACCOUNT)</label>
+        <label class="text-[11px] font-semibold text-white/50 uppercase tracking-wider" id="lbl-account">အကောင့် (ACCOUNT)</label>
         <div class="relative">
-          <select id="tx-account-select" class="appearance-none w-full glass-pill px-3.5 py-2.5 rounded-2xl text-xs font-bold text-white cursor-pointer focus:outline-none focus:border-indigo-500/50"></select>
-          <i data-lucide="chevron-down" class="w-4 h-4 text-slate-400 absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none"></i>
+          <select id="tx-account-select" class="appearance-none w-full bg-[#2C2C2E] border border-white/[0.08] focus:border-[#30D158] px-3.5 py-3 rounded-2xl text-xs font-bold text-white cursor-pointer outline-none"></select>
+          <i data-lucide="chevron-down" class="w-4 h-4 text-white/40 absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none"></i>
         </div>
       </div>
 
       <!-- Destination Account (for transfer) -->
       <div class="space-y-1 hidden" id="form-to-account-group">
-        <label class="text-[11px] font-bold text-slate-400" id="lbl-to-account">လက်ခံမည့် အကောင့် (TO ACCOUNT)</label>
+        <label class="text-[11px] font-semibold text-white/50 uppercase tracking-wider" id="lbl-to-account">လက်ခံမည့် အကောင့် (TO ACCOUNT)</label>
         <div class="relative">
-          <select id="tx-to-account-select" class="appearance-none w-full glass-pill px-3.5 py-2.5 rounded-2xl text-xs font-bold text-white cursor-pointer focus:outline-none focus:border-indigo-500/50"></select>
-          <i data-lucide="chevron-down" class="w-4 h-4 text-slate-400 absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none"></i>
+          <select id="tx-to-account-select" class="appearance-none w-full bg-[#2C2C2E] border border-white/[0.08] focus:border-[#30D158] px-3.5 py-3 rounded-2xl text-xs font-bold text-white cursor-pointer outline-none"></select>
+          <i data-lucide="chevron-down" class="w-4 h-4 text-white/40 absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none"></i>
         </div>
       </div>
 
       <!-- Note Input -->
       <div class="space-y-1">
-        <label class="text-[11px] font-bold text-slate-400" id="lbl-note">မှတ်ချက် (NOTE)</label>
-        <input type="text" id="tx-note-input" placeholder="ဥပမာ- နေ့လယ်စာ သို့မဟုတ် လစာဝင်ငွေ..." class="w-full glass-pill px-3.5 py-2.5 rounded-2xl text-xs text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500/50">
+        <label class="text-[11px] font-semibold text-white/50 uppercase tracking-wider" id="lbl-note">မှတ်ချက် (NOTE)</label>
+        <input type="text" id="tx-note-input" placeholder="ဥပမာ- နေ့လယ်စာ သို့မဟုတ် လစာဝင်ငွေ..." class="w-full bg-[#2C2C2E] border border-white/[0.08] focus:border-[#30D158] px-3.5 py-3 rounded-2xl text-xs text-white placeholder-white/30 outline-none transition">
       </div>
 
       <!-- Date Input -->
       <div class="space-y-1">
-        <label class="text-[11px] font-bold text-slate-400" id="lbl-date">ရက်စွဲ (DATE)</label>
-        <input type="date" id="tx-date-input" class="w-full glass-pill px-3.5 py-2.5 rounded-2xl text-xs text-white focus:outline-none focus:border-indigo-500/50">
+        <label class="text-[11px] font-semibold text-white/50 uppercase tracking-wider" id="lbl-date">ရက်စွဲ (DATE)</label>
+        <input type="date" id="tx-date-input" class="w-full bg-[#2C2C2E] border border-white/[0.08] focus:border-[#30D158] px-3.5 py-3 rounded-2xl text-xs text-white outline-none">
       </div>
 
       <!-- Submit Button -->
-      <button type="button" onclick="saveTransaction()" class="w-full py-3 rounded-2xl bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 hover:opacity-95 text-white text-xs font-extrabold shadow-lg shadow-indigo-500/25 transition btn-press cursor-pointer">
+      <button type="button" onclick="saveTransaction()" class="w-full py-3.5 rounded-2xl bg-[#30D158] text-black font-bold text-sm shadow-lg shadow-[#30D158]/20 hover:opacity-95 active:scale-[0.98] transition cursor-pointer">
         <span id="txt-btn-save-tx">စာရင်းသိမ်းဆည်းမည် (Save Transaction)</span>
       </button>
 
@@ -1702,55 +1751,55 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
     </div>
   </div>
 
-    <!-- ================= DRIBBLE FINTECH LOGIN & SIGNUP UI (AI MORTGAGE TRACKER STYLE) ================= -->
-  <div id="auth-gateway" class="fixed inset-0 z-50 bg-[#070C09] flex flex-col items-center justify-between p-4 sm:p-6 transition-all duration-500 overflow-y-auto">
+  <!-- ================= APPLE HIG AUTHENTICATION GATEWAY ================= -->
+  <div id="auth-gateway" class="fixed inset-0 z-50 bg-[#000000] flex flex-col items-center justify-between p-4 sm:p-6 transition-all duration-500 overflow-y-auto">
     
-    <!-- Top Ambient Emerald Glow -->
-    <div class="fixed top-0 inset-x-0 h-96 bg-gradient-to-b from-emerald-500/15 via-emerald-600/5 to-transparent blur-3xl pointer-events-none -z-10"></div>
+    <!-- Top Ambient Specular Glow -->
+    <div class="fixed top-0 inset-x-0 h-96 bg-gradient-to-b from-white/[0.05] via-white/[0.01] to-transparent blur-3xl pointer-events-none -z-10"></div>
 
     <div class="w-full max-w-sm my-auto space-y-6 animate-apple-sheet py-4">
       
       <!-- Top Bar: Language Badge & App Brand Header -->
       <div class="flex items-center justify-between">
-        <button type="button" onclick="toggleLanguage()" class="px-3 py-1 rounded-full bg-white/[0.06] hover:bg-white/[0.1] border border-white/10 text-xs text-slate-300 font-bold flex items-center gap-1.5 transition cursor-pointer">
+        <button type="button" onclick="toggleLanguage()" class="px-3 py-1 rounded-full bg-white/[0.08] hover:bg-white/[0.14] border border-white/10 text-xs text-white/80 font-semibold flex items-center gap-1.5 transition cursor-pointer">
           <span id="auth-lang-flag">🇲🇲</span>
           <span id="auth-lang-text">မြန်မာ</span>
         </button>
 
         <div class="flex items-center gap-2">
-          <div class="w-7 h-7 rounded-xl bg-white/[0.08] border border-white/10 p-0.5 flex items-center justify-center shadow-md">
+          <div class="w-7 h-7 rounded-xl bg-white/10 border border-white/20 p-0.5 flex items-center justify-center shadow-md">
             <img src="icon.svg" alt="BMM" class="w-full h-full object-contain rounded-[10px]" />
           </div>
-          <span class="text-xs font-black text-white tracking-tight">Burmese Money</span>
+          <span class="text-xs font-bold text-white tracking-tight">Burmese Money</span>
         </div>
       </div>
 
       <!-- Mode 1: LOGIN FORM -->
-      <div id="auth-login-panel" class="space-y-5">
+      <div id="auth-login-panel" class="space-y-5 p-6 rounded-[30px] bg-[#1C1C1E] border border-white/[0.08] shadow-2xl">
         
         <div class="space-y-1 text-left">
-          <h2 class="text-2xl sm:text-3xl font-black text-white tracking-tight">Welcome Back</h2>
-          <p class="text-xs text-slate-400 font-medium">Login to view daily financial & cloud updates.</p>
+          <h2 class="text-2xl font-bold text-white tracking-tight">Welcome Back</h2>
+          <p class="text-xs text-white/50 font-normal">Sign in to your private financial vault.</p>
         </div>
 
         <form onsubmit="event.preventDefault(); handleDribbbleLogin();" class="space-y-4 text-left">
           
           <!-- Email Field -->
           <div class="space-y-1.5">
-            <label class="text-xs font-bold text-slate-300">Email</label>
+            <label class="text-xs font-semibold text-white/60">Email</label>
             <div class="relative flex items-center">
-              <i data-lucide="mail" class="w-4 h-4 text-slate-400 absolute left-3.5 pointer-events-none"></i>
-              <input type="email" id="dribbble-login-email" required autocomplete="email" placeholder="Enter your email" class="w-full bg-white/[0.04] border border-white/10 focus:border-[#00D084] focus:ring-1 focus:ring-[#00D084] pl-10 pr-4 py-3.5 rounded-2xl text-xs text-white placeholder-slate-500 outline-none transition" />
+              <i data-lucide="mail" class="w-4 h-4 text-white/40 absolute left-3.5 pointer-events-none"></i>
+              <input type="email" id="dribbble-login-email" required autocomplete="email" placeholder="Enter your email" class="w-full bg-[#2C2C2E] border border-white/[0.08] focus:border-[#30D158] focus:ring-1 focus:ring-[#30D158] pl-10 pr-4 py-3.5 rounded-2xl text-xs text-white placeholder-white/30 outline-none transition" />
             </div>
           </div>
 
           <!-- Password Field -->
           <div class="space-y-1.5">
-            <label class="text-xs font-bold text-slate-300">Password</label>
+            <label class="text-xs font-semibold text-white/60">Password</label>
             <div class="relative flex items-center">
-              <i data-lucide="lock" class="w-4 h-4 text-slate-400 absolute left-3.5 pointer-events-none"></i>
-              <input type="password" id="dribbble-login-password" required autocomplete="current-password" placeholder="Enter your Password" class="w-full bg-white/[0.04] border border-white/10 focus:border-[#00D084] focus:ring-1 focus:ring-[#00D084] pl-10 pr-10 py-3.5 rounded-2xl text-xs text-white placeholder-slate-500 outline-none transition" />
-              <button type="button" onclick="togglePasswordVisibility('dribbble-login-password', 'dribbble-login-eye')" class="absolute right-3.5 text-slate-400 hover:text-white cursor-pointer p-0.5">
+              <i data-lucide="lock" class="w-4 h-4 text-white/40 absolute left-3.5 pointer-events-none"></i>
+              <input type="password" id="dribbble-login-password" required autocomplete="current-password" placeholder="Enter your Password" class="w-full bg-[#2C2C2E] border border-white/[0.08] focus:border-[#30D158] focus:ring-1 focus:ring-[#30D158] pl-10 pr-10 py-3.5 rounded-2xl text-xs text-white placeholder-white/30 outline-none transition" />
+              <button type="button" onclick="togglePasswordVisibility('dribbble-login-password', 'dribbble-login-eye')" class="absolute right-3.5 text-white/40 hover:text-white cursor-pointer p-0.5">
                 <i data-lucide="eye" id="dribbble-login-eye" class="w-4 h-4"></i>
               </button>
             </div>
@@ -1758,34 +1807,34 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
 
           <!-- Remember Me & Forgot Password -->
           <div class="flex items-center justify-between text-xs pt-0.5">
-            <label class="flex items-center gap-2 text-slate-400 cursor-pointer select-none">
-              <input type="checkbox" id="dribbble-remember-me" checked class="w-4 h-4 rounded-md bg-white/10 border-white/20 text-[#00D084] focus:ring-0 cursor-pointer" />
+            <label class="flex items-center gap-2 text-white/50 cursor-pointer select-none">
+              <input type="checkbox" id="dribbble-remember-me" checked class="w-4 h-4 rounded-md bg-white/10 border-white/20 text-[#30D158] focus:ring-0 cursor-pointer" />
               <span>Remember me</span>
             </label>
-            <button type="button" onclick="showForgotPasswordModal()" class="text-xs font-semibold text-slate-400 hover:text-[#00D084] transition cursor-pointer">
+            <button type="button" onclick="showForgotPasswordModal()" class="text-xs font-semibold text-white/50 hover:text-[#30D158] transition cursor-pointer">
               Forgot Password?
             </button>
           </div>
 
-          <!-- Dribbble Signature Neon Green / Lime Gradient Button -->
-          <button type="submit" id="dribbble-login-submit-btn" class="w-full py-4 rounded-full bg-gradient-to-r from-[#00D084] to-[#84CC16] hover:opacity-95 active:scale-[0.98] text-[#070A08] font-black text-sm shadow-xl shadow-emerald-500/25 transition cursor-pointer flex items-center justify-center gap-2">
-            <span>Log In</span>
+          <!-- Apple Mint Green Primary Button -->
+          <button type="submit" id="dribbble-login-submit-btn" class="w-full py-3.5 rounded-2xl bg-[#30D158] hover:opacity-95 active:scale-[0.98] text-black font-bold text-sm shadow-xl shadow-[#30D158]/20 transition cursor-pointer flex items-center justify-center gap-2">
+            <span>Sign In</span>
           </button>
 
           <!-- Divider -->
-          <div class="relative flex items-center justify-center my-3">
-            <div class="border-t border-white/10 w-full"></div>
-            <span class="bg-[#070C09] px-3 text-[11px] text-slate-500 font-bold uppercase tracking-wider">Or</span>
-            <div class="border-t border-white/10 w-full"></div>
+          <div class="relative flex items-center justify-center my-2">
+            <div class="border-t border-white/[0.08] w-full"></div>
+            <span class="bg-[#1C1C1E] px-3 text-[11px] text-white/40 font-medium uppercase tracking-wider">Or</span>
+            <div class="border-t border-white/[0.08] w-full"></div>
           </div>
 
           <!-- Social Buttons: Google & Apple -->
           <div class="grid grid-cols-2 gap-2.5">
-            <button type="button" onclick="handleInstantPhoneGoogleLogin()" class="py-3 px-3 rounded-2xl bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 text-white font-bold text-xs flex items-center justify-center gap-2 transition cursor-pointer">
+            <button type="button" onclick="handleInstantPhoneGoogleLogin()" class="py-3 px-3 rounded-2xl bg-[#2C2C2E] hover:bg-[#3A3A3C] border border-white/[0.08] text-white font-semibold text-xs flex items-center justify-center gap-2 transition cursor-pointer">
               <img src="assets/gmail.png" class="w-4 h-4 object-contain" />
               <span>Google</span>
             </button>
-            <button type="button" onclick="openProviderModal('apple')" class="py-3 px-3 rounded-2xl bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 text-white font-bold text-xs flex items-center justify-center gap-2 transition cursor-pointer">
+            <button type="button" onclick="openProviderModal('apple')" class="py-3 px-3 rounded-2xl bg-[#2C2C2E] hover:bg-[#3A3A3C] border border-white/[0.08] text-white font-semibold text-xs flex items-center justify-center gap-2 transition cursor-pointer">
               <svg class="w-4 h-4 fill-current" viewBox="0 0 170 170"><path d="M150.37 130.25c-2.45 5.66-5.35 10.87-8.71 15.66-4.58 6.53-8.33 11.05-11.22 13.56-4.48 4.12-9.28 6.23-14.42 6.35-3.69 0-8.14-1.05-13.32-3.18-5.19-2.12-9.97-3.17-14.34-3.17-4.58 0-9.49 1.05-14.75 3.17-5.26 2.13-9.5 3.24-12.74 3.35-4.35.13-9.16-1.9-14.42-6.08-3.7-3.04-7.66-7.85-11.87-14.42-6.52-10.22-11.51-21.72-14.98-34.5-3.47-12.78-5.2-24.87-5.2-36.27 0-16.19 4.35-29.65 13.06-40.38 8.7-10.74 19.57-16.2 32.61-16.39 5.01 0 10.45 1.25 16.32 3.75 5.87 2.5 9.77 3.86 11.69 4.08 2.39-.33 6.42-1.74 12.09-4.24 5.66-2.5 10.87-3.64 15.65-3.43 12.18.65 22.39 5.38 30.64 14.18-10.88 6.63-16.21 15.65-16 27.06.22 9.02 3.65 16.63 10.28 22.82 6.63 6.2 14.57 9.89 23.8 11.09-2.17 6.63-4.89 13.37-8.15 20.22zM119.22 31.85c0-7.39 2.66-14.35 7.99-20.87 5.33-6.52 11.96-10.54 19.89-12.06.33 1.2.49 2.23.49 3.09 0 7.39-2.77 14.51-8.32 21.36-5.54 6.85-12.28 10.82-20.22 11.9-0.1-.87-.16-1.9-.16-3.1-0.01-.1-.01-.21-.01-.32z"/></svg>
               <span>Apple</span>
             </button>
@@ -1794,50 +1843,50 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
         </form>
 
         <!-- Bottom Switcher to Signup -->
-        <p class="text-xs text-center text-slate-400 pt-1">
+        <p class="text-xs text-center text-white/50 pt-1">
           Don't have an account? 
-          <button type="button" onclick="switchDribbbleAuthMode('signup')" class="text-white hover:text-[#00D084] font-bold underline transition cursor-pointer ml-1">Sign Up</button>
+          <button type="button" onclick="switchDribbbleAuthMode('signup')" class="text-white hover:text-[#30D158] font-bold underline transition cursor-pointer ml-1">Sign Up</button>
         </p>
 
       </div>
 
       <!-- Mode 2: SIGNUP FORM -->
-      <div id="auth-signup-panel" class="space-y-5 hidden">
+      <div id="auth-signup-panel" class="space-y-5 hidden p-6 rounded-[30px] bg-[#1C1C1E] border border-white/[0.08] shadow-2xl">
         <div class="space-y-1 text-left">
-          <button type="button" onclick="switchDribbbleAuthMode('login')" class="w-8 h-8 rounded-full bg-white/[0.06] hover:bg-white/[0.1] border border-white/10 text-white flex items-center justify-center transition cursor-pointer mb-2">
+          <button type="button" onclick="switchDribbbleAuthMode('login')" class="w-8 h-8 rounded-full bg-white/10 hover:bg-white/15 border border-white/10 text-white flex items-center justify-center transition cursor-pointer mb-2">
             <i data-lucide="arrow-left" class="w-4 h-4"></i>
           </button>
-          <h2 class="text-2xl sm:text-3xl font-black text-white tracking-tight">Create Account</h2>
-          <p class="text-xs text-slate-400 font-medium">Create your account for daily financial updates.</p>
+          <h2 class="text-2xl font-bold text-white tracking-tight">Create Account</h2>
+          <p class="text-xs text-white/50 font-normal">Set up your private financial account.</p>
         </div>
 
         <form onsubmit="event.preventDefault(); handleDribbbleSignup();" class="space-y-3.5 text-left">
           
           <!-- Name -->
           <div class="space-y-1">
-            <label class="text-xs font-bold text-slate-300">Full Name</label>
+            <label class="text-xs font-semibold text-white/60">Full Name</label>
             <div class="relative flex items-center">
-              <i data-lucide="user" class="w-4 h-4 text-slate-400 absolute left-3.5 pointer-events-none"></i>
-              <input type="text" id="dribbble-signup-name" required autocomplete="name" placeholder="Enter your full name" class="w-full bg-white/[0.04] border border-white/10 focus:border-[#00D084] focus:ring-1 focus:ring-[#00D084] pl-10 pr-4 py-3 rounded-2xl text-xs text-white placeholder-slate-500 outline-none transition" />
+              <i data-lucide="user" class="w-4 h-4 text-white/40 absolute left-3.5 pointer-events-none"></i>
+              <input type="text" id="dribbble-signup-name" required autocomplete="name" placeholder="Enter your full name" class="w-full bg-[#2C2C2E] border border-white/[0.08] focus:border-[#30D158] focus:ring-1 focus:ring-[#30D158] pl-10 pr-4 py-3 rounded-2xl text-xs text-white placeholder-white/30 outline-none transition" />
             </div>
           </div>
 
           <!-- Email -->
           <div class="space-y-1">
-            <label class="text-xs font-bold text-slate-300">Email (Gmail)</label>
+            <label class="text-xs font-semibold text-white/60">Email (Gmail)</label>
             <div class="relative flex items-center">
-              <i data-lucide="mail" class="w-4 h-4 text-slate-400 absolute left-3.5 pointer-events-none"></i>
-              <input type="email" id="dribbble-signup-email" required autocomplete="email" placeholder="e.g. yourname@gmail.com" class="w-full bg-white/[0.04] border border-white/10 focus:border-[#00D084] focus:ring-1 focus:ring-[#00D084] pl-10 pr-4 py-3 rounded-2xl text-xs text-white placeholder-slate-500 outline-none transition" />
+              <i data-lucide="mail" class="w-4 h-4 text-white/40 absolute left-3.5 pointer-events-none"></i>
+              <input type="email" id="dribbble-signup-email" required autocomplete="email" placeholder="e.g. yourname@gmail.com" class="w-full bg-[#2C2C2E] border border-white/[0.08] focus:border-[#30D158] focus:ring-1 focus:ring-[#30D158] pl-10 pr-4 py-3 rounded-2xl text-xs text-white placeholder-white/30 outline-none transition" />
             </div>
           </div>
 
           <!-- Password -->
           <div class="space-y-1">
-            <label class="text-xs font-bold text-slate-300">Password</label>
+            <label class="text-xs font-semibold text-white/60">Password</label>
             <div class="relative flex items-center">
-              <i data-lucide="lock" class="w-4 h-4 text-slate-400 absolute left-3.5 pointer-events-none"></i>
-              <input type="password" id="dribbble-signup-password" required minlength="6" autocomplete="new-password" placeholder="At least 6 characters" class="w-full bg-white/[0.04] border border-white/10 focus:border-[#00D084] focus:ring-1 focus:ring-[#00D084] pl-10 pr-10 py-3 rounded-2xl text-xs text-white placeholder-slate-500 outline-none transition" />
-              <button type="button" onclick="togglePasswordVisibility('dribbble-signup-password', 'dribbble-signup-eye1')" class="absolute right-3.5 text-slate-400 hover:text-white cursor-pointer p-0.5">
+              <i data-lucide="lock" class="w-4 h-4 text-white/40 absolute left-3.5 pointer-events-none"></i>
+              <input type="password" id="dribbble-signup-password" required minlength="6" autocomplete="new-password" placeholder="At least 6 characters" class="w-full bg-[#2C2C2E] border border-white/[0.08] focus:border-[#30D158] focus:ring-1 focus:ring-[#30D158] pl-10 pr-10 py-3 rounded-2xl text-xs text-white placeholder-white/30 outline-none transition" />
+              <button type="button" onclick="togglePasswordVisibility('dribbble-signup-password', 'dribbble-signup-eye1')" class="absolute right-3.5 text-white/40 hover:text-white cursor-pointer p-0.5">
                 <i data-lucide="eye" id="dribbble-signup-eye1" class="w-4 h-4"></i>
               </button>
             </div>
@@ -1845,25 +1894,25 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
 
           <!-- Confirm Password -->
           <div class="space-y-1">
-            <label class="text-xs font-bold text-slate-300">Confirm Password</label>
+            <label class="text-xs font-semibold text-white/60">Confirm Password</label>
             <div class="relative flex items-center">
-              <i data-lucide="lock" class="w-4 h-4 text-slate-400 absolute left-3.5 pointer-events-none"></i>
-              <input type="password" id="dribbble-signup-confirm-password" required minlength="6" autocomplete="new-password" placeholder="Confirm your password" class="w-full bg-white/[0.04] border border-white/10 focus:border-[#00D084] focus:ring-1 focus:ring-[#00D084] pl-10 pr-10 py-3 rounded-2xl text-xs text-white placeholder-slate-500 outline-none transition" />
-              <button type="button" onclick="togglePasswordVisibility('dribbble-signup-confirm-password', 'dribbble-signup-eye2')" class="absolute right-3.5 text-slate-400 hover:text-white cursor-pointer p-0.5">
+              <i data-lucide="lock" class="w-4 h-4 text-white/40 absolute left-3.5 pointer-events-none"></i>
+              <input type="password" id="dribbble-signup-confirm-password" required minlength="6" autocomplete="new-password" placeholder="Confirm your password" class="w-full bg-[#2C2C2E] border border-white/[0.08] focus:border-[#30D158] focus:ring-1 focus:ring-[#30D158] pl-10 pr-10 py-3 rounded-2xl text-xs text-white placeholder-white/30 outline-none transition" />
+              <button type="button" onclick="togglePasswordVisibility('dribbble-signup-confirm-password', 'dribbble-signup-eye2')" class="absolute right-3.5 text-white/40 hover:text-white cursor-pointer p-0.5">
                 <i data-lucide="eye" id="dribbble-signup-eye2" class="w-4 h-4"></i>
               </button>
             </div>
           </div>
 
           <!-- Submit Button -->
-          <button type="submit" id="dribbble-signup-submit-btn" class="w-full py-4 rounded-full bg-gradient-to-r from-[#00D084] to-[#84CC16] hover:opacity-95 active:scale-[0.98] text-[#070A08] font-black text-sm shadow-xl shadow-emerald-500/25 transition cursor-pointer flex items-center justify-center gap-2 mt-2">
+          <button type="submit" id="dribbble-signup-submit-btn" class="w-full py-3.5 rounded-2xl bg-[#30D158] hover:opacity-95 active:scale-[0.98] text-black font-bold text-sm shadow-xl shadow-[#30D158]/20 transition cursor-pointer flex items-center justify-center gap-2 mt-2">
             <span>Create Account</span>
           </button>
         </form>
 
-        <p class="text-xs text-center text-slate-400 pt-1">
+        <p class="text-xs text-center text-white/50 pt-1">
           Already have an account? 
-          <button type="button" onclick="switchDribbbleAuthMode('login')" class="text-white hover:text-[#00D084] font-bold underline transition cursor-pointer ml-1">Log In</button>
+          <button type="button" onclick="switchDribbbleAuthMode('login')" class="text-white hover:text-[#30D158] font-bold underline transition cursor-pointer ml-1">Log In</button>
         </p>
       </div>
 
@@ -1889,7 +1938,7 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
       <!-- Search Modal Header -->
       <div class="flex items-center justify-between pb-2 border-b border-white/[0.06]">
         <div class="flex items-center gap-2">
-          <div class="w-8 h-8 rounded-xl bg-[#00D084]/15 text-[#00D084] flex items-center justify-center">
+          <div class="w-8 h-8 rounded-xl bg-[#30D158]/15 text-[#30D158] flex items-center justify-center">
             <i data-lucide="search" class="w-4 h-4"></i>
           </div>
           <div>
@@ -1905,7 +1954,7 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
       <!-- Search Input Box -->
       <div class="relative">
         <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none"></i>
-        <input type="text" id="modal-search-input" oninput="performModalSearch(this.value)" placeholder="ဥပမာ - မုန့်ဖိုး၊ ကားခ၊ လစာ၊ 15000..." class="w-full bg-white/[0.08] focus:bg-white/12 border border-white/15 focus:border-[#00D084]/60 rounded-2xl pl-10 pr-10 py-3 text-xs text-white placeholder-slate-400 focus:outline-none transition">
+        <input type="text" id="modal-search-input" oninput="performModalSearch(this.value)" placeholder="ဥပမာ - မုန့်ဖိုး၊ ကားခ၊ လစာ၊ 15000..." class="w-full bg-white/[0.08] focus:bg-white/12 border border-white/15 focus:border-[#30D158]/60 rounded-2xl pl-10 pr-10 py-3 text-xs text-white placeholder-slate-400 focus:outline-none transition">
         <button type="button" onclick="clearModalSearch()" id="modal-search-clear-btn" class="hidden absolute right-3 top-1/2 -translate-y-1/2 w-6 h-6 rounded-full bg-white/15 hover:bg-white/25 text-slate-300 flex items-center justify-center cursor-pointer">
           <i data-lucide="x" class="w-3 h-3"></i>
         </button>
@@ -1913,7 +1962,7 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
 
       <!-- Quick Filter Pills -->
       <div class="flex items-center gap-1.5 overflow-x-auto no-scrollbar py-1 text-[11px] font-bold">
-        <button type="button" onclick="setSearchFilterType('all')" id="search-filter-all" class="px-3 py-1.5 rounded-full bg-[#00D084] text-slate-950 font-bold shrink-0 cursor-pointer shadow-md shadow-[#00D084]/20">အားလုံး</button>
+        <button type="button" onclick="setSearchFilterType('all')" id="search-filter-all" class="px-3 py-1.5 rounded-full bg-[#30D158] text-slate-950 font-bold shrink-0 cursor-pointer shadow-md shadow-[#30D158]/20">အားလုံး</button>
         <button type="button" onclick="setSearchFilterType('expense')" id="search-filter-expense" class="px-3 py-1.5 rounded-full bg-white/10 text-slate-300 hover:text-white font-bold shrink-0 cursor-pointer">ထွက်ငွေ (-)</button>
         <button type="button" onclick="setSearchFilterType('income')" id="search-filter-income" class="px-3 py-1.5 rounded-full bg-white/10 text-slate-300 hover:text-white font-bold shrink-0 cursor-pointer">ဝင်ငွေ (+)</button>
         <button type="button" onclick="setSearchFilterType('transfer')" id="search-filter-transfer" class="px-3 py-1.5 rounded-full bg-white/10 text-slate-300 hover:text-white font-bold shrink-0 cursor-pointer">အကောင့်လွှဲ</button>
@@ -1938,7 +1987,7 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
     <div class="w-full max-w-sm rounded-[32px] spendee-card p-6 border border-rose-500/30 shadow-2xl animate-apple-sheet space-y-4 text-center">
       
       <!-- Danger Trash Icon -->
-      <div class="w-14 h-14 rounded-2xl bg-rose-500/20 text-[#FF5B5B] mx-auto flex items-center justify-center border border-rose-500/30 shadow-lg shadow-rose-500/20">
+      <div class="w-14 h-14 rounded-2xl bg-rose-500/20 text-[#FF453A] mx-auto flex items-center justify-center border border-rose-500/30 shadow-lg shadow-rose-500/20">
         <i data-lucide="trash-2" class="w-7 h-7"></i>
       </div>
 
@@ -1957,7 +2006,7 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
         <button type="button" onclick="closeDeleteModal()" class="py-3 px-4 rounded-2xl bg-white/10 hover:bg-white/15 text-white font-bold text-xs transition cursor-pointer">
           မဖျက်တော့ပါ (Cancel)
         </button>
-        <button type="button" onclick="confirmDeleteModalOK()" class="py-3 px-4 rounded-2xl bg-[#FF5B5B] hover:bg-rose-600 text-white font-black text-xs shadow-lg shadow-rose-500/30 transition btn-press cursor-pointer">
+        <button type="button" onclick="confirmDeleteModalOK()" class="py-3 px-4 rounded-2xl bg-[#FF453A] hover:bg-rose-600 text-white font-black text-xs shadow-lg shadow-rose-500/30 transition btn-press cursor-pointer">
           သေချာပါသည် ဖျက်မည်
         </button>
       </div>
@@ -1968,7 +2017,7 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
   <!-- ================= 5-SECOND UNDO COUNTDOWN BANNER ================= -->
   <div id="undo-countdown-banner" class="fixed bottom-24 left-4 right-4 z-[150] max-w-md mx-auto hidden p-3.5 rounded-[24px] bg-[#141620]/95 backdrop-blur-2xl border border-rose-500/40 shadow-2xl shadow-black/80 items-center justify-between gap-3 animate-apple-sheet">
     <div class="flex items-center gap-2.5 min-w-0">
-      <div class="w-9 h-9 rounded-xl bg-rose-500/20 text-[#FF5B5B] flex items-center justify-center shrink-0 font-mono font-black text-xs border border-rose-500/30" id="undo-seconds-num">
+      <div class="w-9 h-9 rounded-xl bg-rose-500/20 text-[#FF453A] flex items-center justify-center shrink-0 font-mono font-black text-xs border border-rose-500/30" id="undo-seconds-num">
         5s
       </div>
       <div class="min-w-0">
@@ -1977,7 +2026,7 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
       </div>
     </div>
     <div class="flex items-center gap-1.5 shrink-0">
-      <button onclick="undoPendingDelete()" class="px-3.5 py-2 rounded-xl bg-[#00D084] text-slate-950 font-black text-xs shadow-lg shadow-[#00D084]/25 flex items-center gap-1.5 transition btn-press cursor-pointer">
+      <button onclick="undoPendingDelete()" class="px-3.5 py-2 rounded-xl bg-[#30D158] text-slate-950 font-black text-xs shadow-lg shadow-[#30D158]/25 flex items-center gap-1.5 transition btn-press cursor-pointer">
         <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i>
         <span>ပြန်ယူမည် (Undo)</span>
       </button>
@@ -4090,7 +4139,7 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
         const bnav = document.getElementById(`bnav-${v}`);
         if (bnav) {
           if (v === viewName) {
-            bnav.className = 'liquid-tab-btn liquid-tab-active flex flex-col items-center gap-0.5 text-[#00D084] btn-press cursor-pointer flex-1';
+            bnav.className = 'liquid-tab-btn liquid-tab-active flex flex-col items-center gap-0.5 text-[#30D158] btn-press cursor-pointer flex-1';
           } else {
             bnav.className = 'liquid-tab-btn flex flex-col items-center gap-0.5 text-slate-400 hover:text-white btn-press cursor-pointer flex-1';
           }
@@ -4157,18 +4206,18 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
 
       if (txs.length === 0) {
         container.innerHTML = `
-          <div class="p-8 rounded-[28px] spendee-card text-center space-y-3.5 my-2">
-            <div class="w-12 h-12 rounded-2xl bg-[#00D084]/15 text-[#00D084] mx-auto flex items-center justify-center">
-              <i data-lucide="receipt" class="w-6 h-6"></i>
+          <div class="p-8 rounded-[24px] apple-inset-group text-center space-y-4 my-2">
+            <div class="w-14 h-14 rounded-2xl bg-white/[0.08] text-[#30D158] mx-auto flex items-center justify-center border border-white/10 shadow-inner">
+              <i data-lucide="receipt" class="w-7 h-7 stroke-[2.2]"></i>
             </div>
             <div class="space-y-1">
-              <h4 class="text-sm font-black text-white">${appState.lang === 'my' ? 'စာရင်းမှတ်တမ်း မရှိသေးပါ' : 'No Transactions Yet'}</h4>
-              <p class="text-xs text-slate-400 max-w-xs mx-auto leading-relaxed">
-                ${appState.lang === 'my' ? 'မိမိ၏ နေ့စဉ် အဝင်/အထွက် စာရင်းများကို ညာဘက်အောက်ရှိ (+) ခလုတ်ဖြင့် စတင်ထည့်သွင်းနိုင်ပါသည်' : 'Start tracking your daily income and expenses with the (+) button'}
+              <h4 class="text-base font-bold text-white">${appState.lang === 'my' ? 'စာရင်းမှတ်တမ်း မရှိသေးပါ' : 'No Transactions Yet'}</h4>
+              <p class="text-xs text-white/60 max-w-xs mx-auto leading-relaxed">
+                ${appState.lang === 'my' ? 'နေ့စဉ် အဝင်/အထွက် စာရင်းများကို အပေါ်ရှိ အမြန်ခလုတ်များဖြင့် စတင်ထည့်သွင်းနိုင်ပါသည်' : 'Start tracking your daily cash flow with the quick action buttons'}
               </p>
             </div>
-            <button onclick="openAddModal()" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#00D084] text-slate-950 font-black text-xs shadow-lg shadow-[#00D084]/30 btn-press cursor-pointer">
-              <i data-lucide="plus-circle" class="w-4 h-4"></i>
+            <button onclick="openAddModal('expense')" class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#30D158] text-black font-bold text-xs shadow-lg shadow-[#30D158]/25 btn-press cursor-pointer">
+              <i data-lucide="plus" class="w-4 h-4 stroke-[3]"></i>
               <span>${appState.lang === 'my' ? 'စာရင်း စတင်ထည့်သွင်းမည်' : 'Add First Transaction'}</span>
             </button>
           </div>
@@ -4209,14 +4258,14 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
         else if (dateStr === yesterdayStr) displayDate = appState.lang === 'my' ? 'မနေ့က (Yesterday)' : 'Yesterday';
 
         outputHTML += `
-          <div class="space-y-2.5">
-            <div class="flex items-center justify-between text-xs text-slate-400 font-bold px-1.5 pt-2">
+          <div class="space-y-2">
+            <div class="flex items-center justify-between text-xs text-white/60 font-semibold px-1.5 pt-2">
               <span>${displayDate}</span>
-              <span class="${dayNet < 0 ? 'text-[#FF5B5B]' : (dayNet > 0 ? 'text-[#00D084]' : 'text-slate-400')} font-black">
+              <span class="${dayNet < 0 ? 'text-[#FF453A]' : (dayNet > 0 ? 'text-[#30D158]' : 'text-white/60')} font-bold">
                 ${dayNet < 0 ? '-' : (dayNet > 0 ? '+' : '')}${formatNumber(Math.abs(dayNet))} ${sym}
               </span>
             </div>
-            <div class="space-y-2">
+            <div class="apple-inset-group divide-y divide-white/[0.06] shadow-sm">
         `;
 
         dayTxs.forEach(t => {
@@ -4228,16 +4277,16 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
             const c = EXPENSE_CATEGORIES.find(cat => cat.id === t.categoryId);
             catName = c ? (appState.lang === 'my' ? c.name_my : c.name_en) : (t.categoryId || 'Expense');
             iconName = c ? c.icon : 'shopping-bag';
-            color = c ? c.color : '#FF5B5B';
+            color = c ? c.color : '#FF453A';
           } else if (t.type === 'income') {
             const c = INCOME_CATEGORIES.find(cat => cat.id === t.categoryId);
             catName = c ? (appState.lang === 'my' ? c.name_my : c.name_en) : (t.categoryId || 'Income');
             iconName = c ? c.icon : 'briefcase';
-            color = c ? c.color : '#00D084';
+            color = c ? c.color : '#30D158';
           } else if (t.type === 'transfer') {
             catName = appState.lang === 'my' ? 'အကောင့်လွှဲငွေ' : 'Transfer';
             iconName = 'arrow-left-right';
-            color = '#38BDF8';
+            color = '#0A84FF';
           }
 
           const acc = appState.accounts.find(a => a.id === t.accountId);
@@ -4247,29 +4296,29 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
           const isInc = t.type === 'income';
 
           outputHTML += `
-            <div class="p-4 rounded-[24px] spendee-card hover:border-white/15 flex items-center justify-between gap-3 transition">
+            <div class="p-3.5 sm:p-4 hover:bg-white/[0.03] flex items-center justify-between gap-3 transition">
               <div class="flex items-center gap-3.5 min-w-0">
-                <div class="w-11 h-11 rounded-2xl flex items-center justify-center shrink-0 border border-white/10" style="background-color: ${color}20; color: ${color};">
-                  <i data-lucide="${iconName}" class="w-5 h-5"></i>
+                <div class="w-10 h-10 rounded-[12px] flex items-center justify-center shrink-0 border border-white/10 shadow-sm" style="background-color: ${color}22; color: ${color};">
+                  <i data-lucide="${iconName}" class="w-5 h-5 stroke-[2.2]"></i>
                 </div>
                 <div class="truncate">
-                  <p class="font-bold text-white text-sm truncate">${catName}</p>
-                  <p class="text-xs text-slate-400 truncate mt-0.5">${t.note || accName}</p>
+                  <p class="font-semibold text-white text-sm truncate">${catName}</p>
+                  <p class="text-xs text-white/50 truncate mt-0.5">${t.note || accName}</p>
                 </div>
               </div>
               <div class="text-right shrink-0 flex items-center gap-2.5">
                 <div>
-                  <p class="font-black text-sm ${isExp ? 'text-[#FF5B5B]' : (isInc ? 'text-[#00D084]' : 'text-sky-400')}">
+                  <p class="font-bold text-sm ${isExp ? 'text-[#FF453A]' : (isInc ? 'text-[#30D158]' : 'text-[#0A84FF]')}">
                     ${isExp ? '-' : (isInc ? '+' : '')}${formatNumber(t.amount)} ${sym}
                   </p>
                   <div class="flex items-center gap-1.5 justify-end mt-0.5">
-                    <div class="w-4 h-4 rounded-[5px] overflow-hidden shrink-0 border border-white/15 shadow-sm">
+                    <div class="w-3.5 h-3.5 rounded-[4px] overflow-hidden shrink-0 border border-white/15 shadow-sm">
                       <img src="${getAccountLogoSrc(t.accountId, accName)}" class="w-full h-full object-cover" />
                     </div>
-                    <span class="text-[10px] text-slate-400 font-semibold truncate max-w-[100px]">${accName}</span>
+                    <span class="text-[10px] text-white/50 font-medium truncate max-w-[100px]">${accName}</span>
                   </div>
                 </div>
-                <button onclick="deleteTransaction('${t.id}')" title="Delete" class="w-7 h-7 rounded-lg hover:bg-rose-500/20 text-slate-500 hover:text-rose-400 flex items-center justify-center transition cursor-pointer">
+                <button onclick="deleteTransaction('${t.id}')" title="Delete" class="w-7 h-7 rounded-full hover:bg-rose-500/20 text-white/30 hover:text-rose-400 flex items-center justify-center transition cursor-pointer">
                   <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
                 </button>
               </div>
@@ -4496,25 +4545,25 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
 
         if (list) {
           const card = document.createElement('div');
-          card.className = "p-4 rounded-[24px] spendee-card hover:border-white/15 flex items-center justify-between gap-3 cursor-pointer transition";
+          card.className = "p-4 rounded-[22px] apple-inset-group hover:border-white/20 flex items-center justify-between gap-3 cursor-pointer transition shadow-sm";
           card.onclick = () => openAccountDetail(acc.id);
 
           card.innerHTML = `
             <div class="flex items-center gap-3.5 min-w-0">
-              <div class="w-12 h-12 rounded-[18px] overflow-hidden shrink-0 shadow-md border border-white/10 bg-slate-900/60 p-0.5 flex items-center justify-center">
+              <div class="w-12 h-12 rounded-[14px] overflow-hidden shrink-0 shadow-md border border-white/10 bg-black/40 p-0.5 flex items-center justify-center">
                 ${getAccountBrandedIconSVG(acc.id, name)}
               </div>
               <div class="truncate">
-                <h4 class="font-bold text-white text-sm truncate">${name}</h4>
-                <p class="text-xs text-slate-400 truncate mt-0.5">${acc.type === 'wallet' ? 'Mobile Wallet' : 'Bank Ledger'}</p>
+                <h4 class="font-semibold text-white text-sm truncate">${name}</h4>
+                <p class="text-xs text-white/50 truncate mt-0.5">${acc.type === 'wallet' ? 'Mobile Wallet' : 'Bank Ledger'}</p>
               </div>
             </div>
             <div class="text-right shrink-0 flex items-center gap-2">
               <div>
-                <p class="font-black text-sm text-white">${formatNumber(acc.balance || 0)} ${sym}</p>
-                <span class="text-[10px] text-[#00D084] font-bold block mt-0.5">Active</span>
+                <p class="font-bold text-sm text-white">${formatNumber(acc.balance || 0)} ${sym}</p>
+                <span class="text-[10px] text-[#30D158] font-semibold block mt-0.5">Active</span>
               </div>
-              <button type="button" onclick="event.stopPropagation(); openDepositBalanceModal('${acc.id}')" class="px-2.5 py-1 rounded-xl bg-white/10 hover:bg-white/15 text-xs text-white font-bold ml-1 cursor-pointer">
+              <button type="button" onclick="event.stopPropagation(); openDepositBalanceModal('${acc.id}')" class="px-3 py-1.5 rounded-full bg-white/10 hover:bg-white/15 text-xs text-white font-semibold ml-1 cursor-pointer active:scale-95 transition">
                 + ငွေဖြည့်
               </button>
             </div>
@@ -4959,7 +5008,7 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
               <i data-lucide="trophy" class="w-6 h-6"></i>
             </div>
             <p class="text-sm font-bold text-white">စုဆောင်းမှု ပန်းတိုင် မရှိသေးပါ</p>
-            <button onclick="openAddGoalModal()" class="px-4 py-2 rounded-full bg-[#00D084] text-slate-950 font-bold text-xs cursor-pointer">
+            <button onclick="openAddGoalModal()" class="px-4 py-2 rounded-full bg-[#30D158] text-slate-950 font-bold text-xs cursor-pointer">
               + ပန်းတိုင်အသစ် သတ်မှတ်မည်
             </button>
           </div>
@@ -4993,7 +5042,7 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
             </button>
           </div>
           <div class="w-full bg-white/[0.08] h-2.5 rounded-full overflow-hidden">
-            <div class="h-full rounded-full bg-[#00D084] transition-all duration-500" style="width: ${pct}%"></div>
+            <div class="h-full rounded-full bg-[#30D158] transition-all duration-500" style="width: ${pct}%"></div>
           </div>
         `;
         container.appendChild(card);
@@ -5036,7 +5085,8 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
       if (window.lucide) lucide.createIcons();
     }
 
-    function openAddModal() {
+    function openAddModal(type) {
+      if (type) appState.selectedType = type;
       document.getElementById('add-modal').classList.remove('hidden');
       document.getElementById('add-modal').classList.add('flex');
       document.getElementById('tx-date-input').value = new Date().toISOString().split('T')[0];
@@ -5053,10 +5103,11 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
       appState.selectedType = type;
       ['expense', 'income', 'transfer'].forEach(t => {
         const btn = document.getElementById(`type-btn-${t}`);
+        if (!btn) return;
         if (t === type) {
-          btn.className = `py-2 rounded-xl text-xs font-bold text-white transition ${t === 'expense' ? 'bg-rose-500/40 border border-rose-500/40' : (t === 'income' ? 'bg-emerald-500/40 border border-emerald-500/40' : 'bg-sky-500/40 border border-sky-500/40')}`;
+          btn.className = `py-2 rounded-xl text-xs font-bold transition shadow-sm ${t === 'expense' ? 'bg-[#FF453A] text-white' : (t === 'income' ? 'bg-[#30D158] text-black font-extrabold' : 'bg-[#0A84FF] text-white')}`;
         } else {
-          btn.className = "py-2 rounded-xl text-xs font-bold text-slate-400 hover:text-white transition";
+          btn.className = "py-2 rounded-xl text-xs font-semibold text-white/50 hover:text-white transition";
         }
       });
 
@@ -5898,12 +5949,12 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
           const c = EXPENSE_CATEGORIES.find(cat => cat.id === tx.categoryId);
           catName = c ? (appState.lang === 'my' ? c.name_my : c.name_en) : (tx.categoryId || 'Expense');
           iconName = c ? c.icon : 'shopping-bag';
-          color = c ? c.color : '#FF5B5B';
+          color = c ? c.color : '#FF453A';
         } else if (tx.type === 'income') {
           const c = INCOME_CATEGORIES.find(cat => cat.id === tx.categoryId);
           catName = c ? (appState.lang === 'my' ? c.name_my : c.name_en) : (tx.categoryId || 'Income');
           iconName = c ? c.icon : 'briefcase';
-          color = c ? c.color : '#00D084';
+          color = c ? c.color : '#30D158';
         } else if (tx.type === 'transfer') {
           catName = appState.lang === 'my' ? 'အကောင့်လွှဲငွေ' : 'Transfer';
           iconName = 'arrow-left-right';
@@ -5925,7 +5976,7 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
               </div>
             </div>
             <div class="text-right shrink-0">
-              <p class="text-xs font-black ${isExp ? 'text-[#FF5B5B]' : (isInc ? 'text-[#00D084]' : 'text-sky-400')}">
+              <p class="text-xs font-black ${isExp ? 'text-[#FF453A]' : (isInc ? 'text-[#30D158]' : 'text-sky-400')}">
                 ${isExp ? '-' : (isInc ? '+' : '')}${formatNumber(tx.amount)} ${sym}
               </p>
             </div>
@@ -6116,7 +6167,7 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
         const btn = document.getElementById(`search-filter-${t}`);
         if (!btn) return;
         if (t === modalSearchFilterType) {
-          btn.className = 'px-3 py-1.5 rounded-full bg-[#00D084] text-slate-950 font-bold shrink-0 cursor-pointer shadow-md shadow-[#00D084]/20';
+          btn.className = 'px-3 py-1.5 rounded-full bg-[#30D158] text-slate-950 font-bold shrink-0 cursor-pointer shadow-md shadow-[#30D158]/20';
         } else {
           btn.className = 'px-3 py-1.5 rounded-full bg-white/10 text-slate-300 hover:text-white font-bold shrink-0 cursor-pointer';
         }
@@ -6187,12 +6238,12 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
           const c = EXPENSE_CATEGORIES.find(cat => cat.id === t.categoryId);
           catName = c ? (appState.lang === 'my' ? c.name_my : c.name_en) : (t.categoryId || 'Expense');
           iconName = c ? c.icon : 'shopping-bag';
-          color = c ? c.color : '#FF5B5B';
+          color = c ? c.color : '#FF453A';
         } else if (t.type === 'income') {
           const c = INCOME_CATEGORIES.find(cat => cat.id === t.categoryId);
           catName = c ? (appState.lang === 'my' ? c.name_my : c.name_en) : (t.categoryId || 'Income');
           iconName = c ? c.icon : 'briefcase';
-          color = c ? c.color : '#00D084';
+          color = c ? c.color : '#30D158';
         } else if (t.type === 'transfer') {
           catName = appState.lang === 'my' ? 'အကောင့်လွှဲငွေ' : 'Transfer';
           iconName = 'arrow-left-right';
@@ -6214,7 +6265,7 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
               </div>
             </div>
             <div class="flex items-center gap-2 shrink-0">
-              <span class="text-xs font-black ${isExp ? 'text-[#FF5B5B]' : (isInc ? 'text-[#00D084]' : 'text-sky-400')}">
+              <span class="text-xs font-black ${isExp ? 'text-[#FF453A]' : (isInc ? 'text-[#30D158]' : 'text-sky-400')}">
                 ${isExp ? '-' : (isInc ? '+' : '')}${formatNumber(t.amount)} ${sym}
               </span>
               <button onclick="promptDeleteTransaction('${t.id}')" title="Delete" class="w-7 h-7 rounded-lg hover:bg-rose-500/20 text-slate-500 hover:text-rose-400 flex items-center justify-center transition cursor-pointer">
