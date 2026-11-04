@@ -1,3 +1,5 @@
 .vercel
 ui-lab/
 scratch/
+.DS_Store
+*.DS_Store
