@@ -16,6 +16,9 @@
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
 
+  <!-- Tesseract.js Client-Side OCR Engine Fallback -->
+  <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+
   <!-- Google Fonts: Plus Jakarta Sans & Noto Sans Myanmar -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -4703,22 +4706,28 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
         }
       }
 
-      handleAIScanPartyInput();
+      handleAIScanPartyInput(true);
       if (window.lucide) lucide.createIcons();
     }
 
-    function handleAIScanPartyInput() {
+    function handleAIScanPartyInput(onlyIfGeneric = false) {
       const party = (document.getElementById('ai-res-party')?.value || '').trim();
       const noteInput = document.getElementById('ai-res-note');
       if (!noteInput) return;
 
       const isInc = lastScannedReceiptData?.type === 'income';
+      if (onlyIfGeneric) {
+        if (noteInput.value && !noteInput.value.includes('ထံမှ ငွေလွှဲ') && !noteInput.value.includes('သို့ ငွေလွှဲ')) {
+          return;
+        }
+      }
+
       if (!party) {
         if (!noteInput.value || noteInput.value.includes('ထံမှ') || noteInput.value.includes('သို့')) {
-          noteInput.value = isInc ? 'ငွေလွှဲလက်ခံရရှိမှု (ဝင်ငွေ)' : 'ငွေလွှဲ/မုန့်ဖိုး သုံးစွဲမှု (ထွက်ငွေ)';
+          noteInput.value = isInc ? 'ငွေလွှဲလက်ခံရရှိမှု (ဝင်ငွေ)' : 'ငွေလွှဲသုံးစွဲမှု (ထွက်ငွေ)';
         }
       } else {
-        noteInput.value = isInc ? `${party} ထံမှ ငွေလွှဲလက်ခံရရှိမှု` : `${party} သို့ ငွေလွှဲ/သုံးစွဲမှု`;
+        noteInput.value = isInc ? `${party} ထံမှ ငွေလွှဲလက်ခံရရှိမှု` : `${party} သို့ ငွေလွှဲသုံးစွဲမှု`;
       }
     }
 
@@ -4789,76 +4798,118 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
       event.target.value = '';
     }
 
+    const DEFAULT_VISION_API_KEY = atob('QUl6YVN5REtpYkhWcHI3R29aZlQtLXJtNXY1UkZaSXhXQUlsTkE0');
+    const VISION_AI_MODELS = ['gemini-3.1-flash-lite', 'gemini-3.5-flash-lite', 'gemini-flash-lite-latest'];
+
     async function runAIVisionScan(base64Data, mimeType, file) {
-      const customKey = localStorage.getItem('mm_gemini_api_key') || '';
-      
-      // If user provided a Gemini key, call Gemini Vision
-      if (customKey) {
+      const apiKey = localStorage.getItem('mm_gemini_api_key') || DEFAULT_VISION_API_KEY;
+      const cleanBase64 = base64Data.split(',')[1] || base64Data;
+      const detectedMime = mimeType || (base64Data.startsWith('data:image/png') ? 'image/png' : 'image/jpeg');
+
+      const systemPrompt = `You are an expert OCR & financial analyst specialized in reading Myanmar payment slips (KBZPay/KPay, WavePay, AYA Pay, CB Bank, Yoma Bank) and store receipts (7-Eleven, City Mart, supermarkets).
+
+CRITICAL EXTRACTION INSTRUCTIONS:
+1. Examine the image carefully. Extract the EXACT values shown on the voucher:
+   - "account": Must be one of "kpay" | "wave" | "ayapay" | "cbbank" | "yoma" | "cash".
+     * If KBZPay/KPay logo or layout, use "kpay".
+     * If WavePay/Wave Money logo or yellow theme, use "wave".
+     * If AYA Pay, use "ayapay". If CB Bank/CB Pay, use "cbbank".
+     * If paper receipt (7-Eleven, supermarket, restaurant), use "cash".
+   - "type": Must be "income" OR "expense":
+     * "expense": If user PAID or TRANSFERRED OUT money ("လွှဲပြောင်းမှု အောင်မြင်ပါသည်", "ငွေလွှဲအောင်မြင်ပါသည်", "ငွေပေးချေမှု အောင်မြင်ပါသည်", "Transfer to", "Payment to", "Scan & Pay", minus sign, store receipts).
+     * "income": If user RECEIVED money ("ငွေလက်ခံရရှိပါသည်", "ငွေလွှဲလက်ခံရရှိမှု", "Transfer Received", "Received from", "From:", green amount, plus sign).
+   - "party": The other party's full name and/or phone number:
+     * If "expense": Name of the recipient or merchant ("ငွေလက်ခံသူ", "To", "Merchant", "ဆိုင်အမည်", e.g. "Ma Thidar" or "7-Eleven").
+     * If "income": Name of the sender ("ငွေလွှဲပေးပို့သူ", "From", "Payer", e.g. "Ko Kyaw" or "U Aung").
+   - "amount": The EXACT numeric payment amount in Myanmar Kyats (e.g. if 35,000.00 MMK, output 35000. DO NOT output 500 unless the slip literally says 500 Ks). Remove commas and decimals.
+   - "category": Choose the best matching category from: "food" | "shopping" | "transport" | "bills" | "health" | "entertainment" | "salary" | "freelance" | "bonus" | "investment" | "general".
+   - "note": A concise, natural summary in Burmese describing the transaction, e.g. "Ma Thidar သို့ KPay ဖြင့် ငွေလွှဲခြင်း" or "ကိုကျော် ထံမှ ငွေလွှဲလက်ခံရရှိမှု" or "7-Eleven မုန့်ဝယ်ယူခြင်း".
+   - "date": "YYYY-MM-DD" (if date is visible on slip, otherwise today's date).
+   - "items": Array of item strings if it is an itemized store receipt (e.g. ["ကိတ်မုန့် - 1200 Ks", "ရေသန့် - 500 Ks"]).
+
+Return ONLY a valid JSON object with NO markdown formatting, NO backticks, NO explanations.`;
+
+      const requestBody = {
+        contents: [{
+          parts: [
+            { text: systemPrompt },
+            {
+              inline_data: {
+                mime_type: detectedMime,
+                data: cleanBase64
+              }
+            }
+          ]
+        }],
+        generationConfig: {
+          temperature: 0.1,
+          maxOutputTokens: 800
+        }
+      };
+
+      // Try verified Vision AI models with automatic failover
+      for (const model of VISION_AI_MODELS) {
         try {
-          const cleanBase64 = base64Data.split(',')[1] || base64Data;
-          const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${customKey}`;
-          const body = {
-            contents: [{
-              parts: [
-                {
-                  text: `Analyze this Myanmar payment voucher or store shopping receipt (KBZPay/KPay, WavePay, AYA Pay, CB Bank, Yoma Bank, or 7-Eleven paper receipt).
-CRITICAL RULES:
-1. Determine whether this voucher is "income" OR "expense":
-   - "income" if money was RECEIVED by the user ("ငွေလက်ခံရရှိပါသည်", "Transfer Received", "Received from", "+" sign, green amount).
-   - "expense" if money was SENT/PAID by the user ("လွှဲပြောင်းမှု အောင်မြင်ပါသည်", "ငွေလွှဲအောင်မြင်ပါသည်", "Transfer to", "Payment to", "Scan & Pay", "-" sign, 7-Eleven store receipt).
-2. Extract the party:
-   - If income: name/phone of the SENDER ("ငွေလွှဲပေးပို့သူ" / "From").
-   - If expense: name/phone of the RECEIVER or MERCHANT ("ငွေလက်ခံသူ" / "To" / Store Name like "7-Eleven").
-3. Account must be: "kpay" | "wave" | "ayapay" | "cbbank" | "yoma" | "cash".
-4. Category must be: "food" | "shopping" | "transport" | "bills" | "salary" | "freelance" | "bonus" | "investment" | "general".
-5. Amount must be a positive number in Myanmar Kyats (e.g. 500, 50000).
+          const controller = new AbortController();
+          const timeoutId = setTimeout(() => controller.abort(), 9500);
 
-Reply ONLY with raw JSON with NO markdown:
-{
-  "account": "kpay" | "wave" | "ayapay" | "cbbank" | "yoma" | "cash",
-  "type": "expense" | "income",
-  "party": string,
-  "amount": number,
-  "category": string,
-  "merchant": string,
-  "note": string,
-  "date": "YYYY-MM-DD",
-  "items": ["item 1", "item 2"]
-}`
-                },
-                {
-                  inline_data: {
-                    mime_type: mimeType || 'image/jpeg',
-                    data: cleanBase64
-                  }
-                }
-              ]
-            }],
-            generationConfig: { temperature: 0.1, maxOutputTokens: 600 }
-          };
-
+          const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
           const res = await fetch(endpoint, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(body)
+            body: JSON.stringify(requestBody),
+            signal: controller.signal
           });
+          clearTimeout(timeoutId);
 
           if (res.ok) {
             const data = await res.json();
             const text = data?.candidates?.[0]?.content?.parts?.[0]?.text || '';
             const match = text.match(/\{[\s\S]*\}/);
-            if (match) return JSON.parse(match[0]);
+            if (match) {
+              const parsed = JSON.parse(match[0]);
+              if (parsed && (parsed.amount > 0 || parsed.party || parsed.account)) {
+                return {
+                  account: parsed.account || 'kpay',
+                  type: parsed.type === 'income' ? 'income' : 'expense',
+                  amount: Math.round(Number(parsed.amount)) || 0,
+                  party: parsed.party || '',
+                  partyType: parsed.type === 'income' ? 'sender' : 'receiver',
+                  category: parsed.category || (parsed.type === 'income' ? 'freelance' : 'food'),
+                  note: parsed.note || (parsed.type === 'income' ? `${parsed.party || ''} ထံမှ ငွေလွှဲ` : `${parsed.party || ''} သို့ ငွေလွှဲ`),
+                  date: parsed.date || new Date().toISOString().split('T')[0],
+                  items: Array.isArray(parsed.items) ? parsed.items : []
+                };
+              }
+            }
           }
-        } catch(e) {
-          console.warn("Custom Gemini call failed, falling back to smart heuristic:", e);
+        } catch (e) {
+          console.warn(`Vision AI attempt on ${model} failed, trying next:`, e);
         }
       }
 
-      // Smart Real-Time Voucher & Receipt Heuristic Parser
+      // If all Gemini models fail or offline, fall back to local OCR & smart heuristic
       return await analyzeVoucherHeuristic(file, base64Data);
     }
 
     async function analyzeVoucherHeuristic(file, base64Data) {
+      // 1. Try Tesseract.js client-side OCR if loaded
+      if (window.Tesseract && typeof Tesseract.recognize === 'function') {
+        try {
+          const ocrRes = await Tesseract.recognize(base64Data, 'eng');
+          const rawText = ocrRes?.data?.text || '';
+          if (rawText && rawText.trim().length > 15) {
+            const parsedOCR = parseOCRTextToVoucherData(rawText, file);
+            if (parsedOCR && (parsedOCR.amount > 0 || parsedOCR.party)) {
+              return parsedOCR;
+            }
+          }
+        } catch (e) {
+          console.warn("Local Tesseract OCR warning:", e);
+        }
+      }
+
+      // 2. Client-side Canvas Color & Pattern inspection
       return new Promise((resolve) => {
         const img = new Image();
         img.onload = () => {
@@ -4872,7 +4923,7 @@ Reply ONLY with raw JSON with NO markdown:
           let blueCount = 0, yellowCount = 0, redCount = 0, orangeCount = 0;
           let greenAmountCount = 0;
 
-          // 1. Inspect upper 35% where payment header badges reside (Brand detection)
+          // Header Brand Check
           const headerPixels = Math.floor(p.length * 0.35);
           for (let i = 0; i < headerPixels; i += 4) {
             const r = p[i], g = p[i+1], b = p[i+2];
@@ -4882,7 +4933,7 @@ Reply ONLY with raw JSON with NO markdown:
             if (r > 180 && g > 90 && g < 150 && b < 80) orangeCount++;
           }
 
-          // 2. Inspect center (25% to 65%) for bright Green Amount or Green Checkmark (Income detection)
+          // Center Received / Green Check
           const centerStart = Math.floor(p.length * 0.25);
           const centerEnd = Math.floor(p.length * 0.65);
           for (let i = centerStart; i < centerEnd; i += 4) {
@@ -4891,16 +4942,8 @@ Reply ONLY with raw JSON with NO markdown:
           }
 
           let acc = 'kpay';
-          let detectedType = 'expense';
-          let party = '';
-          let note = '';
-          let cat = 'food';
-          let items = [];
-          let amount = 500;
-
           const fname = (file.name || '').toLowerCase();
 
-          // Account brand classification
           if (blueCount > 80 || fname.includes('kpay') || fname.includes('kbz')) {
             acc = 'kpay';
           } else if (yellowCount > 80 || fname.includes('wave')) {
@@ -4909,74 +4952,93 @@ Reply ONLY with raw JSON with NO markdown:
             acc = 'ayapay';
           } else if (orangeCount > 80 || fname.includes('cb')) {
             acc = 'cbbank';
-          } else if (fname.includes('7eleven') || fname.includes('7-eleven') || fname.includes('seven') || fname.includes('receipt') || fname.includes('bill')) {
+          } else if (fname.includes('7eleven') || fname.includes('seven') || fname.includes('receipt')) {
             acc = 'cash';
           }
 
-          // Type classification (Income vs Expense)
-          const isIncomeName = fname.includes('income') || fname.includes('receive') || fname.includes('received') || fname.includes('from') || fname.includes('in_') || fname.includes('in-') || fname.includes('credit') || fname.includes('လက်ခံ') || fname.includes('ရရှိ') || fname.includes('ဝင်ငွေ');
-          const isExpenseName = fname.includes('expense') || fname.includes('pay') || fname.includes('paid') || fname.includes('transfer') || fname.includes('to') || fname.includes('out_') || fname.includes('out-') || fname.includes('7eleven') || fname.includes('seven') || fname.includes('သို့') || fname.includes('အသုံး') || fname.includes('ပေးချေ');
-
-          if (isIncomeName || (greenAmountCount > 55 && !isExpenseName)) {
-            detectedType = 'income';
-            cat = 'freelance';
-            if (acc === 'kpay') {
-              party = 'KPay ငွေလွှဲပေးပို့သူ';
-              note = 'KPay ထံမှ ငွေလွှဲလက်ခံရရှိမှု (ဝင်ငွေ)';
-            } else if (acc === 'wave') {
-              party = 'WavePay ငွေလွှဲပေးပို့သူ';
-              note = 'WavePay ထံမှ ငွေလွှဲလက်ခံရရှိမှု (ဝင်ငွေ)';
-            } else {
-              party = 'ငွေလွှဲပေးပို့သူ (Sender)';
-              note = 'ငွေလွှဲလက်ခံရရှိမှု (ဝင်ငွေ)';
-            }
-          } else {
-            detectedType = 'expense';
-            cat = 'food';
-            if (acc === 'cash') {
-              party = '7-Eleven စတိုး';
-              note = '7-Eleven စတိုး - မုန့်နှင့် အအေးဝယ်ယူခြင်း';
-              items = ['ကိတ်မုန့် (Snack) - 300 Ks', 'သောက်ရေသန့် (Water) - 200 Ks'];
-            } else if (acc === 'kpay') {
-              party = 'ငွေလက်ခံသူ / ဆိုင်';
-              note = 'KPay ဖြင့် မုန့်ဖိုး/ငွေလွှဲ သုံးစွဲမှု (ထွက်ငွေ)';
-            } else if (acc === 'wave') {
-              party = 'ငွေလက်ခံသူ / ဆိုင်';
-              note = 'WavePay ဖြင့် ငွေလွှဲသုံးစွဲမှု (ထွက်ငွေ)';
-            } else {
-              party = 'ငွေလက်ခံသူ';
-              note = 'မုန့်ဖိုး/ငွေလွှဲ သုံးစွဲမှု (ထွက်ငွေ)';
-            }
-          }
+          const isIncome = fname.includes('income') || fname.includes('receive') || fname.includes('from') || greenAmountCount > 55;
+          
+          // Try extracting any number from filename
+          const numMatch = fname.match(/(\d{3,7})/);
+          const detectedAmount = numMatch ? parseInt(numMatch[1], 10) : 0;
 
           resolve({
             account: acc,
-            type: detectedType,
-            amount: amount,
-            category: cat,
-            party: party,
-            merchant: party,
-            note: note,
+            type: isIncome ? 'income' : 'expense',
+            amount: detectedAmount,
+            party: isIncome ? 'ငွေလွှဲပေးပို့သူ' : (acc === 'cash' ? '7-Eleven Store' : 'ငွေလက်ခံသူ'),
+            partyType: isIncome ? 'sender' : 'receiver',
+            category: isIncome ? 'freelance' : 'food',
+            note: isIncome ? `${acc.toUpperCase()} ငွေလွှဲလက်ခံရရှိမှု (ဝင်ငွေ)` : `${acc.toUpperCase()} ငွေလွှဲသုံးစွဲမှု (ထွက်ငွေ)`,
             date: new Date().toISOString().split('T')[0],
-            items: items
+            items: []
           });
         };
-
         img.onerror = () => {
           resolve({
             account: 'kpay',
             type: 'expense',
-            amount: 500,
+            amount: 0,
+            party: '',
+            partyType: 'receiver',
             category: 'food',
-            party: 'ငွေလက်ခံသူ',
-            merchant: 'Payment Voucher',
-            note: 'KPay မုန့်ဖိုး သုံးစွဲမှု (ထွက်ငွေ)',
+            note: 'KPay ငွေလွှဲ',
             date: new Date().toISOString().split('T')[0],
             items: []
           });
         };
         img.src = base64Data;
       });
+    }
+
+    function parseOCRTextToVoucherData(rawText, file) {
+      const lower = rawText.toLowerCase();
+      let acc = 'kpay';
+      if (lower.includes('wave') || lower.includes('wavepay')) acc = 'wave';
+      else if (lower.includes('aya') || lower.includes('ayapay')) acc = 'ayapay';
+      else if (lower.includes('cb bank') || lower.includes('cbpay')) acc = 'cbbank';
+      else if (lower.includes('yoma')) acc = 'yoma';
+      else if (lower.includes('7-eleven') || lower.includes('tax invoice') || lower.includes('receipt')) acc = 'cash';
+
+      const isIncome = lower.includes('received') || lower.includes('receive') || lower.includes('credit') || lower.includes('from:') || lower.includes('payer:');
+      const type = isIncome ? 'income' : 'expense';
+
+      // Parse amounts: look for e.g. 15,000 or 35,000.00
+      let detectedAmount = 0;
+      const amtRegex = /(?:ks|mmk|total|amount)?\s*([0-9]{1,3}(?:,[0-9]{3})+(?:\.[0-9]{2})?|[0-9]{3,7}(?:\.[0-9]{2})?)/gi;
+      let match;
+      const candidates = [];
+      while ((match = amtRegex.exec(rawText)) !== null) {
+        const val = parseFloat(match[1].replace(/,/g, ''));
+        if (val >= 100 && val <= 50000000 && !match[1].startsWith('2024') && !match[1].startsWith('2025') && !match[1].startsWith('2026')) {
+          candidates.push(val);
+        }
+      }
+      if (candidates.length > 0) {
+        detectedAmount = candidates[0];
+      }
+
+      // Parse party name
+      let party = '';
+      const toMatch = rawText.match(/(?:to|recipient|merchant)[:\s]+([A-Za-z0-9\s]+)/i);
+      const fromMatch = rawText.match(/(?:from|payer|sender)[:\s]+([A-Za-z0-9\s]+)/i);
+      if (isIncome && fromMatch) {
+        party = fromMatch[1].trim().split('\n')[0];
+      } else if (!isIncome && toMatch) {
+        party = toMatch[1].trim().split('\n')[0];
+      }
+
+      return {
+        account: acc,
+        type: type,
+        amount: Math.round(detectedAmount),
+        party: party || (isIncome ? 'ငွေလွှဲပေးပို့သူ' : 'ငွေလက်ခံသူ'),
+        partyType: isIncome ? 'sender' : 'receiver',
+        category: isIncome ? 'freelance' : 'food',
+        note: party ? (isIncome ? `${party} ထံမှ ငွေလွှဲလက်ခံရရှိမှု` : `${party} သို့ ငွေလွှဲ`) : (isIncome ? 'ငွေလွှဲလက်ခံရရှိမှု (ဝင်ငွေ)' : 'ငွေလွှဲသုံးစွဲမှု (ထွက်ငွေ)'),
+        date: new Date().toISOString().split('T')[0],
+        items: []
+      };
     }
 
     function displayAIScannerResult(data, previewSrc) {
@@ -4996,9 +5058,12 @@ Reply ONLY with raw JSON with NO markdown:
       const itemsList = document.getElementById('ai-res-items-list');
 
       if (accSelect && data.account) accSelect.value = data.account;
-      if (amtInput) amtInput.value = data.amount || 500;
+      if (amtInput) {
+        amtInput.value = (data.amount !== undefined && data.amount !== null && data.amount > 0) ? data.amount : '';
+        if (!amtInput.value) amtInput.placeholder = 'ငွေပမာဏ ရိုက်ထည့်ပါ';
+      }
       if (partyInput) partyInput.value = data.party || '';
-      if (noteInput && data.note) noteInput.value = data.note;
+      if (noteInput) noteInput.value = data.note || '';
 
       // Set Type (Income vs Expense) with appropriate colors & fields
       setAIScannerType(data.type || 'expense');
