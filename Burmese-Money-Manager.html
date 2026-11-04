@@ -6,6 +6,22 @@
   <title>Burmese Money Manager - Ultra Clean Suite & Ledger</title>
   <meta name="description" content="Burmese Money Manager - Next-Gen Personal Expense & Savings Intelligence Suite">
   <meta name="theme-color" content="#07080D">
+  <script>
+    (function() {
+      try {
+        const savedTheme = localStorage.getItem('mm_theme_mode') || 'dark';
+        if (savedTheme === 'light') {
+          document.documentElement.classList.remove('dark');
+          document.documentElement.classList.add('light');
+          const metaTheme = document.querySelector('meta[name="theme-color"]');
+          if (metaTheme) metaTheme.setAttribute('content', '#F8FAFC');
+        } else {
+          document.documentElement.classList.remove('light');
+          document.documentElement.classList.add('dark');
+        }
+      } catch (e) {}
+    })();
+  </script>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -654,6 +670,306 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
       -ms-overflow-style: none;
       scrollbar-width: none;
     }
+
+    /* ========================================================
+       APPLE HIG LIGHT THEME DESIGN SYSTEM (အလင်းရောင် စနစ်)
+       Ultra-Crisp, High-Contrast iOS Grouped Light Aesthetics
+       ======================================================== */
+    html.light {
+      color-scheme: light;
+    }
+
+    html.light body {
+      background: radial-gradient(circle at 50% -10%, #FFFFFF 0%, #F1F5F9 45%, #E2E8F0 100%) fixed !important;
+      background-color: #F8FAFC !important;
+      color: #0F172A !important;
+    }
+
+    html.light #app-scrim-layer {
+      background: rgba(248, 250, 252, 0.88) !important;
+    }
+
+    /* Header in Light Mode */
+    html.light .apple-glass-header {
+      background: rgba(255, 255, 255, 0.88) !important;
+      backdrop-filter: blur(28px) saturate(180%) !important;
+      -webkit-backdrop-filter: blur(28px) saturate(180%) !important;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.08) !important;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04) !important;
+    }
+    html.light #header-view-title {
+      color: #0F172A !important;
+    }
+    html.light .apple-glass-header button,
+    html.light .apple-glass-header label {
+      background: rgba(0, 0, 0, 0.05) !important;
+      border-color: rgba(0, 0, 0, 0.09) !important;
+      color: #1E293B !important;
+    }
+    html.light .apple-glass-header button:hover,
+    html.light .apple-glass-header label:hover {
+      background: rgba(0, 0, 0, 0.09) !important;
+      color: #0F172A !important;
+    }
+
+    /* Bottom Dock in Light Mode */
+    html.light #bottom-dock {
+      background: rgba(255, 255, 255, 0.94) !important;
+      border: 1px solid rgba(0, 0, 0, 0.09) !important;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12) !important;
+    }
+    html.light .liquid-tab-btn {
+      color: #64748B !important;
+    }
+    html.light .liquid-tab-btn:hover {
+      color: #0F172A !important;
+    }
+    html.light .liquid-tab-active {
+      background: rgba(163, 230, 53, 0.25) !important;
+      border: 1px solid rgba(132, 204, 22, 0.45) !important;
+      color: #365314 !important;
+      box-shadow: 0 2px 10px rgba(163, 230, 53, 0.35) !important;
+    }
+    html.light .liquid-tab-active i {
+      filter: none !important;
+      stroke: #365314 !important;
+    }
+    html.light .liquid-tab-active span {
+      color: #365314 !important;
+      font-weight: 800 !important;
+    }
+
+    /* Cards & Containers in Light Mode */
+    html.light .fold-card-dark,
+    html.light .spendee-card,
+    html.light .apple-card,
+    html.light .glass-apple-card,
+    html.light .apple-inset-group {
+      background: #FFFFFF !important;
+      border: 1px solid rgba(0, 0, 0, 0.08) !important;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.02) !important;
+      color: #0F172A !important;
+    }
+
+    html.light .floating-account-card {
+      background: linear-gradient(180deg, #FFFFFF 0%, #F8FAFC 60%, #F1F5F9 100%) !important;
+      border: 1px solid rgba(0, 0, 0, 0.08) !important;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05), 0 2px 6px rgba(0, 0, 0, 0.02) !important;
+      color: #0F172A !important;
+    }
+    html.light .floating-account-card:hover {
+      background: #FFFFFF !important;
+      border-color: rgba(163, 230, 53, 0.6) !important;
+      box-shadow: 0 16px 32px rgba(0, 0, 0, 0.08), 0 0 16px rgba(163, 230, 53, 0.25) !important;
+    }
+
+    html.light .fold-boost-card {
+      background: #FFFFFF !important;
+      border: 1px solid rgba(0, 0, 0, 0.07) !important;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04) !important;
+      color: #0F172A !important;
+    }
+    html.light .fold-boost-card:hover {
+      background: #F8FAFC !important;
+      border-color: rgba(0, 0, 0, 0.12) !important;
+    }
+
+    html.light .fold-pill-btn {
+      background: #F1F5F9 !important;
+      color: #0F172A !important;
+      border: 1px solid rgba(0, 0, 0, 0.1) !important;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04) !important;
+    }
+    html.light .fold-pill-btn:hover {
+      background: #E2E8F0 !important;
+    }
+
+    html.light .glass-pill {
+      background: rgba(0, 0, 0, 0.04) !important;
+      border-color: rgba(0, 0, 0, 0.08) !important;
+      color: #0F172A !important;
+    }
+    html.light .glass-pill:hover {
+      background: rgba(0, 0, 0, 0.08) !important;
+    }
+
+    /* SVG Gauge in Light Mode */
+    html.light #gauge-circle-bg {
+      stroke: rgba(0, 0, 0, 0.08) !important;
+    }
+    html.light #gauge-spent-val {
+      color: #0F172A !important;
+    }
+
+    /* Settings in Light Mode */
+    html.light .rounded-\[24px\].bg-gradient-to-b.from-\[\#1A1B22\] {
+      background: #FFFFFF !important;
+      border: 1px solid rgba(0, 0, 0, 0.08) !important;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05) !important;
+    }
+    html.light .divide-white\/\[0\.06\] > * + * {
+      border-color: rgba(0, 0, 0, 0.06) !important;
+    }
+    html.light select#more-currency-select {
+      background-color: #F1F5F9 !important;
+      color: #0F172A !important;
+      border-color: rgba(0, 0, 0, 0.12) !important;
+    }
+    html.light select#more-currency-select option {
+      background-color: #FFFFFF !important;
+      color: #0F172A !important;
+    }
+
+    /* Modals in Light Mode */
+    html.light .glass-apple,
+    html.light #tx-detail-modal > div,
+    html.light #add-modal > div,
+    html.light #settings-modal > div,
+    html.light #profile-modal > div,
+    html.light #wallpaper-modal > div,
+    html.light #search-modal > div,
+    html.light #account-detail-modal > div,
+    html.light #category-detail-modal > div,
+    html.light #confirm-delete-modal > div {
+      background: #FFFFFF !important;
+      border: 1px solid rgba(0, 0, 0, 0.1) !important;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.25) !important;
+      color: #0F172A !important;
+    }
+
+    html.light input[type="text"],
+    html.light input[type="number"],
+    html.light input[type="email"],
+    html.light input[type="password"],
+    html.light input[type="date"],
+    html.light select,
+    html.light textarea {
+      background: #F1F5F9 !important;
+      color: #0F172A !important;
+      border: 1px solid rgba(0, 0, 0, 0.12) !important;
+    }
+    html.light input:focus,
+    html.light select:focus,
+    html.light textarea:focus {
+      background: #FFFFFF !important;
+      border-color: #38BDF8 !important;
+    }
+
+    html.light #tx-detail-modal .bg-black\/30 {
+      background: #F1F5F9 !important;
+      color: #0F172A !important;
+    }
+    html.light #tx-detail-modal .bg-white\/\[0\.03\] {
+      background: #F8FAFC !important;
+      border-color: rgba(0, 0, 0, 0.08) !important;
+    }
+    html.light #tx-detail-note {
+      color: #1E293B !important;
+    }
+
+    /* Auth Gateway in Light Mode */
+    html.light #auth-gateway {
+      background: #F8FAFC !important;
+      color: #0F172A !important;
+    }
+    html.light #auth-login-panel,
+    html.light #auth-signup-panel {
+      background: #FFFFFF !important;
+      border: 1px solid rgba(0, 0, 0, 0.08) !important;
+      box-shadow: 0 20px 48px rgba(0, 0, 0, 0.08) !important;
+    }
+    html.light #auth-login-panel h2,
+    html.light #auth-signup-panel h2 {
+      color: #0F172A !important;
+    }
+    html.light #auth-login-panel p,
+    html.light #auth-signup-panel p {
+      color: #64748B !important;
+    }
+    html.light #auth-login-panel label,
+    html.light #auth-signup-panel label {
+      color: #0F172A !important;
+    }
+    html.light #auth-login-panel input,
+    html.light #auth-signup-panel input {
+      background: #F1F5F9 !important;
+      color: #0F172A !important;
+      border-color: rgba(0, 0, 0, 0.12) !important;
+    }
+    html.light #btn-login-submit,
+    html.light #btn-signup-submit {
+      color: #FFFFFF !important;
+    }
+    html.light #btn-auth-google,
+    html.light #btn-auth-apple {
+      background: #F8FAFC !important;
+      border-color: rgba(0, 0, 0, 0.1) !important;
+      color: #0F172A !important;
+    }
+
+    /* High-Contrast Typography in Light Mode */
+    html.light .text-white {
+      color: #0F172A !important;
+    }
+    html.light .text-white\/90 {
+      color: #1E293B !important;
+    }
+    html.light .text-white\/80 {
+      color: #334155 !important;
+    }
+    html.light .text-white\/70 {
+      color: #475569 !important;
+    }
+    html.light .text-white\/60,
+    html.light .text-white\/50,
+    html.light .text-slate-400 {
+      color: #64748B !important;
+    }
+    html.light .text-white\/40,
+    html.light .text-white\/30,
+    html.light .text-white\/20 {
+      color: #94A3B8 !important;
+    }
+
+    /* Ensure specific colored badge / button text stays legible */
+    html.light button.bg-spendee-red,
+    html.light button.bg-spendee-green,
+    html.light button.bg-rose-500,
+    html.light button.bg-emerald-500,
+    html.light button.bg-blue-600,
+    html.light button.bg-\[\#30D158\],
+    html.light button.bg-\[\#FF453A\],
+    html.light button[class*="from-"],
+    html.light [class*="bg-gradient-to"] > .text-white,
+    html.light [class*="bg-gradient-to"] .text-white,
+    html.light .btn-press.text-white,
+    html.light #offline-guard-banner span {
+      color: #FFFFFF !important;
+    }
+    html.light .fold-hero-card *,
+    html.light .fold-hero-card span,
+    html.light .fold-hero-card h1,
+    html.light .fold-hero-card p {
+      color: #000000 !important;
+    }
+
+    html.light .text-\[\#30D158\] {
+      color: #16A34A !important;
+    }
+    html.light .text-\[\#FF453A\] {
+      color: #DC2626 !important;
+    }
+    html.light .text-\[\#C8FF00\],
+    html.light .text-\[\#A3E635\] {
+      color: #4D7C0F !important;
+    }
+
+    /* Segmented pill styling */
+    html.light #theme-mode-segmented,
+    html.light #wp-theme-mode-segmented {
+      background: #F1F5F9 !important;
+      border-color: rgba(0, 0, 0, 0.1) !important;
+    }
   </style>
   <script src="https://accounts.google.com/gsi/client" async defer></script>
 </head>
@@ -695,6 +1011,10 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
           <span class="absolute -top-0.5 -right-0.5 w-2.5 h-2.5 rounded-full bg-[#38bdf8] animate-pulse"></span>
           <input type="file" accept="image/*" class="hidden" onchange="handleReceiptImageUpload(event)" />
         </label>
+        <!-- Dark / Light Mode Toggle Button -->
+        <button id="header-theme-toggle-btn" onclick="toggleThemeMode()" title="Toggle Dark / Light Mode" class="w-9 h-9 rounded-full bg-white/[0.08] hover:bg-white/[0.14] active:scale-95 text-white/90 flex items-center justify-center transition cursor-pointer border border-white/10 shadow-sm">
+          <i id="header-theme-icon" data-lucide="moon" class="w-4 h-4"></i>
+        </button>
         <!-- Search Trigger Icon Button -->
         <button onclick="openSearchModal()" title="Search စာရင်းရှာဖွေရန်" class="w-9 h-9 rounded-full bg-white/[0.08] hover:bg-white/[0.14] active:scale-95 text-white/90 flex items-center justify-center transition cursor-pointer border border-white/10 shadow-sm">
           <i data-lucide="search" class="w-4 h-4"></i>
@@ -1200,6 +1520,29 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
             </div>
           </button>
 
+          <!-- Theme Appearance (Dark Mode / Light Mode) -->
+          <div class="p-3.5 sm:p-4 flex items-center justify-between gap-3 hover:bg-white/[0.03] transition-all">
+            <div class="flex items-center gap-3 min-w-0">
+              <div class="w-9 h-9 rounded-xl bg-purple-500/15 text-purple-400 border border-purple-500/20 flex items-center justify-center shrink-0 shadow-sm">
+                <i data-lucide="sun-moon" class="w-4 h-4 stroke-[2.5]"></i>
+              </div>
+              <div class="min-w-0">
+                <span class="font-extrabold text-sm text-white block leading-snug">Theme Mode</span>
+                <p class="text-[10px] text-white/50 font-medium truncate">Dark Mode / Light Mode အလင်းအမှောင်</p>
+              </div>
+            </div>
+            <div class="inline-flex p-1 rounded-2xl bg-black/40 border border-white/10 shrink-0 gap-1" id="theme-mode-segmented">
+              <button type="button" onclick="setThemeMode('dark')" id="theme-btn-dark" class="px-2.5 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-1.5 cursor-pointer">
+                <i data-lucide="moon" class="w-3.5 h-3.5"></i>
+                <span>Dark</span>
+              </button>
+              <button type="button" onclick="setThemeMode('light')" id="theme-btn-light" class="px-2.5 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-1.5 cursor-pointer">
+                <i data-lucide="sun" class="w-3.5 h-3.5"></i>
+                <span>Light</span>
+              </button>
+            </div>
+          </div>
+
           <!-- Appearance & Wallpaper Theme -->
           <button onclick="openWallpaperModal()" class="w-full p-3.5 sm:p-4 flex items-center justify-between gap-3 hover:bg-white/[0.04] active:bg-white/[0.08] transition-all cursor-pointer text-left group">
             <div class="flex items-center gap-3 min-w-0">
@@ -1212,7 +1555,7 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
               </div>
             </div>
             <div class="flex items-center gap-1.5 shrink-0">
-              <span class="text-xs font-bold text-white/50 group-hover:text-white/80 transition-colors">Obsidian Dark</span>
+              <span id="more-wp-theme-subtitle" class="text-xs font-bold text-white/50 group-hover:text-white/80 transition-colors">Obsidian Dark</span>
               <i data-lucide="chevron-right" class="w-4 h-4 text-white/30 group-hover:text-white/80 group-hover:translate-x-0.5 transition-all"></i>
             </div>
           </button>
@@ -1958,6 +2301,29 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
         <button onclick="closeWallpaperModal()" class="w-8 h-8 rounded-full glass-pill flex items-center justify-center text-slate-400 hover:text-white btn-press cursor-pointer">
           <i data-lucide="x" class="w-4 h-4"></i>
         </button>
+      </div>
+
+      <!-- Theme Appearance Switcher inside Wallpaper Modal -->
+      <div class="p-3.5 rounded-2xl bg-white/[0.04] border border-white/[0.08] flex items-center justify-between gap-3">
+        <div class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded-xl bg-purple-500/15 text-purple-400 flex items-center justify-center border border-purple-500/20">
+            <i data-lucide="sun-moon" class="w-4 h-4"></i>
+          </div>
+          <div>
+            <span class="text-xs font-extrabold text-white block">Theme Mode</span>
+            <span class="text-[10px] text-white/50 font-medium">Dark Mode / Light Mode အလင်းအမှောင်</span>
+          </div>
+        </div>
+        <div class="inline-flex p-1 rounded-2xl bg-black/40 border border-white/10 shrink-0 gap-1" id="wp-theme-mode-segmented">
+          <button type="button" onclick="setThemeMode('dark')" id="wp-theme-btn-dark" class="px-2.5 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-1.5 cursor-pointer">
+            <i data-lucide="moon" class="w-3.5 h-3.5"></i>
+            <span>Dark</span>
+          </button>
+          <button type="button" onclick="setThemeMode('light')" id="wp-theme-btn-light" class="px-2.5 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-1.5 cursor-pointer">
+            <i data-lucide="sun" class="w-3.5 h-3.5"></i>
+            <span>Light</span>
+          </button>
+        </div>
       </div>
 
       <!-- Custom Photo Upload Section -->
@@ -3265,6 +3631,7 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
 
     /* Global Application State */
     let appState = {
+      themeMode: localStorage.getItem('mm_theme_mode') || 'dark',
       lang: localStorage.getItem('mm_lang') || 'my',
       currency: localStorage.getItem('mm_currency') || 'MMK',
       budget: 500000,
@@ -3562,6 +3929,7 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
 
     function persistStateLocallyOnly() {
       const activeUserId = localStorage.getItem(ACTIVE_SESSION_KEY);
+      safeStorageSet('mm_theme_mode', appState.themeMode);
       safeStorageSet('mm_lang', appState.lang);
       safeStorageSet('mm_currency', appState.currency);
       safeStorageSet('mm_wallpaper', appState.wallpaper);
@@ -3587,6 +3955,7 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
 
     function persistState() {
       const activeUserId = localStorage.getItem(ACTIVE_SESSION_KEY);
+      safeStorageSet('mm_theme_mode', appState.themeMode);
       safeStorageSet('mm_lang', appState.lang);
       safeStorageSet('mm_currency', appState.currency);
       safeStorageSet('mm_wallpaper', appState.wallpaper);
@@ -5285,6 +5654,7 @@ Return ONLY a valid JSON object with NO markdown formatting, NO backticks, NO ex
 
     /* Initialize Application */
     function initApp() {
+      applyThemeMode(appState.themeMode || localStorage.getItem('mm_theme_mode') || 'dark');
       applyWallpaper();
       migrateLegacyDataIfNeeded();
 
@@ -5330,12 +5700,102 @@ Return ONLY a valid JSON object with NO markdown formatting, NO backticks, NO ex
       setTimeout(() => { if (window.lucide) lucide.createIcons(); }, 50);
     }
 
+    /* ================= DUAL THEME ENGINE (DARK / LIGHT MODE) ================= */
+    function applyThemeMode(mode) {
+      if (!mode || (mode !== 'light' && mode !== 'dark')) {
+        mode = appState.themeMode || localStorage.getItem('mm_theme_mode') || 'dark';
+      }
+      appState.themeMode = mode;
+      safeStorageSet('mm_theme_mode', mode);
+
+      const root = document.documentElement;
+      const metaThemeColor = document.querySelector('meta[name="theme-color"]');
+
+      if (mode === 'light') {
+        root.classList.remove('dark');
+        root.classList.add('light');
+        if (metaThemeColor) metaThemeColor.setAttribute('content', '#F8FAFC');
+      } else {
+        root.classList.remove('light');
+        root.classList.add('dark');
+        if (metaThemeColor) metaThemeColor.setAttribute('content', '#07080D');
+      }
+
+      // Update Header Theme Toggle Button & Icon
+      const headerIcon = document.getElementById('header-theme-icon');
+      const headerBtn = document.getElementById('header-theme-toggle-btn');
+      if (headerIcon) {
+        headerIcon.setAttribute('data-lucide', mode === 'light' ? 'sun' : 'moon');
+      }
+      if (headerBtn) {
+        headerBtn.setAttribute('title', mode === 'light' ? (appState.lang === 'my' ? 'Dark Mode သို့ ပြောင်းရန်' : 'Switch to Dark Mode') : (appState.lang === 'my' ? 'Light Mode သို့ ပြောင်းရန်' : 'Switch to Light Mode'));
+      }
+
+      // Update Segmented Controllers in Settings & Wallpaper Modals
+      updateThemeSegmentedUI(mode);
+
+      applyWallpaper();
+      if (window.lucide) lucide.createIcons();
+    }
+
+    function toggleThemeMode() {
+      const nextMode = appState.themeMode === 'light' ? 'dark' : 'light';
+      applyThemeMode(nextMode);
+      persistStateLocallyOnly();
+      const msg = nextMode === 'light' 
+        ? (appState.lang === 'my' ? '☀️ Light Mode (အလင်းစနစ်) သို့ ပြောင်းလဲလိုက်ပါပြီ' : '☀️ Switched to Light Mode')
+        : (appState.lang === 'my' ? '🌙 Dark Mode (အမှောင်စနစ်) သို့ ပြောင်းလဲလိုက်ပါပြီ' : '🌙 Switched to Dark Mode');
+      showToast(msg);
+    }
+
+    function setThemeMode(mode) {
+      if (appState.themeMode === mode) return;
+      applyThemeMode(mode);
+      persistStateLocallyOnly();
+      const msg = mode === 'light' 
+        ? (appState.lang === 'my' ? '☀️ Light Mode (အလင်းစနစ်) သို့ ပြောင်းလဲလိုက်ပါပြီ' : '☀️ Switched to Light Mode')
+        : (appState.lang === 'my' ? '🌙 Dark Mode (အမှောင်စနစ်) သို့ ပြောင်းလဲလိုက်ပါပြီ' : '🌙 Switched to Dark Mode');
+      showToast(msg);
+    }
+
+    function updateThemeSegmentedUI(mode) {
+      const isDark = (mode === 'dark');
+
+      const applySegStyles = (btnDark, btnLight) => {
+        if (!btnDark || !btnLight) return;
+        if (isDark) {
+          btnDark.className = "px-2.5 py-1.5 rounded-xl text-xs font-black transition flex items-center gap-1.5 cursor-pointer bg-white/20 text-white shadow-sm";
+          btnLight.className = "px-2.5 py-1.5 rounded-xl text-xs font-semibold transition flex items-center gap-1.5 cursor-pointer text-white/50 hover:text-white";
+        } else {
+          btnDark.className = "px-2.5 py-1.5 rounded-xl text-xs font-semibold transition flex items-center gap-1.5 cursor-pointer text-slate-500 hover:text-slate-900";
+          btnLight.className = "px-2.5 py-1.5 rounded-xl text-xs font-black transition flex items-center gap-1.5 cursor-pointer bg-white text-slate-900 shadow-sm border border-slate-200/80";
+        }
+      };
+
+      applySegStyles(document.getElementById('theme-btn-dark'), document.getElementById('theme-btn-light'));
+      applySegStyles(document.getElementById('wp-theme-btn-dark'), document.getElementById('wp-theme-btn-light'));
+
+      // Update appearance subtitle in more settings
+      const wpSub = document.getElementById('more-wp-theme-subtitle');
+      if (wpSub) {
+        wpSub.textContent = isDark ? 'Obsidian Dark' : 'Pure Light';
+      }
+    }
+
     /* ================= WALLPAPER ENGINE ================= */
     function applyWallpaper() {
       const layer = document.getElementById('app-wallpaper-layer');
       const scrim = document.getElementById('app-scrim-layer');
       const removeBtn = document.getElementById('btn-remove-custom-wp');
       const adjustBtn = document.getElementById('btn-adjust-custom-wp');
+
+      if (scrim) {
+        if (appState.themeMode === 'light') {
+          scrim.style.background = 'rgba(248, 250, 252, 0.88)';
+        } else {
+          scrim.style.background = 'rgba(7, 8, 13, 0.75)';
+        }
+      }
 
       const dim = appState.wallpaperDimness !== undefined ? appState.wallpaperDimness : 0.70;
       const blurVal = appState.wallpaperBlur !== undefined ? appState.wallpaperBlur : 0;
