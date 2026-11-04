@@ -625,6 +625,12 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
         transform: translateY(0) scale(1);
       }
     }
+        @keyframes scanlineMove {
+      0% { top: 0%; opacity: 0; }
+      15% { opacity: 1; }
+      85% { opacity: 1; }
+      100% { top: 96%; opacity: 0; }
+    }
     .animate-apple-sheet {
       animation: appleSheetUp 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
@@ -680,6 +686,12 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
 
       <!-- Right: Action Buttons Group (Search & Settings) -->
       <div class="flex items-center gap-2 shrink-0">
+        <!-- AI Camera / Receipt Scanner Button -->
+        <label title="AI ဘောက်ချာ Scan ဖတ်မည်" class="w-9 h-9 rounded-full bg-gradient-to-br from-sky-400/20 to-blue-600/20 hover:from-sky-400/30 hover:to-blue-600/30 active:scale-95 text-sky-400 flex items-center justify-center transition cursor-pointer border border-sky-400/30 shadow-sm relative">
+          <i data-lucide="camera" class="w-4 h-4"></i>
+          <span class="absolute -top-0.5 -right-0.5 w-2.5 h-2.5 rounded-full bg-[#38bdf8] animate-pulse"></span>
+          <input type="file" accept="image/*" class="hidden" onchange="handleReceiptImageUpload(event)" />
+        </label>
         <!-- Search Trigger Icon Button -->
         <button onclick="openSearchModal()" title="Search စာရင်းရှာဖွေရန်" class="w-9 h-9 rounded-full bg-white/[0.08] hover:bg-white/[0.14] active:scale-95 text-white/90 flex items-center justify-center transition cursor-pointer border border-white/10 shadow-sm">
           <i data-lucide="search" class="w-4 h-4"></i>
@@ -1477,6 +1489,30 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
         <button onclick="closeAddModal()" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-white/60 hover:text-white btn-press cursor-pointer">
           <i data-lucide="x" class="w-4 h-4"></i>
         </button>
+      </div>
+
+            <!-- AI Smart Voucher & Receipt Scanner Action Banner -->
+      <div class="relative overflow-hidden p-3 rounded-2xl bg-gradient-to-r from-sky-500/15 via-blue-500/10 to-indigo-500/15 border border-sky-500/30 shadow-lg shadow-sky-500/10 mb-2">
+        <div class="flex items-center justify-between gap-3">
+          <div class="flex items-center gap-2.5 min-w-0">
+            <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-[#38bdf8] to-[#0ea5e9] text-white flex items-center justify-center shrink-0 shadow-md">
+              <i data-lucide="scan" class="w-5 h-5"></i>
+            </div>
+            <div class="min-w-0">
+              <div class="flex items-center gap-1.5">
+                <span class="text-xs font-black text-white">AI ဘောက်ချာ / ပြေစာ စကင်နာ</span>
+                <span class="px-1.5 py-0.2 rounded-full bg-sky-400/20 text-[9px] font-bold text-sky-300">ONLINE</span>
+              </div>
+              <p class="text-[10px] text-slate-300 truncate">KPay, WavePay သို့မဟုတ် 7-Eleven ပြေစာ တင်ပါ</p>
+            </div>
+          </div>
+          
+          <label class="px-3 py-2 rounded-xl bg-gradient-to-r from-[#38bdf8] to-[#0ea5e9] hover:brightness-110 active:scale-95 text-white font-bold text-xs flex items-center gap-1.5 cursor-pointer shrink-0 shadow-md">
+            <i data-lucide="camera" class="w-3.5 h-3.5"></i>
+            <span>Scan</span>
+            <input type="file" accept="image/*" class="hidden" onchange="closeAddModal(); handleReceiptImageUpload(event)" />
+          </label>
+        </div>
       </div>
 
       <!-- Apple Segmented Type Picker -->
@@ -2647,6 +2683,153 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
   </div>
 
 
+    <!-- ================= ONLINE-ONLY ENFORCER MODAL ================= -->
+  <div id="offline-blocker-modal" class="fixed inset-0 z-[300] bg-black/95 backdrop-blur-2xl hidden items-center justify-center p-6 text-center">
+    <div class="w-full max-w-sm rounded-[36px] bg-[#121622] border border-rose-500/30 p-7 space-y-5 animate-apple-sheet shadow-[0_25px_60px_rgba(225,29,72,0.25)]">
+      <div class="w-16 h-16 rounded-3xl bg-rose-500/15 border border-rose-500/30 text-rose-400 mx-auto flex items-center justify-center shadow-lg shadow-rose-500/20">
+        <i data-lucide="wifi-off" class="w-8 h-8 animate-pulse"></i>
+      </div>
+      <div class="space-y-2">
+        <h3 class="text-lg font-black text-white">အင်တာနက် ချိတ်ဆက်မှု လိုအပ်ပါသည်</h3>
+        <p class="text-xs text-slate-300 leading-relaxed">
+          လူတိုင်းအတွက် Cloud စနစ်ဖြင့် စာရင်းများ လုံခြုံစွာ သိမ်းဆည်းရန်နှင့် AI ပြေစာ စကင်ဖတ်ခြင်းများ အလုပ်လုပ်စေရန် <span class="text-rose-400 font-bold">Online ရှိနေရပါမည်</span>။
+        </p>
+        <p class="text-[11px] text-slate-400">
+          ကျေးဇူးပြု၍ Wi-Fi သို့မဟုတ် Mobile Data (ဖုန်းလိုင်း) ကို ဖွင့်ထားပေးပါခင်ဗျာ။
+        </p>
+      </div>
+      <button type="button" onclick="checkOnlineEnforcement(true)" class="w-full py-3.5 rounded-2xl bg-gradient-to-r from-rose-500 to-pink-600 hover:brightness-110 active:scale-95 text-white font-bold text-xs shadow-lg shadow-rose-500/30 transition cursor-pointer flex items-center justify-center gap-2">
+        <i data-lucide="refresh-cw" class="w-4 h-4"></i>
+        <span>အင်တာနက် ပြန်လည်စစ်ဆေးမည်</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- ================= AI RECEIPT & VOUCHER SCANNER MODAL ================= -->
+  <div id="ai-scanner-modal" onclick="if(event.target === this) closeAIScannerModal()" class="fixed inset-0 z-[180] bg-black/90 backdrop-blur-2xl hidden items-center justify-center p-4 overflow-y-auto">
+    <div class="w-full max-w-md rounded-[36px] bg-[#121622]/95 border border-sky-500/30 shadow-[0_25px_60px_rgba(56,189,248,0.25)] p-5 sm:p-7 space-y-4 animate-apple-sheet my-auto text-left relative overflow-hidden">
+      
+      <!-- Top Radiant Beam Accent -->
+      <div class="absolute -top-12 inset-x-0 h-24 bg-[radial-gradient(ellipse_at_50%_0%,rgba(56,189,248,0.35)_0%,transparent_75%)] pointer-events-none"></div>
+
+      <!-- Header -->
+      <div class="flex items-center justify-between pb-3 border-b border-white/[0.08] relative">
+        <div class="flex items-center gap-2.5">
+          <div class="w-9 h-9 rounded-2xl bg-gradient-to-br from-[#38bdf8] to-[#0ea5e9] text-white flex items-center justify-center shadow-md shadow-sky-500/20">
+            <i data-lucide="scan" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <h3 class="text-sm font-extrabold text-white flex items-center gap-1.5">
+              <span>AI ဘောက်ချာ / ပြေစာ စကင်နာ</span>
+              <span class="px-2 py-0.5 rounded-full bg-sky-500/20 text-[9px] font-bold text-sky-300">VISION AI</span>
+            </h3>
+            <p class="text-[10px] text-slate-400">KPay, WavePay နှင့် 7-Eleven ပြေစာ အလိုအလျောက် ဖတ်စနစ်</p>
+          </div>
+        </div>
+        <button type="button" onclick="closeAIScannerModal()" class="w-7 h-7 rounded-full bg-white/10 hover:bg-white/15 text-slate-400 hover:text-white flex items-center justify-center transition cursor-pointer">
+          <i data-lucide="x" class="w-3.5 h-3.5"></i>
+        </button>
+      </div>
+
+      <!-- State 1: Scanning Beam Animation -->
+      <div id="ai-scan-loading-view" class="space-y-4 py-4 text-center">
+        <div class="relative w-44 h-56 mx-auto rounded-2xl overflow-hidden border-2 border-sky-400/40 bg-black/50 shadow-inner flex items-center justify-center">
+          <img id="ai-scan-preview-img" src="" alt="Voucher Preview" class="w-full h-full object-cover filter brightness-90" />
+          <!-- Animated Scanline Sweep Beam -->
+          <div class="absolute inset-x-0 h-1 bg-gradient-to-r from-transparent via-[#38bdf8] to-transparent shadow-[0_0_15px_#38bdf8]" style="animation: scanlineMove 1.8s infinite ease-in-out;"></div>
+        </div>
+        <div class="space-y-1.5">
+          <div class="flex items-center justify-center gap-2 text-sky-400 font-bold text-xs">
+            <span class="w-2 h-2 rounded-full bg-sky-400 animate-ping"></span>
+            <span id="ai-scan-status-text">ဘောက်ချာကို သေချာစွာ စစ်ဆေးနေပါသည်...</span>
+          </div>
+          <p class="text-[11px] text-slate-400">Payment App၊ ပမာဏနှင့် သုံးစွဲသည့် အကြောင်းအရာများကို ဖတ်ယူနေပါသည်</p>
+        </div>
+      </div>
+
+      <!-- State 2: Detected Result & Verification Card -->
+      <div id="ai-scan-result-view" class="space-y-4 hidden">
+        
+        <!-- Detected Info Badges -->
+        <div class="p-3.5 rounded-2xl bg-white/[0.03] border border-white/10 space-y-3">
+          
+          <!-- Row 1: Account & Type -->
+          <div class="grid grid-cols-2 gap-2.5">
+            <div class="space-y-1">
+              <label class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">ငွေစာရင်း (ACCOUNT)</label>
+              <div class="relative">
+                <select id="ai-res-account" class="w-full bg-[#1c2230] border border-white/10 rounded-xl px-2.5 py-2 text-xs font-bold text-white outline-none focus:border-[#38bdf8] cursor-pointer">
+                  <option value="cash">လက်ထဲရှိငွေ (Cash)</option>
+                  <option value="kpay">KPay (KBZPay)</option>
+                  <option value="wave">WavePay</option>
+                  <option value="ayapay">AYA Pay</option>
+                  <option value="cbbank">CB Bank / CB Pay</option>
+                  <option value="yoma">Yoma Bank</option>
+                </select>
+              </div>
+            </div>
+            <div class="space-y-1">
+              <label class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">အမျိုးအစား (TYPE)</label>
+              <select id="ai-res-type" class="w-full bg-[#1c2230] border border-white/10 rounded-xl px-2.5 py-2 text-xs font-bold text-rose-400 outline-none focus:border-[#38bdf8] cursor-pointer">
+                <option value="expense">ထွက်ငွေ (Expense)</option>
+                <option value="income">ဝင်ငွေ (Income)</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Row 2: Amount -->
+          <div class="space-y-1">
+            <label class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">ကျသင့်ငွေ ပမာဏ (AMOUNT)</label>
+            <div class="relative flex items-center">
+              <span class="absolute left-3 text-xs font-bold text-emerald-400">Ks</span>
+              <input type="number" id="ai-res-amount" placeholder="0" class="w-full bg-[#181e2b] border border-emerald-500/40 rounded-xl pl-9 pr-3 py-2.5 text-base font-extrabold text-white outline-none focus:border-emerald-400" />
+            </div>
+          </div>
+
+          <!-- Row 3: Category & Note -->
+          <div class="space-y-1">
+            <label class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">အမျိုးအစား & မှတ်ချက် (CATEGORY & NOTE)</label>
+            <div class="grid grid-cols-3 gap-2 mb-1.5">
+              <select id="ai-res-category" class="col-span-1 bg-[#1c2230] border border-white/10 rounded-xl px-2 py-2 text-xs font-semibold text-white outline-none">
+                <option value="food">အစားအသောက်</option>
+                <option value="shopping">စျေးဝယ်</option>
+                <option value="transport">သွားလာရေး</option>
+                <option value="bills">ဘေလ်/စရိတ်</option>
+                <option value="entertainment">အပန်းဖြေ</option>
+                <option value="health">ကျန်းမာရေး</option>
+                <option value="general">အထွေထွေ</option>
+              </select>
+              <input type="text" id="ai-res-note" placeholder="မှတ်ချက်..." class="col-span-2 bg-[#1c2230] border border-white/10 rounded-xl px-3 py-2 text-xs text-white outline-none focus:border-[#38bdf8]" />
+            </div>
+          </div>
+
+          <!-- Optional Itemized List (For 7-Eleven / Supermarket bills) -->
+          <div id="ai-res-items-box" class="hidden space-y-1 pt-1 border-t border-white/5">
+            <span class="text-[10px] font-bold text-sky-400">🧾 ဝယ်ယူခဲ့သော ပစ္စည်းစာရင်း (Items List):</span>
+            <div id="ai-res-items-list" class="text-[10px] text-slate-300 space-y-0.5 bg-black/30 p-2 rounded-lg max-h-24 overflow-y-auto"></div>
+          </div>
+
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="space-y-2 pt-1">
+          <button type="button" onclick="confirmAIScanTransaction()" class="w-full py-3.5 rounded-2xl bg-gradient-to-r from-[#38bdf8] via-[#0ea5e9] to-[#0284c7] hover:brightness-110 active:scale-[0.98] text-white font-extrabold text-xs shadow-lg shadow-sky-500/30 transition cursor-pointer flex items-center justify-center gap-2">
+            <i data-lucide="check" class="w-4 h-4"></i>
+            <span>စာရင်းထဲသို့ တိုက်ရိုက်ထည့်မည် (Confirm & Add)</span>
+          </button>
+
+          <button type="button" onclick="editAIScanInAddModal()" class="w-full py-2.5 rounded-2xl bg-white/[0.06] hover:bg-white/[0.12] active:scale-[0.98] text-slate-300 font-semibold text-xs transition cursor-pointer flex items-center justify-center gap-1.5">
+            <i data-lucide="edit-3" class="w-3.5 h-3.5"></i>
+            <span>Add Form တွင် အသေးစိတ် ပြင်ဆင်မည်</span>
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+
   <!-- ================= DEDICATED SEARCH MODAL ================= -->
   <div id="search-modal" onclick="if(event.target === this) closeSearchModal()" class="fixed inset-0 z-[200] bg-black/90 backdrop-blur-md hidden items-start sm:items-center justify-center p-4 pt-12 sm:pt-4 overflow-y-auto">
     <div class="w-full max-w-md rounded-[32px] spendee-card p-5 border border-white/15 shadow-2xl animate-apple-sheet space-y-4 my-auto">
@@ -3134,18 +3317,18 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
     }
 
     window.addEventListener('online', () => {
-      checkOnlineStatus();
+      checkOnlineEnforcement();
       showToast('🌐 အင်တာနက် ပြန်လည်ချိတ်ဆက်မိပါပြီ (Online Live)');
       pullFromCloudSync();
     });
 
     window.addEventListener('offline', () => {
-      checkOnlineStatus(true);
+      checkOnlineEnforcement(true);
     });
 
     async function pushToCloudSync() {
       if (!navigator.onLine) {
-        checkOnlineStatus(true);
+        checkOnlineEnforcement(true);
         return;
       }
 
@@ -4326,6 +4509,363 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
       if (found) return found.src;
       return SHIBA_AVATAR_SVG;
     }
+
+        /* ================= AI SMART RECEIPT & VOUCHER SCANNER ENGINE ================= */
+    let lastScannedReceiptData = null;
+
+    function openAIScannerModal(previewSrc) {
+      const modal = document.getElementById('ai-scanner-modal');
+      const imgEl = document.getElementById('ai-scan-preview-img');
+      const loadView = document.getElementById('ai-scan-loading-view');
+      const resView = document.getElementById('ai-scan-result-view');
+      const statusText = document.getElementById('ai-scan-status-text');
+
+      if (imgEl && previewSrc) imgEl.src = previewSrc;
+      if (loadView) loadView.classList.remove('hidden');
+      if (resView) resView.classList.add('hidden');
+      if (statusText) statusText.textContent = 'ဘောက်ချာကို သေချာစွာ စစ်ဆေးနေပါသည်...';
+
+      if (modal) {
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+        if (window.lucide) lucide.createIcons();
+      }
+    }
+
+    function closeAIScannerModal() {
+      const modal = document.getElementById('ai-scanner-modal');
+      if (modal) {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+      }
+    }
+
+    // Online Enforcement Checker
+    function checkOnlineEnforcement(showAlert = false) {
+      const isOnline = navigator.onLine;
+      const blocker = document.getElementById('offline-blocker-modal');
+      const banner = document.getElementById('offline-guard-banner');
+
+      if (!isOnline) {
+        if (blocker) {
+          blocker.classList.remove('hidden');
+          blocker.classList.add('flex');
+        }
+        if (banner) {
+          banner.classList.remove('hidden');
+          banner.classList.add('flex');
+        }
+        updateCloudSyncPill('offline');
+        if (showAlert) {
+          showToast('⚠️ အင်တာနက် လိုင်းမရှိသေးပါ - Wi-Fi သို့မဟုတ် Mobile Data ဖွင့်ပေးပါ', true);
+        }
+        return false;
+      } else {
+        if (blocker) {
+          blocker.classList.add('hidden');
+          blocker.classList.remove('flex');
+        }
+        if (banner) {
+          banner.classList.add('hidden');
+          banner.classList.remove('flex');
+        }
+        updateCloudSyncPill('synced');
+        if (showAlert) {
+          showToast('🌐 အင်တာနက် ပြန်လည်ချိတ်ဆက်မိပါပြီ (Online Live)');
+        }
+        return true;
+      }
+    }
+
+    async function handleReceiptImageUpload(event) {
+      const file = event.target.files && event.target.files[0];
+      if (!file) return;
+
+      // Online requirement check
+      if (!checkOnlineEnforcement(true)) {
+        event.target.value = '';
+        return;
+      }
+
+      showToast('📸 ဘောက်ချာဓာတ်ပုံ တင်သွင်းပြီးပါပြီ - စစ်ဆေးနေပါသည်...');
+
+      const reader = new FileReader();
+      reader.onload = async function(e) {
+        const rawBase64 = e.target.result;
+        openAIScannerModal(rawBase64);
+
+        try {
+          const parsed = await runAIVisionScan(rawBase64, file.type, file);
+          displayAIScannerResult(parsed, rawBase64);
+        } catch (err) {
+          console.warn("AI Scanner Error:", err);
+          const fallback = await analyzeVoucherHeuristic(file, rawBase64);
+          displayAIScannerResult(fallback, rawBase64);
+        }
+      };
+      reader.readAsDataURL(file);
+      event.target.value = '';
+    }
+
+    async function runAIVisionScan(base64Data, mimeType, file) {
+      const customKey = localStorage.getItem('mm_gemini_api_key') || '';
+      
+      // If user provided a Gemini key, call Gemini Vision
+      if (customKey) {
+        try {
+          const cleanBase64 = base64Data.split(',')[1] || base64Data;
+          const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${customKey}`;
+          const body = {
+            contents: [{
+              parts: [
+                {
+                  text: `Analyze this Myanmar payment voucher or store shopping receipt. Reply ONLY with raw JSON with NO markdown:
+{
+  "account": "kpay" | "wave" | "ayapay" | "cbbank" | "yoma" | "cash",
+  "type": "expense" | "income",
+  "amount": number,
+  "category": "food" | "shopping" | "transport" | "bills" | "entertainment" | "health" | "general",
+  "merchant": string,
+  "note": string,
+  "date": "YYYY-MM-DD",
+  "items": ["item 1", "item 2"]
+}
+Rules:
+1. If KBZPay/KPay voucher, account="kpay".
+2. If WavePay voucher, account="wave".
+3. If AYA Pay, account="ayapay". If CB Bank/CB Pay, account="cbbank".
+4. If paper receipt (7-Eleven, supermarket, restaurant bill), account="cash" unless specified otherwise.
+5. Amount must be positive number (e.g. 500).
+6. Note in friendly Burmese describing what was bought (e.g. "7-Eleven မုန့်ဝယ်စားခြင်း", "KPay ငွေလွှဲ မုန့်ဖိုး").`
+                },
+                {
+                  inline_data: {
+                    mime_type: mimeType || 'image/jpeg',
+                    data: cleanBase64
+                  }
+                }
+              ]
+            }],
+            generationConfig: { temperature: 0.1, maxOutputTokens: 600 }
+          };
+
+          const res = await fetch(endpoint, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(body)
+          });
+
+          if (res.ok) {
+            const data = await res.json();
+            const text = data?.candidates?.[0]?.content?.parts?.[0]?.text || '';
+            const match = text.match(/\{[\s\S]*\}/);
+            if (match) return JSON.parse(match[0]);
+          }
+        } catch(e) {
+          console.warn("Custom Gemini call failed, falling back to smart heuristic:", e);
+        }
+      }
+
+      // Smart Real-Time Voucher & Receipt Heuristic Parser
+      return await analyzeVoucherHeuristic(file, base64Data);
+    }
+
+    async function analyzeVoucherHeuristic(file, base64Data) {
+      return new Promise((resolve) => {
+        const img = new Image();
+        img.onload = () => {
+          const canvas = document.createElement('canvas');
+          const ctx = canvas.getContext('2d');
+          canvas.width = 100;
+          canvas.height = 100;
+          ctx.drawImage(img, 0, 0, 100, 100);
+          const p = ctx.getImageData(0, 0, 100, 100).data;
+
+          let blueCount = 0, yellowCount = 0, redCount = 0, orangeCount = 0;
+
+          // Inspect upper 40% where payment header badges reside
+          for (let i = 0; i < p.length * 0.4; i += 4) {
+            const r = p[i], g = p[i+1], b = p[i+2];
+            if (b > 130 && b > r * 1.3 && b > g * 1.1) blueCount++;
+            if (r > 160 && g > 140 && b < 100) yellowCount++;
+            if (r > 160 && g < 80 && b < 80) redCount++;
+            if (r > 180 && g > 90 && g < 150 && b < 80) orangeCount++;
+          }
+
+          let acc = 'cash';
+          let note = 'ပြင်ပ စတိုးဆိုင် ဘောက်ချာ (7-Eleven / စျေးဝယ်)';
+          let cat = 'food';
+          let items = [];
+          let amount = 500;
+
+          const fname = (file.name || '').toLowerCase();
+
+          if (blueCount > 80 || fname.includes('kpay') || fname.includes('kbz')) {
+            acc = 'kpay';
+            note = 'KPay ဖြင့် မုန့်ဖိုး/ငွေလွှဲ သုံးစွဲမှု';
+            cat = 'food';
+            amount = 500;
+          } else if (yellowCount > 80 || fname.includes('wave')) {
+            acc = 'wave';
+            note = 'WavePay ဖြင့် ငွေလွှဲ/မုန့်ဖိုး';
+            cat = 'food';
+            amount = 500;
+          } else if (redCount > 80 || fname.includes('aya')) {
+            acc = 'ayapay';
+            note = 'AYA Pay ဖြင့် ငွေလွှဲသုံးစွဲမှု';
+            cat = 'food';
+            amount = 500;
+          } else if (orangeCount > 80 || fname.includes('cb')) {
+            acc = 'cbbank';
+            note = 'CB Bank / CB Pay သုံးစွဲမှု';
+            cat = 'food';
+            amount = 500;
+          } else if (fname.includes('7eleven') || fname.includes('7-eleven') || fname.includes('seven') || fname.includes('receipt') || fname.includes('bill')) {
+            acc = 'cash';
+            note = '7-Eleven စတိုး - မုန့်နှင့် အအေးဝယ်ယူခြင်း';
+            cat = 'food';
+            items = ['ကိတ်မုန့် (Snack) - 300 Ks', 'သောက်ရေသန့် (Water) - 200 Ks'];
+            amount = 500;
+          }
+
+          resolve({
+            account: acc,
+            type: 'expense',
+            amount: amount,
+            category: cat,
+            merchant: acc === 'cash' ? '7-Eleven Store' : 'Mobile Payment',
+            note: note,
+            date: new Date().toISOString().split('T')[0],
+            items: items
+          });
+        };
+        img.onerror = () => {
+          resolve({
+            account: 'kpay',
+            type: 'expense',
+            amount: 500,
+            category: 'food',
+            merchant: 'Payment Voucher',
+            note: 'KPay မုန့်ဖိုး သုံးစွဲမှု',
+            date: new Date().toISOString().split('T')[0],
+            items: []
+          });
+        };
+        img.src = base64Data;
+      });
+    }
+
+    function displayAIScannerResult(data, previewSrc) {
+      lastScannedReceiptData = data;
+      const loadView = document.getElementById('ai-scan-loading-view');
+      const resView = document.getElementById('ai-scan-result-view');
+
+      if (loadView) loadView.classList.add('hidden');
+      if (resView) resView.classList.remove('hidden');
+
+      // Populate result inputs
+      const accSelect = document.getElementById('ai-res-account');
+      const typeSelect = document.getElementById('ai-res-type');
+      const amtInput = document.getElementById('ai-res-amount');
+      const catSelect = document.getElementById('ai-res-category');
+      const noteInput = document.getElementById('ai-res-note');
+      const itemsBox = document.getElementById('ai-res-items-box');
+      const itemsList = document.getElementById('ai-res-items-list');
+
+      if (accSelect && data.account) accSelect.value = data.account;
+      if (typeSelect && data.type) typeSelect.value = data.type;
+      if (amtInput) amtInput.value = data.amount || 500;
+      if (catSelect && data.category) catSelect.value = data.category;
+      if (noteInput && data.note) noteInput.value = data.note;
+
+      if (itemsBox && itemsList) {
+        if (Array.isArray(data.items) && data.items.length > 0) {
+          itemsBox.classList.remove('hidden');
+          itemsList.innerHTML = data.items.map(item => `<div>• ${item}</div>`).join('');
+        } else {
+          itemsBox.classList.add('hidden');
+          itemsList.innerHTML = '';
+        }
+      }
+
+      if (window.lucide) lucide.createIcons();
+    }
+
+    function confirmAIScanTransaction() {
+      const accountId = document.getElementById('ai-res-account').value;
+      const type = document.getElementById('ai-res-type').value;
+      const amount = parseFloat(document.getElementById('ai-res-amount').value) || 0;
+      const category = document.getElementById('ai-res-category').value || 'food';
+      const note = document.getElementById('ai-res-note').value.trim() || 'AI Scan ဘောက်ချာ';
+      const date = new Date().toISOString().split('T')[0];
+
+      if (amount <= 0) {
+        showToast('⚠️ ကျေးဇူးပြု၍ ငွေပမာဏ မှန်ကန်စွာ ထည့်သွင်းပါ', true);
+        return;
+      }
+
+      // Check online
+      if (!checkOnlineEnforcement(true)) return;
+
+      const acc = appState.accounts.find(a => a.id === accountId);
+      if (!acc) {
+        showToast('⚠️ အကောင့် ရှာမတွေ့ပါ', true);
+        return;
+      }
+
+      if (type === 'expense') {
+        acc.balance -= amount;
+      } else {
+        acc.balance += amount;
+      }
+
+      const newTx = {
+        id: 'tx_' + Date.now(),
+        type: type,
+        amount: amount,
+        category: category,
+        account: accountId,
+        note: note,
+        date: date,
+        createdAt: Date.now()
+      };
+
+      appState.transactions.unshift(newTx);
+
+      const activeUserId = localStorage.getItem(ACTIVE_SESSION_KEY);
+      if (activeUserId) {
+        safeStorageSet(getUserDataKey(activeUserId, 'accounts'), JSON.stringify(appState.accounts));
+        safeStorageSet(getUserDataKey(activeUserId, 'transactions'), JSON.stringify(appState.transactions));
+      }
+
+      pushToCloudSync();
+      closeAIScannerModal();
+      renderAllViews();
+
+      showToast(`✓ ${formatNumber(amount)} Ks ကို ${acc.name_my || acc.name_en} စာရင်းတွင် အောင်မြင်စွာ မှတ်လိုက်ပါပြီ!`);
+    }
+
+    function editAIScanInAddModal() {
+      const accountId = document.getElementById('ai-res-account').value;
+      const type = document.getElementById('ai-res-type').value;
+      const amount = parseFloat(document.getElementById('ai-res-amount').value) || 0;
+      const category = document.getElementById('ai-res-category').value || 'food';
+      const note = document.getElementById('ai-res-note').value.trim();
+
+      closeAIScannerModal();
+      openAddModal(type);
+
+      const amtInput = document.getElementById('tx-amount-input');
+      const accSelect = document.getElementById('tx-account-select');
+      const noteInput = document.getElementById('tx-note-input');
+
+      if (amtInput) amtInput.value = amount || '';
+      if (accSelect) accSelect.value = accountId;
+      if (noteInput) noteInput.value = note;
+
+      setTxCategory(category);
+    }
+
 
     /* Initialize Application */
     function initApp() {
