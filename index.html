@@ -1273,13 +1273,34 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
         </div>
       </div>
 
-          <!-- Section Header: Daily Transactions & Activity -->
-      <div class="flex items-center justify-between px-1 pt-1">
-        <h3 class="text-xs font-extrabold text-white/80 uppercase tracking-wider">နေ့စဉ် စာရင်းမှတ်တမ်းများ (Daily Activity)</h3>
-        <button onclick="switchView('overview')" class="text-xs font-bold text-[#A3E635] hover:underline flex items-center gap-0.5 cursor-pointer">
-          <span>အားလုံးကြည့်မည်</span>
-          <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
-        </button>
+          <!-- Section Header: Daily Transactions & Activity with Period Selector -->
+      <div class="space-y-2.5 pt-1">
+        <div class="flex items-center justify-between px-1">
+          <div class="flex items-center gap-2">
+            <h3 class="text-xs font-extrabold text-white/80 uppercase tracking-wider" id="home-tx-section-title">နေ့စဉ် စာရင်းမှတ်တမ်းများ (Daily Activity)</h3>
+            <span id="home-tx-period-badge" class="text-[10px] font-extrabold px-2 py-0.5 rounded-full bg-[#C8FF00]/15 text-[#C8FF00] border border-[#C8FF00]/25">ယနေ့ (Today)</span>
+          </div>
+          <button onclick="openAllTransactionsModal()" class="text-xs font-bold text-[#A3E635] hover:underline flex items-center gap-0.5 cursor-pointer">
+            <span>အားလုံးကြည့်မည်</span>
+            <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+          </button>
+        </div>
+
+        <!-- Period Selector Pills (ယနေ့ • ဤအပတ် • ဤလ • ဤနှစ်) -->
+        <div class="flex items-center gap-1.5 overflow-x-auto no-scrollbar py-0.5 px-0.5">
+          <button type="button" onclick="setHomeTxPeriod('today')" id="home-period-today" class="px-3.5 py-1.5 rounded-xl text-xs font-bold bg-[#C8FF00] text-black shadow-md shadow-[#C8FF00]/20 shrink-0 cursor-pointer transition">
+            ယနေ့ (Today)
+          </button>
+          <button type="button" onclick="setHomeTxPeriod('week')" id="home-period-week" class="px-3.5 py-1.5 rounded-xl text-xs font-bold bg-white/10 text-slate-300 hover:text-white shrink-0 cursor-pointer transition">
+            ဤအပတ် (Week)
+          </button>
+          <button type="button" onclick="setHomeTxPeriod('month')" id="home-period-month" class="px-3.5 py-1.5 rounded-xl text-xs font-bold bg-white/10 text-slate-300 hover:text-white shrink-0 cursor-pointer transition">
+            ဤလ (Monthly)
+          </button>
+          <button type="button" onclick="setHomeTxPeriod('year')" id="home-period-year" class="px-3.5 py-1.5 rounded-xl text-xs font-bold bg-white/10 text-slate-300 hover:text-white shrink-0 cursor-pointer transition">
+            ဤနှစ် (Yearly)
+          </button>
+        </div>
       </div>
 
       <!-- Grouped Daily Transactions List -->
@@ -1389,6 +1410,23 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
           </div>
         </div>
       </div>
+        </div>
+      </div>
+
+      <!-- Period Cashflow Transactions List in Overview -->
+      <div class="p-5 rounded-[28px] spendee-card space-y-3">
+        <div class="flex items-center justify-between">
+          <div>
+            <h3 class="text-xs font-black text-white uppercase tracking-wider" id="overview-txs-title">လစဉ် စာရင်းမှတ်တမ်းများ (Monthly Records)</h3>
+            <p class="text-[10px] text-slate-400" id="overview-txs-subtitle">လက်ရှိရွေးချယ်ထားသော ကာလအတွင်း စာရင်းများ</p>
+          </div>
+          <button onclick="openAllTransactionsModal(appState.periodMode === 'year' ? 'year' : 'month')" class="text-xs font-bold text-[#A3E635] hover:underline flex items-center gap-0.5 cursor-pointer">
+            <span>အားလုံးစစ်ဆေးမည်</span>
+            <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+          </button>
+        </div>
+        <div id="overview-transactions-list" class="space-y-2 max-h-80 overflow-y-auto no-scrollbar">
+          <!-- Rendered monthly or yearly transactions -->
         </div>
       </div>
         </div>
@@ -1821,7 +1859,7 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
   </div>
 
   <!-- ================= MODAL: TRANSACTION DETAIL (ပြေစာ/မှတ်တမ်း အသေးစိတ်ကြည့်ရန်) ================= -->
-  <div id="tx-detail-modal" onclick="if(event.target === this) closeTransactionDetailModal()" class="fixed inset-0 z-[160] bg-black/85 backdrop-blur-2xl hidden items-end sm:items-center justify-center p-0 sm:p-4 overflow-y-auto">
+  <div id="tx-detail-modal" onclick="if(event.target === this) closeTransactionDetailModal()" class="fixed inset-0 z-[200] bg-black/85 backdrop-blur-2xl hidden items-end sm:items-center justify-center p-0 sm:p-4 overflow-y-auto">
     <div class="w-full max-w-md rounded-t-[36px] sm:rounded-[36px] bg-[#121622]/95 border-t sm:border border-white/15 shadow-[0_25px_60px_rgba(0,0,0,0.8)] p-5 sm:p-6 space-y-4 animate-apple-sheet my-auto text-left relative overflow-hidden max-h-[92vh] overflow-y-auto no-scrollbar">
       
       <!-- Top Radiant Beam Accent -->
@@ -3328,6 +3366,85 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
   </div>
 
 
+  <!-- ================= ALL TRANSACTIONS & HISTORY MODAL (ရက်၊ အပတ်၊ လ၊ နှစ် စာရင်းစုံ) ================= -->
+  <div id="all-transactions-modal" onclick="if(event.target === this) closeAllTransactionsModal()" class="fixed inset-0 z-[190] bg-black/90 backdrop-blur-2xl hidden items-end sm:items-center justify-center p-0 sm:p-4 overflow-y-auto">
+    <div class="w-full max-w-lg rounded-t-[32px] sm:rounded-[32px] spendee-card p-5 sm:p-6 border border-white/15 shadow-2xl animate-apple-sheet space-y-4 max-h-[92vh] flex flex-col">
+      
+      <!-- Modal Header -->
+      <div class="flex items-center justify-between pb-3 border-b border-white/[0.08] shrink-0">
+        <div class="flex items-center gap-2.5">
+          <div class="w-10 h-10 rounded-2xl bg-[#C8FF00]/15 text-[#C8FF00] flex items-center justify-center border border-[#C8FF00]/20">
+            <i data-lucide="receipt" class="w-5 h-5 stroke-[2.2]"></i>
+          </div>
+          <div>
+            <h3 class="text-base font-black text-white">စာရင်းမှတ်တမ်းများ (History Records)</h3>
+            <p class="text-[11px] text-white/60">ရက်၊ အပတ်၊ လ၊ နှစ်အလိုက် စာရင်းများ ပြန်လည်စစ်ဆေးရန်</p>
+          </div>
+        </div>
+        <button type="button" onclick="closeAllTransactionsModal()" class="w-8 h-8 rounded-full bg-white/10 hover:bg-white/15 flex items-center justify-center text-slate-300 hover:text-white cursor-pointer transition">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      </div>
+
+      <!-- Period Filter Segmented Bar -->
+      <div class="flex items-center gap-1.5 overflow-x-auto no-scrollbar py-1 shrink-0">
+        <button type="button" onclick="setAllTxHistoryPeriod('today')" id="alltx-period-today" class="px-3 py-1.5 rounded-xl text-xs font-bold bg-[#C8FF00] text-black shadow-md shadow-[#C8FF00]/20 shrink-0 cursor-pointer transition">
+          ယနေ့ (Today)
+        </button>
+        <button type="button" onclick="setAllTxHistoryPeriod('week')" id="alltx-period-week" class="px-3 py-1.5 rounded-xl text-xs font-bold bg-white/10 text-slate-300 hover:text-white shrink-0 cursor-pointer transition">
+          ဤအပတ် (Week)
+        </button>
+        <button type="button" onclick="setAllTxHistoryPeriod('month')" id="alltx-period-month" class="px-3 py-1.5 rounded-xl text-xs font-bold bg-white/10 text-slate-300 hover:text-white shrink-0 cursor-pointer transition">
+          ဤလ (Monthly)
+        </button>
+        <button type="button" onclick="setAllTxHistoryPeriod('year')" id="alltx-period-year" class="px-3 py-1.5 rounded-xl text-xs font-bold bg-white/10 text-slate-300 hover:text-white shrink-0 cursor-pointer transition">
+          ဤနှစ် (Yearly)
+        </button>
+        <button type="button" onclick="setAllTxHistoryPeriod('all')" id="alltx-period-all" class="px-3 py-1.5 rounded-xl text-xs font-bold bg-white/10 text-slate-300 hover:text-white shrink-0 cursor-pointer transition">
+          အားလုံး (All Time)
+        </button>
+      </div>
+
+      <!-- Financial KPI Summary for selected period -->
+      <div class="grid grid-cols-3 gap-2 p-3 rounded-2xl bg-white/[0.04] border border-white/10 shrink-0 text-center">
+        <div>
+          <span class="text-[10px] text-slate-400 font-semibold block">ဝင်ငွေ (+)</span>
+          <span class="text-xs font-black text-[#C8FF00]" id="alltx-kpi-income">0 Ks</span>
+        </div>
+        <div>
+          <span class="text-[10px] text-slate-400 font-semibold block">ထွက်ငွေ (-)</span>
+          <span class="text-xs font-black text-[#FF453A]" id="alltx-kpi-expense">0 Ks</span>
+        </div>
+        <div>
+          <span class="text-[10px] text-slate-400 font-semibold block">အသားတင် (Net)</span>
+          <span class="text-xs font-black text-white" id="alltx-kpi-net">0 Ks</span>
+        </div>
+      </div>
+
+      <!-- Search & Type Filter Row -->
+      <div class="space-y-2 shrink-0">
+        <div class="relative">
+          <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none"></i>
+          <input type="text" id="alltx-search-input" oninput="renderAllTxHistoryModal()" placeholder="မှတ်စု၊ ဆိုင်အမည်၊ ပမာဏ ရှာဖွေပါ..." class="w-full bg-white/[0.08] focus:bg-white/12 border border-white/15 focus:border-[#C8FF00]/60 rounded-xl pl-9 pr-3 py-2 text-xs text-white placeholder-slate-400 focus:outline-none transition">
+        </div>
+
+        <div class="flex items-center gap-1.5 overflow-x-auto no-scrollbar text-[11px] font-bold">
+          <button type="button" onclick="setAllTxHistoryType('all')" id="alltx-type-all" class="px-3 py-1 rounded-lg bg-[#C8FF00] text-black font-bold shrink-0 cursor-pointer">အားလုံး</button>
+          <button type="button" onclick="setAllTxHistoryType('expense')" id="alltx-type-expense" class="px-3 py-1 rounded-lg bg-white/10 text-slate-300 hover:text-white shrink-0 cursor-pointer">ထွက်ငွေ (-)</button>
+          <button type="button" onclick="setAllTxHistoryType('income')" id="alltx-type-income" class="px-3 py-1 rounded-lg bg-white/10 text-slate-300 hover:text-white shrink-0 cursor-pointer">ဝင်ငွေ (+)</button>
+          <button type="button" onclick="setAllTxHistoryType('transfer')" id="alltx-type-transfer" class="px-3 py-1 rounded-lg bg-white/10 text-slate-300 hover:text-white shrink-0 cursor-pointer">အကောင့်လွှဲ</button>
+        </div>
+      </div>
+
+      <!-- Transaction List Scroll Area -->
+      <div id="alltx-history-list" class="flex-1 overflow-y-auto space-y-3 pr-1 min-h-[200px] max-h-[50vh]">
+        <!-- Grouped by date cards rendered dynamically -->
+      </div>
+
+    </div>
+  </div>
+
+
   <!-- ================= DEDICATED SEARCH MODAL ================= -->
   <div id="search-modal" onclick="if(event.target === this) closeSearchModal()" class="fixed inset-0 z-[200] bg-black/90 backdrop-blur-md hidden items-start sm:items-center justify-center p-4 pt-12 sm:pt-4 overflow-y-auto">
     <div class="w-full max-w-md rounded-[32px] spendee-card p-5 border border-white/15 shadow-2xl animate-apple-sheet space-y-4 my-auto">
@@ -3380,7 +3497,7 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
   </div>
 
   <!-- ================= DELETE CONFIRMATION MODAL ================= -->
-  <div id="delete-confirm-modal" onclick="if(event.target === this) closeDeleteModal()" class="fixed inset-0 z-[220] bg-black/90 backdrop-blur-md hidden items-center justify-center p-4">
+  <div id="delete-confirm-modal" onclick="if(event.target === this) closeDeleteModal()" class="fixed inset-0 z-[250] bg-black/90 backdrop-blur-md hidden items-center justify-center p-4">
     <div class="w-full max-w-sm rounded-[32px] spendee-card p-6 border border-rose-500/30 shadow-2xl animate-apple-sheet space-y-4 text-center">
       
       <!-- Danger Trash Icon -->
@@ -3653,6 +3770,7 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
       selectedType: 'expense',
       selectedCategory: 'food',
       currentTxFilter: 'all',
+      homeTxPeriod: 'today',
       activeViewingAccountId: null,
       periodMode: 'month',
       selectedYear: new Date().getFullYear()
@@ -4198,8 +4316,12 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
       renderAccounts();
       renderDonutChart();
       renderHomeTransactions();
+      renderOverviewTransactions();
       renderRecentTransactions();
       renderAllTransactions();
+      if (!document.getElementById('all-transactions-modal')?.classList.contains('hidden')) {
+        renderAllTxHistoryModal();
+      }
       renderGoals();
       renderWeekStrip();
       if (window.lucide) lucide.createIcons();
@@ -5687,6 +5809,8 @@ Return ONLY a valid JSON object with NO markdown formatting, NO backticks, NO ex
         if (e.key === 'Escape') {
           closeAddModal();
           closeAccountDetailModal();
+          closeAllTransactionsModal();
+          closeSearchModal();
           closeAddGoalModal();
           closeDepositGoalModal();
           closeSetBudgetModal();
@@ -6497,6 +6621,7 @@ Return ONLY a valid JSON object with NO markdown formatting, NO backticks, NO ex
       } else if (viewName === 'overview') {
         renderDonutChart();
         renderAnnualBarChart();
+        renderOverviewTransactions();
       } else if (viewName === 'budgets') {
         renderGoals();
       } else if (viewName === 'more') {
@@ -6570,10 +6695,106 @@ Return ONLY a valid JSON object with NO markdown formatting, NO backticks, NO ex
       }, 1200);
     }
 
+    /* ================= TRANSACTIONS ENGINE: CARDS & PERIOD FILTERING ================= */
+
+    function renderTxCardHTML(t) {
+      const sym = getCurrencySymbol();
+      let catName = 'Transaction';
+      let iconName = 'arrow-right';
+      let color = '#64748B';
+
+      if (t.type === 'expense') {
+        const c = EXPENSE_CATEGORIES.find(cat => cat.id === t.categoryId);
+        catName = c ? (appState.lang === 'my' ? c.name_my : c.name_en) : (t.categoryId || 'Expense');
+        iconName = c ? c.icon : 'shopping-bag';
+        color = c ? c.color : '#FF453A';
+      } else if (t.type === 'income') {
+        const c = INCOME_CATEGORIES.find(cat => cat.id === t.categoryId);
+        catName = c ? (appState.lang === 'my' ? c.name_my : c.name_en) : (t.categoryId || 'Income');
+        iconName = c ? c.icon : 'briefcase';
+        color = c ? c.color : '#C8FF00';
+      } else if (t.type === 'transfer') {
+        catName = appState.lang === 'my' ? 'အကောင့်လွှဲငွေ' : 'Transfer';
+        iconName = 'arrow-left-right';
+        color = '#0A84FF';
+      }
+
+      const acc = appState.accounts.find(a => a.id === t.accountId);
+      const accName = acc ? (appState.lang === 'my' ? acc.name_my : acc.name_en) : 'Account';
+
+      const isExp = t.type === 'expense';
+      const isInc = t.type === 'income';
+
+      return `
+        <div class="p-3.5 sm:p-4 rounded-2xl fold-boost-card flex items-center justify-between gap-3 group transition cursor-pointer hover:border-white/20 active:scale-[0.99]" onclick="triggerGaugeSpinAnimation(); openTransactionDetailModal('${t.id}');">
+          <div class="flex items-center gap-3.5 min-w-0">
+            <div class="w-11 h-11 rounded-2xl flex items-center justify-center shrink-0 border border-white/10 shadow-md relative" style="background-color: ${color}22; color: ${color};">
+              <i data-lucide="${iconName}" class="w-5 h-5 stroke-[2.2]"></i>
+            </div>
+            <div class="min-w-0 truncate">
+              <div class="flex items-center gap-2">
+                <h4 class="font-bold text-white text-sm truncate">${catName}</h4>
+                <span class="text-[9px] font-extrabold px-2 py-0.5 rounded-full ${isExp ? 'bg-rose-500/15 text-rose-300 border border-rose-500/20' : (isInc ? 'bg-[#C8FF00]/15 text-[#C8FF00] border border-[#C8FF00]/25' : 'bg-blue-500/15 text-blue-300 border border-blue-500/20')}">
+                  ${isExp ? '10% Back' : (isInc ? 'Bonus' : 'Transfer')}
+                </span>
+              </div>
+              <div class="flex items-center gap-2 text-xs text-white/50 truncate mt-0.5">
+                <span class="truncate">${t.note || accName}</span>
+                <span>•</span>
+                <span class="shrink-0 text-white/40">${t.date || 'Today'}</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="text-right shrink-0 flex items-center gap-3">
+            <div>
+              <div class="flex items-center gap-1.5 justify-end">
+                <span class="w-1.5 h-1.5 rounded-full bg-[#30D158] inline-block animate-pulse"></span>
+                <span class="text-[10px] font-bold text-white/60 uppercase">Online</span>
+              </div>
+              <p class="font-black text-sm tracking-tight ${isExp ? 'text-[#FF453A]' : (isInc ? 'text-[#C8FF00]' : 'text-[#0A84FF]')} mt-0.5">
+                ${isExp ? '-' : (isInc ? '+' : '')}${formatNumber(t.amount)} ${sym}
+              </p>
+            </div>
+            <button onclick="event.stopPropagation(); promptDeleteTransaction('${t.id}')" title="Delete" class="w-7 h-7 rounded-full hover:bg-rose-500/20 text-white/30 hover:text-rose-400 flex items-center justify-center transition cursor-pointer">
+              <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+            </button>
+          </div>
+        </div>
+      `;
+    }
+
+    function setHomeTxPeriod(period) {
+      appState.homeTxPeriod = period;
+      const periods = ['today', 'week', 'month', 'year'];
+      periods.forEach(p => {
+        const btn = document.getElementById(`home-period-${p}`);
+        if (btn) {
+          if (p === period) {
+            btn.className = "px-3.5 py-1.5 rounded-xl text-xs font-bold bg-[#C8FF00] text-black shadow-md shadow-[#C8FF00]/20 shrink-0 cursor-pointer transition";
+            try { btn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' }); } catch(e){}
+          } else {
+            btn.className = "px-3.5 py-1.5 rounded-xl text-xs font-bold bg-white/10 text-slate-300 hover:text-white shrink-0 cursor-pointer transition";
+          }
+        }
+      });
+
+      const badge = document.getElementById('home-tx-period-badge');
+      if (badge) {
+        if (period === 'today') badge.textContent = appState.lang === 'my' ? 'ယနေ့ (Today)' : 'Today';
+        else if (period === 'week') badge.textContent = appState.lang === 'my' ? 'ဤအပတ် (Week)' : 'This Week';
+        else if (period === 'month') badge.textContent = appState.lang === 'my' ? 'ဤလ (Monthly)' : 'This Month';
+        else if (period === 'year') badge.textContent = appState.lang === 'my' ? 'ဤနှစ် (Yearly)' : 'This Year';
+      }
+
+      renderHomeTransactions();
+    }
+
     function renderHomeTransactions() {
       const container = document.getElementById('home-transactions-list');
       if (!container) return;
 
+      const sym = getCurrencySymbol();
       const query = (document.getElementById('global-search-input')?.value || '').toLowerCase().trim();
       let txs = [...appState.transactions];
 
@@ -6581,48 +6802,133 @@ Return ONLY a valid JSON object with NO markdown formatting, NO backticks, NO ex
         txs = txs.filter(t => (t.note || '').toLowerCase().includes(query) || (t.categoryId || '').toLowerCase().includes(query));
       }
 
-      const sym = getCurrencySymbol();
+      // Sort descending by date, then id
+      txs.sort((a,b) => (b.date || '').localeCompare(a.date || '') || (b.id || '').localeCompare(a.id || ''));
 
-      if (txs.length === 0) {
+      const period = appState.homeTxPeriod || 'today';
+      const todayStr = new Date().toISOString().split('T')[0];
+
+      // Helper date calculations
+      const now = new Date();
+      const dayOfWeek = (now.getDay() + 6) % 7; // Monday = 0
+      const startOfWeek = new Date(now.getFullYear(), now.getMonth(), now.getDate() - dayOfWeek);
+      const startOfWeekStr = startOfWeek.toISOString().split('T')[0];
+      const currMonthPrefix = todayStr.substring(0, 7);
+      const currYearPrefix = todayStr.substring(0, 4);
+
+      let filteredTxs = [];
+      if (period === 'today') {
+        filteredTxs = txs.filter(t => t.date === todayStr);
+      } else if (period === 'week') {
+        filteredTxs = txs.filter(t => t.date && t.date >= startOfWeekStr && t.date <= todayStr);
+      } else if (period === 'month') {
+        filteredTxs = txs.filter(t => t.date && t.date.startsWith(currMonthPrefix));
+      } else if (period === 'year') {
+        filteredTxs = txs.filter(t => t.date && t.date.startsWith(currYearPrefix));
+      } else {
+        filteredTxs = txs;
+      }
+
+      // If no transactions in this period
+      if (filteredTxs.length === 0) {
+        let emptyTitle = appState.lang === 'my' ? 'ယနေ့အတွက် စာရင်းမရှိသေးပါ' : 'No Transactions Today';
+        let emptyDesc = appState.lang === 'my' ? 'ယနေ့ အဝင်/အထွက် စာရင်းများကို အပေါ်ရှိ အမြန်ခလုတ်များဖြင့် စတင်ထည့်သွင်းနိုင်ပါသည်' : 'Start tracking today\'s cash flow with the quick buttons above';
+
+        if (period === 'week') {
+          emptyTitle = appState.lang === 'my' ? 'ဤအပတ်တွင် စာရင်းမှတ်တမ်း မရှိသေးပါ' : 'No Transactions This Week';
+          emptyDesc = appState.lang === 'my' ? 'ဤအပတ်အတွင်း သုံးစွဲ/ဝင်ငွေ စာရင်းများကို စတင်ထည့်သွင်းပါ' : 'No transactions recorded for the current week';
+        } else if (period === 'month') {
+          emptyTitle = appState.lang === 'my' ? 'ဤလတွင် စာရင်းမှတ်တမ်း မရှိသေးပါ' : 'No Transactions This Month';
+          emptyDesc = appState.lang === 'my' ? 'ဤလအတွင်း အဝင်/အထွက် စာရင်းများကို စတင်မှတ်သားပါ' : 'No transactions recorded for the current month';
+        } else if (period === 'year') {
+          emptyTitle = appState.lang === 'my' ? 'ဤနှစ်တွင် စာရင်းမှတ်တမ်း မရှိသေးပါ' : 'No Transactions This Year';
+          emptyDesc = appState.lang === 'my' ? 'ဤနှစ်အတွင်း စာရင်းမှတ်တမ်းများ မရှိသေးပါ' : 'No transactions recorded for the current year';
+        }
+
         container.innerHTML = `
-          <div class="p-8 rounded-[28px] fold-card-dark text-center space-y-4 my-2">
-            <div class="w-14 h-14 rounded-2xl bg-white/[0.08] text-[#C8FF00] mx-auto flex items-center justify-center border border-white/10 shadow-inner">
-              <i data-lucide="receipt" class="w-7 h-7 stroke-[2.2]"></i>
+          <div class="p-6 sm:p-8 rounded-[28px] fold-card-dark text-center space-y-3.5 my-2 border border-white/10">
+            <div class="w-12 h-12 rounded-2xl bg-white/[0.08] text-[#C8FF00] mx-auto flex items-center justify-center border border-white/10 shadow-inner">
+              <i data-lucide="receipt" class="w-6 h-6 stroke-[2.2]"></i>
             </div>
             <div class="space-y-1">
-              <h4 class="text-base font-bold text-white">${appState.lang === 'my' ? 'စာရင်းမှတ်တမ်း မရှိသေးပါ' : 'No Transactions Yet'}</h4>
-              <p class="text-xs text-white/60 max-w-xs mx-auto leading-relaxed">
-                ${appState.lang === 'my' ? 'နေ့စဉ် အဝင်/အထွက် စာရင်းများကို အပေါ်ရှိ အမြန်ခလုတ်များဖြင့် စတင်ထည့်သွင်းနိုင်ပါသည်' : 'Start tracking your daily cash flow with the quick action buttons'}
-              </p>
+              <h4 class="text-sm font-bold text-white">${emptyTitle}</h4>
+              <p class="text-xs text-white/60 max-w-xs mx-auto leading-relaxed">${emptyDesc}</p>
             </div>
-            <button onclick="triggerGaugeSpinAnimation(); openAddModal('expense')" class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#C8FF00] text-black font-bold text-xs shadow-lg shadow-[#C8FF00]/30 btn-press cursor-pointer">
-              <i data-lucide="plus" class="w-4 h-4 stroke-[3]"></i>
-              <span>${appState.lang === 'my' ? 'စာရင်း စတင်ထည့်သွင်းမည်' : 'Add First Transaction'}</span>
-            </button>
+            <div class="flex items-center justify-center gap-2 pt-1">
+              <button onclick="triggerGaugeSpinAnimation(); openAddModal('expense')" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#C8FF00] text-black font-bold text-xs shadow-lg shadow-[#C8FF00]/30 btn-press cursor-pointer">
+                <i data-lucide="plus" class="w-4 h-4 stroke-[3]"></i>
+                <span>${appState.lang === 'my' ? 'စာရင်း စတင်ထည့်မည်' : 'Add Transaction'}</span>
+              </button>
+              <button onclick="openAllTransactionsModal('all')" class="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-full bg-white/10 hover:bg-white/15 text-white font-bold text-xs cursor-pointer transition">
+                <i data-lucide="clock" class="w-3.5 h-3.5"></i>
+                <span>${appState.lang === 'my' ? 'မှတ်တမ်းဟောင်းများ' : 'History'}</span>
+              </button>
+            </div>
           </div>
         `;
         if (window.lucide) lucide.createIcons();
         return;
       }
 
-      // Sort descending by date
-      txs.sort((a,b) => (b.date || '').localeCompare(a.date || ''));
+      // When period === 'today'
+      if (period === 'today') {
+        let dayNet = 0;
+        filteredTxs.forEach(t => {
+          const amt = Number(t.amount) || 0;
+          if (t.type === 'expense') dayNet -= amt;
+          else if (t.type === 'income') dayNet += amt;
+        });
 
-      // Group by date
+        // User explicitly requested: "ဒီနေ့သုံးတဲ့ငွေ ၃ စင်းကိုပဲ ပြချင်တာပါ။"
+        // Limit to latest 3 transactions on home dashboard
+        const displayTxs = filteredTxs.slice(0, 3);
+
+        let outputHTML = `
+          <div class="space-y-2.5">
+            <div class="flex items-center justify-between text-xs text-white/60 font-semibold px-1 pt-1">
+              <span class="flex items-center gap-1.5">
+                <span class="w-1.5 h-1.5 rounded-full bg-[#C8FF00]"></span>
+                <span>${appState.lang === 'my' ? 'ယနေ့ (Today)' : 'Today'}</span>
+                <span class="text-[10px] text-white/40">(${filteredTxs.length} ခု)</span>
+              </span>
+              <span class="${dayNet < 0 ? 'text-[#FF453A]' : (dayNet > 0 ? 'text-[#C8FF00]' : 'text-white/60')} font-black">
+                ${dayNet < 0 ? '-' : (dayNet > 0 ? '+' : '')}${formatNumber(Math.abs(dayNet))} ${sym}
+              </span>
+            </div>
+            <div class="space-y-2">
+              ${displayTxs.map(t => renderTxCardHTML(t)).join('')}
+            </div>
+        `;
+
+        if (filteredTxs.length > 3) {
+          outputHTML += `
+            <button onclick="openAllTransactionsModal('today')" class="w-full py-3 rounded-2xl bg-white/[0.05] hover:bg-white/10 border border-white/10 text-xs text-white/80 font-bold flex items-center justify-center gap-1.5 transition cursor-pointer">
+              <i data-lucide="layers" class="w-4 h-4 text-[#C8FF00]"></i>
+              <span>${appState.lang === 'my' ? `ယနေ့ စာရင်း နောက်ထပ် (${filteredTxs.length - 3}) ခု ရှိပါသေးသည် • အားလုံးကြည့်မည်` : `View all ${filteredTxs.length} today transactions`}</span>
+              <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+            </button>
+          `;
+        }
+
+        outputHTML += `</div>`;
+        container.innerHTML = outputHTML;
+        if (window.lucide) lucide.createIcons();
+        return;
+      }
+
+      // When period is 'week', 'month', or 'year': Group by date
       const groups = {};
-      txs.forEach(t => {
+      filteredTxs.forEach(t => {
         const d = t.date || 'Recent';
         if (!groups[d]) groups[d] = [];
         groups[d].push(t);
       });
 
-      const todayStr = new Date().toISOString().split('T')[0];
       const yDate = new Date();
       yDate.setDate(yDate.getDate() - 1);
       const yesterdayStr = yDate.toISOString().split('T')[0];
 
       let outputHTML = '';
-
       Object.keys(groups).forEach(dateStr => {
         const dayTxs = groups[dateStr];
         let dayNet = 0;
@@ -6642,87 +6948,241 @@ Return ONLY a valid JSON object with NO markdown formatting, NO backticks, NO ex
               <span class="flex items-center gap-1.5">
                 <span class="w-1.5 h-1.5 rounded-full bg-[#C8FF00]"></span>
                 <span>${displayDate}</span>
+                <span class="text-[10px] text-white/40">(${dayTxs.length} ခု)</span>
               </span>
               <span class="${dayNet < 0 ? 'text-[#FF453A]' : (dayNet > 0 ? 'text-[#C8FF00]' : 'text-white/60')} font-black">
                 ${dayNet < 0 ? '-' : (dayNet > 0 ? '+' : '')}${formatNumber(Math.abs(dayNet))} ${sym}
               </span>
             </div>
             <div class="space-y-2">
-        `;
-
-        dayTxs.forEach(t => {
-          let catName = 'Transaction';
-          let iconName = 'arrow-right';
-          let color = '#64748B';
-
-          if (t.type === 'expense') {
-            const c = EXPENSE_CATEGORIES.find(cat => cat.id === t.categoryId);
-            catName = c ? (appState.lang === 'my' ? c.name_my : c.name_en) : (t.categoryId || 'Expense');
-            iconName = c ? c.icon : 'shopping-bag';
-            color = c ? c.color : '#FF453A';
-          } else if (t.type === 'income') {
-            const c = INCOME_CATEGORIES.find(cat => cat.id === t.categoryId);
-            catName = c ? (appState.lang === 'my' ? c.name_my : c.name_en) : (t.categoryId || 'Income');
-            iconName = c ? c.icon : 'briefcase';
-            color = c ? c.color : '#C8FF00';
-          } else if (t.type === 'transfer') {
-            catName = appState.lang === 'my' ? 'အကောင့်လွှဲငွေ' : 'Transfer';
-            iconName = 'arrow-left-right';
-            color = '#0A84FF';
-          }
-
-          const acc = appState.accounts.find(a => a.id === t.accountId);
-          const accName = acc ? (appState.lang === 'my' ? acc.name_my : acc.name_en) : 'Account';
-
-          const isExp = t.type === 'expense';
-          const isInc = t.type === 'income';
-
-          outputHTML += `
-            <div class="p-3.5 sm:p-4 rounded-2xl fold-boost-card flex items-center justify-between gap-3 group transition cursor-pointer hover:border-white/20 active:scale-[0.99]" onclick="triggerGaugeSpinAnimation(); openTransactionDetailModal('${t.id}');">
-              <div class="flex items-center gap-3.5 min-w-0">
-                <div class="w-11 h-11 rounded-2xl flex items-center justify-center shrink-0 border border-white/10 shadow-md relative" style="background-color: ${color}22; color: ${color};">
-                  <i data-lucide="${iconName}" class="w-5 h-5 stroke-[2.2]"></i>
-                </div>
-                <div class="min-w-0 truncate">
-                  <div class="flex items-center gap-2">
-                    <h4 class="font-bold text-white text-sm truncate">${catName}</h4>
-                    <span class="text-[9px] font-extrabold px-2 py-0.5 rounded-full ${isExp ? 'bg-rose-500/15 text-rose-300 border border-rose-500/20' : (isInc ? 'bg-[#C8FF00]/15 text-[#C8FF00] border border-[#C8FF00]/25' : 'bg-blue-500/15 text-blue-300 border border-blue-500/20')}">
-                      ${isExp ? '10% Back' : (isInc ? 'Bonus' : 'Transfer')}
-                    </span>
-                  </div>
-                  <div class="flex items-center gap-2 text-xs text-white/50 truncate mt-0.5">
-                    <span class="truncate">${t.note || accName}</span>
-                    <span>•</span>
-                    <span class="shrink-0 text-white/40">${t.date || 'Today'}</span>
-                  </div>
-                </div>
-              </div>
-
-              <div class="text-right shrink-0 flex items-center gap-3">
-                <div>
-                  <div class="flex items-center gap-1.5 justify-end">
-                    <span class="w-1.5 h-1.5 rounded-full bg-[#30D158] inline-block animate-pulse"></span>
-                    <span class="text-[10px] font-bold text-white/60 uppercase">Online</span>
-                  </div>
-                  <p class="font-black text-sm tracking-tight ${isExp ? 'text-[#FF453A]' : (isInc ? 'text-[#C8FF00]' : 'text-[#0A84FF]')} mt-0.5">
-                    ${isExp ? '-' : (isInc ? '+' : '')}${formatNumber(t.amount)} ${sym}
-                  </p>
-                </div>
-                <button onclick="event.stopPropagation(); promptDeleteTransaction('${t.id}')" title="Delete" class="w-7 h-7 rounded-full hover:bg-rose-500/20 text-white/30 hover:text-rose-400 flex items-center justify-center transition cursor-pointer">
-                  <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
-                </button>
-              </div>
-            </div>
-          `;
-        });
-
-        outputHTML += `
+              ${dayTxs.map(t => renderTxCardHTML(t)).join('')}
             </div>
           </div>
         `;
       });
 
       container.innerHTML = outputHTML;
+      if (window.lucide) lucide.createIcons();
+    }
+
+    /* ================= ALL TRANSACTIONS & HISTORY MODAL ENGINE ================= */
+    let allTxHistoryPeriod = 'today';
+    let allTxHistoryType = 'all';
+
+    function openAllTransactionsModal(initialPeriod) {
+      if (initialPeriod) {
+        allTxHistoryPeriod = initialPeriod;
+      }
+      const modal = document.getElementById('all-transactions-modal');
+      if (modal) {
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+        setAllTxHistoryPeriod(allTxHistoryPeriod);
+      }
+    }
+
+    function closeAllTransactionsModal() {
+      const modal = document.getElementById('all-transactions-modal');
+      if (modal) {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+      }
+    }
+
+    function setAllTxHistoryPeriod(period) {
+      allTxHistoryPeriod = period;
+      const periods = ['today', 'week', 'month', 'year', 'all'];
+      periods.forEach(p => {
+        const btn = document.getElementById(`alltx-period-${p}`);
+        if (btn) {
+          if (p === period) {
+            btn.className = "px-3 py-1.5 rounded-xl text-xs font-bold bg-[#C8FF00] text-black shadow-md shadow-[#C8FF00]/20 shrink-0 cursor-pointer transition";
+            try { btn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' }); } catch(e){}
+          } else {
+            btn.className = "px-3 py-1.5 rounded-xl text-xs font-bold bg-white/10 text-slate-300 hover:text-white shrink-0 cursor-pointer transition";
+          }
+        }
+      });
+      renderAllTxHistoryModal();
+    }
+
+    function setAllTxHistoryType(type) {
+      allTxHistoryType = type;
+      const types = ['all', 'expense', 'income', 'transfer'];
+      types.forEach(t => {
+        const btn = document.getElementById(`alltx-type-${t}`);
+        if (btn) {
+          if (t === type) {
+            btn.className = "px-3 py-1 rounded-lg bg-[#C8FF00] text-black font-bold shrink-0 cursor-pointer";
+          } else {
+            btn.className = "px-3 py-1 rounded-lg bg-white/10 text-slate-300 hover:text-white shrink-0 cursor-pointer";
+          }
+        }
+      });
+      renderAllTxHistoryModal();
+    }
+
+    function renderAllTxHistoryModal() {
+      const container = document.getElementById('alltx-history-list');
+      if (!container) return;
+
+      const sym = getCurrencySymbol();
+      const searchVal = (document.getElementById('alltx-search-input')?.value || '').toLowerCase().trim();
+      const todayStr = new Date().toISOString().split('T')[0];
+
+      // Helper date calculations
+      const now = new Date();
+      const dayOfWeek = (now.getDay() + 6) % 7;
+      const startOfWeek = new Date(now.getFullYear(), now.getMonth(), now.getDate() - dayOfWeek);
+      const startOfWeekStr = startOfWeek.toISOString().split('T')[0];
+      const currMonthPrefix = todayStr.substring(0, 7);
+      const currYearPrefix = todayStr.substring(0, 4);
+
+      let txs = [...appState.transactions];
+      txs.sort((a,b) => (b.date || '').localeCompare(a.date || '') || (b.id || '').localeCompare(a.id || ''));
+
+      // 1. Filter by period
+      if (allTxHistoryPeriod === 'today') {
+        txs = txs.filter(t => t.date === todayStr);
+      } else if (allTxHistoryPeriod === 'week') {
+        txs = txs.filter(t => t.date && t.date >= startOfWeekStr && t.date <= todayStr);
+      } else if (allTxHistoryPeriod === 'month') {
+        txs = txs.filter(t => t.date && t.date.startsWith(currMonthPrefix));
+      } else if (allTxHistoryPeriod === 'year') {
+        txs = txs.filter(t => t.date && t.date.startsWith(currYearPrefix));
+      }
+
+      // 2. Compute KPI for this period (before type filter)
+      let periodInc = 0;
+      let periodExp = 0;
+      txs.forEach(t => {
+        const amt = Number(t.amount) || 0;
+        if (t.type === 'income') periodInc += amt;
+        else if (t.type === 'expense') periodExp += amt;
+      });
+      const periodNet = periodInc - periodExp;
+
+      const kpiInc = document.getElementById('alltx-kpi-income');
+      const kpiExp = document.getElementById('alltx-kpi-expense');
+      const kpiNet = document.getElementById('alltx-kpi-net');
+      if (kpiInc) kpiInc.textContent = `+${formatNumber(periodInc)} ${sym}`;
+      if (kpiExp) kpiExp.textContent = `-${formatNumber(periodExp)} ${sym}`;
+      if (kpiNet) {
+        kpiNet.textContent = `${periodNet < 0 ? '-' : (periodNet > 0 ? '+' : '')}${formatNumber(Math.abs(periodNet))} ${sym}`;
+        kpiNet.className = `text-xs font-black ${periodNet < 0 ? 'text-[#FF453A]' : (periodNet > 0 ? 'text-[#C8FF00]' : 'text-white')}`;
+      }
+
+      // 3. Filter by type
+      if (allTxHistoryType !== 'all') {
+        txs = txs.filter(t => t.type === allTxHistoryType);
+      }
+
+      // 4. Filter by search query
+      if (searchVal) {
+        txs = txs.filter(t => {
+          const n = (t.note || '').toLowerCase();
+          const c = (t.categoryId || '').toLowerCase();
+          const a = (t.amount || '').toString();
+          return n.includes(searchVal) || c.includes(searchVal) || a.includes(searchVal);
+        });
+      }
+
+      if (txs.length === 0) {
+        container.innerHTML = `
+          <div class="p-8 rounded-2xl bg-white/[0.03] text-center space-y-2 border border-white/5 my-4">
+            <i data-lucide="inbox" class="w-8 h-8 text-white/30 mx-auto"></i>
+            <p class="text-xs text-white/60 font-semibold">${appState.lang === 'my' ? 'ဤကာလအတွင်း စာရင်းမှတ်တမ်း မတွေ့ရှိပါ' : 'No transactions found in this period'}</p>
+          </div>
+        `;
+        if (window.lucide) lucide.createIcons();
+        return;
+      }
+
+      // Group by date
+      const groups = {};
+      txs.forEach(t => {
+        const d = t.date || 'Recent';
+        if (!groups[d]) groups[d] = [];
+        groups[d].push(t);
+      });
+
+      const yDate = new Date();
+      yDate.setDate(yDate.getDate() - 1);
+      const yesterdayStr = yDate.toISOString().split('T')[0];
+
+      let outputHTML = '';
+      Object.keys(groups).forEach(dateStr => {
+        const dayTxs = groups[dateStr];
+        let dayNet = 0;
+        dayTxs.forEach(t => {
+          const amt = Number(t.amount) || 0;
+          if (t.type === 'expense') dayNet -= amt;
+          else if (t.type === 'income') dayNet += amt;
+        });
+
+        let displayDate = dateStr;
+        if (dateStr === todayStr) displayDate = appState.lang === 'my' ? 'ယနေ့ (Today)' : 'Today';
+        else if (dateStr === yesterdayStr) displayDate = appState.lang === 'my' ? 'မနေ့က (Yesterday)' : 'Yesterday';
+
+        outputHTML += `
+          <div class="space-y-2">
+            <div class="flex items-center justify-between text-xs text-white/60 font-semibold px-1 pt-1">
+              <span class="flex items-center gap-1.5">
+                <span class="w-1.5 h-1.5 rounded-full bg-[#C8FF00]"></span>
+                <span>${displayDate}</span>
+                <span class="text-[10px] text-white/40">(${dayTxs.length} ခု)</span>
+              </span>
+              <span class="${dayNet < 0 ? 'text-[#FF453A]' : (dayNet > 0 ? 'text-[#C8FF00]' : 'text-white/60')} font-bold">
+                ${dayNet < 0 ? '-' : (dayNet > 0 ? '+' : '')}${formatNumber(Math.abs(dayNet))} ${sym}
+              </span>
+            </div>
+            <div class="space-y-2">
+              ${dayTxs.map(t => renderTxCardHTML(t)).join('')}
+            </div>
+          </div>
+        `;
+      });
+
+      container.innerHTML = outputHTML;
+      if (window.lucide) lucide.createIcons();
+    }
+
+    /* ================= OVERVIEW PERIOD TRANSACTIONS ================= */
+    function renderOverviewTransactions() {
+      const container = document.getElementById('overview-transactions-list');
+      if (!container) return;
+
+      const sym = getCurrencySymbol();
+      const yr = appState.selectedYear || new Date().getFullYear();
+      const isYear = appState.periodMode === 'year';
+      const currMonthPrefix = `${yr}-${(new Date().getMonth() + 1).toString().padStart(2, '0')}`;
+
+      let txs = [...appState.transactions];
+      txs.sort((a,b) => (b.date || '').localeCompare(a.date || '') || (b.id || '').localeCompare(a.id || ''));
+
+      if (isYear) {
+        txs = txs.filter(t => t.date && t.date.startsWith(yr.toString()));
+      } else {
+        txs = txs.filter(t => t.date && t.date.startsWith(currMonthPrefix));
+      }
+
+      const titleEl = document.getElementById('overview-txs-title');
+      if (titleEl) {
+        titleEl.textContent = isYear 
+          ? (appState.lang === 'my' ? `${yr} နှစ်ချုပ် စာရင်းမှတ်တမ်းများ (Yearly Records)` : `${yr} Yearly Records`)
+          : (appState.lang === 'my' ? `လစဉ် စာရင်းမှတ်တမ်းများ (Monthly Records)` : `Monthly Records`);
+      }
+
+      if (txs.length === 0) {
+        container.innerHTML = `
+          <div class="p-6 rounded-2xl bg-white/[0.03] text-center text-xs text-white/50 border border-white/5">
+            ${appState.lang === 'my' ? 'ဤကာလအတွင်း စာရင်းမှတ်တမ်း မရှိသေးပါ' : 'No records for this period'}
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = txs.slice(0, 10).map(t => renderTxCardHTML(t)).join('');
       if (window.lucide) lucide.createIcons();
     }
 
@@ -6756,6 +7216,7 @@ Return ONLY a valid JSON object with NO markdown formatting, NO backticks, NO ex
 
       renderStatsAndHero();
       renderDonutChart();
+      renderOverviewTransactions();
       if (window.lucide) lucide.createIcons();
     }
 
@@ -6765,6 +7226,7 @@ Return ONLY a valid JSON object with NO markdown formatting, NO backticks, NO ex
       document.getElementById('txt-chart-year-title').textContent = appState.selectedYear;
       renderStatsAndHero();
       renderDonutChart();
+      renderOverviewTransactions();
       if (appState.periodMode === 'year') renderAnnualBarChart();
       if (!document.getElementById('annual-report-modal').classList.contains('hidden')) {
         renderAnnualReportModal();
