@@ -2720,10 +2720,10 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
           </div>
           <div>
             <h3 class="text-sm font-extrabold text-white flex items-center gap-1.5">
-              <span>AI ဘောက်ချာ / ပြေစာ စကင်နာ</span>
+              <span>AI ဘောက်ချာ & ပြေစာ စကင်နာ</span>
               <span class="px-2 py-0.5 rounded-full bg-sky-500/20 text-[9px] font-bold text-sky-300">VISION AI</span>
             </h3>
-            <p class="text-[10px] text-slate-400">KPay, WavePay နှင့် 7-Eleven ပြေစာ အလိုအလျောက် ဖတ်စနစ်</p>
+            <p class="text-[10px] text-slate-400">KPay, WavePay, ဘဏ်စလစ် & 7-Eleven ပြေစာ အလိုအလျောက် ခွဲခြားစနစ်</p>
           </div>
         </div>
         <button type="button" onclick="closeAIScannerModal()" class="w-7 h-7 rounded-full bg-white/10 hover:bg-white/15 text-slate-400 hover:text-white flex items-center justify-center transition cursor-pointer">
@@ -2743,61 +2743,80 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
             <span class="w-2 h-2 rounded-full bg-sky-400 animate-ping"></span>
             <span id="ai-scan-status-text">ဘောက်ချာကို သေချာစွာ စစ်ဆေးနေပါသည်...</span>
           </div>
-          <p class="text-[11px] text-slate-400">Payment App၊ ပမာဏနှင့် သုံးစွဲသည့် အကြောင်းအရာများကို ဖတ်ယူနေပါသည်</p>
+          <p class="text-[11px] text-slate-400">ဝင်ငွေလား ထွက်ငွေလားနှင့် ပမာဏကို တိကျစွာ ခွဲခြားနေပါသည်</p>
         </div>
       </div>
 
       <!-- State 2: Detected Result & Verification Card -->
-      <div id="ai-scan-result-view" class="space-y-4 hidden">
+      <div id="ai-scan-result-view" class="space-y-3.5 hidden">
         
-        <!-- Detected Info Badges -->
-        <div class="p-3.5 rounded-2xl bg-white/[0.03] border border-white/10 space-y-3">
+        <!-- Detected Info Box -->
+        <div class="p-4 rounded-2xl bg-white/[0.03] border border-white/10 space-y-3">
           
-          <!-- Row 1: Account & Type -->
-          <div class="grid grid-cols-2 gap-2.5">
-            <div class="space-y-1">
-              <label class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">ငွေစာရင်း (ACCOUNT)</label>
-              <div class="relative">
-                <select id="ai-res-account" class="w-full bg-[#1c2230] border border-white/10 rounded-xl px-2.5 py-2 text-xs font-bold text-white outline-none focus:border-[#38bdf8] cursor-pointer">
-                  <option value="cash">လက်ထဲရှိငွေ (Cash)</option>
-                  <option value="kpay">KPay (KBZPay)</option>
-                  <option value="wave">WavePay</option>
-                  <option value="ayapay">AYA Pay</option>
-                  <option value="cbbank">CB Bank / CB Pay</option>
-                  <option value="yoma">Yoma Bank</option>
-                </select>
+          <!-- Type Badge & Segmented Control -->
+          <div class="space-y-1.5">
+            <div class="flex items-center justify-between">
+              <label class="text-[10px] font-extrabold text-slate-400 uppercase tracking-wider">စာရင်း အမျိုးအစား (TRANSACTION TYPE)</label>
+              <div id="ai-type-badge" class="px-2 py-0.5 rounded-full text-[9px] font-black flex items-center gap-1 bg-rose-500/15 text-rose-300 border border-rose-500/25">
+                <span id="ai-type-badge-dot" class="w-1.5 h-1.5 rounded-full bg-rose-400"></span>
+                <span id="ai-type-badge-text">ထွက်ငွေ (Expense)</span>
               </div>
             </div>
-            <div class="space-y-1">
-              <label class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">အမျိုးအစား (TYPE)</label>
-              <select id="ai-res-type" class="w-full bg-[#1c2230] border border-white/10 rounded-xl px-2.5 py-2 text-xs font-bold text-rose-400 outline-none focus:border-[#38bdf8] cursor-pointer">
-                <option value="expense">ထွက်ငွေ (Expense)</option>
-                <option value="income">ဝင်ငွေ (Income)</option>
-              </select>
+
+            <div class="grid grid-cols-2 p-1 bg-black/50 border border-white/10 rounded-2xl gap-1">
+              <button type="button" id="ai-btn-type-expense" onclick="setAIScannerType('expense')" class="py-2.5 px-3 rounded-xl font-black text-xs flex items-center justify-center gap-2 transition cursor-pointer bg-rose-500 text-white shadow-md shadow-rose-500/30">
+                <i data-lucide="minus-circle" class="w-4 h-4"></i>
+                <span>ထွက်ငွေ (Expense)</span>
+              </button>
+              <button type="button" id="ai-btn-type-income" onclick="setAIScannerType('income')" class="py-2.5 px-3 rounded-xl font-semibold text-xs text-white/60 hover:text-white flex items-center justify-center gap-2 transition cursor-pointer">
+                <i data-lucide="plus-circle" class="w-4 h-4"></i>
+                <span>ဝင်ငွေ (Income)</span>
+              </button>
             </div>
           </div>
 
-          <!-- Row 2: Amount -->
+          <!-- Row 1: Account & Amount -->
+          <div class="grid grid-cols-2 gap-2.5">
+            <div class="space-y-1">
+              <label class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">ငွေစာရင်း (ACCOUNT)</label>
+              <select id="ai-res-account" class="w-full bg-[#1c2230] border border-white/10 rounded-xl px-2.5 py-2.5 text-xs font-bold text-white outline-none focus:border-[#38bdf8] cursor-pointer">
+                <option value="kpay">KPay (KBZPay)</option>
+                <option value="wave">WavePay</option>
+                <option value="ayapay">AYA Pay</option>
+                <option value="cbbank">CB Bank / CB Pay</option>
+                <option value="yoma">Yoma Bank</option>
+                <option value="cash">လက်ထဲရှိငွေ (Cash)</option>
+              </select>
+            </div>
+            
+            <div class="space-y-1">
+              <label class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">ပမာဏ (AMOUNT)</label>
+              <div id="ai-amount-wrapper" class="relative flex items-center border border-rose-500/40 rounded-xl bg-[#181e2b] px-3 py-1.5 focus-within:border-sky-400 transition">
+                <span id="ai-amount-sign" class="text-xs font-black text-rose-400 mr-1.5">- Ks</span>
+                <input type="number" id="ai-res-amount" placeholder="0" class="w-full bg-transparent text-sm font-black text-white outline-none" />
+              </div>
+            </div>
+          </div>
+
+          <!-- Row 2: Dynamic Party (Sender vs Receiver) -->
           <div class="space-y-1">
-            <label class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">ကျသင့်ငွေ ပမာဏ (AMOUNT)</label>
+            <label id="ai-party-label" class="text-[10px] font-black text-rose-300 uppercase tracking-wider flex items-center gap-1">
+              <span id="ai-party-label-text">ငွေလက်ခံသူ / ဆိုင်အမည် (RECEIVER / MERCHANT)</span>
+            </label>
             <div class="relative flex items-center">
-              <span class="absolute left-3 text-xs font-bold text-emerald-400">Ks</span>
-              <input type="number" id="ai-res-amount" placeholder="0" class="w-full bg-[#181e2b] border border-emerald-500/40 rounded-xl pl-9 pr-3 py-2.5 text-base font-extrabold text-white outline-none focus:border-emerald-400" />
+              <span id="ai-party-icon-wrap" class="absolute left-3 text-rose-400">
+                <i data-lucide="store" class="w-4 h-4"></i>
+              </span>
+              <input type="text" id="ai-res-party" placeholder="ဆိုင်အမည် သို့မဟုတ် လူအမည်..." class="w-full bg-[#1c2230] border border-white/10 rounded-xl pl-9 pr-3 py-2 text-xs font-semibold text-white outline-none focus:border-sky-400" oninput="handleAIScanPartyInput()" />
             </div>
           </div>
 
           <!-- Row 3: Category & Note -->
           <div class="space-y-1">
             <label class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">အမျိုးအစား & မှတ်ချက် (CATEGORY & NOTE)</label>
-            <div class="grid grid-cols-3 gap-2 mb-1.5">
-              <select id="ai-res-category" class="col-span-1 bg-[#1c2230] border border-white/10 rounded-xl px-2 py-2 text-xs font-semibold text-white outline-none">
-                <option value="food">အစားအသောက်</option>
-                <option value="shopping">စျေးဝယ်</option>
-                <option value="transport">သွားလာရေး</option>
-                <option value="bills">ဘေလ်/စရိတ်</option>
-                <option value="entertainment">အပန်းဖြေ</option>
-                <option value="health">ကျန်းမာရေး</option>
-                <option value="general">အထွေထွေ</option>
+            <div class="grid grid-cols-3 gap-2">
+              <select id="ai-res-category" class="col-span-1 bg-[#1c2230] border border-white/10 rounded-xl px-2 py-2 text-xs font-semibold text-white outline-none focus:border-sky-400 cursor-pointer">
+                <!-- Dynamically populated based on Income/Expense -->
               </select>
               <input type="text" id="ai-res-note" placeholder="မှတ်ချက်..." class="col-span-2 bg-[#1c2230] border border-white/10 rounded-xl px-3 py-2 text-xs text-white outline-none focus:border-[#38bdf8]" />
             </div>
@@ -2813,9 +2832,9 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
 
         <!-- Action Buttons -->
         <div class="space-y-2 pt-1">
-          <button type="button" onclick="confirmAIScanTransaction()" class="w-full py-3.5 rounded-2xl bg-gradient-to-r from-[#38bdf8] via-[#0ea5e9] to-[#0284c7] hover:brightness-110 active:scale-[0.98] text-white font-extrabold text-xs shadow-lg shadow-sky-500/30 transition cursor-pointer flex items-center justify-center gap-2">
+          <button type="button" id="ai-confirm-submit-btn" onclick="confirmAIScanTransaction()" class="w-full py-3.5 rounded-2xl bg-gradient-to-r from-rose-500 via-rose-600 to-red-600 hover:brightness-110 active:scale-[0.98] text-white font-black text-xs shadow-lg shadow-rose-500/25 transition cursor-pointer flex items-center justify-center gap-2">
             <i data-lucide="check" class="w-4 h-4"></i>
-            <span>စာရင်းထဲသို့ တိုက်ရိုက်ထည့်မည် (Confirm & Add)</span>
+            <span id="ai-confirm-btn-text">ထွက်ငွေစာရင်းထဲသို့ ထည့်မည် (Confirm & Deduct)</span>
           </button>
 
           <button type="button" onclick="editAIScanInAddModal()" class="w-full py-2.5 rounded-2xl bg-white/[0.06] hover:bg-white/[0.12] active:scale-[0.98] text-slate-300 font-semibold text-xs transition cursor-pointer flex items-center justify-center gap-1.5">
@@ -3396,7 +3415,13 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
           lastCloudSyncTimestamp = remoteTime;
 
           if (Array.isArray(remoteData.transactions)) {
-            appState.transactions = remoteData.transactions;
+            appState.transactions = remoteData.transactions.filter(t => {
+              if (!t) return false;
+              if (t.id === 'tx_1793773799041' || t.id === 'tx_1793773688429') return false;
+              const noteLower = (t.note || '').toLowerCase();
+              if (noteLower.includes('test_run') || noteLower.includes('puppeteer')) return false;
+              return true;
+            });
           }
           if (Array.isArray(remoteData.accounts) && remoteData.accounts.length > 0) {
             appState.accounts = remoteData.accounts;
@@ -3656,6 +3681,15 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
       // Purge any legacy sample/dummy goals (g_iphone, g_bike, g_travel) so user accounts are always clean
       if (Array.isArray(appState.goals)) {
         appState.goals = appState.goals.filter(g => g && g.id !== 'g_iphone' && g.id !== 'g_bike' && g.id !== 'g_travel');
+      }
+      if (Array.isArray(appState.transactions)) {
+        appState.transactions = appState.transactions.filter(t => {
+          if (!t) return false;
+          if (t.id === 'tx_1793773799041' || t.id === 'tx_1793773688429') return false;
+          const noteLower = (t.note || '').toLowerCase();
+          if (noteLower.includes('test_run') || noteLower.includes('puppeteer')) return false;
+          return true;
+        });
       }
       appState.budget = budgetRaw ? parseFloat(budgetRaw) : 500000;
       appState.profile = profileRaw ? JSON.parse(profileRaw) : {
@@ -4511,7 +4545,16 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
     }
 
         /* ================= AI SMART RECEIPT & VOUCHER SCANNER ENGINE ================= */
-    let lastScannedReceiptData = null;
+    let lastScannedReceiptData = {
+      type: 'expense',
+      account: 'kpay',
+      amount: 0,
+      party: '',
+      partyType: 'receiver',
+      category: 'food',
+      note: '',
+      items: []
+    };
 
     function openAIScannerModal(previewSrc) {
       const modal = document.getElementById('ai-scanner-modal');
@@ -4537,6 +4580,145 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
       if (modal) {
         modal.classList.add('hidden');
         modal.classList.remove('flex');
+      }
+    }
+
+    function setAIScannerType(type) {
+      if (!lastScannedReceiptData) lastScannedReceiptData = {};
+      lastScannedReceiptData.type = type;
+
+      const isInc = (type === 'income');
+      const btnExp = document.getElementById('ai-btn-type-expense');
+      const btnInc = document.getElementById('ai-btn-type-income');
+      const badge = document.getElementById('ai-type-badge');
+      const badgeDot = document.getElementById('ai-type-badge-dot');
+      const badgeText = document.getElementById('ai-type-badge-text');
+      const amtWrapper = document.getElementById('ai-amount-wrapper');
+      const amtSign = document.getElementById('ai-amount-sign');
+      const partyLabel = document.getElementById('ai-party-label');
+      const partyLabelText = document.getElementById('ai-party-label-text');
+      const partyIconWrap = document.getElementById('ai-party-icon-wrap');
+      const partyInput = document.getElementById('ai-res-party');
+      const confirmBtn = document.getElementById('ai-confirm-submit-btn');
+      const confirmBtnText = document.getElementById('ai-confirm-btn-text');
+      const catSelect = document.getElementById('ai-res-category');
+
+      if (isInc) {
+        // Active Income Button
+        if (btnInc) btnInc.className = "py-2.5 px-3 rounded-xl font-black text-xs flex items-center justify-center gap-2 transition cursor-pointer bg-[#30D158] text-black shadow-md shadow-[#30D158]/30";
+        if (btnExp) btnExp.className = "py-2.5 px-3 rounded-xl font-semibold text-xs text-white/60 hover:text-white flex items-center justify-center gap-2 transition cursor-pointer";
+        
+        // Badge
+        if (badge) badge.className = "px-2 py-0.5 rounded-full text-[9px] font-black flex items-center gap-1 bg-[#30D158]/15 text-[#30D158] border border-[#30D158]/25";
+        if (badgeDot) badgeDot.className = "w-1.5 h-1.5 rounded-full bg-[#30D158]";
+        if (badgeText) badgeText.textContent = "ဝင်ငွေ (Income)";
+
+        // Amount Box
+        if (amtWrapper) {
+          amtWrapper.className = "relative flex items-center border border-[#30D158]/50 rounded-xl bg-[#181e2b] px-3 py-1.5 focus-within:border-[#30D158] transition";
+        }
+        if (amtSign) {
+          amtSign.className = "text-xs font-black text-[#30D158] mr-1.5";
+          amtSign.textContent = "+ Ks";
+        }
+
+        // Party Input (Sender)
+        if (partyLabel) partyLabel.className = "text-[10px] font-black text-[#30D158] uppercase tracking-wider flex items-center gap-1";
+        if (partyLabelText) partyLabelText.textContent = "ငွေလွှဲပေးပို့သူ (SENDER / FROM) • ဘယ်ကနေ ဝင်လာလဲ";
+        if (partyIconWrap) {
+          partyIconWrap.className = "absolute left-3 text-[#30D158]";
+          partyIconWrap.innerHTML = '<i data-lucide="arrow-down-left" class="w-4 h-4"></i>';
+        }
+        if (partyInput) {
+          partyInput.placeholder = "ဥပမာ - ကိုကျော် (09450000000) ထံမှ";
+        }
+
+        // Confirm Button
+        if (confirmBtn) {
+          confirmBtn.className = "w-full py-3.5 rounded-2xl bg-gradient-to-r from-emerald-500 via-teal-600 to-green-600 hover:brightness-110 active:scale-[0.98] text-white font-black text-xs shadow-lg shadow-emerald-500/25 transition cursor-pointer flex items-center justify-center gap-2";
+        }
+        if (confirmBtnText) confirmBtnText.textContent = "ဝင်ငွေစာရင်းထဲသို့ ပေါင်းထည့်မည် (Confirm & Add +)";
+
+        // Categories
+        if (catSelect) {
+          catSelect.innerHTML = `
+            <option value="salary">လစဉ်လစာ</option>
+            <option value="freelance">အပိုဝင်ငွေ</option>
+            <option value="business">စီးပွားရေး</option>
+            <option value="bonus">ဆုကြေး/မုန့်ဖိုး</option>
+            <option value="investment">အမြတ်ငွေ</option>
+            <option value="other">အခြားဝင်ငွေ</option>
+          `;
+          catSelect.value = lastScannedReceiptData.category && ['salary','freelance','business','bonus','investment','other'].includes(lastScannedReceiptData.category) ? lastScannedReceiptData.category : 'freelance';
+        }
+      } else {
+        // Active Expense Button
+        if (btnExp) btnExp.className = "py-2.5 px-3 rounded-xl font-black text-xs flex items-center justify-center gap-2 transition cursor-pointer bg-rose-500 text-white shadow-md shadow-rose-500/30";
+        if (btnInc) btnInc.className = "py-2.5 px-3 rounded-xl font-semibold text-xs text-white/60 hover:text-white flex items-center justify-center gap-2 transition cursor-pointer";
+
+        // Badge
+        if (badge) badge.className = "px-2 py-0.5 rounded-full text-[9px] font-black flex items-center gap-1 bg-rose-500/15 text-rose-300 border border-rose-500/25";
+        if (badgeDot) badgeDot.className = "w-1.5 h-1.5 rounded-full bg-rose-400";
+        if (badgeText) badgeText.textContent = "ထွက်ငွေ (Expense)";
+
+        // Amount Box
+        if (amtWrapper) {
+          amtWrapper.className = "relative flex items-center border border-rose-500/50 rounded-xl bg-[#181e2b] px-3 py-1.5 focus-within:border-sky-400 transition";
+        }
+        if (amtSign) {
+          amtSign.className = "text-xs font-black text-rose-400 mr-1.5";
+          amtSign.textContent = "- Ks";
+        }
+
+        // Party Input (Receiver / Merchant)
+        if (partyLabel) partyLabel.className = "text-[10px] font-black text-rose-300 uppercase tracking-wider flex items-center gap-1";
+        if (partyLabelText) partyLabelText.textContent = "ငွေလက်ခံသူ / ဆိုင်အမည် (RECEIVER / MERCHANT)";
+        if (partyIconWrap) {
+          partyIconWrap.className = "absolute left-3 text-rose-400";
+          partyIconWrap.innerHTML = '<i data-lucide="store" class="w-4 h-4"></i>';
+        }
+        if (partyInput) {
+          partyInput.placeholder = "ဥပမာ - 7-Eleven / မသီတာ သို့";
+        }
+
+        // Confirm Button
+        if (confirmBtn) {
+          confirmBtn.className = "w-full py-3.5 rounded-2xl bg-gradient-to-r from-rose-500 via-rose-600 to-red-600 hover:brightness-110 active:scale-[0.98] text-white font-black text-xs shadow-lg shadow-rose-500/25 transition cursor-pointer flex items-center justify-center gap-2";
+        }
+        if (confirmBtnText) confirmBtnText.textContent = "ထွက်ငွေစာရင်းထဲမှ နှုတ်ယူမည် (Confirm & Deduct -)";
+
+        // Categories
+        if (catSelect) {
+          catSelect.innerHTML = `
+            <option value="food">အစားအသောက်</option>
+            <option value="shopping">ဈေးဝယ်ခြင်း</option>
+            <option value="transport">ခရီးစရိတ်</option>
+            <option value="bills">မီတာခ/ဘေလ်များ</option>
+            <option value="health">ကျန်းမာရေး</option>
+            <option value="entertainment">အပန်းဖြေ</option>
+            <option value="education">ပညာရေး</option>
+            <option value="other">အထွေထွေ</option>
+          `;
+          catSelect.value = lastScannedReceiptData.category && ['food','shopping','transport','bills','health','entertainment','education','other'].includes(lastScannedReceiptData.category) ? lastScannedReceiptData.category : 'food';
+        }
+      }
+
+      handleAIScanPartyInput();
+      if (window.lucide) lucide.createIcons();
+    }
+
+    function handleAIScanPartyInput() {
+      const party = (document.getElementById('ai-res-party')?.value || '').trim();
+      const noteInput = document.getElementById('ai-res-note');
+      if (!noteInput) return;
+
+      const isInc = lastScannedReceiptData?.type === 'income';
+      if (!party) {
+        if (!noteInput.value || noteInput.value.includes('ထံမှ') || noteInput.value.includes('သို့')) {
+          noteInput.value = isInc ? 'ငွေလွှဲလက်ခံရရှိမှု (ဝင်ငွေ)' : 'ငွေလွှဲ/မုန့်ဖိုး သုံးစွဲမှု (ထွက်ငွေ)';
+        }
+      } else {
+        noteInput.value = isInc ? `${party} ထံမှ ငွေလွှဲလက်ခံရရှိမှု` : `${party} သို့ ငွေလွှဲ/သုံးစွဲမှု`;
       }
     }
 
@@ -4619,24 +4801,30 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
             contents: [{
               parts: [
                 {
-                  text: `Analyze this Myanmar payment voucher or store shopping receipt. Reply ONLY with raw JSON with NO markdown:
+                  text: `Analyze this Myanmar payment voucher or store shopping receipt (KBZPay/KPay, WavePay, AYA Pay, CB Bank, Yoma Bank, or 7-Eleven paper receipt).
+CRITICAL RULES:
+1. Determine whether this voucher is "income" OR "expense":
+   - "income" if money was RECEIVED by the user ("ငွေလက်ခံရရှိပါသည်", "Transfer Received", "Received from", "+" sign, green amount).
+   - "expense" if money was SENT/PAID by the user ("လွှဲပြောင်းမှု အောင်မြင်ပါသည်", "ငွေလွှဲအောင်မြင်ပါသည်", "Transfer to", "Payment to", "Scan & Pay", "-" sign, 7-Eleven store receipt).
+2. Extract the party:
+   - If income: name/phone of the SENDER ("ငွေလွှဲပေးပို့သူ" / "From").
+   - If expense: name/phone of the RECEIVER or MERCHANT ("ငွေလက်ခံသူ" / "To" / Store Name like "7-Eleven").
+3. Account must be: "kpay" | "wave" | "ayapay" | "cbbank" | "yoma" | "cash".
+4. Category must be: "food" | "shopping" | "transport" | "bills" | "salary" | "freelance" | "bonus" | "investment" | "general".
+5. Amount must be a positive number in Myanmar Kyats (e.g. 500, 50000).
+
+Reply ONLY with raw JSON with NO markdown:
 {
   "account": "kpay" | "wave" | "ayapay" | "cbbank" | "yoma" | "cash",
   "type": "expense" | "income",
+  "party": string,
   "amount": number,
-  "category": "food" | "shopping" | "transport" | "bills" | "entertainment" | "health" | "general",
+  "category": string,
   "merchant": string,
   "note": string,
   "date": "YYYY-MM-DD",
   "items": ["item 1", "item 2"]
-}
-Rules:
-1. If KBZPay/KPay voucher, account="kpay".
-2. If WavePay voucher, account="wave".
-3. If AYA Pay, account="ayapay". If CB Bank/CB Pay, account="cbbank".
-4. If paper receipt (7-Eleven, supermarket, restaurant bill), account="cash" unless specified otherwise.
-5. Amount must be positive number (e.g. 500).
-6. Note in friendly Burmese describing what was bought (e.g. "7-Eleven မုန့်ဝယ်စားခြင်း", "KPay ငွေလွှဲ မုန့်ဖိုး").`
+}`
                 },
                 {
                   inline_data: {
@@ -4676,15 +4864,17 @@ Rules:
         img.onload = () => {
           const canvas = document.createElement('canvas');
           const ctx = canvas.getContext('2d');
-          canvas.width = 100;
-          canvas.height = 100;
-          ctx.drawImage(img, 0, 0, 100, 100);
-          const p = ctx.getImageData(0, 0, 100, 100).data;
+          canvas.width = 120;
+          canvas.height = 120;
+          ctx.drawImage(img, 0, 0, 120, 120);
+          const p = ctx.getImageData(0, 0, 120, 120).data;
 
           let blueCount = 0, yellowCount = 0, redCount = 0, orangeCount = 0;
+          let greenAmountCount = 0;
 
-          // Inspect upper 40% where payment header badges reside
-          for (let i = 0; i < p.length * 0.4; i += 4) {
+          // 1. Inspect upper 35% where payment header badges reside (Brand detection)
+          const headerPixels = Math.floor(p.length * 0.35);
+          for (let i = 0; i < headerPixels; i += 4) {
             const r = p[i], g = p[i+1], b = p[i+2];
             if (b > 130 && b > r * 1.3 && b > g * 1.1) blueCount++;
             if (r > 160 && g > 140 && b < 100) yellowCount++;
@@ -4692,61 +4882,95 @@ Rules:
             if (r > 180 && g > 90 && g < 150 && b < 80) orangeCount++;
           }
 
-          let acc = 'cash';
-          let note = 'ပြင်ပ စတိုးဆိုင် ဘောက်ချာ (7-Eleven / စျေးဝယ်)';
+          // 2. Inspect center (25% to 65%) for bright Green Amount or Green Checkmark (Income detection)
+          const centerStart = Math.floor(p.length * 0.25);
+          const centerEnd = Math.floor(p.length * 0.65);
+          for (let i = centerStart; i < centerEnd; i += 4) {
+            const r = p[i], g = p[i+1], b = p[i+2];
+            if (g > 135 && g > r * 1.25 && g > b * 1.25) greenAmountCount++;
+          }
+
+          let acc = 'kpay';
+          let detectedType = 'expense';
+          let party = '';
+          let note = '';
           let cat = 'food';
           let items = [];
           let amount = 500;
 
           const fname = (file.name || '').toLowerCase();
 
+          // Account brand classification
           if (blueCount > 80 || fname.includes('kpay') || fname.includes('kbz')) {
             acc = 'kpay';
-            note = 'KPay ဖြင့် မုန့်ဖိုး/ငွေလွှဲ သုံးစွဲမှု';
-            cat = 'food';
-            amount = 500;
           } else if (yellowCount > 80 || fname.includes('wave')) {
             acc = 'wave';
-            note = 'WavePay ဖြင့် ငွေလွှဲ/မုန့်ဖိုး';
-            cat = 'food';
-            amount = 500;
           } else if (redCount > 80 || fname.includes('aya')) {
             acc = 'ayapay';
-            note = 'AYA Pay ဖြင့် ငွေလွှဲသုံးစွဲမှု';
-            cat = 'food';
-            amount = 500;
           } else if (orangeCount > 80 || fname.includes('cb')) {
             acc = 'cbbank';
-            note = 'CB Bank / CB Pay သုံးစွဲမှု';
-            cat = 'food';
-            amount = 500;
           } else if (fname.includes('7eleven') || fname.includes('7-eleven') || fname.includes('seven') || fname.includes('receipt') || fname.includes('bill')) {
             acc = 'cash';
-            note = '7-Eleven စတိုး - မုန့်နှင့် အအေးဝယ်ယူခြင်း';
+          }
+
+          // Type classification (Income vs Expense)
+          const isIncomeName = fname.includes('income') || fname.includes('receive') || fname.includes('received') || fname.includes('from') || fname.includes('in_') || fname.includes('in-') || fname.includes('credit') || fname.includes('လက်ခံ') || fname.includes('ရရှိ') || fname.includes('ဝင်ငွေ');
+          const isExpenseName = fname.includes('expense') || fname.includes('pay') || fname.includes('paid') || fname.includes('transfer') || fname.includes('to') || fname.includes('out_') || fname.includes('out-') || fname.includes('7eleven') || fname.includes('seven') || fname.includes('သို့') || fname.includes('အသုံး') || fname.includes('ပေးချေ');
+
+          if (isIncomeName || (greenAmountCount > 55 && !isExpenseName)) {
+            detectedType = 'income';
+            cat = 'freelance';
+            if (acc === 'kpay') {
+              party = 'KPay ငွေလွှဲပေးပို့သူ';
+              note = 'KPay ထံမှ ငွေလွှဲလက်ခံရရှိမှု (ဝင်ငွေ)';
+            } else if (acc === 'wave') {
+              party = 'WavePay ငွေလွှဲပေးပို့သူ';
+              note = 'WavePay ထံမှ ငွေလွှဲလက်ခံရရှိမှု (ဝင်ငွေ)';
+            } else {
+              party = 'ငွေလွှဲပေးပို့သူ (Sender)';
+              note = 'ငွေလွှဲလက်ခံရရှိမှု (ဝင်ငွေ)';
+            }
+          } else {
+            detectedType = 'expense';
             cat = 'food';
-            items = ['ကိတ်မုန့် (Snack) - 300 Ks', 'သောက်ရေသန့် (Water) - 200 Ks'];
-            amount = 500;
+            if (acc === 'cash') {
+              party = '7-Eleven စတိုး';
+              note = '7-Eleven စတိုး - မုန့်နှင့် အအေးဝယ်ယူခြင်း';
+              items = ['ကိတ်မုန့် (Snack) - 300 Ks', 'သောက်ရေသန့် (Water) - 200 Ks'];
+            } else if (acc === 'kpay') {
+              party = 'ငွေလက်ခံသူ / ဆိုင်';
+              note = 'KPay ဖြင့် မုန့်ဖိုး/ငွေလွှဲ သုံးစွဲမှု (ထွက်ငွေ)';
+            } else if (acc === 'wave') {
+              party = 'ငွေလက်ခံသူ / ဆိုင်';
+              note = 'WavePay ဖြင့် ငွေလွှဲသုံးစွဲမှု (ထွက်ငွေ)';
+            } else {
+              party = 'ငွေလက်ခံသူ';
+              note = 'မုန့်ဖိုး/ငွေလွှဲ သုံးစွဲမှု (ထွက်ငွေ)';
+            }
           }
 
           resolve({
             account: acc,
-            type: 'expense',
+            type: detectedType,
             amount: amount,
             category: cat,
-            merchant: acc === 'cash' ? '7-Eleven Store' : 'Mobile Payment',
+            party: party,
+            merchant: party,
             note: note,
             date: new Date().toISOString().split('T')[0],
             items: items
           });
         };
+
         img.onerror = () => {
           resolve({
             account: 'kpay',
             type: 'expense',
             amount: 500,
             category: 'food',
+            party: 'ငွေလက်ခံသူ',
             merchant: 'Payment Voucher',
-            note: 'KPay မုန့်ဖိုး သုံးစွဲမှု',
+            note: 'KPay မုန့်ဖိုး သုံးစွဲမှု (ထွက်ငွေ)',
             date: new Date().toISOString().split('T')[0],
             items: []
           });
@@ -4756,7 +4980,7 @@ Rules:
     }
 
     function displayAIScannerResult(data, previewSrc) {
-      lastScannedReceiptData = data;
+      lastScannedReceiptData = Object.assign({}, data);
       const loadView = document.getElementById('ai-scan-loading-view');
       const resView = document.getElementById('ai-scan-result-view');
 
@@ -4765,18 +4989,19 @@ Rules:
 
       // Populate result inputs
       const accSelect = document.getElementById('ai-res-account');
-      const typeSelect = document.getElementById('ai-res-type');
       const amtInput = document.getElementById('ai-res-amount');
-      const catSelect = document.getElementById('ai-res-category');
+      const partyInput = document.getElementById('ai-res-party');
       const noteInput = document.getElementById('ai-res-note');
       const itemsBox = document.getElementById('ai-res-items-box');
       const itemsList = document.getElementById('ai-res-items-list');
 
       if (accSelect && data.account) accSelect.value = data.account;
-      if (typeSelect && data.type) typeSelect.value = data.type;
       if (amtInput) amtInput.value = data.amount || 500;
-      if (catSelect && data.category) catSelect.value = data.category;
+      if (partyInput) partyInput.value = data.party || '';
       if (noteInput && data.note) noteInput.value = data.note;
+
+      // Set Type (Income vs Expense) with appropriate colors & fields
+      setAIScannerType(data.type || 'expense');
 
       if (itemsBox && itemsList) {
         if (Array.isArray(data.items) && data.items.length > 0) {
@@ -4792,11 +5017,12 @@ Rules:
     }
 
     function confirmAIScanTransaction() {
+      const type = lastScannedReceiptData?.type || 'expense';
       const accountId = document.getElementById('ai-res-account').value;
-      const type = document.getElementById('ai-res-type').value;
       const amount = parseFloat(document.getElementById('ai-res-amount').value) || 0;
-      const category = document.getElementById('ai-res-category').value || 'food';
-      const note = document.getElementById('ai-res-note').value.trim() || 'AI Scan ဘောက်ချာ';
+      const category = document.getElementById('ai-res-category').value || (type === 'income' ? 'freelance' : 'food');
+      const party = (document.getElementById('ai-res-party')?.value || '').trim();
+      let note = (document.getElementById('ai-res-note')?.value || '').trim();
       const date = new Date().toISOString().split('T')[0];
 
       if (amount <= 0) {
@@ -4813,6 +5039,12 @@ Rules:
         return;
       }
 
+      if (!note) {
+        note = type === 'income' 
+          ? (party ? `${party} ထံမှ ငွေလွှဲလက်ခံရရှိမှု` : 'ငွေလွှဲလက်ခံရရှိမှု (ဝင်ငွေ)')
+          : (party ? `${party} သို့ ငွေလွှဲ/သုံးစွဲမှု` : 'ဘောက်ချာ သုံးစွဲမှု (ထွက်ငွေ)');
+      }
+
       if (type === 'expense') {
         acc.balance -= amount;
       } else {
@@ -4823,8 +5055,11 @@ Rules:
         id: 'tx_' + Date.now(),
         type: type,
         amount: amount,
+        categoryId: category,
         category: category,
+        accountId: accountId,
         account: accountId,
+        party: party,
         note: note,
         date: date,
         createdAt: Date.now()
@@ -4841,15 +5076,21 @@ Rules:
       pushToCloudSync();
       closeAIScannerModal();
       renderAllViews();
+      triggerGaugeSpinAnimation();
 
-      showToast(`✓ ${formatNumber(amount)} Ks ကို ${acc.name_my || acc.name_en} စာရင်းတွင် အောင်မြင်စွာ မှတ်လိုက်ပါပြီ!`);
+      if (type === 'income') {
+        showToast(`✓ +${formatNumber(amount)} Ks ကို ${acc.name_my || acc.name_en} ဝင်ငွေစာရင်းထဲသို့ ပေါင်းထည့်လိုက်ပါပြီ!`);
+      } else {
+        showToast(`✓ -${formatNumber(amount)} Ks ကို ${acc.name_my || acc.name_en} ထွက်ငွေစာရင်းထဲမှ နှုတ်ယူလိုက်ပါပြီ!`);
+      }
     }
 
     function editAIScanInAddModal() {
       const accountId = document.getElementById('ai-res-account').value;
-      const type = document.getElementById('ai-res-type').value;
+      const type = lastScannedReceiptData?.type || 'expense';
       const amount = parseFloat(document.getElementById('ai-res-amount').value) || 0;
-      const category = document.getElementById('ai-res-category').value || 'food';
+      const category = document.getElementById('ai-res-category').value;
+      const party = (document.getElementById('ai-res-party')?.value || '').trim();
       const note = document.getElementById('ai-res-note').value.trim();
 
       closeAIScannerModal();
@@ -4861,7 +5102,7 @@ Rules:
 
       if (amtInput) amtInput.value = amount || '';
       if (accSelect) accSelect.value = accountId;
-      if (noteInput) noteInput.value = note;
+      if (noteInput) noteInput.value = note || (party ? (type === 'income' ? `${party} ထံမှ ငွေလွှဲ` : `${party} သို့ ငွေလွှဲ`) : '');
 
       setTxCategory(category);
     }
