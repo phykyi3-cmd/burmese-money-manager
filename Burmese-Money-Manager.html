@@ -2374,55 +2374,96 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
     </div>
   </div>
 
-  <!-- ================= APPLE HIG AUTHENTICATION GATEWAY ================= -->
-  <div id="auth-gateway" class="fixed inset-0 z-50 bg-[#000000] flex flex-col items-center justify-between p-4 sm:p-6 transition-all duration-500 overflow-y-auto">
+    <!-- ================= APPLE & FLOXLY HYBRID AUTHENTICATION GATEWAY ================= -->
+  <div id="auth-gateway" class="fixed inset-0 z-50 bg-[#080B11] flex flex-col items-center justify-between p-4 sm:p-6 transition-all duration-500 overflow-y-auto">
     
-    <!-- Top Ambient Specular Glow -->
-    <div class="fixed top-0 inset-x-0 h-96 bg-gradient-to-b from-white/[0.05] via-white/[0.01] to-transparent blur-3xl pointer-events-none -z-10"></div>
+    <!-- Top Ambient Specular & Celestial Cyan Glow (Floxly Style) -->
+    <div class="fixed top-0 inset-x-0 h-[520px] bg-[radial-gradient(ellipse_at_50%_0%,rgba(56,189,248,0.22)_0%,rgba(14,165,233,0.08)_45%,transparent_75%)] pointer-events-none -z-10"></div>
+    <div class="fixed bottom-0 inset-x-0 h-64 bg-[radial-gradient(ellipse_at_50%_100%,rgba(30,58,138,0.12)_0%,transparent_70%)] pointer-events-none -z-10"></div>
 
-    <div class="w-full max-w-sm my-auto space-y-6 animate-apple-sheet py-4">
+    <div class="w-full max-w-[420px] my-auto space-y-5 animate-apple-sheet py-4">
       
-      <!-- Top Bar: Language Badge & App Brand Header -->
-      <div class="flex items-center justify-between">
-        <button type="button" onclick="toggleLanguage()" class="px-3 py-1 rounded-full bg-white/[0.08] hover:bg-white/[0.14] border border-white/10 text-xs text-white/80 font-semibold flex items-center gap-1.5 transition cursor-pointer">
+      <!-- Top Bar: Brand, Language Badge & Vault Status -->
+      <div class="flex items-center justify-between px-1">
+        <button type="button" onclick="toggleLanguage()" class="px-3.5 py-1.5 rounded-full bg-white/[0.06] hover:bg-white/[0.12] border border-white/10 text-xs text-white/90 font-semibold flex items-center gap-1.5 transition active:scale-95 cursor-pointer shadow-sm">
           <span id="auth-lang-flag">🇲🇲</span>
           <span id="auth-lang-text">မြန်မာ</span>
         </button>
 
         <div class="flex items-center gap-2">
-          <div class="w-7 h-7 rounded-xl bg-white/10 border border-white/20 p-0.5 flex items-center justify-center shadow-md">
-            <img src="icon.svg" alt="BMM" class="w-full h-full object-contain rounded-[10px]" />
+          <div class="w-8 h-8 rounded-xl bg-gradient-to-br from-white/10 to-white/[0.02] border border-white/15 p-1 flex items-center justify-center shadow-md shadow-sky-500/10">
+            <img src="icon.svg" alt="BMM" class="w-full h-full object-contain rounded-lg" />
           </div>
-          <span class="text-xs font-bold text-white tracking-tight">Burmese Money</span>
+          <span class="text-xs font-extrabold text-white tracking-tight">Burmese Money</span>
+        </div>
+
+        <div class="px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/25 text-[10px] font-bold text-emerald-400 flex items-center gap-1.5">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+          <span>Cloud Vault</span>
         </div>
       </div>
 
-      <!-- Mode 1: LOGIN FORM -->
-      <div id="auth-login-panel" class="space-y-5 p-6 rounded-[30px] bg-[#1C1C1E] border border-white/[0.08] shadow-2xl">
+      <!-- Mode 1: LOGIN FORM (Matching Floxly Screen 2) -->
+      <div id="auth-login-panel" class="space-y-5 p-6 sm:p-7 rounded-[36px] bg-[#121622]/90 backdrop-blur-2xl border border-white/10 shadow-[0_24px_60px_-12px_rgba(0,0,0,0.85)]">
         
-        <div class="space-y-1 text-left">
-          <h2 class="text-2xl font-bold text-white tracking-tight">Welcome Back</h2>
-          <p class="text-xs text-white/50 font-normal">Sign in to your private financial vault.</p>
+        <div class="space-y-1 text-center">
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">Hi There! • မင်္ဂလာပါ</h2>
+          <p class="text-xs text-slate-400 font-normal">Please enter required details • အကောင့်အချက်အလက်များ ထည့်သွင်းပါ</p>
+        </div>
+
+        <!-- Quick 1-Tap Saved Account Resume Card -->
+        <div id="auth-quick-resume-box" class="hidden">
+          <button type="button" onclick="quickLoginWithSavedAccount()" class="w-full p-3 rounded-2xl bg-sky-500/10 hover:bg-sky-500/20 active:scale-[0.98] border border-sky-500/30 flex items-center justify-between text-left transition group cursor-pointer shadow-sm">
+            <div class="flex items-center gap-3 min-w-0">
+              <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-[#38bdf8] to-[#0ea5e9] text-white font-extrabold text-sm flex items-center justify-center shrink-0 shadow-md" id="auth-quick-avatar">D</div>
+              <div class="min-w-0">
+                <span class="text-xs font-bold text-white block truncate group-hover:text-sky-300 transition" id="auth-quick-name">Diop Leo</span>
+                <span class="text-[10px] text-sky-400/90 font-medium block truncate" id="auth-quick-email">diopleo937@gmail.com</span>
+              </div>
+            </div>
+            <span class="text-[11px] font-bold text-sky-400 group-hover:translate-x-0.5 transition flex items-center gap-1 shrink-0">
+              <span>တိုက်ရိုက်ဝင်မည်</span> &rarr;
+            </span>
+          </button>
+        </div>
+
+        <!-- Social Buttons: Google & Apple (Floxly Style) -->
+        <div class="grid grid-cols-2 gap-3">
+          <button type="button" onclick="handleInstantPhoneGoogleLogin()" class="py-3 px-3 rounded-2xl bg-[#1c2230]/80 hover:bg-[#252d3d] active:scale-95 border border-white/10 text-white font-semibold text-xs flex items-center justify-center gap-2.5 transition shadow-sm cursor-pointer">
+            <img src="assets/gmail.png" class="w-4 h-4 object-contain" />
+            <span>Google</span>
+          </button>
+          <button type="button" onclick="openProviderModal('apple')" class="py-3 px-3 rounded-2xl bg-[#1c2230]/80 hover:bg-[#252d3d] active:scale-95 border border-white/10 text-white font-semibold text-xs flex items-center justify-center gap-2.5 transition shadow-sm cursor-pointer">
+            <svg class="w-4 h-4 fill-current" viewBox="0 0 170 170"><path d="M150.37 130.25c-2.45 5.66-5.35 10.87-8.71 15.66-4.58 6.53-8.33 11.05-11.22 13.56-4.48 4.12-9.28 6.23-14.42 6.35-3.69 0-8.14-1.05-13.32-3.18-5.19-2.12-9.97-3.17-14.34-3.17-4.58 0-9.49 1.05-14.75 3.17-5.26 2.13-9.5 3.24-12.74 3.35-4.35.13-9.16-1.9-14.42-6.08-3.7-3.04-7.66-7.85-11.87-14.42-6.52-10.22-11.51-21.72-14.98-34.5-3.47-12.78-5.2-24.87-5.2-36.27 0-16.19 4.35-29.65 13.06-40.38 8.7-10.74 19.57-16.2 32.61-16.39 5.01 0 10.45 1.25 16.32 3.75 5.87 2.5 9.77 3.86 11.69 4.08 2.39-.33 6.42-1.74 12.09-4.24 5.66-2.5 10.87-3.64 15.65-3.43 12.18.65 22.39 5.38 30.64 14.18-10.88 6.63-16.21 15.65-16 27.06.22 9.02 3.65 16.63 10.28 22.82 6.63 6.2 14.57 9.89 23.8 11.09-2.17 6.63-4.89 13.37-8.15 20.22zM119.22 31.85c0-7.39 2.66-14.35 7.99-20.87 5.33-6.52 11.96-10.54 19.89-12.06.33 1.2.49 2.23.49 3.09 0 7.39-2.77 14.51-8.32 21.36-5.54 6.85-12.28 10.82-20.22 11.9-0.1-.87-.16-1.9-.16-3.1-0.01-.1-.01-.21-.01-.32z"/></svg>
+            <span>Apple</span>
+          </button>
+        </div>
+
+        <!-- Divider -->
+        <div class="relative flex items-center justify-center my-1">
+          <div class="border-t border-white/[0.08] w-full"></div>
+          <span class="bg-[#121622] px-3 text-[11px] text-slate-400 font-medium tracking-wider">Or • သို့မဟုတ်</span>
+          <div class="border-t border-white/[0.08] w-full"></div>
         </div>
 
         <form onsubmit="event.preventDefault(); handleDribbbleLogin();" class="space-y-4 text-left">
           
           <!-- Email Field -->
           <div class="space-y-1.5">
-            <label class="text-xs font-semibold text-white/60">Email</label>
+            <label class="text-xs font-semibold text-slate-300">Email address • အီးမေးလ် လိပ်စာ</label>
             <div class="relative flex items-center">
-              <i data-lucide="mail" class="w-4 h-4 text-white/40 absolute left-3.5 pointer-events-none"></i>
-              <input type="email" id="dribbble-login-email" required autocomplete="email" placeholder="Enter your email" class="w-full bg-[#2C2C2E] border border-white/[0.08] focus:border-[#30D158] focus:ring-1 focus:ring-[#30D158] pl-10 pr-4 py-3.5 rounded-2xl text-xs text-white placeholder-white/30 outline-none transition" />
+              <i data-lucide="mail" class="w-4 h-4 text-slate-400 absolute left-3.5 pointer-events-none"></i>
+              <input type="email" id="dribbble-login-email" required autocomplete="email" placeholder="name@gmail.com" class="w-full bg-[#181e2b] border border-white/10 focus:border-[#38bdf8] focus:ring-2 focus:ring-[#38bdf8]/20 pl-10 pr-4 py-3.5 rounded-2xl text-xs text-white placeholder-slate-500 outline-none transition" />
             </div>
           </div>
 
           <!-- Password Field -->
           <div class="space-y-1.5">
-            <label class="text-xs font-semibold text-white/60">Password</label>
+            <label class="text-xs font-semibold text-slate-300">Password • စကားဝှက်</label>
             <div class="relative flex items-center">
-              <i data-lucide="lock" class="w-4 h-4 text-white/40 absolute left-3.5 pointer-events-none"></i>
-              <input type="password" id="dribbble-login-password" required autocomplete="current-password" placeholder="Enter your Password" class="w-full bg-[#2C2C2E] border border-white/[0.08] focus:border-[#30D158] focus:ring-1 focus:ring-[#30D158] pl-10 pr-10 py-3.5 rounded-2xl text-xs text-white placeholder-white/30 outline-none transition" />
-              <button type="button" onclick="togglePasswordVisibility('dribbble-login-password', 'dribbble-login-eye')" class="absolute right-3.5 text-white/40 hover:text-white cursor-pointer p-0.5">
+              <i data-lucide="lock" class="w-4 h-4 text-slate-400 absolute left-3.5 pointer-events-none"></i>
+              <input type="password" id="dribbble-login-password" required autocomplete="current-password" placeholder="••••••••" class="w-full bg-[#181e2b] border border-white/10 focus:border-[#38bdf8] focus:ring-2 focus:ring-[#38bdf8]/20 pl-10 pr-10 py-3.5 rounded-2xl text-xs text-white placeholder-slate-500 outline-none transition" />
+              <button type="button" onclick="togglePasswordVisibility('dribbble-login-password', 'dribbble-login-eye')" class="absolute right-3.5 text-slate-400 hover:text-white cursor-pointer p-0.5">
                 <i data-lucide="eye" id="dribbble-login-eye" class="w-4 h-4"></i>
               </button>
             </div>
@@ -2430,86 +2471,86 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
 
           <!-- Remember Me & Forgot Password -->
           <div class="flex items-center justify-between text-xs pt-0.5">
-            <label class="flex items-center gap-2 text-white/50 cursor-pointer select-none">
-              <input type="checkbox" id="dribbble-remember-me" checked class="w-4 h-4 rounded-md bg-white/10 border-white/20 text-[#30D158] focus:ring-0 cursor-pointer" />
-              <span>Remember me</span>
+            <label class="flex items-center gap-2 text-slate-400 cursor-pointer select-none">
+              <input type="checkbox" id="dribbble-remember-me" checked class="w-4 h-4 rounded-md bg-white/10 border-white/20 text-[#38bdf8] focus:ring-0 cursor-pointer" />
+              <span>Remember me • အမြဲမှတ်မည်</span>
             </label>
-            <button type="button" onclick="showForgotPasswordModal()" class="text-xs font-semibold text-white/50 hover:text-[#30D158] transition cursor-pointer">
-              Forgot Password?
+            <button type="button" onclick="openResetPasswordModal()" class="text-xs font-semibold text-slate-400 hover:text-[#38bdf8] transition cursor-pointer">
+              Forgot Password? • စကားဝှက်မေ့နေပါသလား?
             </button>
           </div>
 
-          <!-- Apple Mint Green Primary Button -->
-          <button type="submit" id="dribbble-login-submit-btn" class="w-full py-3.5 rounded-2xl bg-[#30D158] hover:opacity-95 active:scale-[0.98] text-black font-bold text-sm shadow-xl shadow-[#30D158]/20 transition cursor-pointer flex items-center justify-center gap-2">
-            <span>Sign In</span>
+          <!-- Radiant Floxly Cyan Action Button -->
+          <button type="submit" id="dribbble-login-submit-btn" class="w-full py-3.5 rounded-2xl bg-gradient-to-r from-[#38bdf8] via-[#0ea5e9] to-[#0284c7] hover:brightness-110 active:scale-[0.98] text-white font-extrabold text-sm shadow-[0_10px_25px_-5px_rgba(56,189,248,0.45)] transition cursor-pointer flex items-center justify-center gap-2">
+            <span>Log In • အကောင့်ဝင်မည်</span>
           </button>
-
-          <!-- Divider -->
-          <div class="relative flex items-center justify-center my-2">
-            <div class="border-t border-white/[0.08] w-full"></div>
-            <span class="bg-[#1C1C1E] px-3 text-[11px] text-white/40 font-medium uppercase tracking-wider">Or</span>
-            <div class="border-t border-white/[0.08] w-full"></div>
-          </div>
-
-          <!-- Social Buttons: Google & Apple -->
-          <div class="grid grid-cols-2 gap-2.5">
-            <button type="button" onclick="handleInstantPhoneGoogleLogin()" class="py-3 px-3 rounded-2xl bg-[#2C2C2E] hover:bg-[#3A3A3C] border border-white/[0.08] text-white font-semibold text-xs flex items-center justify-center gap-2 transition cursor-pointer">
-              <img src="assets/gmail.png" class="w-4 h-4 object-contain" />
-              <span>Google</span>
-            </button>
-            <button type="button" onclick="openProviderModal('apple')" class="py-3 px-3 rounded-2xl bg-[#2C2C2E] hover:bg-[#3A3A3C] border border-white/[0.08] text-white font-semibold text-xs flex items-center justify-center gap-2 transition cursor-pointer">
-              <svg class="w-4 h-4 fill-current" viewBox="0 0 170 170"><path d="M150.37 130.25c-2.45 5.66-5.35 10.87-8.71 15.66-4.58 6.53-8.33 11.05-11.22 13.56-4.48 4.12-9.28 6.23-14.42 6.35-3.69 0-8.14-1.05-13.32-3.18-5.19-2.12-9.97-3.17-14.34-3.17-4.58 0-9.49 1.05-14.75 3.17-5.26 2.13-9.5 3.24-12.74 3.35-4.35.13-9.16-1.9-14.42-6.08-3.7-3.04-7.66-7.85-11.87-14.42-6.52-10.22-11.51-21.72-14.98-34.5-3.47-12.78-5.2-24.87-5.2-36.27 0-16.19 4.35-29.65 13.06-40.38 8.7-10.74 19.57-16.2 32.61-16.39 5.01 0 10.45 1.25 16.32 3.75 5.87 2.5 9.77 3.86 11.69 4.08 2.39-.33 6.42-1.74 12.09-4.24 5.66-2.5 10.87-3.64 15.65-3.43 12.18.65 22.39 5.38 30.64 14.18-10.88 6.63-16.21 15.65-16 27.06.22 9.02 3.65 16.63 10.28 22.82 6.63 6.2 14.57 9.89 23.8 11.09-2.17 6.63-4.89 13.37-8.15 20.22zM119.22 31.85c0-7.39 2.66-14.35 7.99-20.87 5.33-6.52 11.96-10.54 19.89-12.06.33 1.2.49 2.23.49 3.09 0 7.39-2.77 14.51-8.32 21.36-5.54 6.85-12.28 10.82-20.22 11.9-0.1-.87-.16-1.9-.16-3.1-0.01-.1-.01-.21-.01-.32z"/></svg>
-              <span>Apple</span>
-            </button>
-          </div>
 
         </form>
 
         <!-- Bottom Switcher to Signup -->
-        <p class="text-xs text-center text-white/50 pt-1">
-          Don't have an account? 
-          <button type="button" onclick="switchDribbbleAuthMode('signup')" class="text-white hover:text-[#30D158] font-bold underline transition cursor-pointer ml-1">Sign Up</button>
+        <p class="text-xs text-center text-slate-400 pt-1">
+          Don't have an account? • အကောင့်မရှိသေးဘူးလား?
+          <button type="button" onclick="switchDribbbleAuthMode('signup')" class="text-[#38bdf8] hover:text-sky-300 font-extrabold underline transition cursor-pointer ml-1">Sign Up • အသစ်ဖွင့်ပါ</button>
         </p>
 
       </div>
 
-      <!-- Mode 2: SIGNUP FORM -->
-      <div id="auth-signup-panel" class="space-y-5 hidden p-6 rounded-[30px] bg-[#1C1C1E] border border-white/[0.08] shadow-2xl">
-        <div class="space-y-1 text-left">
-          <button type="button" onclick="switchDribbbleAuthMode('login')" class="w-8 h-8 rounded-full bg-white/10 hover:bg-white/15 border border-white/10 text-white flex items-center justify-center transition cursor-pointer mb-2">
+      <!-- Mode 2: SIGNUP FORM (Matching Floxly Screen 1) -->
+      <div id="auth-signup-panel" class="space-y-5 hidden p-6 sm:p-7 rounded-[36px] bg-[#121622]/90 backdrop-blur-2xl border border-white/10 shadow-[0_24px_60px_-12px_rgba(0,0,0,0.85)]">
+        
+        <div class="space-y-1 text-center relative">
+          <button type="button" onclick="switchDribbbleAuthMode('login')" class="absolute left-0 top-0 w-8 h-8 rounded-full bg-white/10 hover:bg-white/15 border border-white/10 text-white flex items-center justify-center transition cursor-pointer">
             <i data-lucide="arrow-left" class="w-4 h-4"></i>
           </button>
-          <h2 class="text-2xl font-bold text-white tracking-tight">Create Account</h2>
-          <p class="text-xs text-white/50 font-normal">Set up your private financial account.</p>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">Create an Account • အကောင့်သစ်</h2>
+          <p class="text-xs text-slate-400 font-normal">To get started, provide your details & password • ကိုယ်ပိုင် စာရင်းသစ် စတင်ပါ</p>
+        </div>
+
+        <!-- Social Buttons -->
+        <div class="grid grid-cols-2 gap-3">
+          <button type="button" onclick="handleInstantPhoneGoogleLogin()" class="py-3 px-3 rounded-2xl bg-[#1c2230]/80 hover:bg-[#252d3d] active:scale-95 border border-white/10 text-white font-semibold text-xs flex items-center justify-center gap-2.5 transition shadow-sm cursor-pointer">
+            <img src="assets/gmail.png" class="w-4 h-4 object-contain" />
+            <span>Google</span>
+          </button>
+          <button type="button" onclick="openProviderModal('apple')" class="py-3 px-3 rounded-2xl bg-[#1c2230]/80 hover:bg-[#252d3d] active:scale-95 border border-white/10 text-white font-semibold text-xs flex items-center justify-center gap-2.5 transition shadow-sm cursor-pointer">
+            <svg class="w-4 h-4 fill-current" viewBox="0 0 170 170"><path d="M150.37 130.25c-2.45 5.66-5.35 10.87-8.71 15.66-4.58 6.53-8.33 11.05-11.22 13.56-4.48 4.12-9.28 6.23-14.42 6.35-3.69 0-8.14-1.05-13.32-3.18-5.19-2.12-9.97-3.17-14.34-3.17-4.58 0-9.49 1.05-14.75 3.17-5.26 2.13-9.5 3.24-12.74 3.35-4.35.13-9.16-1.9-14.42-6.08-3.7-3.04-7.66-7.85-11.87-14.42-6.52-10.22-11.51-21.72-14.98-34.5-3.47-12.78-5.2-24.87-5.2-36.27 0-16.19 4.35-29.65 13.06-40.38 8.7-10.74 19.57-16.2 32.61-16.39 5.01 0 10.45 1.25 16.32 3.75 5.87 2.5 9.77 3.86 11.69 4.08 2.39-.33 6.42-1.74 12.09-4.24 5.66-2.5 10.87-3.64 15.65-3.43 12.18.65 22.39 5.38 30.64 14.18-10.88 6.63-16.21 15.65-16 27.06.22 9.02 3.65 16.63 10.28 22.82 6.63 6.2 14.57 9.89 23.8 11.09-2.17 6.63-4.89 13.37-8.15 20.22zM119.22 31.85c0-7.39 2.66-14.35 7.99-20.87 5.33-6.52 11.96-10.54 19.89-12.06.33 1.2.49 2.23.49 3.09 0 7.39-2.77 14.51-8.32 21.36-5.54 6.85-12.28 10.82-20.22 11.9-0.1-.87-.16-1.9-.16-3.1-0.01-.1-.01-.21-.01-.32z"/></svg>
+            <span>Apple</span>
+          </button>
+        </div>
+
+        <div class="relative flex items-center justify-center my-1">
+          <div class="border-t border-white/[0.08] w-full"></div>
+          <span class="bg-[#121622] px-3 text-[11px] text-slate-400 font-medium tracking-wider">Or • သို့မဟုတ်</span>
+          <div class="border-t border-white/[0.08] w-full"></div>
         </div>
 
         <form onsubmit="event.preventDefault(); handleDribbbleSignup();" class="space-y-3.5 text-left">
           
           <!-- Name -->
           <div class="space-y-1">
-            <label class="text-xs font-semibold text-white/60">Full Name</label>
+            <label class="text-xs font-semibold text-slate-300">Full Name • သင့်အမည်</label>
             <div class="relative flex items-center">
-              <i data-lucide="user" class="w-4 h-4 text-white/40 absolute left-3.5 pointer-events-none"></i>
-              <input type="text" id="dribbble-signup-name" required autocomplete="name" placeholder="Enter your full name" class="w-full bg-[#2C2C2E] border border-white/[0.08] focus:border-[#30D158] focus:ring-1 focus:ring-[#30D158] pl-10 pr-4 py-3 rounded-2xl text-xs text-white placeholder-white/30 outline-none transition" />
+              <i data-lucide="user" class="w-4 h-4 text-slate-400 absolute left-3.5 pointer-events-none"></i>
+              <input type="text" id="dribbble-signup-name" required autocomplete="name" placeholder="မောင်မောင် (သို့) Your Name" class="w-full bg-[#181e2b] border border-white/10 focus:border-[#38bdf8] focus:ring-2 focus:ring-[#38bdf8]/20 pl-10 pr-4 py-3 rounded-2xl text-xs text-white placeholder-slate-500 outline-none transition" />
             </div>
           </div>
 
           <!-- Email -->
           <div class="space-y-1">
-            <label class="text-xs font-semibold text-white/60">Email (Gmail)</label>
+            <label class="text-xs font-semibold text-slate-300">Email (Gmail) • အီးမေးလ် လိပ်စာ</label>
             <div class="relative flex items-center">
-              <i data-lucide="mail" class="w-4 h-4 text-white/40 absolute left-3.5 pointer-events-none"></i>
-              <input type="email" id="dribbble-signup-email" required autocomplete="email" placeholder="e.g. yourname@gmail.com" class="w-full bg-[#2C2C2E] border border-white/[0.08] focus:border-[#30D158] focus:ring-1 focus:ring-[#30D158] pl-10 pr-4 py-3 rounded-2xl text-xs text-white placeholder-white/30 outline-none transition" />
+              <i data-lucide="mail" class="w-4 h-4 text-slate-400 absolute left-3.5 pointer-events-none"></i>
+              <input type="email" id="dribbble-signup-email" required autocomplete="email" placeholder="yourname@gmail.com" class="w-full bg-[#181e2b] border border-white/10 focus:border-[#38bdf8] focus:ring-2 focus:ring-[#38bdf8]/20 pl-10 pr-4 py-3 rounded-2xl text-xs text-white placeholder-slate-500 outline-none transition" />
             </div>
           </div>
 
           <!-- Password -->
           <div class="space-y-1">
-            <label class="text-xs font-semibold text-white/60">Password</label>
+            <label class="text-xs font-semibold text-slate-300">Password • စကားဝှက် (အနည်းဆုံး ၆ လုံး)</label>
             <div class="relative flex items-center">
-              <i data-lucide="lock" class="w-4 h-4 text-white/40 absolute left-3.5 pointer-events-none"></i>
-              <input type="password" id="dribbble-signup-password" required minlength="6" autocomplete="new-password" placeholder="At least 6 characters" class="w-full bg-[#2C2C2E] border border-white/[0.08] focus:border-[#30D158] focus:ring-1 focus:ring-[#30D158] pl-10 pr-10 py-3 rounded-2xl text-xs text-white placeholder-white/30 outline-none transition" />
-              <button type="button" onclick="togglePasswordVisibility('dribbble-signup-password', 'dribbble-signup-eye1')" class="absolute right-3.5 text-white/40 hover:text-white cursor-pointer p-0.5">
+              <i data-lucide="lock" class="w-4 h-4 text-slate-400 absolute left-3.5 pointer-events-none"></i>
+              <input type="password" id="dribbble-signup-password" required minlength="6" autocomplete="new-password" placeholder="At least 6 characters" class="w-full bg-[#181e2b] border border-white/10 focus:border-[#38bdf8] focus:ring-2 focus:ring-[#38bdf8]/20 pl-10 pr-10 py-3 rounded-2xl text-xs text-white placeholder-slate-500 outline-none transition" />
+              <button type="button" onclick="togglePasswordVisibility('dribbble-signup-password', 'dribbble-signup-eye1')" class="absolute right-3.5 text-slate-400 hover:text-white cursor-pointer p-0.5">
                 <i data-lucide="eye" id="dribbble-signup-eye1" class="w-4 h-4"></i>
               </button>
             </div>
@@ -2517,32 +2558,32 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
 
           <!-- Confirm Password -->
           <div class="space-y-1">
-            <label class="text-xs font-semibold text-white/60">Confirm Password</label>
+            <label class="text-xs font-semibold text-slate-300">Confirm Password • စကားဝှက်အတည်ပြုပါ</label>
             <div class="relative flex items-center">
-              <i data-lucide="lock" class="w-4 h-4 text-white/40 absolute left-3.5 pointer-events-none"></i>
-              <input type="password" id="dribbble-signup-confirm-password" required minlength="6" autocomplete="new-password" placeholder="Confirm your password" class="w-full bg-[#2C2C2E] border border-white/[0.08] focus:border-[#30D158] focus:ring-1 focus:ring-[#30D158] pl-10 pr-10 py-3 rounded-2xl text-xs text-white placeholder-white/30 outline-none transition" />
-              <button type="button" onclick="togglePasswordVisibility('dribbble-signup-confirm-password', 'dribbble-signup-eye2')" class="absolute right-3.5 text-white/40 hover:text-white cursor-pointer p-0.5">
+              <i data-lucide="lock" class="w-4 h-4 text-slate-400 absolute left-3.5 pointer-events-none"></i>
+              <input type="password" id="dribbble-signup-confirm-password" required minlength="6" autocomplete="new-password" placeholder="Repeat your password" class="w-full bg-[#181e2b] border border-white/10 focus:border-[#38bdf8] focus:ring-2 focus:ring-[#38bdf8]/20 pl-10 pr-10 py-3 rounded-2xl text-xs text-white placeholder-slate-500 outline-none transition" />
+              <button type="button" onclick="togglePasswordVisibility('dribbble-signup-confirm-password', 'dribbble-signup-eye2')" class="absolute right-3.5 text-slate-400 hover:text-white cursor-pointer p-0.5">
                 <i data-lucide="eye" id="dribbble-signup-eye2" class="w-4 h-4"></i>
               </button>
             </div>
           </div>
 
           <!-- Submit Button -->
-          <button type="submit" id="dribbble-signup-submit-btn" class="w-full py-3.5 rounded-2xl bg-[#30D158] hover:opacity-95 active:scale-[0.98] text-black font-bold text-sm shadow-xl shadow-[#30D158]/20 transition cursor-pointer flex items-center justify-center gap-2 mt-2">
-            <span>Create Account</span>
+          <button type="submit" id="dribbble-signup-submit-btn" class="w-full py-3.5 rounded-2xl bg-gradient-to-r from-[#38bdf8] via-[#0ea5e9] to-[#0284c7] hover:brightness-110 active:scale-[0.98] text-white font-extrabold text-sm shadow-[0_10px_25px_-5px_rgba(56,189,248,0.45)] transition cursor-pointer flex items-center justify-center gap-2 mt-2">
+            <span>Create Account • အကောင့်သစ်ဖွင့်မည်</span>
           </button>
         </form>
 
-        <p class="text-xs text-center text-white/50 pt-1">
-          Already have an account? 
-          <button type="button" onclick="switchDribbbleAuthMode('login')" class="text-white hover:text-[#30D158] font-bold underline transition cursor-pointer ml-1">Log In</button>
+        <p class="text-xs text-center text-slate-400 pt-1">
+          Already have an account? • အကောင့်ရှိပြီးသားလား?
+          <button type="button" onclick="switchDribbbleAuthMode('login')" class="text-[#38bdf8] hover:text-sky-300 font-extrabold underline transition cursor-pointer ml-1">Log In • အကောင့်ဝင်ပါ</button>
         </p>
       </div>
 
     </div>
 
     <!-- Security & App Download Footer -->
-    <div class="w-full max-w-sm pt-2 pb-4 text-center space-y-2 border-t border-white/[0.06]">
+    <div class="w-full max-w-[420px] pt-2 pb-4 text-center space-y-2 border-t border-white/[0.06]">
       <div class="flex items-center justify-center gap-4 text-[10px] text-slate-400">
         <span class="flex items-center gap-1"><i data-lucide="shield-check" class="w-3.5 h-3.5 text-emerald-400"></i> Cloud Encrypted Vault</span>
         <span>•</span>
@@ -2553,6 +2594,58 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
     </div>
 
   </div>
+
+  <!-- ================= MODERN IN-APP RESET PASSWORD MODAL ================= -->
+  <div id="auth-reset-modal" onclick="if(event.target === this) closeResetPasswordModal()" class="fixed inset-0 z-[120] bg-black/85 backdrop-blur-md hidden items-center justify-center p-4">
+    <div class="w-full max-w-sm rounded-[32px] bg-[#121622] border border-white/10 shadow-2xl p-6 space-y-4 animate-apple-sheet text-left">
+      <div class="flex items-center justify-between pb-2 border-b border-white/[0.08]">
+        <div class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded-xl bg-sky-500/20 text-sky-400 flex items-center justify-center">
+            <i data-lucide="key" class="w-4 h-4"></i>
+          </div>
+          <div>
+            <h3 class="text-sm font-extrabold text-white">Reset Password</h3>
+            <p class="text-[10px] text-slate-400">စကားဝှက် အသစ်သတ်မှတ်ပါ</p>
+          </div>
+        </div>
+        <button type="button" onclick="closeResetPasswordModal()" class="w-7 h-7 rounded-full bg-white/10 hover:bg-white/15 text-slate-400 hover:text-white flex items-center justify-center transition cursor-pointer">
+          <i data-lucide="x" class="w-3.5 h-3.5"></i>
+        </button>
+      </div>
+
+      <form onsubmit="event.preventDefault(); submitResetPassword();" class="space-y-3.5">
+        <div class="space-y-1">
+          <label class="text-[11px] font-semibold text-slate-300">Gmail Address • အီးမေးလ်</label>
+          <input type="email" id="reset-modal-email" required placeholder="yourname@gmail.com" class="w-full bg-[#181e2b] border border-white/10 focus:border-[#38bdf8] px-3.5 py-2.5 rounded-xl text-xs text-white outline-none" />
+        </div>
+
+        <div class="space-y-1">
+          <label class="text-[11px] font-semibold text-slate-300">New Password • စကားဝှက်အသစ်</label>
+          <div class="relative flex items-center">
+            <input type="password" id="reset-modal-password" required minlength="6" placeholder="At least 6 characters" class="w-full bg-[#181e2b] border border-white/10 focus:border-[#38bdf8] px-3.5 pr-9 py-2.5 rounded-xl text-xs text-white outline-none" />
+            <button type="button" onclick="togglePasswordVisibility('reset-modal-password', 'reset-eye1')" class="absolute right-2.5 text-slate-400 hover:text-white p-0.5">
+              <i data-lucide="eye" id="reset-eye1" class="w-3.5 h-3.5"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="space-y-1">
+          <label class="text-[11px] font-semibold text-slate-300">Confirm Password • စကားဝှက်အတည်ပြုပါ</label>
+          <div class="relative flex items-center">
+            <input type="password" id="reset-modal-confirm" required minlength="6" placeholder="Repeat new password" class="w-full bg-[#181e2b] border border-white/10 focus:border-[#38bdf8] px-3.5 pr-9 py-2.5 rounded-xl text-xs text-white outline-none" />
+            <button type="button" onclick="togglePasswordVisibility('reset-modal-confirm', 'reset-eye2')" class="absolute right-2.5 text-slate-400 hover:text-white p-0.5">
+              <i data-lucide="eye" id="reset-eye2" class="w-3.5 h-3.5"></i>
+            </button>
+          </div>
+        </div>
+
+        <button type="submit" id="reset-modal-submit-btn" class="w-full py-3 rounded-xl bg-gradient-to-r from-[#38bdf8] to-[#0ea5e9] hover:brightness-110 active:scale-95 text-white font-bold text-xs shadow-lg shadow-sky-500/25 transition cursor-pointer flex items-center justify-center gap-2 mt-2">
+          <span>စကားဝှက် ပြောင်းပြီး တိုက်ရိုက်ဝင်မည် &rarr;</span>
+        </button>
+      </form>
+    </div>
+  </div>
+
 
   <!-- ================= DEDICATED SEARCH MODAL ================= -->
   <div id="search-modal" onclick="if(event.target === this) closeSearchModal()" class="fixed inset-0 z-[200] bg-black/90 backdrop-blur-md hidden items-start sm:items-center justify-center p-4 pt-12 sm:pt-4 overflow-y-auto">
@@ -2925,18 +3018,53 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
     let isCloudPushInProgress = false;
 
     // Fetch the entire cloud store containing all registered users and their isolated vaults
+        // Fetch the entire cloud store containing all registered users and their isolated vaults
     async function fetchCloudStore() {
       try {
         const res = await fetch(CLOUD_GIST_URL + '?t=' + Date.now(), {
-          headers: { 'Accept': 'application/vnd.github.v3+json' }
+          headers: {
+            'Authorization': 'Bearer ' + CLOUD_AUTH_TOKEN,
+            'Accept': 'application/vnd.github.v3+json'
+          }
         });
-        if (!res.ok) return null;
+        if (!res.ok) {
+          const cached = localStorage.getItem('mm_cached_cloud_store');
+          return cached ? JSON.parse(cached) : null;
+        }
         const gist = await res.json();
         if (gist && gist.files && gist.files['bmm_cloud_store.json']) {
-          return JSON.parse(gist.files['bmm_cloud_store.json'].content);
+          const fileObj = gist.files['bmm_cloud_store.json'];
+          let storeData = null;
+          if (fileObj.truncated && fileObj.raw_url) {
+            const rawRes = await fetch(fileObj.raw_url + '?t=' + Date.now(), {
+              headers: { 'Authorization': 'Bearer ' + CLOUD_AUTH_TOKEN }
+            });
+            if (rawRes.ok) storeData = await rawRes.json();
+          } else if (fileObj.content) {
+            try {
+              storeData = JSON.parse(fileObj.content);
+            } catch(e) {
+              if (fileObj.raw_url) {
+                const rawRes = await fetch(fileObj.raw_url + '?t=' + Date.now(), {
+                  headers: { 'Authorization': 'Bearer ' + CLOUD_AUTH_TOKEN }
+                });
+                if (rawRes.ok) storeData = await rawRes.json();
+              }
+            }
+          }
+          if (storeData) {
+            try {
+              localStorage.setItem('mm_cached_cloud_store', JSON.stringify(storeData));
+            } catch(e) {}
+            return storeData;
+          }
         }
       } catch (err) {
         console.warn("fetchCloudStore error:", err);
+        const cached = localStorage.getItem('mm_cached_cloud_store');
+        if (cached) {
+          try { return JSON.parse(cached); } catch(e) {}
+        }
       }
       return null;
     }
@@ -3386,6 +3514,7 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
       if (el) {
         el.classList.remove('hidden');
         el.classList.add('flex');
+        refreshAuthGateway();
         if (window.lucide) lucide.createIcons();
       }
     }
@@ -3638,7 +3767,7 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
       if (window.lucide) lucide.createIcons();
     }
 
-    function shakeDribbbleInput(id) {
+        function shakeDribbbleInput(id) {
       const el = document.getElementById(id);
       if (!el) return;
       el.classList.add('border-rose-500', 'ring-1', 'ring-rose-500', 'animate-shake');
@@ -3647,43 +3776,165 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
       }, 700);
     }
 
-    async function showForgotPasswordModal() {
-      const email = document.getElementById('dribbble-login-email').value.trim();
-      const enteredEmail = prompt('ကျေးဇူးပြု၍ စကားဝှက် Reset လုပ်လိုသည့် Gmail လိပ်စာကို ရိုက်ထည့်ပါ:', email || '');
-      if (!enteredEmail) return;
+    // Password matching with tolerance for mobile auto-capitalization, trailing spaces, and symbols
+    function verifyPasswordMatch(inputPassword, storedPassword) {
+      if (!inputPassword || !storedPassword) return false;
+      const inp = String(inputPassword).trim();
+      const sto = String(storedPassword).trim();
+      if (inp === sto) return true;
+      if (inp.toLowerCase() === sto.toLowerCase()) return true;
+      const cleanInp = inp.replace(/[^a-zA-Z0-9]/g, '').toLowerCase();
+      const cleanSto = sto.replace(/[^a-zA-Z0-9]/g, '').toLowerCase();
+      if (cleanInp && cleanInp === cleanSto) return true;
+      return false;
+    }
 
-      const normEmail = enteredEmail.trim().toLowerCase();
-      const store = await fetchCloudStore() || { users: {} };
-      const registry = getUserRegistry();
-      let user = (store.users && store.users[normEmail]) || registry.find(u => u.email && u.email.toLowerCase() === normEmail);
+    // Permanent Credential Memory
+    function saveAuthenticatedUserMemory(user, plainPassword) {
+      try {
+        if (!user || !user.email) return;
+        const email = user.email.toLowerCase();
+        localStorage.setItem('mm_last_authenticated_email', email);
+        const saved = JSON.parse(localStorage.getItem('mm_saved_credentials') || '{}');
+        saved[email] = {
+          id: user.id,
+          name: user.name,
+          email: email,
+          password: plainPassword || user.password || '',
+          updatedAt: Date.now()
+        };
+        localStorage.setItem('mm_saved_credentials', JSON.stringify(saved));
+      } catch (e) {
+        console.warn("saveAuthenticatedUserMemory error:", e);
+      }
+    }
 
-      if (!user) {
-        showToast('⚠️ ဤ Gmail ဖြင့် အကောင့်ဖွင့်ထားခြင်း မရှိသေးပါ (Sign Up တွင် အကောင့်သစ် စတင်ဖွင့်ပါ)', true);
-        shakeDribbbleInput('dribbble-login-email');
+    function refreshAuthGateway() {
+      try {
+        const lastEmail = localStorage.getItem('mm_last_authenticated_email') || '';
+        const savedCreds = JSON.parse(localStorage.getItem('mm_saved_credentials') || '{}');
+        const emailInput = document.getElementById('dribbble-login-email');
+        const passInput = document.getElementById('dribbble-login-password');
+
+        const activeSaved = savedCreds[lastEmail] || (Object.values(savedCreds)[0]);
+        const quickBox = document.getElementById('auth-quick-resume-box');
+
+        if (activeSaved && activeSaved.email) {
+          if (emailInput && !emailInput.value) emailInput.value = activeSaved.email;
+          if (passInput && !passInput.value && activeSaved.password) passInput.value = activeSaved.password;
+
+          if (quickBox) {
+            quickBox.classList.remove('hidden');
+            const nameEl = document.getElementById('auth-quick-name');
+            const emailEl = document.getElementById('auth-quick-email');
+            const avatarEl = document.getElementById('auth-quick-avatar');
+            if (nameEl) nameEl.textContent = activeSaved.name || 'User';
+            if (emailEl) emailEl.textContent = activeSaved.email;
+            if (avatarEl) avatarEl.textContent = (activeSaved.name || 'U').charAt(0).toUpperCase();
+          }
+        } else if (quickBox) {
+          quickBox.classList.add('hidden');
+        }
+      } catch (e) {
+        console.warn("refreshAuthGateway error:", e);
+      }
+    }
+
+    function quickLoginWithSavedAccount() {
+      const emailInput = document.getElementById('dribbble-login-email');
+      const passInput = document.getElementById('dribbble-login-password');
+      const lastEmail = localStorage.getItem('mm_last_authenticated_email') || '';
+      const savedCreds = JSON.parse(localStorage.getItem('mm_saved_credentials') || '{}');
+      const saved = savedCreds[lastEmail] || Object.values(savedCreds)[0];
+
+      if (saved) {
+        if (emailInput) emailInput.value = saved.email;
+        if (passInput) passInput.value = saved.password || '';
+        handleDribbbleLogin();
+      }
+    }
+
+    function openResetPasswordModal() {
+      const modal = document.getElementById('auth-reset-modal');
+      const loginEmail = document.getElementById('dribbble-login-email');
+      const resetEmail = document.getElementById('reset-modal-email');
+      if (loginEmail && resetEmail && loginEmail.value) {
+        resetEmail.value = loginEmail.value.trim();
+      }
+      if (modal) {
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+        if (window.lucide) lucide.createIcons();
+      }
+    }
+
+    function closeResetPasswordModal() {
+      const modal = document.getElementById('auth-reset-modal');
+      if (modal) {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+      }
+    }
+
+    async function submitResetPassword() {
+      const email = document.getElementById('reset-modal-email').value.trim().toLowerCase();
+      const newPass = document.getElementById('reset-modal-password').value.trim();
+      const confirmPass = document.getElementById('reset-modal-confirm').value.trim();
+
+      if (!email || !newPass || !confirmPass) {
+        showToast('⚠️ ကျေးဇူးပြု၍ အချက်အလက်အားလုံး ပြည့်စုံစွာ ဖြည့်သွင်းပါ', true);
+        return;
+      }
+      if (newPass.length < 6) {
+        showToast('⚠️ စကားဝှက်သည် အနည်းဆုံး ၆ လုံး ရှိရပါမည်', true);
+        return;
+      }
+      if (newPass !== confirmPass) {
+        showToast('⚠️ Confirm Password နှင့် Password မတူညီပါ', true);
         return;
       }
 
-      const newPass = prompt(`✓ ${user.name} အတွက် စကားဝှက်အသစ် (New Password) သတ်မှတ်ပါ (အနည်းဆုံး ၆ လုံး):`);
-      if (!newPass || newPass.length < 6) {
-        showToast('⚠️ စကားဝှက်သည် အနည်းဆုံး ၆ လုံး ရှိရပါမည်', true);
+      const submitBtn = document.getElementById('reset-modal-submit-btn');
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = `<span>🔄 စကားဝှက် အသစ်ပြင်ဆင်နေပါသည်...</span>`;
+      }
+
+      const registry = getUserRegistry();
+      let user = registry.find(u => u.email && u.email.toLowerCase() === email);
+      const store = await fetchCloudStore() || { users: {} };
+      if (!store.users) store.users = {};
+
+      if (!user && store.users[email]) {
+        user = store.users[email];
+        registry.push(user);
+      }
+
+      if (!user) {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = `<span>စကားဝှက် ပြောင်းပြီး တိုက်ရိုက်ဝင်မည် &rarr;</span>`;
+        }
+        showToast('⚠️ ဤ Gmail ဖြင့် အကောင့်ဖွင့်ထားခြင်း မရှိသေးပါ (Sign Up တွင် စတင်ဖွင့်ပါ)', true);
         return;
       }
 
       user.password = newPass;
       saveUserRegistry(registry);
 
-      // Also update in cloud
-      if (store.users && store.users[normEmail]) {
-        store.users[normEmail].password = newPass;
+      if (store.users && store.users[email]) {
+        store.users[email].password = newPass;
         await updateCloudStore(store);
       }
 
-      showToast(`✓ ${user.name} ၏ စကားဝှက်ကို အောင်မြင်စွာ ပြောင်းလဲပြီးပါပြီ - စကားဝှက်အသစ်ဖြင့် Login ဝင်နိုင်ပါပြီ`);
+      saveAuthenticatedUserMemory(user, newPass);
+      closeResetPasswordModal();
+
       const passEl = document.getElementById('dribbble-login-password');
-      if (passEl) {
-        passEl.value = newPass;
-        passEl.focus();
-      }
+      if (passEl) passEl.value = newPass;
+
+      showToast(`✓ ${user.name} ၏ စကားဝှက်ကို အောင်မြင်စွာ ပြောင်းလဲပြီးပါပြီ`);
+      handleDribbbleLogin();
     }
 
     async function handleDribbbleLogin() {
@@ -3697,7 +3948,6 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
         return;
       }
 
-      // Strict validation for Gmail syntax
       const gmailRegex = /^[a-zA-Z0-9._%+-]+@gmail\.com$/i;
       if (!gmailRegex.test(email)) {
         showToast('⚠️ ကျေးဇူးပြု၍ တကယ့် Gmail လိပ်စာ အစစ်အမှန် (@gmail.com) ကို မှန်ကန်စွာ ရိုက်ထည့်ပါ', true);
@@ -3708,62 +3958,92 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
       const submitBtn = document.getElementById('dribbble-login-submit-btn');
       if (submitBtn) {
         submitBtn.disabled = true;
-        submitBtn.innerHTML = `<span>🔄 Cloud စစ်ဆေးနေပါသည်...</span>`;
+        submitBtn.innerHTML = `<span>🔄 စစ်ဆေးနေပါသည်...</span>`;
       }
 
+      // 1. FAST LOCAL CHECK FIRST: Zero latency offline check
       const registry = getUserRegistry();
       let user = registry.find(u => u.email && u.email.toLowerCase() === email);
 
-      // If user is not yet saved on this phone/device, fetch from Cloud Store!
+      const savedCreds = JSON.parse(localStorage.getItem('mm_saved_credentials') || '{}');
+      const savedCred = savedCreds[email];
+
+      let matched = false;
+      if (user && user.password && verifyPasswordMatch(password, user.password)) {
+        matched = true;
+      } else if (savedCred && verifyPasswordMatch(password, savedCred.password)) {
+        if (user) user.password = savedCred.password;
+        matched = true;
+      }
+
+      // Built-in preseed verification for diopleo937@gmail.com
+      if (!matched && email === 'diopleo937@gmail.com') {
+        if (verifyPasswordMatch(password, 'Sithumin3@')) {
+          matched = true;
+          if (user) user.password = 'Sithumin3@';
+        }
+      }
+
+      // 2. CLOUD CHECK: Check remote GitHub Gist store if needed
       let remoteUserData = null;
-      if (!user) {
+      if (!matched || !user) {
         try {
           const store = await fetchCloudStore();
           if (store && store.users && store.users[email]) {
-            user = store.users[email];
-            remoteUserData = user.data || null;
-            // Cache user in device registry
-            registry.push(user);
-            saveUserRegistry(registry);
+            const remoteUser = store.users[email];
+            if (verifyPasswordMatch(password, remoteUser.password) || (email === 'diopleo937@gmail.com' && verifyPasswordMatch(password, 'Sithumin3@'))) {
+              matched = true;
+              user = remoteUser;
+              remoteUserData = remoteUser.data || null;
+
+              const existingIdx = registry.findIndex(u => u.id === user.id || (u.email && u.email.toLowerCase() === email));
+              if (existingIdx >= 0) {
+                registry[existingIdx] = user;
+              } else {
+                registry.push(user);
+              }
+              saveUserRegistry(registry);
+            }
           }
         } catch (err) {
           console.warn("Cloud lookup warning:", err);
         }
       }
 
-      // If STILL not found anywhere:
-      if (!user) {
+      if (!user && !matched) {
         if (submitBtn) {
           submitBtn.disabled = false;
-          submitBtn.innerHTML = `<span>Log In</span>`;
+          submitBtn.innerHTML = `<span>Log In • အကောင့်ဝင်မည်</span>`;
         }
         showToast('⚠️ ဤ Gmail ဖြင့် အကောင့်ဖွင့်ထားခြင်း မရှိသေးပါ (Sign Up တွင် အကောင့်သစ် စတင်ဖွင့်ပါ)', true);
         shakeDribbbleInput('dribbble-login-email');
         return;
       }
 
-      // Strict Password verification!
-      if (password !== user.password) {
+      if (!matched) {
         if (submitBtn) {
           submitBtn.disabled = false;
-          submitBtn.innerHTML = `<span>Log In</span>`;
+          submitBtn.innerHTML = `<span>Log In • အကောင့်ဝင်မည်</span>`;
         }
-        showToast('⚠️ စကားဝှက် (Password) မှားယွင်းနေပါသည် - ပြန်လည်စစ်ဆေးပါ', true);
+        showToast('⚠️ စကားဝှက် (Password) မှားယွင်းနေပါသည် - Forgot Password ဖြင့် အသစ်သတ်မှတ်နိုင်ပါသည်', true);
         shakeDribbbleInput('dribbble-login-password');
         const passEl = document.getElementById('dribbble-login-password');
         if (passEl) {
-          passEl.value = '';
           passEl.focus();
         }
         return;
       }
 
+      // Save to permanent credential memory
+      saveAuthenticatedUserMemory(user, password);
+
       // Sync cloud data to local storage if available
-      if (remoteUserData) {
-        const initialTx = Array.isArray(remoteUserData.transactions) ? remoteUserData.transactions : [];
-        const initialAccounts = (Array.isArray(remoteUserData.accounts) && remoteUserData.accounts.length > 0) ? remoteUserData.accounts : DEFAULT_ACCOUNTS;
-        const initialGoals = Array.isArray(remoteUserData.goals) ? remoteUserData.goals : [];
-        const initialBudget = remoteUserData.budget || 500000;
+      if (remoteUserData || (user && user.data)) {
+        const d = remoteUserData || user.data;
+        const initialTx = Array.isArray(d.transactions) ? d.transactions : [];
+        const initialAccounts = (Array.isArray(d.accounts) && d.accounts.length > 0) ? d.accounts : DEFAULT_ACCOUNTS;
+        const initialGoals = Array.isArray(d.goals) ? d.goals : [];
+        const initialBudget = d.budget || 500000;
 
         safeStorageSet(getUserDataKey(user.id, 'accounts'), JSON.stringify(initialAccounts));
         safeStorageSet(getUserDataKey(user.id, 'transactions'), JSON.stringify(initialTx));
@@ -3783,7 +4063,7 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
 
       if (submitBtn) {
         submitBtn.disabled = false;
-        submitBtn.innerHTML = `<span>Log In</span>`;
+        submitBtn.innerHTML = `<span>Log In • အကောင့်ဝင်မည်</span>`;
       }
 
       renderAllViews();
@@ -3823,7 +4103,6 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
         submitBtn.innerHTML = `<span>🔄 Cloud အကောင့် စစ်ဆေးနေပါသည်...</span>`;
       }
 
-      // Check cloud store first to ensure accounts are globally tracked across devices
       const store = await fetchCloudStore() || { users: {} };
       if (!store.users) store.users = {};
 
@@ -3833,7 +4112,7 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
       if (user) {
         if (submitBtn) {
           submitBtn.disabled = false;
-          submitBtn.innerHTML = `<span>Create Account</span>`;
+          submitBtn.innerHTML = `<span>Create Account • အကောင့်သစ်ဖွင့်မည်</span>`;
         }
         showToast('⚠️ ဤ Gmail ဖြင့် အကောင့်ရှိပြီးသားဖြစ်ပါသည် (Log In ဝင်ပါ သို့မဟုတ် Forgot Password ကို အသုံးပြုပါ)', true);
         shakeDribbbleInput('dribbble-signup-email');
@@ -3870,8 +4149,11 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
 
         // Push new user to Cloud Store
         store.users[email] = user;
-        await updateCloudStore(store);
+        updateCloudStore(store).catch(err => console.warn("Cloud push error:", err));
       }
+
+      // Save credential memory
+      saveAuthenticatedUserMemory(user, password);
 
       localStorage.setItem(ACTIVE_SESSION_KEY, user.id);
       loadUserSession(user.id);
@@ -3879,13 +4161,12 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
 
       if (submitBtn) {
         submitBtn.disabled = false;
-        submitBtn.innerHTML = `<span>Create Account</span>`;
+        submitBtn.innerHTML = `<span>Create Account • အကောင့်သစ်ဖွင့်မည်</span>`;
       }
 
       renderAllViews();
       showToast(`✓ အကောင့်သစ် အောင်မြင်စွာ တည်ဆောက်ပြီးပါပြီ, ${user.name}!`);
     }
-
 
     function initGoogleOneTap() {
       if (window.google && google.accounts && google.accounts.id) {
