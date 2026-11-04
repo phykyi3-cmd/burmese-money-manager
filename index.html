@@ -6450,9 +6450,8 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
     }
 
     function resetAllData() {
-      if (!confirm('ဒေတာအားလုံးကို ဖျက်ပစ်ရန် သေချာပါသလား?')) return;
-      localStorage.clear();
-      location.reload();
+      // Safe targeted user data reset: never wipe other users or global app registry
+      confirmResetUserData();
     }
 
     
