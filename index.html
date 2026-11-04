@@ -1477,6 +1477,116 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
     </div>
   </div>
 
+  <!-- ================= MODAL: TRANSACTION DETAIL (ပြေစာ/မှတ်တမ်း အသေးစိတ်ကြည့်ရန်) ================= -->
+  <div id="tx-detail-modal" onclick="if(event.target === this) closeTransactionDetailModal()" class="fixed inset-0 z-[160] bg-black/85 backdrop-blur-2xl hidden items-end sm:items-center justify-center p-0 sm:p-4 overflow-y-auto">
+    <div class="w-full max-w-md rounded-t-[36px] sm:rounded-[36px] bg-[#121622]/95 border-t sm:border border-white/15 shadow-[0_25px_60px_rgba(0,0,0,0.8)] p-5 sm:p-6 space-y-4 animate-apple-sheet my-auto text-left relative overflow-hidden max-h-[92vh] overflow-y-auto no-scrollbar">
+      
+      <!-- Top Radiant Beam Accent -->
+      <div id="tx-detail-ambient-glow" class="absolute -top-12 inset-x-0 h-28 bg-[radial-gradient(ellipse_at_50%_0%,rgba(56,189,248,0.25)_0%,transparent_75%)] pointer-events-none"></div>
+
+      <!-- Grabber for Mobile Sheet -->
+      <div class="w-10 h-1 bg-white/20 rounded-full mx-auto -mt-1 mb-1 sm:hidden"></div>
+
+      <!-- Header -->
+      <div class="flex items-center justify-between pb-2.5 border-b border-white/[0.08] relative">
+        <div class="flex items-center gap-2.5">
+          <div id="tx-detail-header-icon" class="w-8 h-8 rounded-xl bg-white/10 text-white flex items-center justify-center shadow-md">
+            <i data-lucide="receipt-text" class="w-4 h-4"></i>
+          </div>
+          <div>
+            <h3 class="text-sm font-extrabold text-white">မှတ်တမ်း အသေးစိတ် (Transaction Detail)</h3>
+            <p class="text-[10px] text-white/50">လုံခြုံစိတ်ချရသော Cloud Synced စာရင်းအချက်အလက်</p>
+          </div>
+        </div>
+        <button type="button" onclick="closeTransactionDetailModal()" class="w-7 h-7 rounded-full bg-white/10 hover:bg-white/15 text-slate-400 hover:text-white flex items-center justify-center transition cursor-pointer">
+          <i data-lucide="x" class="w-3.5 h-3.5"></i>
+        </button>
+      </div>
+
+      <!-- Hero Section: Amount & Type -->
+      <div class="p-4 sm:p-5 rounded-2xl bg-white/[0.03] border border-white/10 text-center space-y-2 relative overflow-hidden">
+        <div id="tx-detail-type-badge" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-black">
+          <span id="tx-detail-type-dot" class="w-2 h-2 rounded-full"></span>
+          <span id="tx-detail-type-text">ထွက်ငွေ (Expense)</span>
+        </div>
+        
+        <h2 id="tx-detail-amount" class="text-3xl sm:text-4xl font-black tracking-tight">-0 Ks</h2>
+        <p id="tx-detail-category-subtitle" class="text-xs font-semibold text-white/70">အစားအသောက် (Food & Dining)</p>
+      </div>
+
+      <!-- Detail Grid & Fields -->
+      <div class="p-4 rounded-2xl bg-white/[0.03] border border-white/10 space-y-3 text-xs">
+        
+        <!-- Account Row -->
+        <div class="flex items-center justify-between pb-2.5 border-b border-white/[0.06]">
+          <span class="text-white/50 font-bold flex items-center gap-1.5">
+            <i data-lucide="wallet" class="w-3.5 h-3.5 text-sky-400"></i>
+            <span>ငွေစာရင်း (Account):</span>
+          </span>
+          <span id="tx-detail-account" class="font-extrabold text-white">KPay (KBZPay)</span>
+        </div>
+
+        <!-- Party Row (Sender / Receiver) -->
+        <div id="tx-detail-party-row" class="flex items-center justify-between pb-2.5 border-b border-white/[0.06]">
+          <span id="tx-detail-party-label" class="text-white/50 font-bold flex items-center gap-1.5">
+            <i data-lucide="user" class="w-3.5 h-3.5 text-amber-400"></i>
+            <span id="tx-detail-party-label-text">ငွေလက်ခံသူ / ဆိုင်:</span>
+          </span>
+          <span id="tx-detail-party-val" class="font-bold text-white text-right max-w-[200px] truncate">-</span>
+        </div>
+
+        <!-- Note Row -->
+        <div class="space-y-1 pb-2.5 border-b border-white/[0.06]">
+          <span class="text-white/50 font-bold flex items-center gap-1.5">
+            <i data-lucide="file-text" class="w-3.5 h-3.5 text-indigo-400"></i>
+            <span>အကြောင်းအရာ / မှတ်ချက် (Note):</span>
+          </span>
+          <p id="tx-detail-note" class="font-medium text-white/90 bg-black/30 p-2.5 rounded-xl text-xs break-words leading-relaxed">-</p>
+        </div>
+
+        <!-- Date & Time Row -->
+        <div class="flex items-center justify-between pb-2.5 border-b border-white/[0.06]">
+          <span class="text-white/50 font-bold flex items-center gap-1.5">
+            <i data-lucide="calendar" class="w-3.5 h-3.5 text-emerald-400"></i>
+            <span>ရက်စွဲ (Date):</span>
+          </span>
+          <span id="tx-detail-date" class="font-bold text-white">2026-11-04</span>
+        </div>
+
+        <!-- Cloud Status & ID Row -->
+        <div class="flex items-center justify-between pt-0.5 text-[11px]">
+          <span class="text-white/40 flex items-center gap-1 font-mono">
+            <span>ID:</span>
+            <span id="tx-detail-id" class="text-white/60">tx_...</span>
+          </span>
+          <span class="flex items-center gap-1 text-emerald-400 font-bold">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+            <span>Cloud Synced</span>
+          </span>
+        </div>
+
+      </div>
+
+      <!-- Actions -->
+      <div class="grid grid-cols-2 gap-2.5 pt-1">
+        <button type="button" id="tx-detail-edit-btn" onclick="openEditTransactionFromDetail()" class="py-3 px-3 rounded-2xl bg-white/10 hover:bg-white/15 active:scale-95 text-white font-bold text-xs flex items-center justify-center gap-2 transition cursor-pointer border border-white/10">
+          <i data-lucide="edit-3" class="w-4 h-4 text-sky-400"></i>
+          <span>ပြင်ဆင်မည် (Edit)</span>
+        </button>
+
+        <button type="button" id="tx-detail-delete-btn" onclick="deleteTransactionFromDetail()" class="py-3 px-3 rounded-2xl bg-rose-500/15 hover:bg-rose-500/25 active:scale-95 text-rose-300 font-bold text-xs flex items-center justify-center gap-2 transition cursor-pointer border border-rose-500/25">
+          <i data-lucide="trash-2" class="w-4 h-4 text-rose-400"></i>
+          <span>ဖျက်မည် (Delete)</span>
+        </button>
+      </div>
+
+      <button type="button" onclick="closeTransactionDetailModal()" class="w-full py-2.5 rounded-2xl bg-white/[0.04] hover:bg-white/[0.08] active:scale-95 text-white/60 font-semibold text-xs transition cursor-pointer">
+        ပိတ်မည် (Close)
+      </button>
+
+    </div>
+  </div>
+
   <!-- ================= MODAL 1: ADD TRANSACTION (APPLE HIG SHEET) ================= -->
   <div id="add-modal" onclick="if(event.target === this) closeAddModal()" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden items-end sm:items-center justify-center p-0 sm:p-4">
     <div class="w-full max-w-md rounded-t-[32px] sm:rounded-[32px] glass-apple p-5 sm:p-6 border-t sm:border border-white/15 shadow-2xl animate-apple-sheet space-y-4 max-h-[92vh] overflow-y-auto no-scrollbar">
@@ -6108,7 +6218,7 @@ Return ONLY a valid JSON object with NO markdown formatting, NO backticks, NO ex
           const isInc = t.type === 'income';
 
           outputHTML += `
-            <div class="p-3.5 sm:p-4 rounded-2xl fold-boost-card flex items-center justify-between gap-3 group transition cursor-pointer" onclick="triggerGaugeSpinAnimation(); openAddModal('${t.type}');">
+            <div class="p-3.5 sm:p-4 rounded-2xl fold-boost-card flex items-center justify-between gap-3 group transition cursor-pointer hover:border-white/20 active:scale-[0.99]" onclick="triggerGaugeSpinAnimation(); openTransactionDetailModal('${t.id}');">
               <div class="flex items-center gap-3.5 min-w-0">
                 <div class="w-11 h-11 rounded-2xl flex items-center justify-center shrink-0 border border-white/10 shadow-md relative" style="background-color: ${color}22; color: ${color};">
                   <i data-lucide="${iconName}" class="w-5 h-5 stroke-[2.2]"></i>
@@ -6844,7 +6954,7 @@ Return ONLY a valid JSON object with NO markdown formatting, NO backticks, NO ex
       const accName = acc ? (appState.lang === 'my' ? acc.name_my : acc.name_en) : 'Account';
 
       return `
-        <div class="p-3.5 rounded-2xl glass-apple-card flex items-center justify-between gap-3 group">
+        <div class="p-3.5 rounded-2xl glass-apple-card flex items-center justify-between gap-3 group transition cursor-pointer hover:border-white/20 active:scale-[0.99]" onclick="triggerGaugeSpinAnimation(); openTransactionDetailModal('${t.id}')">
           <div class="flex items-center gap-3 min-w-0">
             <div class="w-9 h-9 rounded-xl flex items-center justify-center shrink-0 border border-white/10" style="background-color: ${color}20; color: ${color};">
               <i data-lucide="${iconName}" class="w-4 h-4"></i>
@@ -6865,7 +6975,7 @@ Return ONLY a valid JSON object with NO markdown formatting, NO backticks, NO ex
             <span class="text-xs sm:text-sm font-black ${t.type === 'income' ? 'text-emerald-400' : (t.type === 'expense' ? 'text-rose-400' : 'text-sky-400')}">
               ${t.type === 'income' ? '+' : (t.type === 'expense' ? '-' : '')}${formatNumber(t.amount)} ${sym}
             </span>
-            <button onclick="deleteTransaction('${t.id}')" title="Delete" class="w-7 h-7 rounded-lg hover:bg-rose-500/20 text-slate-500 hover:text-rose-400 flex items-center justify-center transition">
+            <button onclick="event.stopPropagation(); promptDeleteTransaction('${t.id}')" title="Delete" class="w-7 h-7 rounded-lg hover:bg-rose-500/20 text-slate-500 hover:text-rose-400 flex items-center justify-center transition cursor-pointer">
               <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
             </button>
           </div>
@@ -7117,11 +7227,167 @@ Return ONLY a valid JSON object with NO markdown formatting, NO backticks, NO ex
       if (window.lucide) lucide.createIcons();
     }
 
-    function openAddModal(type) {
+    /* Transaction Details & Edit Engine */
+    let editingTransactionId = null;
+    let currentViewingTransactionId = null;
+
+    function openTransactionDetailModal(txId) {
+      const t = appState.transactions.find(x => x.id === txId);
+      if (!t) return;
+
+      currentViewingTransactionId = txId;
+      const modal = document.getElementById('tx-detail-modal');
+      const sym = getCurrencySymbol();
+
+      const glow = document.getElementById('tx-detail-ambient-glow');
+      const typeBadge = document.getElementById('tx-detail-type-badge');
+      const typeDot = document.getElementById('tx-detail-type-dot');
+      const typeText = document.getElementById('tx-detail-type-text');
+      const amountEl = document.getElementById('tx-detail-amount');
+      const catSubEl = document.getElementById('tx-detail-category-subtitle');
+      const accEl = document.getElementById('tx-detail-account');
+      const partyLabelText = document.getElementById('tx-detail-party-label-text');
+      const partyVal = document.getElementById('tx-detail-party-val');
+      const noteEl = document.getElementById('tx-detail-note');
+      const dateEl = document.getElementById('tx-detail-date');
+      const idEl = document.getElementById('tx-detail-id');
+
+      const isExp = t.type === 'expense';
+      const isInc = t.type === 'income';
+
+      // Type, Glow, Amount styling
+      if (isInc) {
+        if (glow) glow.style.background = 'radial-gradient(ellipse at 50% 0%, rgba(48,209,88,0.28) 0%, transparent 75%)';
+        if (typeBadge) typeBadge.className = 'inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-black bg-[#30D158]/15 text-[#30D158] border border-[#30D158]/25';
+        if (typeDot) typeDot.className = 'w-2 h-2 rounded-full bg-[#30D158]';
+        if (typeText) typeText.textContent = 'ဝင်ငွေ (Income)';
+        if (amountEl) {
+          amountEl.className = 'text-3xl sm:text-4xl font-black tracking-tight text-[#30D158]';
+          amountEl.textContent = `+${formatNumber(t.amount)} ${sym}`;
+        }
+        if (partyLabelText) partyLabelText.textContent = 'ငွေလွှဲပေးပို့သူ (Sender / From):';
+      } else if (isExp) {
+        if (glow) glow.style.background = 'radial-gradient(ellipse at 50% 0%, rgba(244,63,94,0.28) 0%, transparent 75%)';
+        if (typeBadge) typeBadge.className = 'inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-black bg-rose-500/15 text-rose-400 border border-rose-500/25';
+        if (typeDot) typeDot.className = 'w-2 h-2 rounded-full bg-rose-400';
+        if (typeText) typeText.textContent = 'ထွက်ငွေ (Expense)';
+        if (amountEl) {
+          amountEl.className = 'text-3xl sm:text-4xl font-black tracking-tight text-rose-400';
+          amountEl.textContent = `-${formatNumber(t.amount)} ${sym}`;
+        }
+        if (partyLabelText) partyLabelText.textContent = 'ငွေလက်ခံသူ / ဆိုင် (Receiver / Merchant):';
+      } else {
+        if (glow) glow.style.background = 'radial-gradient(ellipse at 50% 0%, rgba(14,165,233,0.28) 0%, transparent 75%)';
+        if (typeBadge) typeBadge.className = 'inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-black bg-sky-500/15 text-sky-400 border border-sky-500/25';
+        if (typeDot) typeDot.className = 'w-2 h-2 rounded-full bg-sky-400';
+        if (typeText) typeText.textContent = 'အကောင့်လွှဲငွေ (Transfer)';
+        if (amountEl) {
+          amountEl.className = 'text-3xl sm:text-4xl font-black tracking-tight text-sky-400';
+          amountEl.textContent = `${formatNumber(t.amount)} ${sym}`;
+        }
+        if (partyLabelText) partyLabelText.textContent = 'လွှဲပြောင်းမှု:';
+      }
+
+      // Category details
+      let catName = 'Transaction';
+      if (isExp) {
+        const c = EXPENSE_CATEGORIES.find(cat => cat.id === (t.categoryId || t.category));
+        catName = c ? `${c.name_my} (${c.name_en})` : (t.categoryId || 'Expense');
+      } else if (isInc) {
+        const c = INCOME_CATEGORIES.find(cat => cat.id === (t.categoryId || t.category));
+        catName = c ? `${c.name_my} (${c.name_en})` : (t.categoryId || 'Income');
+      } else {
+        catName = 'အကောင့်ကြား လွှဲပြောင်းငွေ (Account Transfer)';
+      }
+      if (catSubEl) catSubEl.textContent = catName;
+
+      // Account name
+      const acc = appState.accounts.find(a => a.id === (t.accountId || t.account));
+      if (accEl) {
+        accEl.textContent = acc ? `${acc.name_my || acc.name_en}` : (t.accountId || 'Account');
+      }
+
+      // Party
+      let party = t.party || '';
+      if (!party && t.note) {
+        const fromM = t.note.match(/([^\s]+)\s*ထံမှ/);
+        const toM = t.note.match(/([^\s]+)\s*သို့/);
+        if (fromM) party = fromM[1];
+        else if (toM) party = toM[1];
+      }
+      if (partyVal) partyVal.textContent = party || '-';
+
+      // Note & Date & ID
+      if (noteEl) noteEl.textContent = t.note || 'မှတ်ချက် ရေးသွင်းထားခြင်း မရှိပါ';
+      if (dateEl) dateEl.textContent = t.date || 'Today';
+      if (idEl) idEl.textContent = t.id || '-';
+
+      if (modal) {
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+        if (window.lucide) lucide.createIcons();
+      }
+    }
+
+    function closeTransactionDetailModal() {
+      const modal = document.getElementById('tx-detail-modal');
+      if (modal) {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+      }
+      currentViewingTransactionId = null;
+    }
+
+    function openEditTransactionFromDetail() {
+      if (!currentViewingTransactionId) return;
+      const t = appState.transactions.find(x => x.id === currentViewingTransactionId);
+      if (!t) return;
+
+      closeTransactionDetailModal();
+      editingTransactionId = t.id;
+
+      openAddModal(t.type, true);
+
+      const titleEl = document.getElementById('txt-modal-add-title');
+      if (titleEl) titleEl.textContent = 'စာရင်း ပြင်ဆင်ရန် (Edit Transaction)';
+
+      const amtIn = document.getElementById('tx-amount-input');
+      const accSelect = document.getElementById('tx-account-select');
+      const toAccSelect = document.getElementById('tx-to-account-select');
+      const noteIn = document.getElementById('tx-note-input');
+      const dateIn = document.getElementById('tx-date-input');
+
+      if (amtIn) amtIn.value = t.amount || '';
+      if (accSelect) accSelect.value = t.accountId || t.account || 'cash';
+      if (toAccSelect && t.toAccountId) toAccSelect.value = t.toAccountId;
+      if (noteIn) noteIn.value = t.note || '';
+      if (dateIn) dateIn.value = t.date || '';
+
+      appState.selectedCategory = t.categoryId || t.category || (t.type === 'income' ? 'salary' : 'food');
+      setupCategoryPicker();
+    }
+
+    function deleteTransactionFromDetail() {
+      if (!currentViewingTransactionId) return;
+      const targetId = currentViewingTransactionId;
+      closeTransactionDetailModal();
+      promptDeleteTransaction(targetId);
+    }
+
+    function openAddModal(type, isEditing = false) {
+      if (!isEditing) {
+        editingTransactionId = null;
+        const titleEl = document.getElementById('txt-modal-add-title');
+        if (titleEl) titleEl.textContent = 'စာရင်းအသစ် ထည့်သွင်းရန်';
+      }
       if (type) appState.selectedType = type;
       document.getElementById('add-modal').classList.remove('hidden');
       document.getElementById('add-modal').classList.add('flex');
-      document.getElementById('tx-date-input').value = new Date().toISOString().split('T')[0];
+      if (!isEditing) {
+        document.getElementById('tx-date-input').value = new Date().toISOString().split('T')[0];
+        document.getElementById('tx-amount-input').value = '';
+        document.getElementById('tx-note-input').value = '';
+      }
       setTxType(appState.selectedType || 'expense');
       setupCategoryPicker();
     }
@@ -7129,6 +7395,7 @@ Return ONLY a valid JSON object with NO markdown formatting, NO backticks, NO ex
     function closeAddModal() {
       document.getElementById('add-modal').classList.add('hidden');
       document.getElementById('add-modal').classList.remove('flex');
+      editingTransactionId = null;
     }
 
     function setTxType(type) {
@@ -7175,6 +7442,24 @@ Return ONLY a valid JSON object with NO markdown formatting, NO backticks, NO ex
         return;
       }
 
+      // If we are editing an existing transaction, revert its old balance effect first
+      if (editingTransactionId) {
+        const oldTx = appState.transactions.find(t => t.id === editingTransactionId);
+        if (oldTx) {
+          const oldAcc = appState.accounts.find(a => a.id === (oldTx.accountId || oldTx.account));
+          if (oldAcc) {
+            if (oldTx.type === 'expense') oldAcc.balance += oldTx.amount;
+            else if (oldTx.type === 'income') oldAcc.balance -= oldTx.amount;
+            else if (oldTx.type === 'transfer') {
+              oldAcc.balance += oldTx.amount;
+              const oldToAcc = appState.accounts.find(a => a.id === oldTx.toAccountId);
+              if (oldToAcc) oldToAcc.balance -= oldTx.amount;
+            }
+          }
+        }
+      }
+
+      // Apply new balance effect
       const acc = appState.accounts.find(a => a.id === accId);
       if (acc) {
         if (appState.selectedType === 'expense') acc.balance -= amount;
@@ -7186,18 +7471,37 @@ Return ONLY a valid JSON object with NO markdown formatting, NO backticks, NO ex
         }
       }
 
-      const newTx = {
-        id: 'tx_' + Date.now(),
-        type: appState.selectedType,
-        amount: amount,
-        categoryId: appState.selectedType === 'transfer' ? 'transfer' : appState.selectedCategory,
-        accountId: accId,
-        toAccountId: appState.selectedType === 'transfer' ? toAccId : null,
-        note: note,
-        date: date || new Date().toISOString().split('T')[0]
-      };
+      if (editingTransactionId) {
+        const existingTx = appState.transactions.find(t => t.id === editingTransactionId);
+        if (existingTx) {
+          existingTx.type = appState.selectedType;
+          existingTx.amount = amount;
+          existingTx.categoryId = appState.selectedType === 'transfer' ? 'transfer' : appState.selectedCategory;
+          existingTx.category = existingTx.categoryId;
+          existingTx.accountId = accId;
+          existingTx.account = accId;
+          existingTx.toAccountId = appState.selectedType === 'transfer' ? toAccId : null;
+          existingTx.note = note;
+          existingTx.date = date || new Date().toISOString().split('T')[0];
+        }
+        editingTransactionId = null;
+      } else {
+        const newTx = {
+          id: 'tx_' + Date.now(),
+          type: appState.selectedType,
+          amount: amount,
+          categoryId: appState.selectedType === 'transfer' ? 'transfer' : appState.selectedCategory,
+          category: appState.selectedType === 'transfer' ? 'transfer' : appState.selectedCategory,
+          accountId: accId,
+          account: accId,
+          toAccountId: appState.selectedType === 'transfer' ? toAccId : null,
+          note: note,
+          date: date || new Date().toISOString().split('T')[0],
+          createdAt: Date.now()
+        };
+        appState.transactions.unshift(newTx);
+      }
 
-      appState.transactions.push(newTx);
       persistState();
       closeAddModal();
 
@@ -8389,7 +8693,7 @@ Return ONLY a valid JSON object with NO markdown formatting, NO backticks, NO ex
         const isInc = t.type === 'income';
 
         return `
-          <div class="p-3 rounded-2xl bg-white/[0.04] border border-white/5 flex items-center justify-between gap-3 hover:bg-white/[0.07] transition">
+          <div class="p-3 rounded-2xl bg-white/[0.04] border border-white/5 flex items-center justify-between gap-3 hover:bg-white/[0.07] transition cursor-pointer active:scale-[0.99]" onclick="triggerGaugeSpinAnimation(); openTransactionDetailModal('${t.id}')">
             <div class="flex items-center gap-2.5 min-w-0">
               <div class="w-9 h-9 rounded-xl flex items-center justify-center shrink-0" style="background: ${color}20; color: ${color};">
                 <i data-lucide="${iconName}" class="w-4 h-4"></i>
@@ -8403,7 +8707,7 @@ Return ONLY a valid JSON object with NO markdown formatting, NO backticks, NO ex
               <span class="text-xs font-black ${isExp ? 'text-[#FF453A]' : (isInc ? 'text-[#30D158]' : 'text-sky-400')}">
                 ${isExp ? '-' : (isInc ? '+' : '')}${formatNumber(t.amount)} ${sym}
               </span>
-              <button onclick="promptDeleteTransaction('${t.id}')" title="Delete" class="w-7 h-7 rounded-lg hover:bg-rose-500/20 text-slate-500 hover:text-rose-400 flex items-center justify-center transition cursor-pointer">
+              <button onclick="event.stopPropagation(); promptDeleteTransaction('${t.id}')" title="Delete" class="w-7 h-7 rounded-lg hover:bg-rose-500/20 text-slate-500 hover:text-rose-400 flex items-center justify-center transition cursor-pointer">
                 <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
               </button>
             </div>
