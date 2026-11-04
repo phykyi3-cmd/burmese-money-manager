@@ -218,7 +218,9 @@
 
 
     /* ========================================================
-       RESPONSIVE MULTI-DEVICE SUITE: PHONE, TABLET & IPAD VIEW
+       RESPONSIVE ADAPTIVE SYSTEM: PORTRAIT (PHONE VIEW) VS LANDSCAPE (IPAD VIEW)
+       - Portrait (ထောင်ထားလျှင်): Phone View (Single Column for both Phone and Tablet)
+       - Landscape (လှည့်ချလိုက်လျှင်): iPad View (2-Column Dashboard on rotated screen)
        ======================================================== */
     /* Ambient Luxury Studio Atmosphere on wider screens */
     body {
@@ -226,10 +228,10 @@
       background-color: #050608 !important;
     }
 
-    /* Adaptive Responsive Container */
+    /* Adaptive Responsive Container: Default is Phone View (max-width 448px) */
     .responsive-container {
       width: 100%;
-      max-width: 448px; /* Phone view default */
+      max-width: 448px; /* Phone view default in portrait */
       margin-left: auto;
       margin-right: auto;
       padding-left: 1rem;
@@ -237,8 +239,11 @@
       transition: max-width 0.25s cubic-bezier(0.16, 1, 0.3, 1), padding 0.25s ease;
     }
 
-    /* Column spacer on phone */
-    .tablet-home-grid, .tablet-budgets-grid, .tablet-settings-grid, .tablet-overview-grid {
+    /* In Portrait (Phone or Tablet held vertically): Single Column Phone Layout */
+    .tablet-home-grid, 
+    .tablet-budgets-grid, 
+    .tablet-settings-grid, 
+    .tablet-overview-grid {
       display: block;
       width: 100%;
     }
@@ -250,15 +255,30 @@
       margin-top: 1rem;
     }
 
-    /* Tablet & iPad Viewport (>= 768px: iPad mini, iPad 10.2", iPad Air, Android Tablets) */
-    @media (min-width: 768px) {
+    /* Accounts list in Portrait: Single column */
+    .tablet-accounts-grid {
+      display: block;
+      width: 100%;
+    }
+
+    /* Bottom dock in Portrait: Compact phone bar */
+    .tablet-bottom-dock {
+      max-width: 24rem; /* 384px */
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* =========================================================================
+       LANDSCAPE ROTATED VIEW (IPAD VIEW): 
+       Triggers whenever device is rotated horizontally (Landscape) with width >= 600px
+       ========================================================================= */
+    @media (orientation: landscape) and (min-width: 600px) {
       .responsive-container {
-        max-width: 820px !important;
+        max-width: 860px !important; /* iPad view width */
         padding-left: 1.5rem !important;
         padding-right: 1.5rem !important;
       }
 
-      /* Home View: 2-Column Responsive Dashboard */
+      /* Home View: 2-Column Responsive iPad Dashboard */
       .tablet-home-grid {
         display: grid !important;
         grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
@@ -312,19 +332,19 @@
         margin-top: 0 !important;
       }
 
-      /* Responsive Floating Bottom Navigation Dock */
+      /* Responsive Floating Bottom Navigation Dock on Landscape */
       .tablet-bottom-dock {
         max-width: 480px !important;
-        padding: 0.5rem 1.25rem !important;
-        bottom: 1.25rem !important;
+        padding: 0.45rem 1.25rem !important;
+        bottom: 1rem !important;
       }
       .tablet-bottom-dock .liquid-tab-btn {
-        padding: 8px 12px !important;
+        padding: 6px 12px !important;
       }
     }
 
-    /* iPad Pro & Large Desktop Viewport (>= 1024px) */
-    @media (min-width: 1024px) {
+    /* On Large Desktop screens (width >= 1024px in landscape) */
+    @media (orientation: landscape) and (min-width: 1024px) {
       .responsive-container {
         max-width: 960px !important;
       }
@@ -333,11 +353,46 @@
       }
     }
 
+    /* Short-height phone landscape optimization (e.g. iPhone horizontal height <= 480px) */
+    @media (orientation: landscape) and (max-height: 480px) {
+      .responsive-container {
+        max-width: 780px !important;
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+      }
+      .tablet-bottom-dock {
+        max-width: 400px !important;
+        padding: 0.2rem 0.6rem !important;
+        bottom: 0.4rem !important;
+      }
+      .tablet-bottom-dock .liquid-tab-btn {
+        padding: 4px 6px !important;
+      }
+      .tablet-bottom-dock .liquid-tab-btn i {
+        width: 1rem !important;
+        height: 1rem !important;
+      }
+      .tablet-bottom-dock .liquid-tab-btn span {
+        font-size: 7.5px !important;
+      }
+      .tablet-bottom-dock .fold-lime-pod {
+        width: 36px !important;
+        height: 36px !important;
+      }
+      .tablet-bottom-dock .fold-lime-pod i {
+        width: 1.1rem !important;
+        height: 1.1rem !important;
+      }
+      .tablet-bottom-dock > div.relative.-top-4 {
+        top: -0.4rem !important;
+      }
+    }
+
     /* Modal Backdrop Polishing: Frosted Glass Overlay with Ambient Dimming */
     .apple-modal-overlay,
-    .bg-black\/90,
-    .bg-black\/85,
-    .bg-black\/80 {
+    .bg-black\\/90,
+    .bg-black\\/85,
+    .bg-black\\/80 {
       background-color: rgba(4, 5, 8, 0.58) !important;
       backdrop-filter: blur(28px) saturate(190%) !important;
       -webkit-backdrop-filter: blur(28px) saturate(190%) !important;
