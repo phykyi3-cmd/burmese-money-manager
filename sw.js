@@ -1,4 +1,4 @@
-const CACHE_NAME = 'burmese-money-manager-v33';
+const CACHE_NAME = 'burmese-money-manager-v34';
 const STATIC_ASSETS = [
   './',
   './index.html',

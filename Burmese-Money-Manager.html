@@ -1301,6 +1301,22 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
             ဤနှစ် (Yearly)
           </button>
         </div>
+
+        <!-- Home Period Stepper Row for Month/Year Selection (2015 to 2050) -->
+        <div id="home-period-stepper-row" class="hidden items-center justify-between gap-2 p-2 rounded-2xl bg-white/[0.04] border border-white/10 shrink-0">
+          <button type="button" onclick="stepHomePeriodYear(-1)" class="w-8 h-8 rounded-xl bg-white/10 hover:bg-white/15 flex items-center justify-center text-white cursor-pointer transition">
+            <i data-lucide="chevron-left" class="w-4 h-4"></i>
+          </button>
+          
+          <div class="flex items-center gap-2">
+            <select id="home-month-select" onchange="onHomeMonthYearChange()" class="hidden bg-white/10 border border-white/15 rounded-xl px-2.5 py-1.5 text-xs font-bold text-white outline-none cursor-pointer"></select>
+            <select id="home-year-select" onchange="onHomeMonthYearChange()" class="bg-white/10 border border-white/15 rounded-xl px-2.5 py-1.5 text-xs font-bold text-white outline-none cursor-pointer"></select>
+          </div>
+
+          <button type="button" onclick="stepHomePeriodYear(1)" class="w-8 h-8 rounded-xl bg-white/10 hover:bg-white/15 flex items-center justify-center text-white cursor-pointer transition">
+            <i data-lucide="chevron-right" class="w-4 h-4"></i>
+          </button>
+        </div>
       </div>
 
       <!-- Grouped Daily Transactions List -->
@@ -1340,10 +1356,39 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
 
     <!-- ================= VIEW 3: OVERVIEW (ANALYTICS, DONUT, CASH FLOW TRENDS) ================= -->
     <div id="view-overview" class="hidden space-y-4">
-      <!-- Overview Heading -->
-      <div class="flex items-center justify-between px-1">
-        <h2 class="text-xl font-black text-white">Overview</h2>
-        <span class="text-xs text-slate-400 font-bold px-3 py-1 rounded-full bg-white/[0.06]" id="overview-period-lbl">This month</span>
+      <!-- Overview Heading & Period Controls (2015 to 2050) -->
+      <div class="p-4 rounded-[28px] spendee-card space-y-3">
+        <div class="flex items-center justify-between">
+          <div>
+            <h2 class="text-base sm:text-lg font-black text-white">သုံးသပ်ချက် (Overview Analytics)</h2>
+            <p class="text-[10px] text-slate-400">ကာလအလိုက် ဝင်ငွေ၊ ထွက်ငွေနှင့် ငွေစီးဆင်းမှု</p>
+          </div>
+          <!-- Period Mode Toggle (Month vs Year) -->
+          <div class="flex items-center gap-1 p-1 rounded-xl bg-white/[0.06] border border-white/10">
+            <button type="button" onclick="setDashboardPeriod('month')" id="btn-period-month" class="px-3 py-1 rounded-lg text-xs font-bold bg-[#C8FF00] text-black shadow-sm transition cursor-pointer">
+              လချုပ်
+            </button>
+            <button type="button" onclick="setDashboardPeriod('year')" id="btn-period-year" class="px-3 py-1 rounded-lg text-xs font-bold bg-white/10 text-slate-300 hover:text-white transition cursor-pointer">
+              နှစ်ချုပ်
+            </button>
+          </div>
+        </div>
+
+        <!-- Year / Month Stepper in Overview (2015 - 2050) -->
+        <div class="flex items-center justify-between gap-2 pt-1 border-t border-white/[0.06]">
+          <button type="button" onclick="stepOverviewPeriod(-1)" class="w-8 h-8 rounded-xl bg-white/10 hover:bg-white/15 flex items-center justify-center text-white cursor-pointer transition">
+            <i data-lucide="chevron-left" class="w-4 h-4"></i>
+          </button>
+
+          <div class="flex items-center gap-2">
+            <select id="overview-month-select" onchange="onOverviewMonthYearChange()" class="bg-white/10 border border-white/15 rounded-xl px-2.5 py-1 text-xs font-bold text-white outline-none cursor-pointer"></select>
+            <select id="overview-year-select" onchange="onOverviewMonthYearChange()" class="bg-white/10 border border-white/15 rounded-xl px-2.5 py-1 text-xs font-bold text-white outline-none cursor-pointer"></select>
+          </div>
+
+          <button type="button" onclick="stepOverviewPeriod(1)" class="w-8 h-8 rounded-xl bg-white/10 hover:bg-white/15 flex items-center justify-center text-white cursor-pointer transition">
+            <i data-lucide="chevron-right" class="w-4 h-4"></i>
+          </button>
+        </div>
       </div>
 
       <!-- Tablet 2-Column Responsive Analytics -->
@@ -2061,10 +2106,16 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
         <input type="text" id="tx-note-input" placeholder="ဥပမာ- နေ့လယ်စာ သို့မဟုတ် လစာဝင်ငွေ..." class="w-full bg-[#2C2C2E] border border-white/[0.08] focus:border-[#30D158] px-3.5 py-3 rounded-2xl text-xs text-white placeholder-white/30 outline-none transition">
       </div>
 
-      <!-- Date Input -->
-      <div class="space-y-1">
-        <label class="text-[11px] font-semibold text-white/50 uppercase tracking-wider" id="lbl-date">ရက်စွဲ (DATE)</label>
-        <input type="date" id="tx-date-input" class="w-full bg-[#2C2C2E] border border-white/[0.08] focus:border-[#30D158] px-3.5 py-3 rounded-2xl text-xs text-white outline-none">
+      <!-- Date & Time Inputs (2015 to 2050 Range) -->
+      <div class="grid grid-cols-2 gap-2">
+        <div class="space-y-1">
+          <label class="text-[11px] font-semibold text-white/50 uppercase tracking-wider" id="lbl-date">ရက်စွဲ (DATE)</label>
+          <input type="date" id="tx-date-input" min="2015-01-01" max="2050-12-31" class="w-full bg-[#2C2C2E] border border-white/[0.08] focus:border-[#30D158] px-3 py-3 rounded-2xl text-xs text-white outline-none">
+        </div>
+        <div class="space-y-1">
+          <label class="text-[11px] font-semibold text-white/50 uppercase tracking-wider" id="lbl-time">အချိန် (TIME)</label>
+          <input type="time" id="tx-time-input" class="w-full bg-[#2C2C2E] border border-white/[0.08] focus:border-[#30D158] px-3 py-3 rounded-2xl text-xs text-white outline-none">
+        </div>
       </div>
 
       <!-- Submit Button -->
@@ -3405,6 +3456,22 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
         </button>
       </div>
 
+      <!-- Year & Month Stepper / Selector Bar for History (2015 - 2050) -->
+      <div id="alltx-period-selector-row" class="hidden items-center justify-between gap-2 p-2 rounded-2xl bg-white/[0.04] border border-white/10 shrink-0">
+        <button type="button" onclick="stepAllTxHistoryYear(-1)" class="w-8 h-8 rounded-xl bg-white/10 hover:bg-white/15 flex items-center justify-center text-white cursor-pointer transition">
+          <i data-lucide="chevron-left" class="w-4 h-4"></i>
+        </button>
+        
+        <div class="flex items-center gap-2">
+          <select id="alltx-month-select" onchange="onAllTxMonthYearChange()" class="hidden bg-white/10 border border-white/15 rounded-xl px-2.5 py-1.5 text-xs font-bold text-white outline-none cursor-pointer"></select>
+          <select id="alltx-year-select" onchange="onAllTxMonthYearChange()" class="bg-white/10 border border-white/15 rounded-xl px-2.5 py-1.5 text-xs font-bold text-white outline-none cursor-pointer"></select>
+        </div>
+
+        <button type="button" onclick="stepAllTxHistoryYear(1)" class="w-8 h-8 rounded-xl bg-white/10 hover:bg-white/15 flex items-center justify-center text-white cursor-pointer transition">
+          <i data-lucide="chevron-right" class="w-4 h-4"></i>
+        </button>
+      </div>
+
       <!-- Financial KPI Summary for selected period -->
       <div class="grid grid-cols-3 gap-2 p-3 rounded-2xl bg-white/[0.04] border border-white/10 shrink-0 text-center">
         <div>
@@ -3773,7 +3840,12 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
       homeTxPeriod: 'today',
       activeViewingAccountId: null,
       periodMode: 'month',
-      selectedYear: new Date().getFullYear()
+      selectedYear: new Date().getFullYear(),
+      selectedMonth: new Date().getMonth() + 1,
+      homeSelectedYear: new Date().getFullYear(),
+      homeSelectedMonth: new Date().getMonth() + 1,
+      allTxSelectedYear: new Date().getFullYear(),
+      allTxSelectedMonth: new Date().getMonth() + 1
     };
 
     function safeStorageSet(key, val) {
@@ -5690,6 +5762,8 @@ Return ONLY a valid JSON object with NO markdown formatting, NO backticks, NO ex
       const party = (document.getElementById('ai-res-party')?.value || '').trim();
       let note = (document.getElementById('ai-res-note')?.value || '').trim();
       const date = new Date().toISOString().split('T')[0];
+      const now = new Date();
+      const time = String(now.getHours()).padStart(2, '0') + ':' + String(now.getMinutes()).padStart(2, '0');
 
       if (amount <= 0) {
         showToast('⚠️ ကျေးဇူးပြု၍ ငွေပမာဏ မှန်ကန်စွာ ထည့်သွင်းပါ', true);
@@ -5728,6 +5802,7 @@ Return ONLY a valid JSON object with NO markdown formatting, NO backticks, NO ex
         party: party,
         note: note,
         date: date,
+        time: time,
         createdAt: Date.now()
       };
 
@@ -5793,6 +5868,7 @@ Return ONLY a valid JSON object with NO markdown formatting, NO backticks, NO ex
       checkInAppBrowser();
 
       applyTranslations();
+      populateYearMonthDropdowns();
       renderStatsAndHero();
       renderAccounts();
       renderDonutChart();
@@ -6697,6 +6773,89 @@ Return ONLY a valid JSON object with NO markdown formatting, NO backticks, NO ex
 
     /* ================= TRANSACTIONS ENGINE: CARDS & PERIOD FILTERING ================= */
 
+    const MIN_TX_YEAR = 2015;
+    const MAX_TX_YEAR = 2050;
+
+    const MONTH_NAMES_MY = ['ဇန်နဝါရီ', 'ဖေဖော်ဝါရီ', 'မတ်', 'ဧပြီ', 'မေ', 'ဇွန်', 'ဇူလိုင်', 'ဩဂုတ်', 'စက်တင်ဘာ', 'အောက်တိုဘာ', 'နိုဝင်ဘာ', 'ဒီဇင်ဘာ'];
+    const MONTH_NAMES_EN = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+    function formatTxTime(timeStr) {
+      if (!timeStr) return '';
+      const parts = timeStr.split(':');
+      if (parts.length < 2) return timeStr;
+      let h = parseInt(parts[0], 10);
+      const m = parts[1].padStart(2, '0');
+      if (isNaN(h)) return timeStr;
+      const ampm = h >= 12 ? 'PM' : 'AM';
+      h = h % 12;
+      if (h === 0) h = 12;
+      return `${h.toString().padStart(2, '0')}:${m} ${ampm}`;
+    }
+
+    function populateYearMonthDropdowns() {
+      const isMy = appState.lang === 'my';
+      const monthNames = isMy ? MONTH_NAMES_MY : MONTH_NAMES_EN;
+
+      const monthSelects = [
+        document.getElementById('home-month-select'),
+        document.getElementById('alltx-month-select'),
+        document.getElementById('overview-month-select')
+      ];
+
+      const yearSelects = [
+        document.getElementById('home-year-select'),
+        document.getElementById('alltx-year-select'),
+        document.getElementById('overview-year-select')
+      ];
+
+      monthSelects.forEach(sel => {
+        if (!sel) return;
+        const currentVal = sel.value ? parseInt(sel.value, 10) : appState.selectedMonth;
+        sel.innerHTML = '';
+        for (let m = 1; m <= 12; m++) {
+          const opt = document.createElement('option');
+          opt.value = m;
+          opt.textContent = `${monthNames[m - 1]} (${m.toString().padStart(2, '0')})`;
+          opt.className = "bg-[#1C2030] text-white";
+          if (m === currentVal) opt.selected = true;
+          sel.appendChild(opt);
+        }
+      });
+
+      yearSelects.forEach(sel => {
+        if (!sel) return;
+        const currentVal = sel.value ? parseInt(sel.value, 10) : appState.selectedYear;
+        sel.innerHTML = '';
+        for (let y = MIN_TX_YEAR; y <= MAX_TX_YEAR; y++) {
+          const opt = document.createElement('option');
+          opt.value = y;
+          opt.textContent = `${y} ခုနှစ်`;
+          opt.className = "bg-[#1C2030] text-white";
+          if (y === currentVal) opt.selected = true;
+          sel.appendChild(opt);
+        }
+      });
+
+      syncYearMonthDropdownValues();
+    }
+
+    function syncYearMonthDropdownValues() {
+      const homeYr = document.getElementById('home-year-select');
+      const homeMo = document.getElementById('home-month-select');
+      if (homeYr) homeYr.value = appState.homeSelectedYear;
+      if (homeMo) homeMo.value = appState.homeSelectedMonth;
+
+      const allYr = document.getElementById('alltx-year-select');
+      const allMo = document.getElementById('alltx-month-select');
+      if (allYr) allYr.value = appState.allTxSelectedYear;
+      if (allMo) allMo.value = appState.allTxSelectedMonth;
+
+      const ovYr = document.getElementById('overview-year-select');
+      const ovMo = document.getElementById('overview-month-select');
+      if (ovYr) ovYr.value = appState.selectedYear;
+      if (ovMo) ovMo.value = appState.selectedMonth;
+    }
+
     function renderTxCardHTML(t) {
       const sym = getCurrencySymbol();
       let catName = 'Transaction';
@@ -6704,12 +6863,12 @@ Return ONLY a valid JSON object with NO markdown formatting, NO backticks, NO ex
       let color = '#64748B';
 
       if (t.type === 'expense') {
-        const c = EXPENSE_CATEGORIES.find(cat => cat.id === t.categoryId);
+        const c = EXPENSE_CATEGORIES.find(cat => cat.id === (t.categoryId || t.category));
         catName = c ? (appState.lang === 'my' ? c.name_my : c.name_en) : (t.categoryId || 'Expense');
         iconName = c ? c.icon : 'shopping-bag';
         color = c ? c.color : '#FF453A';
       } else if (t.type === 'income') {
-        const c = INCOME_CATEGORIES.find(cat => cat.id === t.categoryId);
+        const c = INCOME_CATEGORIES.find(cat => cat.id === (t.categoryId || t.category));
         catName = c ? (appState.lang === 'my' ? c.name_my : c.name_en) : (t.categoryId || 'Income');
         iconName = c ? c.icon : 'briefcase';
         color = c ? c.color : '#C8FF00';
@@ -6719,11 +6878,25 @@ Return ONLY a valid JSON object with NO markdown formatting, NO backticks, NO ex
         color = '#0A84FF';
       }
 
-      const acc = appState.accounts.find(a => a.id === t.accountId);
+      const acc = appState.accounts.find(a => a.id === (t.accountId || t.account));
       const accName = acc ? (appState.lang === 'my' ? acc.name_my : acc.name_en) : 'Account';
 
       const isExp = t.type === 'expense';
       const isInc = t.type === 'income';
+
+      // Format time if present
+      let timeFmt = formatTxTime(t.time);
+      if (!timeFmt && t.createdAt) {
+        const d = new Date(t.createdAt);
+        if (!isNaN(d.getTime())) {
+          const hh = d.getHours().toString().padStart(2, '0');
+          const mm = d.getMinutes().toString().padStart(2, '0');
+          timeFmt = formatTxTime(`${hh}:${mm}`);
+        }
+      }
+
+      const dateDisplay = t.date || 'Today';
+      const dateTimeDisplay = timeFmt ? `${dateDisplay} • ${timeFmt}` : dateDisplay;
 
       return `
         <div class="p-3.5 sm:p-4 rounded-2xl fold-boost-card flex items-center justify-between gap-3 group transition cursor-pointer hover:border-white/20 active:scale-[0.99]" onclick="triggerGaugeSpinAnimation(); openTransactionDetailModal('${t.id}');">
@@ -6741,7 +6914,7 @@ Return ONLY a valid JSON object with NO markdown formatting, NO backticks, NO ex
               <div class="flex items-center gap-2 text-xs text-white/50 truncate mt-0.5">
                 <span class="truncate">${t.note || accName}</span>
                 <span>•</span>
-                <span class="shrink-0 text-white/40">${t.date || 'Today'}</span>
+                <span class="shrink-0 text-white/40">${dateTimeDisplay}</span>
               </div>
             </div>
           </div>
@@ -6779,15 +6952,63 @@ Return ONLY a valid JSON object with NO markdown formatting, NO backticks, NO ex
         }
       });
 
+      const stepperRow = document.getElementById('home-period-stepper-row');
+      const moSelect = document.getElementById('home-month-select');
+      const yrSelect = document.getElementById('home-year-select');
+
+      if (period === 'month') {
+        if (stepperRow) { stepperRow.classList.remove('hidden'); stepperRow.classList.add('flex'); }
+        if (moSelect) moSelect.classList.remove('hidden');
+        if (yrSelect) yrSelect.classList.remove('hidden');
+      } else if (period === 'year') {
+        if (stepperRow) { stepperRow.classList.remove('hidden'); stepperRow.classList.add('flex'); }
+        if (moSelect) moSelect.classList.add('hidden');
+        if (yrSelect) yrSelect.classList.remove('hidden');
+      } else {
+        if (stepperRow) { stepperRow.classList.add('hidden'); stepperRow.classList.remove('flex'); }
+      }
+
+      syncYearMonthDropdownValues();
+
       const badge = document.getElementById('home-tx-period-badge');
       if (badge) {
         if (period === 'today') badge.textContent = appState.lang === 'my' ? 'ယနေ့ (Today)' : 'Today';
         else if (period === 'week') badge.textContent = appState.lang === 'my' ? 'ဤအပတ် (Week)' : 'This Week';
-        else if (period === 'month') badge.textContent = appState.lang === 'my' ? 'ဤလ (Monthly)' : 'This Month';
-        else if (period === 'year') badge.textContent = appState.lang === 'my' ? 'ဤနှစ် (Yearly)' : 'This Year';
+        else if (period === 'month') {
+          const mNames = appState.lang === 'my' ? MONTH_NAMES_MY : MONTH_NAMES_EN;
+          badge.textContent = `${mNames[appState.homeSelectedMonth - 1]} ${appState.homeSelectedYear}`;
+        } else if (period === 'year') {
+          badge.textContent = `${appState.homeSelectedYear} ခုနှစ်`;
+        }
       }
 
       renderHomeTransactions();
+    }
+
+    function stepHomePeriodYear(delta) {
+      if (appState.homeTxPeriod === 'month') {
+        let m = appState.homeSelectedMonth + delta;
+        let y = appState.homeSelectedYear;
+        if (m < 1) { m = 12; y--; }
+        else if (m > 12) { m = 1; y++; }
+        if (y >= MIN_TX_YEAR && y <= MAX_TX_YEAR) {
+          appState.homeSelectedYear = y;
+          appState.homeSelectedMonth = m;
+        }
+      } else {
+        const newYr = Math.max(MIN_TX_YEAR, Math.min(MAX_TX_YEAR, (appState.homeSelectedYear || new Date().getFullYear()) + delta));
+        appState.homeSelectedYear = newYr;
+      }
+      syncYearMonthDropdownValues();
+      setHomeTxPeriod(appState.homeTxPeriod);
+    }
+
+    function onHomeMonthYearChange() {
+      const moSel = document.getElementById('home-month-select');
+      const yrSel = document.getElementById('home-year-select');
+      if (moSel && moSel.value) appState.homeSelectedMonth = parseInt(moSel.value, 10);
+      if (yrSel && yrSel.value) appState.homeSelectedYear = parseInt(yrSel.value, 10);
+      setHomeTxPeriod(appState.homeTxPeriod);
     }
 
     function renderHomeTransactions() {
@@ -6813,8 +7034,6 @@ Return ONLY a valid JSON object with NO markdown formatting, NO backticks, NO ex
       const dayOfWeek = (now.getDay() + 6) % 7; // Monday = 0
       const startOfWeek = new Date(now.getFullYear(), now.getMonth(), now.getDate() - dayOfWeek);
       const startOfWeekStr = startOfWeek.toISOString().split('T')[0];
-      const currMonthPrefix = todayStr.substring(0, 7);
-      const currYearPrefix = todayStr.substring(0, 4);
 
       let filteredTxs = [];
       if (period === 'today') {
@@ -6822,9 +7041,11 @@ Return ONLY a valid JSON object with NO markdown formatting, NO backticks, NO ex
       } else if (period === 'week') {
         filteredTxs = txs.filter(t => t.date && t.date >= startOfWeekStr && t.date <= todayStr);
       } else if (period === 'month') {
-        filteredTxs = txs.filter(t => t.date && t.date.startsWith(currMonthPrefix));
+        const mKey = `${appState.homeSelectedYear}-${String(appState.homeSelectedMonth).padStart(2, '0')}`;
+        filteredTxs = txs.filter(t => t.date && t.date.startsWith(mKey));
       } else if (period === 'year') {
-        filteredTxs = txs.filter(t => t.date && t.date.startsWith(currYearPrefix));
+        const yKey = `${appState.homeSelectedYear}`;
+        filteredTxs = txs.filter(t => t.date && t.date.startsWith(yKey));
       } else {
         filteredTxs = txs;
       }
@@ -6832,17 +7053,18 @@ Return ONLY a valid JSON object with NO markdown formatting, NO backticks, NO ex
       // If no transactions in this period
       if (filteredTxs.length === 0) {
         let emptyTitle = appState.lang === 'my' ? 'ယနေ့အတွက် စာရင်းမရှိသေးပါ' : 'No Transactions Today';
-        let emptyDesc = appState.lang === 'my' ? 'ယနေ့ အဝင်/အထွက် စာရင်းများကို အပေါ်ရှိ အမြန်ခလုတ်များဖြင့် စတင်ထည့်သွင်းနိုင်ပါသည်' : 'Start tracking today\'s cash flow with the quick buttons above';
+        let emptyDesc = appState.lang === 'my' ? 'ယနေ့ အဝင်/အထွက် စာရင်းများကို အပေါ်ရှိ အမြန်ခလုတ်များဖြင့် စတင်ထည့်သွင်းနိုင်ပါသည်' : "Start tracking today's cash flow with the quick buttons above";
 
         if (period === 'week') {
           emptyTitle = appState.lang === 'my' ? 'ဤအပတ်တွင် စာရင်းမှတ်တမ်း မရှိသေးပါ' : 'No Transactions This Week';
           emptyDesc = appState.lang === 'my' ? 'ဤအပတ်အတွင်း သုံးစွဲ/ဝင်ငွေ စာရင်းများကို စတင်ထည့်သွင်းပါ' : 'No transactions recorded for the current week';
         } else if (period === 'month') {
-          emptyTitle = appState.lang === 'my' ? 'ဤလတွင် စာရင်းမှတ်တမ်း မရှိသေးပါ' : 'No Transactions This Month';
-          emptyDesc = appState.lang === 'my' ? 'ဤလအတွင်း အဝင်/အထွက် စာရင်းများကို စတင်မှတ်သားပါ' : 'No transactions recorded for the current month';
+          const mNames = appState.lang === 'my' ? MONTH_NAMES_MY : MONTH_NAMES_EN;
+          emptyTitle = appState.lang === 'my' ? `${mNames[appState.homeSelectedMonth - 1]} ${appState.homeSelectedYear} တွင် စာရင်းမှတ်တမ်း မရှိသေးပါ` : `No Transactions for ${mNames[appState.homeSelectedMonth - 1]} ${appState.homeSelectedYear}`;
+          emptyDesc = appState.lang === 'my' ? 'ရွေးချယ်ထားသော လအတွင်း အဝင်/အထွက် စာရင်းများကို စတင်မှတ်သားပါ' : 'No transactions recorded for the selected month';
         } else if (period === 'year') {
-          emptyTitle = appState.lang === 'my' ? 'ဤနှစ်တွင် စာရင်းမှတ်တမ်း မရှိသေးပါ' : 'No Transactions This Year';
-          emptyDesc = appState.lang === 'my' ? 'ဤနှစ်အတွင်း စာရင်းမှတ်တမ်းများ မရှိသေးပါ' : 'No transactions recorded for the current year';
+          emptyTitle = appState.lang === 'my' ? `${appState.homeSelectedYear} ခုနှစ်တွင် စာရင်းမှတ်တမ်း မရှိသေးပါ` : `No Transactions for ${appState.homeSelectedYear}`;
+          emptyDesc = appState.lang === 'my' ? 'ရွေးချယ်ထားသော နှစ်အတွင်း စာရင်းမှတ်တမ်းများ မရှိသေးပါ' : 'No transactions recorded for the selected year';
         }
 
         container.innerHTML = `
@@ -6879,7 +7101,6 @@ Return ONLY a valid JSON object with NO markdown formatting, NO backticks, NO ex
           else if (t.type === 'income') dayNet += amt;
         });
 
-        // User explicitly requested: "ဒီနေ့သုံးတဲ့ငွေ ၃ စင်းကိုပဲ ပြချင်တာပါ။"
         // Limit to latest 3 transactions on home dashboard
         const displayTxs = filteredTxs.slice(0, 3);
 
@@ -7003,6 +7224,50 @@ Return ONLY a valid JSON object with NO markdown formatting, NO backticks, NO ex
           }
         }
       });
+
+      const selectorRow = document.getElementById('alltx-period-selector-row');
+      const moSelect = document.getElementById('alltx-month-select');
+      const yrSelect = document.getElementById('alltx-year-select');
+
+      if (period === 'month') {
+        if (selectorRow) { selectorRow.classList.remove('hidden'); selectorRow.classList.add('flex'); }
+        if (moSelect) moSelect.classList.remove('hidden');
+        if (yrSelect) yrSelect.classList.remove('hidden');
+      } else if (period === 'year') {
+        if (selectorRow) { selectorRow.classList.remove('hidden'); selectorRow.classList.add('flex'); }
+        if (moSelect) moSelect.classList.add('hidden');
+        if (yrSelect) yrSelect.classList.remove('hidden');
+      } else {
+        if (selectorRow) { selectorRow.classList.add('hidden'); selectorRow.classList.remove('flex'); }
+      }
+
+      syncYearMonthDropdownValues();
+      renderAllTxHistoryModal();
+    }
+
+    function stepAllTxHistoryYear(delta) {
+      if (allTxHistoryPeriod === 'month') {
+        let m = appState.allTxSelectedMonth + delta;
+        let y = appState.allTxSelectedYear;
+        if (m < 1) { m = 12; y--; }
+        else if (m > 12) { m = 1; y++; }
+        if (y >= MIN_TX_YEAR && y <= MAX_TX_YEAR) {
+          appState.allTxSelectedYear = y;
+          appState.allTxSelectedMonth = m;
+        }
+      } else {
+        const newYr = Math.max(MIN_TX_YEAR, Math.min(MAX_TX_YEAR, (appState.allTxSelectedYear || new Date().getFullYear()) + delta));
+        appState.allTxSelectedYear = newYr;
+      }
+      syncYearMonthDropdownValues();
+      renderAllTxHistoryModal();
+    }
+
+    function onAllTxMonthYearChange() {
+      const moSel = document.getElementById('alltx-month-select');
+      const yrSel = document.getElementById('alltx-year-select');
+      if (moSel && moSel.value) appState.allTxSelectedMonth = parseInt(moSel.value, 10);
+      if (yrSel && yrSel.value) appState.allTxSelectedYear = parseInt(yrSel.value, 10);
       renderAllTxHistoryModal();
     }
 
@@ -7035,8 +7300,6 @@ Return ONLY a valid JSON object with NO markdown formatting, NO backticks, NO ex
       const dayOfWeek = (now.getDay() + 6) % 7;
       const startOfWeek = new Date(now.getFullYear(), now.getMonth(), now.getDate() - dayOfWeek);
       const startOfWeekStr = startOfWeek.toISOString().split('T')[0];
-      const currMonthPrefix = todayStr.substring(0, 7);
-      const currYearPrefix = todayStr.substring(0, 4);
 
       let txs = [...appState.transactions];
       txs.sort((a,b) => (b.date || '').localeCompare(a.date || '') || (b.id || '').localeCompare(a.id || ''));
@@ -7047,9 +7310,11 @@ Return ONLY a valid JSON object with NO markdown formatting, NO backticks, NO ex
       } else if (allTxHistoryPeriod === 'week') {
         txs = txs.filter(t => t.date && t.date >= startOfWeekStr && t.date <= todayStr);
       } else if (allTxHistoryPeriod === 'month') {
-        txs = txs.filter(t => t.date && t.date.startsWith(currMonthPrefix));
+        const mKey = `${appState.allTxSelectedYear}-${String(appState.allTxSelectedMonth).padStart(2, '0')}`;
+        txs = txs.filter(t => t.date && t.date.startsWith(mKey));
       } else if (allTxHistoryPeriod === 'year') {
-        txs = txs.filter(t => t.date && t.date.startsWith(currYearPrefix));
+        const yKey = `${appState.allTxSelectedYear}`;
+        txs = txs.filter(t => t.date && t.date.startsWith(yKey));
       }
 
       // 2. Compute KPI for this period (before type filter)
@@ -7154,23 +7419,26 @@ Return ONLY a valid JSON object with NO markdown formatting, NO backticks, NO ex
 
       const sym = getCurrencySymbol();
       const yr = appState.selectedYear || new Date().getFullYear();
+      const mo = appState.selectedMonth || (new Date().getMonth() + 1);
       const isYear = appState.periodMode === 'year';
-      const currMonthPrefix = `${yr}-${(new Date().getMonth() + 1).toString().padStart(2, '0')}`;
+      const mPrefix = `${yr}-${String(mo).padStart(2, '0')}`;
+      const yPrefix = `${yr}`;
 
       let txs = [...appState.transactions];
       txs.sort((a,b) => (b.date || '').localeCompare(a.date || '') || (b.id || '').localeCompare(a.id || ''));
 
       if (isYear) {
-        txs = txs.filter(t => t.date && t.date.startsWith(yr.toString()));
+        txs = txs.filter(t => t.date && t.date.startsWith(yPrefix));
       } else {
-        txs = txs.filter(t => t.date && t.date.startsWith(currMonthPrefix));
+        txs = txs.filter(t => t.date && t.date.startsWith(mPrefix));
       }
 
       const titleEl = document.getElementById('overview-txs-title');
       if (titleEl) {
+        const mNames = appState.lang === 'my' ? MONTH_NAMES_MY : MONTH_NAMES_EN;
         titleEl.textContent = isYear 
           ? (appState.lang === 'my' ? `${yr} နှစ်ချုပ် စာရင်းမှတ်တမ်းများ (Yearly Records)` : `${yr} Yearly Records`)
-          : (appState.lang === 'my' ? `လစဉ် စာရင်းမှတ်တမ်းများ (Monthly Records)` : `Monthly Records`);
+          : (appState.lang === 'my' ? `${mNames[mo - 1]} ${yr} လစဉ် စာရင်းမှတ်တမ်းများ (Monthly Records)` : `${mNames[mo - 1]} ${yr} Monthly Records`);
       }
 
       if (txs.length === 0) {
@@ -7182,55 +7450,94 @@ Return ONLY a valid JSON object with NO markdown formatting, NO backticks, NO ex
         return;
       }
 
-      container.innerHTML = txs.slice(0, 10).map(t => renderTxCardHTML(t)).join('');
+      container.innerHTML = txs.slice(0, 15).map(t => renderTxCardHTML(t)).join('');
       if (window.lucide) lucide.createIcons();
     }
 
-
     /* ================= ANNUAL (နှစ်ချုပ်) & MONTHLY (လချုပ်) ENGINE ================= */
-    const MONTH_NAMES_MY = ['ဇန်နဝါရီ', 'ဖေဖော်ဝါရီ', 'မတ်', 'ဧပြီ', 'မေ', 'ဇွန်', 'ဇူလိုင်', 'ဩဂုတ်', 'စက်တင်ဘာ', 'အောက်တိုဘာ', 'နိုဝင်ဘာ', 'ဒီဇင်ဘာ'];
-    const MONTH_NAMES_EN = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-
     function setDashboardPeriod(mode) {
       appState.periodMode = mode;
       
       const btnMonth = document.getElementById('btn-period-month');
       const btnYear = document.getElementById('btn-period-year');
+      const moSelect = document.getElementById('overview-month-select');
+      const yrSelect = document.getElementById('overview-year-select');
       const yearStepper = document.getElementById('year-stepper-wrap');
       const weekBox = document.getElementById('week-strip-box');
       const annualBox = document.getElementById('annual-barchart-box');
 
       if (mode === 'year') {
-        btnYear.className = "px-3.5 py-1.5 rounded-xl text-xs font-bold text-white glass-pill-active transition flex items-center gap-1.5 cursor-pointer";
-        btnMonth.className = "px-3.5 py-1.5 rounded-xl text-xs font-bold text-slate-400 hover:text-white transition flex items-center gap-1.5 cursor-pointer";
+        if (btnYear) btnYear.className = "px-3 py-1 rounded-lg text-xs font-bold bg-[#C8FF00] text-black shadow-sm transition cursor-pointer";
+        if (btnMonth) btnMonth.className = "px-3 py-1 rounded-lg text-xs font-bold bg-white/10 text-slate-300 hover:text-white transition cursor-pointer";
+        if (moSelect) moSelect.classList.add('hidden');
+        if (yrSelect) yrSelect.classList.remove('hidden');
         if (yearStepper) { yearStepper.classList.remove('hidden'); yearStepper.classList.add('flex'); }
         if (weekBox) weekBox.classList.add('hidden');
         if (annualBox) { annualBox.classList.remove('hidden'); renderAnnualBarChart(); }
       } else {
-        btnMonth.className = "px-3.5 py-1.5 rounded-xl text-xs font-bold text-white glass-pill-active transition flex items-center gap-1.5 cursor-pointer";
-        btnYear.className = "px-3.5 py-1.5 rounded-xl text-xs font-bold text-slate-400 hover:text-white transition flex items-center gap-1.5 cursor-pointer";
+        if (btnMonth) btnMonth.className = "px-3 py-1 rounded-lg text-xs font-bold bg-[#C8FF00] text-black shadow-sm transition cursor-pointer";
+        if (btnYear) btnYear.className = "px-3 py-1 rounded-lg text-xs font-bold bg-white/10 text-slate-300 hover:text-white transition cursor-pointer";
+        if (moSelect) moSelect.classList.remove('hidden');
+        if (yrSelect) yrSelect.classList.remove('hidden');
         if (yearStepper) { yearStepper.classList.add('hidden'); yearStepper.classList.remove('flex'); }
         if (weekBox) weekBox.classList.remove('hidden');
         if (annualBox) annualBox.classList.add('hidden');
       }
 
+      syncYearMonthDropdownValues();
       renderStatsAndHero();
       renderDonutChart();
       renderOverviewTransactions();
       if (window.lucide) lucide.createIcons();
     }
 
-    function changeYear(delta) {
-      appState.selectedYear += delta;
-      document.getElementById('txt-selected-year').textContent = appState.selectedYear;
-      document.getElementById('txt-chart-year-title').textContent = appState.selectedYear;
+    function stepOverviewPeriod(delta) {
+      if (appState.periodMode === 'year') {
+        const nextYr = Math.max(MIN_TX_YEAR, Math.min(MAX_TX_YEAR, (appState.selectedYear || new Date().getFullYear()) + delta));
+        appState.selectedYear = nextYr;
+      } else {
+        let m = appState.selectedMonth + delta;
+        let y = appState.selectedYear;
+        if (m < 1) { m = 12; y--; }
+        else if (m > 12) { m = 1; y++; }
+        if (y >= MIN_TX_YEAR && y <= MAX_TX_YEAR) {
+          appState.selectedYear = y;
+          appState.selectedMonth = m;
+        }
+      }
+
+      syncYearMonthDropdownValues();
+      const txtYr = document.getElementById('txt-selected-year');
+      if (txtYr) txtYr.textContent = appState.selectedYear;
+      const txtChartYr = document.getElementById('txt-chart-year-title');
+      if (txtChartYr) txtChartYr.textContent = appState.selectedYear;
+
       renderStatsAndHero();
       renderDonutChart();
       renderOverviewTransactions();
       if (appState.periodMode === 'year') renderAnnualBarChart();
-      if (!document.getElementById('annual-report-modal').classList.contains('hidden')) {
-        renderAnnualReportModal();
-      }
+      if (window.lucide) lucide.createIcons();
+    }
+
+    function onOverviewMonthYearChange() {
+      const moSel = document.getElementById('overview-month-select');
+      const yrSel = document.getElementById('overview-year-select');
+      if (moSel && moSel.value) appState.selectedMonth = parseInt(moSel.value, 10);
+      if (yrSel && yrSel.value) appState.selectedYear = parseInt(yrSel.value, 10);
+
+      const txtYr = document.getElementById('txt-selected-year');
+      if (txtYr) txtYr.textContent = appState.selectedYear;
+      const txtChartYr = document.getElementById('txt-chart-year-title');
+      if (txtChartYr) txtChartYr.textContent = appState.selectedYear;
+
+      renderStatsAndHero();
+      renderDonutChart();
+      renderOverviewTransactions();
+      if (appState.periodMode === 'year') renderAnnualBarChart();
+    }
+
+    function changeYear(delta) {
+      stepOverviewPeriod(delta);
     }
 
     function renderAnnualBarChart() {
@@ -7335,14 +7642,14 @@ Return ONLY a valid JSON object with NO markdown formatting, NO backticks, NO ex
 
       const isYear = appState.periodMode === 'year';
       const yr = appState.selectedYear;
-      const currentMonth = new Date().toISOString().substring(0, 7);
+      const selectedMonthPrefix = `${yr}-${String(appState.selectedMonth || (new Date().getMonth() + 1)).padStart(2, '0')}`;
 
       let income = 0;
       let expense = 0;
 
       appState.transactions.forEach(t => {
         if (!t.date) return;
-        const matches = isYear ? t.date.startsWith(yr.toString()) : t.date.startsWith(currentMonth);
+        const matches = isYear ? t.date.startsWith(yr.toString()) : t.date.startsWith(selectedMonthPrefix);
         if (matches) {
           if (t.type === 'income') income += (Number(t.amount) || 0);
           else if (t.type === 'expense') expense += (Number(t.amount) || 0);
@@ -7778,13 +8085,13 @@ Return ONLY a valid JSON object with NO markdown formatting, NO backticks, NO ex
       const sym = getCurrencySymbol();
       const isYear = appState.periodMode === 'year';
       const yr = appState.selectedYear;
-      const currentMonth = new Date().toISOString().substring(0, 7);
+      const selectedMonthPrefix = `${yr}-${String(appState.selectedMonth || (new Date().getMonth() + 1)).padStart(2, '0')}`;
       const catTotals = {};
       let totalExpense = 0;
 
       appState.transactions.forEach(t => {
         if (t.type === 'expense' && t.date) {
-          const match = isYear ? t.date.startsWith(yr.toString()) : t.date.startsWith(currentMonth);
+          const match = isYear ? t.date.startsWith(yr.toString()) : t.date.startsWith(selectedMonthPrefix);
           if (match) {
             const amt = Number(t.amount) || 0;
             catTotals[t.categoryId] = (catTotals[t.categoryId] || 0) + amt;
@@ -8241,7 +8548,8 @@ Return ONLY a valid JSON object with NO markdown formatting, NO backticks, NO ex
 
       // Note & Date & ID
       if (noteEl) noteEl.textContent = t.note || 'မှတ်ချက် ရေးသွင်းထားခြင်း မရှိပါ';
-      if (dateEl) dateEl.textContent = t.date || 'Today';
+      const timeFmt = formatTxTime(t.time);
+      if (dateEl) dateEl.textContent = `${t.date || 'Today'}${timeFmt ? ' • ' + timeFmt : ''}`;
       if (idEl) idEl.textContent = t.id || '-';
 
       if (modal) {
@@ -8284,6 +8592,17 @@ Return ONLY a valid JSON object with NO markdown formatting, NO backticks, NO ex
       if (toAccSelect && t.toAccountId) toAccSelect.value = t.toAccountId;
       if (noteIn) noteIn.value = t.note || '';
       if (dateIn) dateIn.value = t.date || '';
+      const timeIn = document.getElementById('tx-time-input');
+      if (timeIn) {
+        if (t.time) {
+          timeIn.value = t.time;
+        } else if (t.createdAt) {
+          const d = new Date(t.createdAt);
+          timeIn.value = String(d.getHours()).padStart(2, '0') + ':' + String(d.getMinutes()).padStart(2, '0');
+        } else {
+          timeIn.value = '';
+        }
+      }
 
       appState.selectedCategory = t.categoryId || t.category || (t.type === 'income' ? 'salary' : 'food');
       setupCategoryPicker();
@@ -8307,6 +8626,10 @@ Return ONLY a valid JSON object with NO markdown formatting, NO backticks, NO ex
       document.getElementById('add-modal').classList.add('flex');
       if (!isEditing) {
         document.getElementById('tx-date-input').value = new Date().toISOString().split('T')[0];
+        const now = new Date();
+        const curTimeStr = String(now.getHours()).padStart(2, '0') + ':' + String(now.getMinutes()).padStart(2, '0');
+        const timeIn = document.getElementById('tx-time-input');
+        if (timeIn) timeIn.value = curTimeStr;
         document.getElementById('tx-amount-input').value = '';
         document.getElementById('tx-note-input').value = '';
       }
@@ -8353,6 +8676,10 @@ Return ONLY a valid JSON object with NO markdown formatting, NO backticks, NO ex
       const toAccId = document.getElementById('tx-to-account-select').value;
       const note = document.getElementById('tx-note-input').value.trim();
       const date = document.getElementById('tx-date-input').value;
+      const timeIn = document.getElementById('tx-time-input');
+      const now = new Date();
+      const fallbackTime = String(now.getHours()).padStart(2, '0') + ':' + String(now.getMinutes()).padStart(2, '0');
+      const time = (timeIn && timeIn.value) ? timeIn.value : fallbackTime;
 
       if (!amount || amount <= 0) {
         showToast('ကျေးဇူးပြု၍ မှန်ကန်သော ငွေပမာဏ ရိုက်ထည့်ပါ', true);
@@ -8405,6 +8732,7 @@ Return ONLY a valid JSON object with NO markdown formatting, NO backticks, NO ex
           existingTx.toAccountId = appState.selectedType === 'transfer' ? toAccId : null;
           existingTx.note = note;
           existingTx.date = date || new Date().toISOString().split('T')[0];
+          existingTx.time = time;
         }
         editingTransactionId = null;
       } else {
@@ -8419,6 +8747,7 @@ Return ONLY a valid JSON object with NO markdown formatting, NO backticks, NO ex
           toAccountId: appState.selectedType === 'transfer' ? toAccId : null,
           note: note,
           date: date || new Date().toISOString().split('T')[0],
+          time: time,
           createdAt: Date.now()
         };
         appState.transactions.unshift(newTx);
@@ -8985,6 +9314,7 @@ Return ONLY a valid JSON object with NO markdown formatting, NO backticks, NO ex
       setSafeTxt('txt-tab-tx', isMy ? 'မှတ်တမ်း' : 'Records');
       setSafeTxt('txt-tab-goals', isMy ? 'ပန်းတိုင်' : 'Goals');
       setSafeTxt('txt-btn-hero-add', isMy ? 'စာရင်းအသစ်' : '+ New Entry');
+      if (typeof populateYearMonthDropdowns === 'function') populateYearMonthDropdowns();
     }
 
     
