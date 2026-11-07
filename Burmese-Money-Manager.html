@@ -1613,6 +1613,71 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
             <i data-lucide="chevron-right" class="w-4 h-4 text-rose-400/40 group-hover:text-rose-400 group-hover:translate-x-0.5 transition-all"></i>
           </button>
 
+          <!-- Permanent Account & Data Deletion (Google Play Mandate) -->
+          <button onclick="confirmDeleteUserAccount()" class="w-full p-3.5 sm:p-4 flex items-center justify-between gap-3 hover:bg-rose-500/15 active:bg-rose-500/25 transition-all cursor-pointer text-left group">
+            <div class="flex items-center gap-3 min-w-0">
+              <div class="w-9 h-9 rounded-xl bg-rose-600/20 text-rose-400 border border-rose-500/30 flex items-center justify-center shrink-0 shadow-sm">
+                <i data-lucide="user-x" class="w-4 h-4 stroke-[2.5]"></i>
+              </div>
+              <div class="min-w-0">
+                <span class="font-extrabold text-sm text-rose-400 block leading-snug group-hover:text-rose-300 transition-colors">Delete Account &amp; All Data</span>
+                <p class="text-[10px] text-rose-400/60 font-medium truncate">အကောင့်နှင့် ဒေတာအားလုံးကို အပြီးတိုင် ဖျက်သိမ်းမည်</p>
+              </div>
+            </div>
+            <i data-lucide="chevron-right" class="w-4 h-4 text-rose-400/40 group-hover:text-rose-400 group-hover:translate-x-0.5 transition-all"></i>
+          </button>
+
+        </div>
+      </div>
+
+      <!-- Settings Section 4: Legal & Policy (Google Play Compliant) -->
+      <div class="space-y-2">
+        <h4 class="text-[11px] font-black text-white/40 uppercase tracking-widest px-1">Legal &amp; Policy (လုံခြုံရေးနှင့် မူဝါဒများ)</h4>
+        
+        <div class="rounded-[24px] bg-gradient-to-b from-[#1A1B22] via-[#13141A] to-[#0D0E13] border border-white/[0.08] shadow-[0_8px_24px_rgba(0,0,0,0.5)] divide-y divide-white/[0.06] overflow-hidden">
+          
+          <!-- Privacy Policy Link -->
+          <a href="privacy.html" target="_blank" class="w-full p-3.5 sm:p-4 flex items-center justify-between gap-3 hover:bg-white/[0.04] active:bg-white/[0.08] transition-all cursor-pointer text-left group">
+            <div class="flex items-center gap-3 min-w-0">
+              <div class="w-9 h-9 rounded-xl bg-lime-500/15 text-lime-400 border border-lime-500/20 flex items-center justify-center shrink-0 shadow-sm">
+                <i data-lucide="shield-check" class="w-4 h-4 stroke-[2.5]"></i>
+              </div>
+              <div class="min-w-0">
+                <span class="font-extrabold text-sm text-white block leading-snug group-hover:text-[#A3E635] transition-colors">Privacy Policy</span>
+                <p class="text-[10px] text-white/50 font-medium truncate">လုံခြုံရေးနှင့် ကိုယ်ရေးအချက်အလက် မူဝါဒ</p>
+              </div>
+            </div>
+            <i data-lucide="external-link" class="w-4 h-4 text-white/30 group-hover:text-white/80 group-hover:translate-x-0.5 transition-all"></i>
+          </a>
+
+          <!-- Terms & Conditions Link -->
+          <a href="terms.html" target="_blank" class="w-full p-3.5 sm:p-4 flex items-center justify-between gap-3 hover:bg-white/[0.04] active:bg-white/[0.08] transition-all cursor-pointer text-left group">
+            <div class="flex items-center gap-3 min-w-0">
+              <div class="w-9 h-9 rounded-xl bg-indigo-500/15 text-indigo-400 border border-indigo-500/20 flex items-center justify-center shrink-0 shadow-sm">
+                <i data-lucide="file-text" class="w-4 h-4 stroke-[2.5]"></i>
+              </div>
+              <div class="min-w-0">
+                <span class="font-extrabold text-sm text-white block leading-snug group-hover:text-[#A3E635] transition-colors">Terms &amp; Conditions</span>
+                <p class="text-[10px] text-white/50 font-medium truncate">အသုံးပြုသူ စည်းကမ်းသတ်မှတ်ချက်များ</p>
+              </div>
+            </div>
+            <i data-lucide="external-link" class="w-4 h-4 text-white/30 group-hover:text-white/80 group-hover:translate-x-0.5 transition-all"></i>
+          </a>
+
+          <!-- Account Deletion URL Link -->
+          <a href="delete-account.html" target="_blank" class="w-full p-3.5 sm:p-4 flex items-center justify-between gap-3 hover:bg-rose-500/10 active:bg-rose-500/20 transition-all cursor-pointer text-left group">
+            <div class="flex items-center gap-3 min-w-0">
+              <div class="w-9 h-9 rounded-xl bg-rose-500/15 text-rose-400 border border-rose-500/20 flex items-center justify-center shrink-0 shadow-sm">
+                <i data-lucide="user-minus" class="w-4 h-4 stroke-[2.5]"></i>
+              </div>
+              <div class="min-w-0">
+                <span class="font-extrabold text-sm text-rose-400 block leading-snug group-hover:text-rose-300 transition-colors">Account Deletion Web Page</span>
+                <p class="text-[10px] text-rose-400/60 font-medium truncate">အကောင့်ဖျက်သိမ်းရန် ဝဘ်ဆိုက် စာမျက်နှာ (Google Play URL)</p>
+              </div>
+            </div>
+            <i data-lucide="external-link" class="w-4 h-4 text-white/30 group-hover:text-white/80 group-hover:translate-x-0.5 transition-all"></i>
+          </a>
+
         </div>
       </div>
         </div>
@@ -2225,11 +2290,25 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
           </label>
         </div>
 
-        <div class="pt-2">
-          <button onclick="resetAllData()" class="w-full py-2.5 rounded-xl bg-rose-500/20 text-rose-400 hover:bg-rose-500/30 border border-rose-500/30 text-xs font-bold transition flex items-center justify-center gap-1.5">
+        <div class="pt-2 space-y-2">
+          <button onclick="resetAllData()" class="w-full py-2.5 rounded-xl bg-rose-500/15 text-rose-300 hover:bg-rose-500/25 border border-rose-500/25 text-xs font-bold transition flex items-center justify-center gap-1.5 cursor-pointer">
             <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
             <span>ဒေတာအားလုံး အစမှ ပြန်လည်စတင်မည် (Reset)</span>
           </button>
+
+          <button onclick="closeSettingsModal(); confirmDeleteUserAccount();" class="w-full py-2.5 rounded-xl bg-rose-600/20 text-rose-400 hover:bg-rose-600/30 border border-rose-600/40 text-xs font-bold transition flex items-center justify-center gap-1.5 cursor-pointer">
+            <i data-lucide="user-x" class="w-3.5 h-3.5"></i>
+            <span>အကောင့်နှင့် ဒေတာ အပြီးတိုင် ဖျက်မည် (Delete Account)</span>
+          </button>
+        </div>
+
+        <!-- Compliance Links inside Settings Modal -->
+        <div class="pt-2 border-t border-white/[0.08] flex items-center justify-around text-[11px] text-slate-400">
+          <a href="privacy.html" target="_blank" class="hover:text-lime-400 transition underline">Privacy Policy</a>
+          <span>•</span>
+          <a href="terms.html" target="_blank" class="hover:text-indigo-400 transition underline">Terms</a>
+          <span>•</span>
+          <a href="delete-account.html" target="_blank" class="hover:text-rose-400 transition underline">Delete URL</a>
         </div>
 
       </div>
@@ -2555,10 +2634,25 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
         </button>
       </div>
 
-      <!-- Reset Data Button for this User -->
-      <button type="button" onclick="confirmResetUserData()" class="w-full py-2 text-center text-[11px] font-bold text-slate-500 hover:text-rose-400 transition cursor-pointer">
-        ⚠️ စာရင်းမှတ်တမ်းအားလုံး ရှင်းလင်း၍ အသစ်ပြန်စမည် (Reset)
-      </button>
+      <!-- Reset & Delete Account Actions for this User -->
+      <div class="space-y-1.5 pt-1">
+        <button type="button" onclick="confirmResetUserData()" class="w-full py-2 text-center text-[11px] font-bold text-slate-400 hover:text-amber-400 transition cursor-pointer">
+          ⚠️ စာရင်းမှတ်တမ်းအားလုံး ရှင်းလင်း၍ အသစ်ပြန်စမည် (Reset Records)
+        </button>
+        <button type="button" onclick="closeProfileModal(); confirmDeleteUserAccount();" class="w-full py-2 text-center text-[11px] font-black text-rose-500/80 hover:text-rose-400 transition cursor-pointer flex items-center justify-center gap-1.5">
+          <i data-lucide="user-x" class="w-3.5 h-3.5"></i>
+          <span>အကောင့်နှင့် ဒေတာ အပြီးတိုင် ဖျက်မည် (Permanently Delete Account)</span>
+        </button>
+      </div>
+
+      <!-- Legal Links in Profile Modal -->
+      <div class="pt-2 border-t border-white/[0.08] flex items-center justify-around text-[10px] text-slate-500">
+        <a href="privacy.html" target="_blank" class="hover:text-slate-300 transition">Privacy Policy</a>
+        <span>•</span>
+        <a href="terms.html" target="_blank" class="hover:text-slate-300 transition">Terms</a>
+        <span>•</span>
+        <a href="delete-account.html" target="_blank" class="hover:text-rose-400 transition">Account Deletion URL</a>
+      </div>
 
     </div>
   </div>
@@ -3058,6 +3152,13 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
         <a href="BurmeseMoneyManager.apk" download class="hover:text-emerald-400 underline">Android APK</a>
         <span>•</span>
         <a href="x-safari-https://burmese-money-manager.surge.sh" class="hover:text-sky-400 underline">iOS Safari</a>
+      </div>
+      <div class="flex items-center justify-center gap-3 text-[10px] text-slate-500 pt-0.5">
+        <a href="privacy.html" target="_blank" class="hover:text-lime-400 transition underline">Privacy Policy</a>
+        <span>•</span>
+        <a href="terms.html" target="_blank" class="hover:text-indigo-400 transition underline">Terms of Service</a>
+        <span>•</span>
+        <a href="delete-account.html" target="_blank" class="hover:text-rose-400 transition underline">Delete Account</a>
       </div>
     </div>
 
@@ -5064,6 +5165,51 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
         closeProfileModal();
         showToast('စာရင်းမှတ်တမ်းအားလုံးကို ရှင်းလင်းပြီးပါပြီ (Clean Slate)');
       }
+    }
+
+    /* Google Play Mandated In-App Account & Data Deletion Engine */
+    function confirmDeleteUserAccount() {
+      const isConfirmed = confirm('သတိပေးချက်: သင်၏ အကောင့်နှင့်တကွ ဘဏ်စာရင်းများ၊ ဝင်ငွေ/ထွက်ငွေ မှတ်တမ်းများ၊ ရည်မှန်းချက်များ အားလုံးကို အပြီးတိုင် ဖျက်သိမ်းပါမည်။ ဤလုပ်ဆောင်ချက်ကို ပြန်လည်ရယူ၍ မရနိုင်ပါ။ အကောင့်အား အပြီးတိုင် ဖျက်မည်မှာ သေချာပါသလား?');
+      if (!isConfirmed) return;
+
+      const doubleConfirmed = confirm('နောက်ဆုံးအတည်ပြုချက်: ဤအကောင့်ရှိ ဒေတာအားလုံး အပြီးတိုင် ပျက်ပြယ်သွားမည်ဖြစ်ကြောင်း သေချာပါသလား?');
+      if (!doubleConfirmed) return;
+
+      const activeUserId = localStorage.getItem(ACTIVE_SESSION_KEY) || (appState.profile && appState.profile.id);
+      if (activeUserId) {
+        // Clear all user-specific data keys from localStorage
+        const keysToDelete = [
+          getUserDataKey(activeUserId, 'accounts'),
+          getUserDataKey(activeUserId, 'transactions'),
+          getUserDataKey(activeUserId, 'goals'),
+          getUserDataKey(activeUserId, 'budget'),
+          getUserDataKey(activeUserId, 'profile')
+        ];
+        keysToDelete.forEach(k => {
+          try { localStorage.removeItem(k); } catch(e) {}
+        });
+
+        // Remove user from the registry
+        try {
+          let registry = getUserRegistry();
+          registry = registry.filter(u => u && u.id !== activeUserId);
+          saveUserRegistry(registry);
+        } catch(e) {}
+      }
+
+      // Remove active session
+      try { localStorage.removeItem(ACTIVE_SESSION_KEY); } catch(e) {}
+
+      // Reset in-memory state
+      appState.transactions = [];
+      appState.accounts = JSON.parse(JSON.stringify(DEFAULT_ACCOUNTS));
+      appState.goals = [];
+      appState.profile = { id: '', name: 'ဧည့်သည်', email: '', avatarPreset: 'google_initial', customAvatar: '' };
+
+      showToast('✓ အကောင့်နှင့် ဒေတာအားလုံးကို အပြီးတိုင် ဖျက်သိမ်းပြီးပါပြီ');
+      setTimeout(() => {
+        window.location.reload();
+      }, 700);
     }
 
     function getCurrencySymbol() {
