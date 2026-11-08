@@ -1,61 +1,88 @@
+
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
   <defs>
-    <!-- Auspicious Imperial Crimson Red Gradient -->
-    <linearGradient id="luckyRedBg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#C00E1C"/>
-      <stop offset="30%" stop-color="#9B0813"/>
-      <stop offset="70%" stop-color="#75040B"/>
-      <stop offset="100%" stop-color="#4F0106"/>
-    </linearGradient>
-
-    <!-- 24K Solid Gold Gradient for the Dollar Sign -->
-    <linearGradient id="pureGoldGrad" x1="20%" y1="0%" x2="80%" y2="100%">
-      <stop offset="0%" stop-color="#FFF9D2"/>
-      <stop offset="25%" stop-color="#FCD34D"/>
-      <stop offset="50%" stop-color="#F59E0B"/>
-      <stop offset="80%" stop-color="#D97706"/>
-      <stop offset="100%" stop-color="#92400E"/>
-    </linearGradient>
-
-    <!-- Warm Golden Inner Rim Border -->
-    <linearGradient id="goldRimGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#FFE685" stop-opacity="0.85"/>
-      <stop offset="50%" stop-color="#D97706" stop-opacity="0.40"/>
-      <stop offset="100%" stop-color="#FCD34D" stop-opacity="0.75"/>
-    </linearGradient>
-
-    <!-- Golden Fortune Aura Glow -->
-    <radialGradient id="goldAura" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="#FFD700" stop-opacity="0.30"/>
-      <stop offset="60%" stop-color="#F59E0B" stop-opacity="0.10"/>
-      <stop offset="100%" stop-color="#75040B" stop-opacity="0"/>
+    <!-- Rich Imperial Ruby Background -->
+    <radialGradient id="bgGrad" cx="32%" cy="26%" r="88%">
+      <stop offset="0%" stop-color="#E51D2E"/>
+      <stop offset="25%" stop-color="#BA0E1C"/>
+      <stop offset="60%" stop-color="#7A050C"/>
+      <stop offset="85%" stop-color="#460105"/>
+      <stop offset="100%" stop-color="#200002"/>
     </radialGradient>
 
-    <!-- Drop Shadow for Gold Depth -->
-    <filter id="goldShadow" x="-20%" y="-20%" width="140%" height="140%">
-      <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#2B0002" flood-opacity="0.75"/>
-      <feDropShadow dx="0" dy="1" stdDeviation="2" flood-color="#FFE072" flood-opacity="0.5"/>
+    <!-- 24K Brilliant Radiant Gold Gradient for the Dollar Face -->
+    <linearGradient id="goldTopFace" x1="12%" y1="0%" x2="88%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFF7"/>
+      <stop offset="15%" stop-color="#FFF2A8"/>
+      <stop offset="38%" stop-color="#FED034"/>
+      <stop offset="68%" stop-color="#F59E0B"/>
+      <stop offset="88%" stop-color="#D97706"/>
+      <stop offset="100%" stop-color="#A14600"/>
+    </linearGradient>
+
+    <!-- Outer Squircle Gold Rim -->
+    <linearGradient id="goldRim" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFF9C4"/>
+      <stop offset="30%" stop-color="#FFD54F"/>
+      <stop offset="70%" stop-color="#D97706"/>
+      <stop offset="100%" stop-color="#FFE082"/>
+    </linearGradient>
+
+    <!-- Radial Fortune Aura Glow Behind the Symbol -->
+    <radialGradient id="haloGlow" cx="50%" cy="48%" r="52%">
+      <stop offset="0%" stop-color="#FFD700" stop-opacity="0.32"/>
+      <stop offset="45%" stop-color="#FF8F00" stop-opacity="0.10"/>
+      <stop offset="80%" stop-color="#BF360C" stop-opacity="0.02"/>
+      <stop offset="100%" stop-color="#200002" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Multi-Stage Deep 3D Elevation Drop Shadow -->
+    <filter id="deep3dShadow" x="-50%" y="-50%" width="200%" height="200%">
+      <!-- Wide ambient shadow on velvet red base -->
+      <feDropShadow dx="0" dy="20" stdDeviation="16" flood-color="#080002" flood-opacity="0.85"/>
+      <!-- Medium body shadow for grounding -->
+      <feDropShadow dx="0" dy="11" stdDeviation="8" flood-color="#050001" flood-opacity="0.75"/>
+      <!-- Crisp contact shadow directly beneath 3D edges -->
+      <feDropShadow dx="0" dy="4" stdDeviation="3" flood-color="#000000" flood-opacity="0.95"/>
     </filter>
   </defs>
 
-  <!-- Apple Squircle Frame with Imperial Lucky Red -->
-  <rect width="512" height="512" rx="116" fill="url(#luckyRedBg)"/>
+  <!-- Background Squircle with Imperial Ruby Red -->
+  <rect width="512" height="512" rx="118" fill="url(#bgGrad)"/>
   
-  <!-- Subtle Outer Gold Rim -->
-  <rect x="3" y="3" width="506" height="506" rx="113" fill="none" stroke="url(#goldRimGrad)" stroke-width="3"/>
+  <!-- Subtle Outer 3D Gold Bevel Rim -->
+  <rect x="3.5" y="3.5" width="505" height="505" rx="115" fill="none" stroke="url(#goldRim)" stroke-width="3" stroke-opacity="0.9"/>
+  <rect x="5.5" y="5.5" width="501" height="501" rx="113" fill="none" stroke="#FFFFFF" stroke-width="1" stroke-opacity="0.3"/>
 
-  <!-- Inner Fortune Glow & Atmospheric Rings -->
-  <circle cx="256" cy="256" r="185" fill="none" stroke="#FFE072" stroke-opacity="0.15" stroke-width="1.5"/>
-  <circle cx="256" cy="256" r="160" fill="url(#goldAura)"/>
-  <circle cx="256" cy="256" r="145" fill="none" stroke="#FCD34D" stroke-opacity="0.25" stroke-dasharray="6 6" stroke-width="1.5"/>
+  <!-- Atmospheric Fortune Gold Circles -->
+  <circle cx="256" cy="254" r="188" fill="none" stroke="#FFE082" stroke-opacity="0.16" stroke-width="1.5"/>
+  <circle cx="256" cy="254" r="160" fill="url(#haloGlow)"/>
+  <circle cx="256" cy="254" r="144" fill="none" stroke="#FFD54F" stroke-opacity="0.30" stroke-dasharray="7 5" stroke-width="1.5"/>
 
-  <!-- Crisp 24K Minted Gold Dollar Sign -->
-  <text x="256" y="254" 
-        dominant-baseline="central"
-        text-anchor="middle"
-        font-family="-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Inter', 'Segoe UI', Roboto, sans-serif" 
-        font-size="285" 
-        font-weight="800" 
-        filter="url(#goldShadow)"
-        fill="url(#pureGoldGrad)">$</text>
+  <!-- ==================== 3D EMBOSSED DOLLAR SECTION ==================== -->
+  <g id="embossedDollar">
+    <!-- 1. Deep Multi-Stage Elevation Drop Shadows -->
+    <text x="256" y="254" dominant-baseline="central" text-anchor="middle" 
+          font-family="-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Inter', 'Segoe UI', Roboto, sans-serif" 
+          font-size="290" font-weight="900" fill="#000000" filter="url(#deep3dShadow)">$</text>
+
+    <!-- 2. Physical 3D Extrusion Side Wall (Smooth sculpted solid 24K gold block) -->
+    <text x="256" y="266" dominant-baseline="central" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Inter', 'Segoe UI', Roboto, sans-serif" font-size="290" font-weight="900" fill="#3D1200">$</text>
+    <text x="256" y="265" dominant-baseline="central" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Inter', 'Segoe UI', Roboto, sans-serif" font-size="290" font-weight="900" fill="#4A1700">$</text>
+    <text x="256" y="264" dominant-baseline="central" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Inter', 'Segoe UI', Roboto, sans-serif" font-size="290" font-weight="900" fill="#581D00">$</text>
+    <text x="256" y="263" dominant-baseline="central" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Inter', 'Segoe UI', Roboto, sans-serif" font-size="290" font-weight="900" fill="#692400">$</text>
+    <text x="256" y="262" dominant-baseline="central" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Inter', 'Segoe UI', Roboto, sans-serif" font-size="290" font-weight="900" fill="#7C2D00">$</text>
+    <text x="256" y="261" dominant-baseline="central" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Inter', 'Segoe UI', Roboto, sans-serif" font-size="290" font-weight="900" fill="#903800">$</text>
+    <text x="256" y="260" dominant-baseline="central" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Inter', 'Segoe UI', Roboto, sans-serif" font-size="290" font-weight="900" fill="#A44400">$</text>
+    <text x="256" y="259" dominant-baseline="central" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Inter', 'Segoe UI', Roboto, sans-serif" font-size="290" font-weight="900" fill="#B95100">$</text>
+    <text x="256" y="258" dominant-baseline="central" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Inter', 'Segoe UI', Roboto, sans-serif" font-size="290" font-weight="900" fill="#CE6000">$</text>
+    <text x="256" y="257" dominant-baseline="central" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Inter', 'Segoe UI', Roboto, sans-serif" font-size="290" font-weight="900" fill="#E27000">$</text>
+    <text x="256" y="256" dominant-baseline="central" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Inter', 'Segoe UI', Roboto, sans-serif" font-size="290" font-weight="900" fill="#F48300">$</text>
+
+    <!-- 3. Top 24K Minted Face (No wireframe overlap) -->
+    <text x="256" y="254" dominant-baseline="central" text-anchor="middle" 
+          font-family="-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Inter', 'Segoe UI', Roboto, sans-serif" 
+          font-size="290" font-weight="900" 
+          fill="url(#goldTopFace)">$</text>
+  </g>
 </svg>
