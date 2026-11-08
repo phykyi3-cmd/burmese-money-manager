@@ -1,0 +1,89 @@
+================================================================================
+           BURMESE MONEY MANAGER - GOOGLE PLAY STORE SUBMISSION PACK
+================================================================================
+
+[1. BASIC APP METADATA]
+--------------------------------------------------------------------------------
+App Name (အမည် - အများဆုံး 30 လုံး):
+Burmese Money Manager
+
+Launcher Name:
+Burmese Money
+
+Package ID:
+com.burmese.moneymanager
+
+App Category (ကဏ္ဍ):
+Finance (ဘဏ္ဍာရေး)
+
+Tags:
+Finance, Personal Finance, Expense Tracker, Budget, Money Manager, Offline, Myanmar
+
+
+[2. SHORT DESCRIPTION (အကျဉ်းချုပ် ဖော်ပြချက် - အများဆုံး 80 လုံး)]
+--------------------------------------------------------------------------------
+မြန်မာဘာသာဖြင့် သုံးရလွယ်ကူပြီး လုံခြုံစိတ်ချရသော ကိုယ်ပိုင် ငွေစာရင်းထိန်းသိမ်းမှု App
+
+
+[3. FULL DESCRIPTION (အသေးစိတ် ဖော်ပြချက်)]
+--------------------------------------------------------------------------------
+Burmese Money Manager သည် သင်၏ နေ့စဉ် ဝင်ငွေ၊ ထွက်ငွေများနှင့် စုဆောင်းငွေများကို မြန်မာဘာသာဖြင့် အလွယ်တကူ၊ သပ်ရပ်ရှင်းလင်းစွာ စီမံခန့်ခွဲနိုင်သည့် အဆင့်မြင့် ကိုယ်ပိုင်ဘဏ္ဍာရေး စီမံခန့်ခွဲမှု App ဖြစ်ပါသည်။ 
+
+အင်တာနက်လုံးဝမလိုဘဲ မိမိဖုန်းထဲတွင်သာ ၁၀၀% Offline လုံခြုံစွာ သိမ်းဆည်းပေးပြီး၊ သင်၏ ကိုယ်ရေးကိုယ်တာ ဘဏ္ဍာရေးအချက်အလက်များကို မည်သည့် Server ပေါ်သို့မျှ ခိုးယူရယူခြင်း မရှိပါ။
+
+အဓိက ပါဝင်သော လုပ်ဆောင်ချက်များ (Key Features):
+• ဝင်ငွေ / ထွက်ငွေ အလွယ်တကူ မှတ်တမ်းတင်ခြင်း (Daily Income & Expense Logging)
+• ဒေသတွင်း ဘဏ်နှင့် ငွေစာရင်းအကောင့်များ ခွဲခြားထိန်းသိမ်းနိုင်ခြင်း (KBZPay, WavePay, AYA, CB, Cash စသည်ဖြင့်)
+• ကာလရှည် မှတ်တမ်းကြည့်ရှုနိုင်မှု (၂၀၁၅ ခုနှစ်မှ ၂၀၅၀ ခုနှစ်အထိ ရက်စွဲ၊ လ၊ နှစ်အလိုက် စာရင်းများ ပြန်လည်စစ်ဆေးနိုင်ခြင်း)
+• စုဆောင်းငွေ ပန်းတိုင်များ သတ်မှတ်နိုင်ခြင်း (Savings Goals Tracker)
+• စာရင်းဇယားနှင့် ဂရပ်များဖြင့် ဝင်ငွေ/ထွက်ငွေ အချိုးအစားများကို ရှင်းလင်းစွာ သုံးသပ်နိုင်ခြင်း
+• လုံခြုံသော ဒေတာသိမ်းဆည်းမှု (Excel .xlsx နှင့် JSON format ဖြင့် ဖုန်းထဲသို့ Backup/Export ထုတ်ယူနိုင်ခြင်း)
+• PIN Code လျှို့ဝှက်နံပါတ်ဖြင့် အက်ပ်ကို လော့ချထားနိုင်ခြင်း (App Lock Protection)
+• မြန်မာစာ ယူနီကုဒ်စနစ်နှင့် ပြီးပြည့်စုံစွာ တွဲဖက်အသုံးပြုနိုင်ခြင်း
+
+အင်တာနက်မရှိလည်း အချိန်မရွေး သုံးစွဲနိုင်သောကြောင့် မြန်မာနိုင်ငံသားတိုင်းအတွက် အသင့်တော်ဆုံး ကိုယ်ပိုင်ငွေစာရင်းကိုင် လက်စွဲ App ဖြစ်ပါသည်။
+
+
+[4. STORE GRAPHICS & ASSETS (ပုံများ)]
+--------------------------------------------------------------------------------
+- App Icon: app-icon-512.png (512 x 512 px, 32-bit PNG)
+- Feature Graphic: feature-graphic-1024x500.png (1024 x 500 px, JPG or PNG)
+- Screenshots: screenshot_1_home.png ~ screenshot_5_settings.png (1080 x 2400 px, 5 Phone Screenshots)
+
+
+[5. POLICY & COMPLIANCE URLS (စည်းမျဉ်းဆိုင်ရာ လင့်ခ်များ)]
+--------------------------------------------------------------------------------
+Privacy Policy URL:
+https://burmese-money-manager.surge.sh/privacy-policy.html
+
+Terms of Service URL:
+https://burmese-money-manager.surge.sh/terms.html
+
+Account Deletion URL:
+https://burmese-money-manager.surge.sh/account-deletion.html
+
+* App Target Audience: 18+ (Adults, General Audience)
+* Contains Ads: No (ကြော်ငြာလုံးဝမပါပါ)
+* In-App Purchases: No (အခမဲ့အသုံးပြုနိုင်ပါသည်)
+* Data Safety:
+  - Data Collection: No user data collected or shared.
+  - Storage: 100% on-device local storage.
+
+
+[6. APP SIGNING & KEYSTORE CREDENTIALS (အရေးကြီး သော့ဖိုင် အချက်အလက်များ)]
+--------------------------------------------------------------------------------
+Key Store File: signing.keystore
+Key Store Password: o3jlsNg1f4EA
+Key Alias: bmm-release-key
+Key Password: o3jlsNg1f4EA
+Signer's Full Name: Burmese Money Manager
+Signer's Organization: Burmese Money Manager Team
+Country Code: MM
+
+
+[7. WEB & PRODUCTION ENDPOINTS]
+--------------------------------------------------------------------------------
+PWA URL: https://burmese-money-manager.surge.sh
+Digital Asset Links: https://burmese-money-manager.surge.sh/.well-known/assetlinks.json
+GitHub Repository: https://github.com/phykyi3-cmd/burmese-money-manager.git
+================================================================================
