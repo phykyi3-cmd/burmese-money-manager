@@ -1,0 +1,8 @@
+[{
+      "relation": ["delegate_permission/common.handle_all_urls"],
+      "target": {
+        "namespace": "android_app",
+        "package_name": "com.burmese.moneymanager",
+        "sha256_cert_fingerprints": ["9B:39:4D:EA:EA:C2:62:20:C3:CA:11:95:DB:E4:DB:6E:6F:EB:7A:C1:E5:21:65:F4:24:39:7C:7E:44:65:98:12"]
+      }
+    }]
