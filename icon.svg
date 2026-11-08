@@ -1,33 +1,61 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
   <defs>
-    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#0E131B"/>
-      <stop offset="100%" stop-color="#06080C"/>
+    <!-- Auspicious Imperial Crimson Red Gradient -->
+    <linearGradient id="luckyRedBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#C00E1C"/>
+      <stop offset="30%" stop-color="#9B0813"/>
+      <stop offset="70%" stop-color="#75040B"/>
+      <stop offset="100%" stop-color="#4F0106"/>
     </linearGradient>
-    <linearGradient id="dollarGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#FFFFFF"/>
-      <stop offset="100%" stop-color="#E2E8F0"/>
+
+    <!-- 24K Solid Gold Gradient for the Dollar Sign -->
+    <linearGradient id="pureGoldGrad" x1="20%" y1="0%" x2="80%" y2="100%">
+      <stop offset="0%" stop-color="#FFF9D2"/>
+      <stop offset="25%" stop-color="#FCD34D"/>
+      <stop offset="50%" stop-color="#F59E0B"/>
+      <stop offset="80%" stop-color="#D97706"/>
+      <stop offset="100%" stop-color="#92400E"/>
     </linearGradient>
-    <radialGradient id="softGlow" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="#00D084" stop-opacity="0.10"/>
-      <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+
+    <!-- Warm Golden Inner Rim Border -->
+    <linearGradient id="goldRimGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFE685" stop-opacity="0.85"/>
+      <stop offset="50%" stop-color="#D97706" stop-opacity="0.40"/>
+      <stop offset="100%" stop-color="#FCD34D" stop-opacity="0.75"/>
+    </linearGradient>
+
+    <!-- Golden Fortune Aura Glow -->
+    <radialGradient id="goldAura" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FFD700" stop-opacity="0.30"/>
+      <stop offset="60%" stop-color="#F59E0B" stop-opacity="0.10"/>
+      <stop offset="100%" stop-color="#75040B" stop-opacity="0"/>
     </radialGradient>
+
+    <!-- Drop Shadow for Gold Depth -->
+    <filter id="goldShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#2B0002" flood-opacity="0.75"/>
+      <feDropShadow dx="0" dy="1" stdDeviation="2" flood-color="#FFE072" flood-opacity="0.5"/>
+    </filter>
   </defs>
 
-  <!-- Apple Squircle Frame -->
-  <rect width="512" height="512" rx="116" fill="url(#bg)"/>
-  <rect x="2" y="2" width="508" height="508" rx="114" fill="none" stroke="#FFFFFF" stroke-opacity="0.10" stroke-width="2"/>
+  <!-- Apple Squircle Frame with Imperial Lucky Red -->
+  <rect width="512" height="512" rx="116" fill="url(#luckyRedBg)"/>
+  
+  <!-- Subtle Outer Gold Rim -->
+  <rect x="3" y="3" width="506" height="506" rx="113" fill="none" stroke="url(#goldRimGrad)" stroke-width="3"/>
 
-  <!-- Inner Soft Ring & Atmosphere -->
-  <circle cx="256" cy="256" r="176" fill="none" stroke="#FFFFFF" stroke-opacity="0.04" stroke-width="1.5"/>
-  <circle cx="256" cy="256" r="150" fill="url(#softGlow)"/>
+  <!-- Inner Fortune Glow & Atmospheric Rings -->
+  <circle cx="256" cy="256" r="185" fill="none" stroke="#FFE072" stroke-opacity="0.15" stroke-width="1.5"/>
+  <circle cx="256" cy="256" r="160" fill="url(#goldAura)"/>
+  <circle cx="256" cy="256" r="145" fill="none" stroke="#FCD34D" stroke-opacity="0.25" stroke-dasharray="6 6" stroke-width="1.5"/>
 
-  <!-- Crisp Minimalist Dollar Sign -->
+  <!-- Crisp 24K Minted Gold Dollar Sign -->
   <text x="256" y="254" 
         dominant-baseline="central"
         text-anchor="middle"
         font-family="-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Inter', 'Segoe UI', Roboto, sans-serif" 
-        font-size="280" 
-        font-weight="700" 
-        fill="url(#dollarGrad)">$</text>
+        font-size="285" 
+        font-weight="800" 
+        filter="url(#goldShadow)"
+        fill="url(#pureGoldGrad)">$</text>
 </svg>
