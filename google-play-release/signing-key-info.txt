@@ -1,9 +1,9 @@
 Keep this file and signing.keystore in a safe place. You'll need these files if you want to upload future versions of your PWA to the Google Play Store.
 
 Key store file: signing.keystore
-Key store password: DXObVdxmyP9u
+Key store password: ORfUawat373u
 Key alias: bmm-release-key
-Key password: DXObVdxmyP9u
+Key password: ORfUawat373u
 Signer's full name: Burmese Money Manager
 Signer's organization: Burmese Money Manager Team
 Signer's organizational unit: Finance Suite
