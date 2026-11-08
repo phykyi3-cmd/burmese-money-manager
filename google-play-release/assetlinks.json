@@ -3,6 +3,6 @@
       "target": {
         "namespace": "android_app",
         "package_name": "com.burmese.moneymanager",
-        "sha256_cert_fingerprints": ["E4:08:5B:60:E3:D9:6B:CE:24:FD:9A:89:FA:09:1D:F7:03:8A:34:8D:64:61:72:22:39:E7:D2:A7:7D:00:56:71"]
+        "sha256_cert_fingerprints": ["C5:C5:0A:F5:AF:AE:B5:A2:55:7A:A8:B6:0A:FF:3C:3E:5E:91:0A:30:A4:9C:5D:CF:74:05:49:68:14:39:54:34"]
       }
     }]
