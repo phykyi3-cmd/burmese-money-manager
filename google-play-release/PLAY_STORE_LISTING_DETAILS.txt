@@ -2,9 +2,9 @@
            BURMESE MONEY MANAGER - GOOGLE PLAY STORE SUBMISSION PACK
 ================================================================================
 
-[1. BASIC APP METADATA]
+[1. BASIC APP METADATA (PRIMARY ENGLISH LISTING)]
 --------------------------------------------------------------------------------
-App Name (အမည် - အများဆုံး 30 လုံး):
+App Title (Max 30 characters):
 Burmese Money Manager
 
 Launcher Name:
@@ -13,45 +13,62 @@ Burmese Money
 Package ID:
 com.burmese.moneymanager
 
-App Category (ကဏ္ဍ):
-Finance (ဘဏ္ဍာရေး)
+App Category:
+Finance
 
 Tags:
-Finance, Personal Finance, Expense Tracker, Budget, Money Manager, Offline, Myanmar
+Finance, Personal Finance, Expense Tracker, Budget, Money Management, Offline, Ledger
 
 
-[2. SHORT DESCRIPTION (အကျဉ်းချုပ် ဖော်ပြချက် - အများဆုံး 80 လုံး)]
+[2. SHORT DESCRIPTION (Max 80 characters)]
 --------------------------------------------------------------------------------
-မြန်မာဘာသာဖြင့် သုံးရလွယ်ကူပြီး လုံခြုံစိတ်ချရသော ကိုယ်ပိုင် ငွေစာရင်းထိန်းသိမ်းမှု App
+Smart, private and 100% offline personal finance and expense tracking suite.
 
 
-[3. FULL DESCRIPTION (အသေးစိတ် ဖော်ပြချက်)]
+[3. FULL DESCRIPTION (Max 4000 characters)]
 --------------------------------------------------------------------------------
-Burmese Money Manager သည် သင်၏ နေ့စဉ် ဝင်ငွေ၊ ထွက်ငွေများနှင့် စုဆောင်းငွေများကို မြန်မာဘာသာဖြင့် အလွယ်တကူ၊ သပ်ရပ်ရှင်းလင်းစွာ စီမံခန့်ခွဲနိုင်သည့် အဆင့်မြင့် ကိုယ်ပိုင်ဘဏ္ဍာရေး စီမံခန့်ခွဲမှု App ဖြစ်ပါသည်။ 
+Burmese Money Manager is an intelligent, offline-first personal finance and expense tracking suite designed to help individuals effortlessly organize, monitor, and master their daily finances with complete privacy.
 
-အင်တာနက်လုံးဝမလိုဘဲ မိမိဖုန်းထဲတွင်သာ ၁၀၀% Offline လုံခြုံစွာ သိမ်းဆည်းပေးပြီး၊ သင်၏ ကိုယ်ရေးကိုယ်တာ ဘဏ္ဍာရေးအချက်အလက်များကို မည်သည့် Server ပေါ်သို့မျှ ခိုးယူရယူခြင်း မရှိပါ။
+Built specifically for seamless personal bookkeeping, the app requires zero internet connection, keeping 100% of your financial transaction records strictly secured inside your local device with zero cloud leaks.
 
-အဓိက ပါဝင်သော လုပ်ဆောင်ချက်များ (Key Features):
-• ဝင်ငွေ / ထွက်ငွေ အလွယ်တကူ မှတ်တမ်းတင်ခြင်း (Daily Income & Expense Logging)
-• ဒေသတွင်း ဘဏ်နှင့် ငွေစာရင်းအကောင့်များ ခွဲခြားထိန်းသိမ်းနိုင်ခြင်း (KBZPay, WavePay, AYA, CB, Cash စသည်ဖြင့်)
-• ကာလရှည် မှတ်တမ်းကြည့်ရှုနိုင်မှု (၂၀၁၅ ခုနှစ်မှ ၂၀၅၀ ခုနှစ်အထိ ရက်စွဲ၊ လ၊ နှစ်အလိုက် စာရင်းများ ပြန်လည်စစ်ဆေးနိုင်ခြင်း)
-• စုဆောင်းငွေ ပန်းတိုင်များ သတ်မှတ်နိုင်ခြင်း (Savings Goals Tracker)
-• စာရင်းဇယားနှင့် ဂရပ်များဖြင့် ဝင်ငွေ/ထွက်ငွေ အချိုးအစားများကို ရှင်းလင်းစွာ သုံးသပ်နိုင်ခြင်း
-• လုံခြုံသော ဒေတာသိမ်းဆည်းမှု (Excel .xlsx နှင့် JSON format ဖြင့် ဖုန်းထဲသို့ Backup/Export ထုတ်ယူနိုင်ခြင်း)
-• PIN Code လျှို့ဝှက်နံပါတ်ဖြင့် အက်ပ်ကို လော့ချထားနိုင်ခြင်း (App Lock Protection)
-• မြန်မာစာ ယူနီကုဒ်စနစ်နှင့် ပြီးပြည့်စုံစွာ တွဲဖက်အသုံးပြုနိုင်ခြင်း
+KEY FEATURES:
 
-အင်တာနက်မရှိလည်း အချိန်မရွေး သုံးစွဲနိုင်သောကြောင့် မြန်မာနိုင်ငံသားတိုင်းအတွက် အသင့်တော်ဆုံး ကိုယ်ပိုင်ငွေစာရင်းကိုင် လက်စွဲ App ဖြစ်ပါသည်။
+• FAST & INTUITIVE EXPENSE LOGGING
+Record daily income, expenses, and account transfers in seconds with clean categories and smart transaction notes.
+
+• MULTI-ACCOUNT & LOCAL WALLET MANAGEMENT
+Segregate and monitor balances across multiple accounts (KBZPay, WavePay, AYA Bank, CB Bank, Yoma Bank, and Cash).
+
+• MULTI-YEAR HISTORICAL LEDGER (2015 - 2050)
+Navigate your complete financial history across days, months, and decades. Seamlessly review past transactions or plan upcoming budget milestones.
+
+• SMART SAVINGS GOALS TRACKER
+Set custom savings targets with visual milestone progress bars, deadlines, and automated progress calculations.
+
+• VISUAL ANALYTICS & INSIGHTFUL REPORTS
+Gain deep clarity on your spending habits with interactive breakdown charts, income-to-expense ratios, and category summaries.
+
+• 100% PRIVATE & OFFLINE ARCHITECTURE
+Your financial records belong exclusively to you. No remote tracking, no server telemetry, and no third-party data collection.
+
+• FLEXIBLE DATA BACKUP & EXPORT
+Export your entire ledger into Excel (.xlsx), CSV, or raw JSON backup files at any time with a single tap.
+
+• CLIENT-SIDE APP LOCK SECURITY
+Safeguard your financial privacy from unauthorized access with a built-in security PIN passcode lock.
+
+• BEAUTIFUL MODERN DESIGN
+Clean dark luxury design crafted for maximum legibility and comfort.
 
 
-[4. STORE GRAPHICS & ASSETS (ပုံများ)]
+[4. STORE GRAPHICS & ASSETS]
 --------------------------------------------------------------------------------
-- App Icon: app-icon-512.png (512 x 512 px, 32-bit PNG)
-- Feature Graphic: feature-graphic-1024x500.png (1024 x 500 px, JPG or PNG)
-- Screenshots: screenshot_1_home.png ~ screenshot_5_settings.png (1080 x 2400 px, 5 Phone Screenshots)
+• App Icon: app-icon-512.png (512 x 512 px, 32-bit PNG)
+• Feature Graphic: feature-graphic-1024x500.png (1024 x 500 px, 24-bit PNG)
+• Phone Screenshots: screenshot_1_home.png ~ screenshot_5_settings.png (1080 x 2400 px, 5 Phone Screenshots)
 
 
-[5. POLICY & COMPLIANCE URLS (စည်းမျဉ်းဆိုင်ရာ လင့်ခ်များ)]
+[5. POLICY & COMPLIANCE URLS]
 --------------------------------------------------------------------------------
 Privacy Policy URL:
 https://burmese-money-manager.surge.sh/privacy-policy.html
@@ -62,28 +79,31 @@ https://burmese-money-manager.surge.sh/terms.html
 Account Deletion URL:
 https://burmese-money-manager.surge.sh/account-deletion.html
 
-* App Target Audience: 18+ (Adults, General Audience)
-* Contains Ads: No (ကြော်ငြာလုံးဝမပါပါ)
-* In-App Purchases: No (အခမဲ့အသုံးပြုနိုင်ပါသည်)
-* Data Safety:
-  - Data Collection: No user data collected or shared.
-  - Storage: 100% on-device local storage.
+• Content Rating / Target Audience: Everyone (General Audience / 18+)
+• Contains Ads: No (100% Ad-Free)
+• In-App Purchases: No (100% Free Utility)
+• Data Safety Declaration:
+  - Data Shared: No user data shared with third parties.
+  - Data Collected: No user data collected on remote servers (100% on-device local storage).
 
 
-[6. APP SIGNING & KEYSTORE CREDENTIALS (အရေးကြီး သော့ဖိုင် အချက်အလက်များ)]
+[6. APP SIGNING & KEYSTORE CREDENTIALS]
 --------------------------------------------------------------------------------
-Key Store File: signing.keystore
-Key Store Password: o3jlsNg1f4EA
-Key Alias: bmm-release-key
-Key Password: o3jlsNg1f4EA
-Signer's Full Name: Burmese Money Manager
-Signer's Organization: Burmese Money Manager Team
-Country Code: MM
+• Certificate File: upload_certificate.cer (X.509 PEM Certificate)
+• Key Store File: signing.keystore
+• Key Store Password: o3jlsNg1f4EA
+• Key Alias: bmm-release-key
+• Key Password: o3jlsNg1f4EA
+• Signer's Full Name: Burmese Money Manager
+• Signer's Organization: Burmese Money Manager Team
+• Country Code: MM
+• SHA256 Fingerprint:
+  5B:22:78:A6:7B:2D:41:37:07:C7:2E:01:F9:62:55:28:B9:D2:C3:4E:14:99:73:9A:F2:A9:55:B7:50:50:66:72
 
 
 [7. WEB & PRODUCTION ENDPOINTS]
 --------------------------------------------------------------------------------
-PWA URL: https://burmese-money-manager.surge.sh
-Digital Asset Links: https://burmese-money-manager.surge.sh/.well-known/assetlinks.json
-GitHub Repository: https://github.com/phykyi3-cmd/burmese-money-manager.git
+• Live Web / PWA URL: https://burmese-money-manager.surge.sh
+• Digital Asset Links: https://burmese-money-manager.surge.sh/.well-known/assetlinks.json
+• GitHub Repository: https://github.com/phykyi3-cmd/burmese-money-manager.git
 ================================================================================
