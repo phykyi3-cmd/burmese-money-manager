@@ -7,6 +7,9 @@
 App Title (Max 30 characters):
 Burmese Money Manager
 
+Developer Name:
+Sithu Min
+
 Launcher Name:
 Burmese Money
 
